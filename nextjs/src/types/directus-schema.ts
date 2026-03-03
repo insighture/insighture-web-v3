@@ -309,6 +309,49 @@ export interface BlockServices {
 	user_updated?: DirectusUser | string | null;
 }
 
+export interface BlockReachOutContactItem {
+	/** @primaryKey */
+	id: number;
+	sort?: number | null;
+	/** @description The reach out block this item belongs to. */
+	block_reach_out?: BlockReachOut | number | null;
+	/** @description Contact method label (e.g. "Email us", "Global enquiries"). */
+	label?: string | null;
+	/** @description Contact value (e.g. email address or phone number). */
+	value?: string | null;
+	/** @description Supporting description line below the value. */
+	description?: string | null;
+	date_created?: string | null;
+	user_created?: DirectusUser | string | null;
+	date_updated?: string | null;
+	user_updated?: DirectusUser | string | null;
+}
+
+export interface BlockReachOut {
+	/** @primaryKey */
+	id: number;
+	/** @description Form to display on the left side of the Reach Out block. */
+	form?: Form | string | null;
+	/** @description Section heading (e.g. "Reach out"). */
+	heading?: string | null;
+	/** @description Title shown on the brochure card. */
+	brochure_title?: string | null;
+	/** @description Thumbnail image for the brochure card. */
+	brochure_image?: DirectusFile | string | null;
+	/** @description PDF file for the downloadable brochure. */
+	brochure_pdf?: DirectusFile | string | null;
+	/** @description Label for the brochure download link. */
+	brochure_download_label?: string | null;
+	/** @description Heading for the contact information section. */
+	inquiries_heading?: string | null;
+	/** @description List of contact entries shown in the inquiries section. */
+	contact_items?: BlockReachOutContactItem[] | string[];
+	date_created?: string | null;
+	user_created?: DirectusUser | string | null;
+	date_updated?: string | null;
+	user_updated?: DirectusUser | string | null;
+}
+
 export interface FormField {
 	/** @primaryKey */
 	id: string;
@@ -474,7 +517,7 @@ export interface PageBlock {
 	/** @description The id of the page that this block belongs to. */
 	page?: Page | string | null;
 	/** @description The data for the block. */
-	item?: BlockHero | BlockRichtext | BlockForm | BlockPost | BlockGallery | BlockPricing | string | null;
+	item?: BlockHero | BlockRichtext | BlockForm | BlockPost | BlockGallery | BlockPricing | BlockReachOut | string | null;
 	/** @description The collection (type of block). */
 	collection?: string | null;
 	/** @description Temporarily hide this block on the website without having to remove it from your page. */
@@ -1044,6 +1087,8 @@ export interface Schema {
 	block_posts: BlockPost[];
 	block_pricing: BlockPricing[];
 	block_pricing_cards: BlockPricingCard[];
+	block_reach_out: BlockReachOut[];
+	block_reach_out_contact_item: BlockReachOutContactItem[];
 	block_richtext: BlockRichtext[];
 	block_services: BlockServices[];
 	block_services_item: BlockServicesItem[];

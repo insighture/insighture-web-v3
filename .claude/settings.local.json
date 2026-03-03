@@ -30,7 +30,10 @@
       "WebFetch(domain:raw.githubusercontent.com)",
       "Bash(pnpm add:*)",
       "Bash(done)",
-      "Bash(grep:*)"
+      "Bash(grep:*)",
+      "mcp__figma-remote-mcp__get_design_context",
+      "mcp__ide__getDiagnostics",
+      "Bash(PERMALINK='/lets-talk' node:*)"
     ]
   },
   "enableAllProjectMcpServers": true,

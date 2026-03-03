@@ -12,6 +12,7 @@ import LogoCarousel from '@/components/blocks/LogoCarousel';
 import FeatureSplit from '@/components/blocks/FeatureSplit';
 import Insights from '@/components/blocks/Insights';
 import Credentials from '@/components/blocks/Credentials';
+import ReachOut from '@/components/blocks/ReachOut';
 
 interface BaseBlockProps {
 	block: {
@@ -35,6 +36,7 @@ const BaseBlock = ({ block }: BaseBlockProps) => {
 		block_feature_split: FeatureSplit,
 		block_insights: Insights,
 		block_credentials: Credentials,
+		block_reach_out: ReachOut,
 	};
 
 	const Component = components[block.collection];

@@ -146,7 +146,45 @@ const pageFields = [
 							badges: ['id', 'sort', 'image', 'alt', 'url'],
 						},
 					],
-					block_form: [
+					block_reach_out: [
+					'id',
+					'heading',
+					'brochure_title',
+					'brochure_image',
+					'brochure_pdf',
+					'brochure_download_label',
+					'inquiries_heading',
+					{
+						form: [
+							'id',
+							'title',
+							'submit_label',
+							'success_message',
+							'on_success',
+							'success_redirect_url',
+							'is_active',
+							{
+								fields: [
+									'id',
+									'name',
+									'type',
+									'label',
+									'placeholder',
+									'help',
+									'validation',
+									'width',
+									'choices',
+									'required',
+									'sort',
+								],
+							},
+						],
+					},
+					{
+						contact_items: ['id', 'sort', 'label', 'value', 'description'],
+					},
+				],
+				block_form: [
 						'id',
 						'tagline',
 						'headline',
