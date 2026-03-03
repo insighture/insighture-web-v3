@@ -1,34 +1,34 @@
 {
-  "name": "insighture-web-v2",
-  "version": "0.1.0",
-  "private": true,
+  "name": "directus-cms-starter",
+  "version": "1.0.0",
+  "description": "",
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "eslint"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "dependencies": {
-    "next": "16.1.6",
-    "react": "19.2.3",
-    "react-dom": "19.2.3"
+  "directus:template": {
+    "name": "CMS",
+    "description": "A ready-to-use CMS with block builder, visual editing, and integration with your favorite framework. ",
+    "template": "./directus/template",
+    "frontends": {
+      "nextjs": {
+        "name": "Next.js",
+        "path": "./nextjs"
+      },
+      "nuxt": {
+        "name": "Nuxt",
+        "path": "./nuxt"
+      },
+      "astro": {
+        "name": "Astro",
+        "path": "./astro"
+      },
+      "svelte": {
+        "name": "Svelte",
+        "path": "./sveltekit"
+      }
+    }
   },
-  "devDependencies": {
-    "@tailwindcss/postcss": "^4",
-    "@types/node": "^20",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
-    "eslint": "^9",
-    "eslint-config-next": "16.1.6",
-    "tailwindcss": "^4",
-    "typescript": "^5"
-  },
-  "ignoreScripts": [
-    "sharp",
-    "unrs-resolver"
-  ],
-  "trustedDependencies": [
-    "sharp",
-    "unrs-resolver"
-  ]
+  "keywords": [],
+  "author": "",
+  "packageManager": "pnpm@10.30.3+sha512.c961d1e0a2d8e354ecaa5166b822516668b7f44cb5bd95122d590dd81922f606f5473b6d23ec4a5be05e7fcd18e8488d47d978bbe981872f1145d06e9a740017"
 }

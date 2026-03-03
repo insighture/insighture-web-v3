@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__figma-dev-mode-mcp-server__get_design_context",
+      "mcp__figma-dev-mode-mcp-server__get_screenshot",
+      "Bash(curl:*)",
+      "Bash(__NEW_LINE_532f4f0a6d4970ea__ curl:*)",
+      "Bash(xargs ls:*)",
+      "Bash(node:*)",
+      "Bash(__NEW_LINE_4253ace905d71eaa__:*)",
+      "mcp__ide__getDiagnostics"
+    ]
+  }
+}

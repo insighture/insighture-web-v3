@@ -1,0 +1,34 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__figma-dev-mode-mcp-server__get_design_context",
+      "mcp__figma-dev-mode-mcp-server__get_screenshot",
+      "Bash(node:*)",
+      "Bash(ls:*)",
+      "Bash(npx directus-template-cli@latest:*)",
+      "Bash(npx tsc:*)",
+      "Bash(rm:*)",
+      "Bash(python3:*)",
+      "Bash(curl:*)",
+      "Bash(docker ps:*)",
+      "Bash(__NEW_LINE_7c300dea7ae89ca2__ node:*)",
+      "Bash(python:*)",
+      "Bash(aws ec2:*)",
+      "Bash(aws:*)",
+      "Bash(ssh:*)",
+      "Bash(sed:*)",
+      "Bash(npm install:*)",
+      "Bash(npm ls:*)",
+      "Bash(docker exec:*)",
+      "Bash(docker compose:*)",
+      "WebSearch",
+      "WebFetch(domain:www.npmjs.com)",
+      "WebFetch(domain:github.com)",
+      "Bash(npm pack:*)",
+      "Bash(tar:*)",
+      "Bash(mkdir:*)",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "Bash(pnpm add:*)"
+    ]
+  }
+}
