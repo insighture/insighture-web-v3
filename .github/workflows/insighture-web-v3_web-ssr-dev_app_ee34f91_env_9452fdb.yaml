@@ -538,7 +538,6 @@ jobs:
 
               build_spec='{
                 "version": 1,
-                "appRoot": "nextjs",
                 "frontend": {
                   "phases": {
                     "preBuild": {
