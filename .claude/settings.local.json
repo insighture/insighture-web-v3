@@ -30,7 +30,14 @@
       "WebFetch(domain:raw.githubusercontent.com)",
       "Bash(pnpm add:*)",
       "Bash(done)",
-      "Bash(grep:*)"
+      "Bash(grep:*)",
+      "Bash(psql:*)",
+      "Bash(PGPASSWORD=\"b0mtKDcNY59ys3kwbz5h\" psql:*)",
+      "Bash(chmod 400:*)",
+      "Bash(scp:*)",
+      "Bash(PGPASSWORD='b0mtKDcNY59ys3kwbz5h' psql:*)",
+      "Bash(__NEW_LINE_f2615ba309e891d7__ curl:*)",
+      "Bash(__NEW_LINE_6181d39cdd9b8563__ curl:*)"
     ]
   },
   "enableAllProjectMcpServers": true,

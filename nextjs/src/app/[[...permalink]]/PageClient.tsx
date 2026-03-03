@@ -29,6 +29,7 @@ export default function PageClient({ sections, pageId, navOverrides }: PageClien
 	// Apply page-level nav overrides; clear them on unmount.
 	useEffect(() => {
 		setNavOverrides(navOverrides ?? null);
+
 		return () => setNavOverrides(null);
 	}, [navOverrides, setNavOverrides]);
 
