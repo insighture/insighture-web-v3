@@ -113,6 +113,7 @@ export default function ReachOut({ data }: ReachOutProps) {
 				</div>
 			)}
 
+
 			{(inquiries_heading || sortedContactItems.length > 0) && (
 				<div
 					className="pl-[24px] flex flex-col gap-[16px]"
