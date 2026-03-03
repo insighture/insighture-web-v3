@@ -1,7 +1,7 @@
 # Directus Specific
-directus/data/*
+# directus/data/*
 directus/uploads/*
-directus/extensions/.registry
+# directus/extensions/.registry
 !directus/*/.gitkeep
 
 # Dependencies
