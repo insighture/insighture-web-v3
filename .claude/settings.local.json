@@ -28,7 +28,13 @@
       "Bash(tar:*)",
       "Bash(mkdir:*)",
       "WebFetch(domain:raw.githubusercontent.com)",
-      "Bash(pnpm add:*)"
+      "Bash(pnpm add:*)",
+      "Bash(done)",
+      "Bash(grep:*)"
     ]
-  }
+  },
+  "enableAllProjectMcpServers": true,
+  "enabledMcpjsonServers": [
+    "shadcn"
+  ]
 }

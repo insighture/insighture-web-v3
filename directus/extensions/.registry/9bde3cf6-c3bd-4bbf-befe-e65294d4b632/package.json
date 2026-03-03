@@ -18,7 +18,7 @@
     "type": "interface",
     "path": "dist/index.js",
     "source": "src/index.ts",
-    "host": "^v9.9.0",
+    "host": "^9.9.0 || ^10.0.0 || ^11.0.0",
     "hidden": false
   },
   "files": [

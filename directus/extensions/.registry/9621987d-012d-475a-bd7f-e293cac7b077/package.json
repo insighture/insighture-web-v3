@@ -22,7 +22,7 @@
 		"type": "interface",
 		"path": "dist/index.js",
 		"source": "src/index.ts",
-		"host": "^10.1.0"
+		"host": "^10.1.0 || ^11.0.0"
 	},
 	"files": [
 		"dist"
