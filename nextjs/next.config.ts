@@ -19,6 +19,7 @@ const ContentSecurityPolicy = `
 `;
 
 const nextConfig: NextConfig = {
+	output: 'standalone',
 	webpack: (config) => {
 		config.cache = false;
 
