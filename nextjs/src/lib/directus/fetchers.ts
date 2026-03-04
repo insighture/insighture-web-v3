@@ -68,8 +68,11 @@ const pageFields = [
 						'image',
 						'enable_carousel',
 						'autoplay_interval',
+						'enable_gradient_overlay',
+						'expanded_text_placement',
+						'expanded_text_alignment',
 						{
-							headline_lines: ['id', 'sort', 'text', 'font_weight', 'font_style', 'font_size'],
+							headline_lines: ['id', 'sort', 'text', 'font_weight', 'font_style', 'font_size', 'color'],
 						},
 						{
 							button_group: [
@@ -121,6 +124,7 @@ const pageFields = [
 					block_logo_carousel: [
 						'id',
 						'tagline',
+						'tagline_color',
 						'background_color',
 						{
 							logos: ['id', 'sort', 'name', 'url', 'logo'],
@@ -144,6 +148,17 @@ const pageFields = [
 						'background_color',
 						{
 							badges: ['id', 'sort', 'image', 'alt', 'url'],
+						},
+					],
+					block_card_grid: [
+						'id',
+						'tagline',
+						'headline',
+						'description',
+						'columns',
+						'background_color',
+						{
+							items: ['id', 'sort', 'variant', 'image', 'title', 'description', 'quote', 'author_name', 'author_role', 'accent_color'],
 						},
 					],
 					block_form: [

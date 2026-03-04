@@ -237,7 +237,7 @@ const NavigationBar = forwardRef<HTMLElement, NavigationBarProps>(({ navigation,
 
 				<div className="flex items-center gap-4">
 					<SearchModal />
-					<ThemeToggle />
+					{/* <ThemeToggle /> */}
 				</div>
 			</Container>
 		</header>

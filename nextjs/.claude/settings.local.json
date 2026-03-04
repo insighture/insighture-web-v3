@@ -8,7 +8,12 @@
       "Bash(xargs ls:*)",
       "Bash(node:*)",
       "Bash(__NEW_LINE_4253ace905d71eaa__:*)",
-      "mcp__ide__getDiagnostics"
+      "mcp__ide__getDiagnostics",
+      "Bash(xargs grep:*)",
+      "Bash(python3:*)",
+      "Bash(docker compose:*)",
+      "WebFetch(domain:www.figma.com)",
+      "Bash(npx tsc:*)"
     ]
   }
 }

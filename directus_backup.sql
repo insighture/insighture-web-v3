@@ -302,7 +302,10 @@ CREATE TABLE public.block_hero (
     autoplay_interval integer DEFAULT 4000,
     tagline_type character varying(255) DEFAULT 'text'::character varying,
     tagline_image uuid,
-    tagline_image_alt character varying(255)
+    tagline_image_alt character varying(255),
+    enable_gradient_overlay boolean DEFAULT false,
+    expanded_text_placement character varying(255) DEFAULT 'center_left'::character varying,
+    expanded_text_alignment character varying(255) DEFAULT 'left'::character varying
 );
 
 
@@ -319,7 +322,8 @@ CREATE TABLE public.block_hero_headline_line (
     text character varying(255),
     font_weight character varying(255) DEFAULT '600'::character varying,
     font_style character varying(255) DEFAULT 'normal'::character varying,
-    font_size character varying(255) DEFAULT '2xl'::character varying
+    font_size character varying(255) DEFAULT '2xl'::character varying,
+    color character varying(255) DEFAULT NULL::character varying
 );
 
 
@@ -1801,10 +1805,10 @@ d3481aae-7dc4-446f-8b68-50e77aab58da	34fdcf0e-cc5d-4c40-b61f-4f0a5e167306	50570a
 -- Data for Name: block_hero; Type: TABLE DATA; Schema: public; Owner: directus
 --
 
-COPY public.block_hero (id, image, button_group, description, tagline, layout, date_created, user_created, date_updated, user_updated, enable_carousel, autoplay_interval, tagline_type, tagline_image, tagline_image_alt) FROM stdin;
-6f009cc2-1d9a-4bee-808b-465d7865510a	\N	\N	\N	\N	image_right	2026-03-01 15:33:23.782+00	316051e8-c301-48f8-88ca-dc014969f58c	\N	\N	f	4000	text	\N	\N
-0e09d473-7f86-4e70-a199-e81e6c04c3c6	ea743e20-e6e9-4be8-a949-3771cd182810	00024c32-7123-4342-8350-44d09ca6827a	\N	CMS	image_expanded	2025-05-07 01:22:17.909+00	316051e8-c301-48f8-88ca-dc014969f58c	2026-03-03 03:28:51.667+00	316051e8-c301-48f8-88ca-dc014969f58c	t	4000	image	b643be03-e7d8-4dce-8b1c-5ffe55579f48	\N
-d251b9d0-d7ae-4dc7-aaea-a09fc3f5b048	\N	\N	\N	test	\N	2026-03-03 06:27:28.589+00	316051e8-c301-48f8-88ca-dc014969f58c	\N	\N	f	4000	text	\N	\N
+COPY public.block_hero (id, image, button_group, description, tagline, layout, date_created, user_created, date_updated, user_updated, enable_carousel, autoplay_interval, tagline_type, tagline_image, tagline_image_alt, enable_gradient_overlay, expanded_text_placement, expanded_text_alignment) FROM stdin;
+6f009cc2-1d9a-4bee-808b-465d7865510a	\N	\N	\N	\N	image_right	2026-03-01 15:33:23.782+00	316051e8-c301-48f8-88ca-dc014969f58c	\N	\N	f	4000	text	\N	\N	f	center_left	left
+0e09d473-7f86-4e70-a199-e81e6c04c3c6	ea743e20-e6e9-4be8-a949-3771cd182810	00024c32-7123-4342-8350-44d09ca6827a	\N	CMS	image_expanded	2025-05-07 01:22:17.909+00	316051e8-c301-48f8-88ca-dc014969f58c	2026-03-03 03:28:51.667+00	316051e8-c301-48f8-88ca-dc014969f58c	t	4000	image	b643be03-e7d8-4dce-8b1c-5ffe55579f48	\N	f	center_left	left
+d251b9d0-d7ae-4dc7-aaea-a09fc3f5b048	\N	\N	\N	test	\N	2026-03-03 06:27:28.589+00	316051e8-c301-48f8-88ca-dc014969f58c	\N	\N	f	4000	text	\N	\N	f	center_left	left
 \.
 
 
@@ -1812,9 +1816,9 @@ d251b9d0-d7ae-4dc7-aaea-a09fc3f5b048	\N	\N	\N	test	\N	2026-03-03 06:27:28.589+00
 -- Data for Name: block_hero_headline_line; Type: TABLE DATA; Schema: public; Owner: directus
 --
 
-COPY public.block_hero_headline_line (id, sort, block_hero, text, font_weight, font_style, font_size) FROM stdin;
-a0359d30-aa7e-4149-b291-9260f824d0bb	1	0e09d473-7f86-4e70-a199-e81e6c04c3c6	Thinking behind,	600	normal	2xl
-a38b8ea5-9cbe-49b2-816d-124d9e79939e	2	0e09d473-7f86-4e70-a199-e81e6c04c3c6	better	600	italic	2xl
+COPY public.block_hero_headline_line (id, sort, block_hero, text, font_weight, font_style, font_size, color) FROM stdin;
+a0359d30-aa7e-4149-b291-9260f824d0bb	1	0e09d473-7f86-4e70-a199-e81e6c04c3c6	Thinking behind,	600	normal	2xl	\N
+a38b8ea5-9cbe-49b2-816d-124d9e79939e	2	0e09d473-7f86-4e70-a199-e81e6c04c3c6	better	600	italic	2xl	\N
 \.
 
 
@@ -3931,7 +3935,7 @@ COPY public.directus_fields (id, collection, field, special, interface, options,
 58	block_gallery_items	user_updated	user-updated	select-dropdown-m2o	{"template":"{{avatar}} {{first_name}} {{last_name}}"}	user	\N	t	t	6	half	\N	\N	\N	f	\N	\N	\N	t
 61	block_hero	image	file	file-image	{"crop":false,"folder":"ece7bab9-5433-4a63-b9f7-bde8b517d6d9"}	\N	\N	f	f	12	full	\N	Featured image in the hero.	\N	f	\N	\N	\N	t
 62	block_hero	button_group	m2o	select-dropdown-m2o	{"template":"{{buttons.label}}","createRelatedItem":"always","enableLink":true,"enableSelect":false}	related-values	{"template":"{{buttons.label}}"}	f	f	10	full	\N	Action buttons that show below headline and description.	\N	f	\N	\N	\N	t
-63	block_hero	description	\N	input-multiline	{"folder":"ece7bab9-5433-4a63-b9f7-bde8b517d6d9"}	\N	\N	f	f	9	full	\N	Supporting copy that shows below the headline.	\N	f	\N	\N	\N	t
+63	block_hero	description	\N	input-rich-text-html	{"toolbar":["bold","italic","forecolor","underline","customLink","bullist","numlist","removeformat"],"folder":"ece7bab9-5433-4a63-b9f7-bde8b517d6d9"}	\N	\N	f	f	9	full	\N	Supporting copy that shows below the headline. Supports bold, italic, colored text, links and lists.	\N	f	\N	\N	\N	t
 97	block_pricing_cards	button	m2o	select-dropdown-m2o	{"createRelatedItem":"always","template":"{{label}} • {{type}}","enableSelect":false,"enableLink":true}	related-values	{"template":"{{label}} • {{type}}"}	f	f	12	full	\N	The action button / link shown at the bottom of the pricing card.	\N	f	\N	\N	\N	t
 98	block_pricing_cards	pricing	\N	select-dropdown-m2o	{"enableSelect":false,"enableLink":true}	related-values	\N	f	t	13	full	\N	The id of the pricing block this card belongs to.	\N	f	\N	\N	\N	t
 99	block_pricing_cards	is_highlighted	cast-boolean	boolean	{"label":"Highlighted"}	\N	\N	f	f	14	half	\N	Add highlighted border around the pricing plan to make it stand out.	\N	f	\N	\N	\N	t
@@ -4150,6 +4154,9 @@ COPY public.directus_fields (id, collection, field, special, interface, options,
 255	posts	title	\N	input	{"placeholder":"Essential tips for first-time home buyers"}	\N	\N	f	f	1	half	\N	Title of the blog post (used in page title and meta tags)	\N	t	meta_content	\N	\N	t
 312	block_hero	enable_carousel	\N	boolean	\N	\N	\N	f	f	14	half	\N	Enable carousel mode � shows multiple slides with cycling background images and content.	[{"name":"Hide when not image_expanded","rule":{"_and":[{"layout":{"_neq":"image_expanded"}}]},"hidden":true,"options":{}}]	f	\N	\N	\N	t
 313	block_hero	autoplay_interval	\N	input	\N	\N	\N	f	f	15	half	\N	Milliseconds between slide transitions. Default: 4000 (4 sec).	[{"name":"Hide when carousel disabled","rule":{"_and":[{"enable_carousel":{"_neq":true}}]},"hidden":true,"options":{}}]	f	\N	\N	\N	t
+600	block_hero	enable_gradient_overlay	\N	boolean	\N	\N	\N	f	f	17	half	\N	Enable a dark gradient overlay on the expanded image for improved text legibility.	[{"name":"Hide when not image_expanded","rule":{"_and":[{"layout":{"_neq":"image_expanded"}}]},"hidden":true,"options":{}}]	f	\N	\N	\N	t
+601	block_hero	expanded_text_placement	\N	select-dropdown	{"choices":[{"text":"Left \u2013 Vertically Centered (default)","value":"center_left"},{"text":"Bottom \u2013 Centered","value":"bottom_center"},{"text":"Bottom \u2013 Left Aligned","value":"bottom_left"},{"text":"Center \u2013 Centered","value":"center_center"}]}	labels	{"choices":[{"text":"Left","value":"center_left","foreground":"#FFFFFF","background":"#2F80ED"},{"text":"Bottom Center","value":"bottom_center","foreground":"#FFFFFF","background":"#6B4EFF"},{"text":"Bottom Left","value":"bottom_left","foreground":"#FFFFFF","background":"#9B59B6"},{"text":"Center","value":"center_center","foreground":"#FFFFFF","background":"#27AE60"}]}	f	f	18	half	\N	Where to position the text block within the image_expanded layout.	[{"name":"Hide when not image_expanded","rule":{"_and":[{"layout":{"_neq":"image_expanded"}}]},"hidden":true,"options":{}}]	f	\N	\N	\N	t
+602	block_hero	expanded_text_alignment	\N	select-dropdown	{"choices":[{"text":"Left","value":"left"},{"text":"Center","value":"center"},{"text":"Right","value":"right"}]}	labels	{"choices":[{"text":"Left","value":"left","foreground":"#FFFFFF","background":"#2F80ED"},{"text":"Center","value":"center","foreground":"#FFFFFF","background":"#6B4EFF"},{"text":"Right","value":"right","foreground":"#FFFFFF","background":"#9B59B6"}]}	f	f	19	half	\N	Horizontal alignment of text within the content block.	[{"name":"Hide when not image_expanded","rule":{"_and":[{"layout":{"_neq":"image_expanded"}}]},"hidden":true,"options":{}}]	f	\N	\N	\N	t
 65	block_hero	layout	\N	radio-cards-interface	{"choices":[{"text":"Image Left","value":"image_left","icon":"format_image_left","icon_type":"icon"},{"text":"Image Center","value":"image_center","icon":"image","icon_type":"icon"},{"text":"Image Right","value":"image_right","icon":"format_image_right","icon_type":"icon"},{"text":"Image Expanded","value":"image_expanded","icon":"fullscreen","icon_type":"icon"}],"gridSize":4}	labels	{"format":true,"choices":[{"text":"Image Left","value":"image_left","icon":"format_image_left"},{"text":"Image Center","value":"image_center","icon":"image"},{"text":"Image Right","value":"image_right","icon":"format_image_right"},{"text":"Image Expanded","value":"image_expanded","icon":"fullscreen"}]}	f	f	13	full	\N	The layout for the component. You can set the image to display left, right, or in the center of page..	\N	f	\N	\N	\N	t
 314	block_hero_slide	id	uuid	input	\N	\N	\N	t	t	1	full	\N	\N	\N	f	\N	\N	\N	t
 315	block_hero_slide	sort	\N	input	\N	\N	\N	f	t	2	full	\N	\N	\N	f	\N	\N	\N	t
@@ -4164,7 +4171,7 @@ COPY public.directus_fields (id, collection, field, special, interface, options,
 324	block_hero_slide	subject_image	file	file-image	\N	\N	\N	f	f	11	half	\N	Portrait or subject image displayed on the right side.	\N	f	\N	\N	\N	t
 325	block_hero_slide	headline	\N	input	\N	\N	\N	f	f	12	full	\N	Main headline for this slide.	\N	f	\N	\N	\N	t
 326	block_hero_slide	headline_emphasis	\N	input	\N	\N	\N	f	f	13	full	\N	Styled italic suffix shown after the main headline (e.g. "better").	\N	f	\N	\N	\N	t
-327	block_hero_slide	description	\N	input-multiline	\N	\N	\N	f	f	14	full	\N	Supporting copy below the headline for this slide.	\N	f	\N	\N	\N	t
+327	block_hero_slide	description	\N	input-rich-text-html	{"toolbar":["bold","italic","forecolor","underline","customLink","bullist","numlist","removeformat"]}	\N	\N	f	f	14	full	\N	Supporting copy below the headline for this slide. Supports bold, italic, colored text, links and lists.	\N	f	\N	\N	\N	t
 328	block_hero	slides	o2m	list-o2m	\N	\N	\N	f	f	16	full	\N	Slides for the carousel (only used when layout is image_expanded and enable_carousel is true).	[{"name":"Hide slides when not carousel","rule":{"_and":[{"enable_carousel":{"_neq":true}}]},"hidden":true,"options":{}}]	f	\N	\N	\N	t
 335	pages	meta_navigation_overrides	alias,no-data	presentation-divider	{"title":"Navigation Style Overrides","color":"#6644ff"}	\N	\N	f	f	90	full	\N	\N	\N	f	\N	\N	\N	t
 336	pages	nav_overlay_mode	\N	select-dropdown	{"placeholder":"� Inherit from global navigation �","choices":[{"text":"Overlay (fixed, transparent)","value":"overlay"},{"text":"Sticky (normal)","value":"sticky"}],"allowNone":true}	\N	\N	f	f	91	full	\N	Override the navigation mode for this page only. Leave empty to use the global navigation setting.	\N	f	\N	\N	\N	t
@@ -4188,6 +4195,7 @@ COPY public.directus_fields (id, collection, field, special, interface, options,
 384	block_hero_headline_line	font_weight	\N	select-dropdown	{"choices":[{"text":"Regular (400)","value":"400"},{"text":"Medium (500)","value":"500"},{"text":"SemiBold (600)","value":"600"},{"text":"Bold (700)","value":"700"},{"text":"ExtraBold (800)","value":"800"}]}	labels	\N	f	f	2	half	\N	Font weight for this line	\N	f	\N	\N	\N	t
 385	block_hero_headline_line	font_style	\N	select-dropdown	{"choices":[{"text":"Normal","value":"normal"},{"text":"Italic","value":"italic"}]}	labels	\N	f	f	3	half	\N	Font style for this line	\N	f	\N	\N	\N	t
 386	block_hero_headline_line	font_size	\N	select-dropdown	{"choices":[{"text":"Small (24px)","value":"sm"},{"text":"Medium (36px)","value":"md"},{"text":"Large (48px)","value":"lg"},{"text":"XL (60px)","value":"xl"},{"text":"2XL (72px)","value":"2xl"},{"text":"Display (96px)","value":"3xl"}]}	labels	\N	f	f	4	half	\N	Font size for this line	\N	f	\N	\N	\N	t
+603	block_hero_headline_line	color	\N	select-color	\N	\N	\N	f	f	5	half	\N	Optional color override for this headline line (CSS hex color). Leave empty to use default text color.	\N	f	\N	\N	\N	t
 387	block_hero	headline_lines	o2m	list-o2m	{"template":"{{text}} � {{font_size}} / {{font_weight}} / {{font_style}}","enableCreate":true,"enableSelect":false}	\N	\N	f	f	8	full	\N	Optional: define styled headline lines. Overrides the headline field above when set.	\N	f	\N	\N	\N	t
 388	block_richtext	meta_divider_styling	alias,no-data	presentation-divider	{"title":"Styling"}	\N	\N	f	f	11	full	\N	\N	\N	f	\N	\N	\N	t
 389	block_richtext	background_color	\N	select-color	\N	\N	\N	f	f	12	half	\N	Background color of the block	\N	f	\N	\N	\N	t
@@ -4295,7 +4303,7 @@ COPY public.directus_fields (id, collection, field, special, interface, options,
 489	block_credentials_badge	sort	\N	input	\N	\N	\N	f	t	2	half	\N	\N	\N	f	\N	\N	\N	t
 490	block_credentials_badge	date_created	date-created	\N	\N	datetime	\N	t	t	3	half	\N	\N	\N	f	\N	\N	\N	t
 491	block_credentials_badge	user_created	user-created	\N	\N	user	\N	t	t	4	half	\N	\N	\N	f	\N	\N	\N	t
-492	block_credentials_badge	image	file	file-image	\N	\N	\N	f	f	5	half	\N	\N	\N	t	\N	\N	\N	t
+492	block_credentials_badge	image	file	file-image	{"crop":false}	\N	\N	f	f	5	half	\N	\N	\N	f	\N	\N	\N	t
 493	block_credentials_badge	alt	\N	input	{"placeholder":"Alt text for accessibility"}	\N	\N	f	f	6	half	\N	\N	\N	f	\N	\N	\N	t
 494	block_credentials_badge	url	\N	input	{"placeholder":"https://..."}	\N	\N	f	f	7	full	\N	\N	\N	f	\N	\N	\N	t
 495	block_credentials_badge	block_credentials	\N	select-dropdown-m2o	\N	\N	\N	f	t	8	half	\N	\N	\N	f	\N	\N	\N	t
@@ -6443,7 +6451,7 @@ COPY public.directus_revisions (id, activity, collection, item, data, delta, par
 1550	1815	directus_fields	489	{"sort":2,"interface":"input","hidden":true,"width":"half","collection":"block_credentials_badge","field":"sort"}	{"sort":2,"interface":"input","hidden":true,"width":"half","collection":"block_credentials_badge","field":"sort"}	\N	\N
 1551	1816	directus_fields	490	{"sort":3,"special":["date-created"],"readonly":true,"hidden":true,"width":"half","display":"datetime","collection":"block_credentials_badge","field":"date_created"}	{"sort":3,"special":["date-created"],"readonly":true,"hidden":true,"width":"half","display":"datetime","collection":"block_credentials_badge","field":"date_created"}	\N	\N
 1552	1817	directus_fields	491	{"sort":4,"special":["user-created"],"readonly":true,"hidden":true,"width":"half","display":"user","collection":"block_credentials_badge","field":"user_created"}	{"sort":4,"special":["user-created"],"readonly":true,"hidden":true,"width":"half","display":"user","collection":"block_credentials_badge","field":"user_created"}	\N	\N
-1553	1818	directus_fields	492	{"sort":5,"interface":"file-image","special":["file"],"width":"half","required":true,"collection":"block_credentials_badge","field":"image"}	{"sort":5,"interface":"file-image","special":["file"],"width":"half","required":true,"collection":"block_credentials_badge","field":"image"}	\N	\N
+1553	1818	directus_fields	492	{"sort":5,"interface":"file-image","options":{"crop":false},"special":["file"],"width":"half","required":false,"collection":"block_credentials_badge","field":"image"}	{"sort":5,"interface":"file-image","options":{"crop":false},"special":["file"],"width":"half","required":false,"collection":"block_credentials_badge","field":"image"}	\N	\N
 1554	1819	directus_fields	493	{"sort":6,"interface":"input","options":{"placeholder":"Alt text for accessibility"},"width":"half","collection":"block_credentials_badge","field":"alt"}	{"sort":6,"interface":"input","options":{"placeholder":"Alt text for accessibility"},"width":"half","collection":"block_credentials_badge","field":"alt"}	\N	\N
 1555	1820	directus_fields	494	{"sort":7,"interface":"input","options":{"placeholder":"https://..."},"width":"full","collection":"block_credentials_badge","field":"url"}	{"sort":7,"interface":"input","options":{"placeholder":"https://..."},"width":"full","collection":"block_credentials_badge","field":"url"}	\N	\N
 1556	1821	directus_fields	495	{"sort":8,"interface":"select-dropdown-m2o","hidden":true,"width":"half","collection":"block_credentials_badge","field":"block_credentials"}	{"sort":8,"interface":"select-dropdown-m2o","hidden":true,"width":"half","collection":"block_credentials_badge","field":"block_credentials"}	\N	\N

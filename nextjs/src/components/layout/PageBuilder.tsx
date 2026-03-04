@@ -33,6 +33,7 @@ const PageBuilder = ({ sections }: PageBuilderProps) => {
 						: null;
 
 				const isFullBleedBlock =
+					block.collection === 'block_richtext' ||
 					block.collection === 'block_testimonials' ||
 					block.collection === 'block_logo_carousel' ||
 					block.collection === 'block_feature_split' ||

@@ -16,6 +16,7 @@ interface LogoCarouselProps {
 	data: {
 		id: string;
 		tagline?: string | null;
+		tagline_color?: string | null;
 		background_color?: string | null;
 		logos?: LogoCarouselItem[];
 	};
@@ -29,7 +30,7 @@ const MARQUEE_KEYFRAMES = `
 `;
 
 export default function LogoCarousel({ data }: LogoCarouselProps) {
-	const { id, tagline, background_color, logos } = data;
+	const { id, tagline, tagline_color, background_color, logos } = data;
 
 	const sortedLogos = logos ? [...logos].sort((a, b) => (a.sort ?? 0) - (b.sort ?? 0)) : [];
 	const bgColor = background_color ?? '#0b2d34';
@@ -50,9 +51,7 @@ export default function LogoCarousel({ data }: LogoCarouselProps) {
 
 			{tagline && (
 				<Container>
-					<p className="font-sans font-normal text-[14px] md:text-[16px] leading-[26px] text-white text-center">
-						{tagline}
-					</p>
+					<div className="font-sans font-normal text-[14px] md:text-[16px] leading-[26px] text-center" style={{ color: tagline_color ?? '#ffffff' }} dangerouslySetInnerHTML={{ __html: tagline }} />
 				</Container>
 			)}
 

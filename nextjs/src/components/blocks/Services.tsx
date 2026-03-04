@@ -39,12 +39,11 @@ const Services = ({ data }: ServicesProps) => {
 			{/* Section header */}
 			<div className="flex flex-col gap-6 items-center text-center mb-10 max-w-[1190px] mx-auto">
 				{tagline && (
-					<p
+					<div
 						className="text-sm font-semibold uppercase tracking-widest text-primary"
+						dangerouslySetInnerHTML={{ __html: tagline }}
 						data-directus={setAttr({ collection: 'block_services', item: id, fields: 'tagline', mode: 'popover' })}
-					>
-						{tagline}
-					</p>
+					/>
 				)}
 				{headline && (
 					<div
@@ -54,12 +53,11 @@ const Services = ({ data }: ServicesProps) => {
 					/>
 				)}
 				{description && (
-					<p
+					<div
 						className="text-[18px] leading-[26px] text-[#1d2939] max-w-[800px]"
+						dangerouslySetInnerHTML={{ __html: description }}
 						data-directus={setAttr({ collection: 'block_services', item: id, fields: 'description', mode: 'popover' })}
-					>
-						{description}
-					</p>
+					/>
 				)}
 			</div>
 

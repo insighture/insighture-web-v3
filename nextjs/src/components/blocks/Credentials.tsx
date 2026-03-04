@@ -45,16 +45,14 @@ export default function Credentials({ data }: CredentialsProps) {
 			>
 				{(headline || headline_emphasis) && (
 					<h2 className="font-heading font-normal text-[32px] leading-[40px] md:text-[40px] md:leading-[56px] text-white">
-						{headline && <span>{headline} </span>}
+						<span dangerouslySetInnerHTML={{ __html: headline }} />
 						{headline_emphasis && (
-							<span className="font-bold italic text-[#ee4065]">{headline_emphasis}</span>
+							<span className="font-bold italic text-[#ee4065]" dangerouslySetInnerHTML={{ __html: headline_emphasis }} />
 						)}
 					</h2>
 				)}
 				{description && (
-					<p className="font-sans font-normal text-[16px] md:text-[18px] leading-[26px] text-white/90">
-						{description}
-					</p>
+					<div className="font-sans font-normal text-[16px] md:text-[18px] leading-[26px] text-white/90" dangerouslySetInnerHTML={{ __html: description }} />
 				)}
 			</div>
 

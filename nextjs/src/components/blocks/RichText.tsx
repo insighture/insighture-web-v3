@@ -56,24 +56,23 @@ const RichText = ({ data, className }: RichTextProps) => {
 		});
 	}, [content, router, scopeId]);
 
+	const alignClass = alignment === 'center' ? 'text-center' : alignment === 'right' ? 'text-right' : 'text-left';
+
 	return (
 		<div
 			id={`rt-${scopeId}`}
 			className={cn(
 				'relative w-full',
-				hasBackground ? 'px-16 py-16 md:px-24 md:py-20' : '',
+				hasBackground ? 'px-16 py-16 md:px-24 md:py-20' : 'px-4 sm:px-6 lg:px-16 py-16',
 				className,
 			)}
 			style={{
 				color: text_color ?? undefined,
 			}}
 		>
-			{/* Scoped styles: emphasis color + quote text sizing */}
-			{(emphasis_color || hasBackground) && (
-				<style>{[
-					emphasis_color ? `#rt-${scopeId} em, #rt-${scopeId} .rt-headline em { color: ${emphasis_color}; font-style: italic; }` : '',
-					hasBackground ? `#rt-${scopeId} .prose p { font-size: 40px; line-height: 56px; font-weight: 500; }` : '',
-				].join(' ')}</style>
+			{/* Scoped styles: emphasis color */}
+			{emphasis_color && (
+				<style>{`#rt-${scopeId} em, #rt-${scopeId} .rt-headline em { color: ${emphasis_color}; font-style: italic; }`}</style>
 			)}
 
 			{/* Decorative quote marks */}
@@ -97,21 +96,17 @@ const RichText = ({ data, className }: RichTextProps) => {
 			)}
 
 			{/* Content */}
-			<div
-				className={cn(
-					'relative mx-auto max-w-[892px] space-y-6',
-					alignment === 'center' ? 'text-center' : alignment === 'right' ? 'text-right' : 'text-left',
-				)}
-			>
+			<div className="relative w-full mx-auto max-w-[1200px] space-y-6">
 				{tagline && (
 					<Tagline
 						tagline={tagline}
+						className={alignClass}
 						data-directus={setAttr({ collection: 'block_richtext', item: id, fields: 'tagline', mode: 'popover' })}
 					/>
 				)}
 				{headline && (
 					<div
-						className="rt-headline font-heading font-normal text-4xl md:text-5xl lg:text-h1 leading-tight"
+						className={cn('rt-headline font-heading font-normal text-4xl md:text-5xl lg:text-h1 leading-tight', alignClass)}
 						dangerouslySetInnerHTML={{ __html: headline }}
 						data-directus={setAttr({ collection: 'block_richtext', item: id, fields: 'headline', mode: 'popover' })}
 					/>
@@ -119,6 +114,7 @@ const RichText = ({ data, className }: RichTextProps) => {
 				{content && (
 					<Text
 						content={content}
+						className={cn('max-w-none w-full', alignClass)}
 						data-directus={setAttr({ collection: 'block_richtext', item: id, fields: 'content', mode: 'drawer' })}
 					/>
 				)}

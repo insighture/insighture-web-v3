@@ -1773,18 +1773,18 @@
 			"collection": "block_form",
 			"field": "headline",
 			"special": null,
-			"interface": "input",
+			"interface": "input-rich-text-html",
 			"options": {
-				"defaultView": {
-					"center": {
-						"lng": 0,
-						"lat": 0
-					},
-					"zoom": 0,
-					"bearing": 0,
-					"pitch": 0
-				},
-				"geometryType": "Point"
+				"toolbar": [
+					"bold",
+					"italic",
+					"underline",
+					"strikethrough",
+					"fontsizeselect",
+					"forecolor",
+					"backcolor",
+					"removeformat"
+				]
 			},
 			"display": null,
 			"display_options": null,
@@ -1829,8 +1829,19 @@
 			"collection": "block_form",
 			"field": "tagline",
 			"special": null,
-			"interface": "input",
-			"options": null,
+			"interface": "input-rich-text-html",
+			"options": {
+				"toolbar": [
+					"bold",
+					"italic",
+					"underline",
+					"strikethrough",
+					"fontsizeselect",
+					"forecolor",
+					"backcolor",
+					"removeformat"
+				]
+			},
 			"display": null,
 			"display_options": null,
 			"readonly": false,
@@ -2070,10 +2081,16 @@
 			"collection": "block_gallery",
 			"field": "headline",
 			"special": null,
-			"interface": "input",
+			"interface": "input-rich-text-html",
 			"options": {
 				"toolbar": [
+					"bold",
 					"italic",
+					"underline",
+					"strikethrough",
+					"fontsizeselect",
+					"forecolor",
+					"backcolor",
 					"removeformat"
 				]
 			},
@@ -2167,8 +2184,19 @@
 			"collection": "block_gallery",
 			"field": "tagline",
 			"special": null,
-			"interface": "input",
-			"options": null,
+			"interface": "input-rich-text-html",
+			"options": {
+				"toolbar": [
+					"bold",
+					"italic",
+					"underline",
+					"strikethrough",
+					"fontsizeselect",
+					"forecolor",
+					"backcolor",
+					"removeformat"
+				]
+			},
 			"display": null,
 			"display_options": null,
 			"readonly": false,
@@ -2970,8 +2998,18 @@
 			"collection": "block_hero",
 			"field": "description",
 			"special": null,
-			"interface": "input-multiline",
+			"interface": "input-rich-text-html",
 			"options": {
+				"toolbar": [
+					"bold",
+					"italic",
+					"forecolor",
+					"underline",
+					"customLink",
+					"bullist",
+					"numlist",
+					"removeformat"
+				],
 				"folder": "ece7bab9-5433-4a63-b9f7-bde8b517d6d9"
 			},
 			"display": null,
@@ -2981,7 +3019,7 @@
 			"sort": 9,
 			"width": "full",
 			"translations": null,
-			"note": "Supporting copy that shows below the headline.",
+			"note": "Supporting copy that shows below the headline. Supports bold, italic, colored text, links and lists.",
 			"conditions": null,
 			"required": false,
 			"group": null,
@@ -3017,8 +3055,19 @@
 			"collection": "block_hero",
 			"field": "tagline",
 			"special": null,
-			"interface": "input",
-			"options": null,
+			"interface": "input-rich-text-html",
+			"options": {
+				"toolbar": [
+					"bold",
+					"italic",
+					"underline",
+					"strikethrough",
+					"fontsizeselect",
+					"forecolor",
+					"backcolor",
+					"removeformat"
+				]
+			},
 			"display": null,
 			"display_options": null,
 			"readonly": false,
@@ -3571,18 +3620,18 @@
 			"collection": "block_posts",
 			"field": "headline",
 			"special": null,
-			"interface": "input",
+			"interface": "input-rich-text-html",
 			"options": {
-				"defaultView": {
-					"center": {
-						"lng": 0,
-						"lat": 0
-					},
-					"zoom": 0,
-					"bearing": 0,
-					"pitch": 0
-				},
-				"geometryType": "Point"
+				"toolbar": [
+					"bold",
+					"italic",
+					"underline",
+					"strikethrough",
+					"fontsizeselect",
+					"forecolor",
+					"backcolor",
+					"removeformat"
+				]
 			},
 			"display": null,
 			"display_options": null,
@@ -3679,8 +3728,19 @@
 			"collection": "block_posts",
 			"field": "tagline",
 			"special": null,
-			"interface": "input",
-			"options": null,
+			"interface": "input-rich-text-html",
+			"options": {
+				"toolbar": [
+					"bold",
+					"italic",
+					"underline",
+					"strikethrough",
+					"fontsizeselect",
+					"forecolor",
+					"backcolor",
+					"removeformat"
+				]
+			},
 			"display": null,
 			"display_options": null,
 			"readonly": false,
@@ -4012,18 +4072,18 @@
 			"collection": "block_pricing",
 			"field": "headline",
 			"special": null,
-			"interface": "input",
+			"interface": "input-rich-text-html",
 			"options": {
-				"defaultView": {
-					"center": {
-						"lng": 0,
-						"lat": 0
-					},
-					"zoom": 0,
-					"bearing": 0,
-					"pitch": 0
-				},
-				"geometryType": "Point"
+				"toolbar": [
+					"bold",
+					"italic",
+					"underline",
+					"strikethrough",
+					"fontsizeselect",
+					"forecolor",
+					"backcolor",
+					"removeformat"
+				]
 			},
 			"display": null,
 			"display_options": null,
@@ -4068,8 +4128,19 @@
 			"collection": "block_pricing",
 			"field": "tagline",
 			"special": null,
-			"interface": "input",
-			"options": null,
+			"interface": "input-rich-text-html",
+			"options": {
+				"toolbar": [
+					"bold",
+					"italic",
+					"underline",
+					"strikethrough",
+					"fontsizeselect",
+					"forecolor",
+					"backcolor",
+					"removeformat"
+				]
+			},
 			"display": null,
 			"display_options": null,
 			"readonly": false,
@@ -4356,9 +4427,18 @@
 			"collection": "block_pricing_cards",
 			"field": "title",
 			"special": null,
-			"interface": "input",
+			"interface": "input-rich-text-html",
 			"options": {
-				"placeholder": "Starter Plan"
+				"toolbar": [
+					"bold",
+					"italic",
+					"underline",
+					"strikethrough",
+					"fontsizeselect",
+					"forecolor",
+					"backcolor",
+					"removeformat"
+				]
 			},
 			"display": null,
 			"display_options": null,
@@ -4403,9 +4483,18 @@
 			"collection": "block_pricing_cards",
 			"field": "description",
 			"special": null,
-			"interface": "input-multiline",
+			"interface": "input-rich-text-html",
 			"options": {
-				"placeholder": "For small businesses and indie hackers"
+				"toolbar": [
+					"bold",
+					"italic",
+					"underline",
+					"strikethrough",
+					"fontsizeselect",
+					"forecolor",
+					"backcolor",
+					"removeformat"
+				]
 			},
 			"display": null,
 			"display_options": null,
@@ -5033,8 +5122,19 @@
 			"collection": "block_richtext",
 			"field": "headline",
 			"special": null,
-			"interface": "input",
-			"options": null,
+			"interface": "input-rich-text-html",
+			"options": {
+				"toolbar": [
+					"bold",
+					"italic",
+					"underline",
+					"strikethrough",
+					"fontsizeselect",
+					"forecolor",
+					"backcolor",
+					"removeformat"
+				]
+			},
 			"display": "raw",
 			"display_options": null,
 			"readonly": false,
@@ -5181,8 +5281,19 @@
 			"collection": "block_richtext",
 			"field": "tagline",
 			"special": null,
-			"interface": "input",
-			"options": null,
+			"interface": "input-rich-text-html",
+			"options": {
+				"toolbar": [
+					"bold",
+					"italic",
+					"underline",
+					"strikethrough",
+					"fontsizeselect",
+					"forecolor",
+					"backcolor",
+					"removeformat"
+				]
+			},
 			"display": null,
 			"display_options": null,
 			"readonly": false,
@@ -5699,9 +5810,18 @@
 			"collection": "block_services",
 			"field": "tagline",
 			"special": null,
-			"interface": "input",
+			"interface": "input-rich-text-html",
 			"options": {
-				"placeholder": "e.g. Our services"
+				"toolbar": [
+					"bold",
+					"italic",
+					"underline",
+					"strikethrough",
+					"fontsizeselect",
+					"forecolor",
+					"backcolor",
+					"removeformat"
+				]
 			},
 			"display": null,
 			"display_options": null,
@@ -5796,9 +5916,18 @@
 			"collection": "block_services",
 			"field": "description",
 			"special": null,
-			"interface": "input-multiline",
+			"interface": "input-rich-text-html",
 			"options": {
-				"placeholder": "Subtitle text below the headline"
+				"toolbar": [
+					"bold",
+					"italic",
+					"underline",
+					"strikethrough",
+					"fontsizeselect",
+					"forecolor",
+					"backcolor",
+					"removeformat"
+				]
 			},
 			"display": null,
 			"display_options": null,
@@ -6199,9 +6328,18 @@
 			"collection": "block_services_item",
 			"field": "title",
 			"special": null,
-			"interface": "input",
+			"interface": "input-rich-text-html",
 			"options": {
-				"placeholder": "Service title"
+				"toolbar": [
+					"bold",
+					"italic",
+					"underline",
+					"strikethrough",
+					"fontsizeselect",
+					"forecolor",
+					"backcolor",
+					"removeformat"
+				]
 			},
 			"display": null,
 			"display_options": null,
@@ -6242,9 +6380,18 @@
 			"collection": "block_services_item",
 			"field": "description",
 			"special": null,
-			"interface": "input-multiline",
+			"interface": "input-rich-text-html",
 			"options": {
-				"placeholder": "Short description of this service"
+				"toolbar": [
+					"bold",
+					"italic",
+					"underline",
+					"strikethrough",
+					"fontsizeselect",
+					"forecolor",
+					"backcolor",
+					"removeformat"
+				]
 			},
 			"display": null,
 			"display_options": null,
@@ -13436,7 +13583,7 @@
 			"interface": "list-m2a",
 			"options": {
 				"prefix": null,
-				"enableSelect": false
+				"enableSelect": true
 			},
 			"display": "related-values",
 			"display_options": {
@@ -15061,6 +15208,265 @@
 	},
 	{
 		"collection": "block_hero",
+		"field": "enable_gradient_overlay",
+		"type": "boolean",
+		"schema": {
+			"name": "enable_gradient_overlay",
+			"table": "block_hero",
+			"data_type": "boolean",
+			"default_value": false,
+			"max_length": null,
+			"numeric_precision": null,
+			"numeric_scale": null,
+			"is_generated": false,
+			"is_nullable": true,
+			"is_unique": false,
+			"is_indexed": false,
+			"is_primary_key": false,
+			"has_auto_increment": false,
+			"foreign_key_schema": null,
+			"foreign_key_table": null,
+			"foreign_key_column": null,
+			"comment": null
+		},
+		"meta": {
+			"collection": "block_hero",
+			"field": "enable_gradient_overlay",
+			"special": null,
+			"interface": "boolean",
+			"options": null,
+			"display": null,
+			"display_options": null,
+			"readonly": false,
+			"hidden": false,
+			"sort": 17,
+			"width": "half",
+			"translations": null,
+			"note": "Enable a dark gradient overlay on the expanded image for improved text legibility.",
+			"conditions": [
+				{
+					"name": "Hide when not image_expanded",
+					"rule": {
+						"_and": [
+							{
+								"layout": {
+									"_neq": "image_expanded"
+								}
+							}
+						]
+					},
+					"hidden": true,
+					"options": {}
+				}
+			],
+			"required": false,
+			"group": null,
+			"validation": null,
+			"validation_message": null
+		}
+	},
+	{
+		"collection": "block_hero",
+		"field": "expanded_text_placement",
+		"type": "string",
+		"schema": {
+			"name": "expanded_text_placement",
+			"table": "block_hero",
+			"data_type": "character varying",
+			"default_value": "center_left",
+			"max_length": 255,
+			"numeric_precision": null,
+			"numeric_scale": null,
+			"is_generated": false,
+			"is_nullable": true,
+			"is_unique": false,
+			"is_indexed": false,
+			"is_primary_key": false,
+			"has_auto_increment": false,
+			"foreign_key_schema": null,
+			"foreign_key_table": null,
+			"foreign_key_column": null,
+			"comment": null
+		},
+		"meta": {
+			"collection": "block_hero",
+			"field": "expanded_text_placement",
+			"special": null,
+			"interface": "select-dropdown",
+			"options": {
+				"choices": [
+					{
+						"text": "Left – Vertically Centered (default)",
+						"value": "center_left"
+					},
+					{
+						"text": "Bottom – Centered",
+						"value": "bottom_center"
+					},
+					{
+						"text": "Bottom – Left Aligned",
+						"value": "bottom_left"
+					},
+					{
+						"text": "Center – Centered",
+						"value": "center_center"
+					}
+				]
+			},
+			"display": "labels",
+			"display_options": {
+				"choices": [
+					{
+						"text": "Left",
+						"value": "center_left",
+						"foreground": "#FFFFFF",
+						"background": "#2F80ED"
+					},
+					{
+						"text": "Bottom Center",
+						"value": "bottom_center",
+						"foreground": "#FFFFFF",
+						"background": "#6B4EFF"
+					},
+					{
+						"text": "Bottom Left",
+						"value": "bottom_left",
+						"foreground": "#FFFFFF",
+						"background": "#9B59B6"
+					},
+					{
+						"text": "Center",
+						"value": "center_center",
+						"foreground": "#FFFFFF",
+						"background": "#27AE60"
+					}
+				]
+			},
+			"readonly": false,
+			"hidden": false,
+			"sort": 18,
+			"width": "half",
+			"translations": null,
+			"note": "Where to position the text block within the image_expanded layout.",
+			"conditions": [
+				{
+					"name": "Hide when not image_expanded",
+					"rule": {
+						"_and": [
+							{
+								"layout": {
+									"_neq": "image_expanded"
+								}
+							}
+						]
+					},
+					"hidden": true,
+					"options": {}
+				}
+			],
+			"required": false,
+			"group": null,
+			"validation": null,
+			"validation_message": null
+		}
+	},
+	{
+		"collection": "block_hero",
+		"field": "expanded_text_alignment",
+		"type": "string",
+		"schema": {
+			"name": "expanded_text_alignment",
+			"table": "block_hero",
+			"data_type": "character varying",
+			"default_value": "left",
+			"max_length": 255,
+			"numeric_precision": null,
+			"numeric_scale": null,
+			"is_generated": false,
+			"is_nullable": true,
+			"is_unique": false,
+			"is_indexed": false,
+			"is_primary_key": false,
+			"has_auto_increment": false,
+			"foreign_key_schema": null,
+			"foreign_key_table": null,
+			"foreign_key_column": null,
+			"comment": null
+		},
+		"meta": {
+			"collection": "block_hero",
+			"field": "expanded_text_alignment",
+			"special": null,
+			"interface": "select-dropdown",
+			"options": {
+				"choices": [
+					{
+						"text": "Left",
+						"value": "left"
+					},
+					{
+						"text": "Center",
+						"value": "center"
+					},
+					{
+						"text": "Right",
+						"value": "right"
+					}
+				]
+			},
+			"display": "labels",
+			"display_options": {
+				"choices": [
+					{
+						"text": "Left",
+						"value": "left",
+						"foreground": "#FFFFFF",
+						"background": "#2F80ED"
+					},
+					{
+						"text": "Center",
+						"value": "center",
+						"foreground": "#FFFFFF",
+						"background": "#6B4EFF"
+					},
+					{
+						"text": "Right",
+						"value": "right",
+						"foreground": "#FFFFFF",
+						"background": "#9B59B6"
+					}
+				]
+			},
+			"readonly": false,
+			"hidden": false,
+			"sort": 19,
+			"width": "half",
+			"translations": null,
+			"note": "Horizontal alignment of text within the content block.",
+			"conditions": [
+				{
+					"name": "Hide when not image_expanded",
+					"rule": {
+						"_and": [
+							{
+								"layout": {
+									"_neq": "image_expanded"
+								}
+							}
+						]
+					},
+					"hidden": true,
+					"options": {}
+				}
+			],
+			"required": false,
+			"group": null,
+			"validation": null,
+			"validation_message": null
+		}
+	},
+	{
+		"collection": "block_hero",
 		"field": "slides",
 		"type": "alias",
 		"schema": null,
@@ -15629,8 +16035,19 @@
 			"collection": "block_hero_slide",
 			"field": "headline",
 			"special": null,
-			"interface": "input",
-			"options": null,
+			"interface": "input-rich-text-html",
+			"options": {
+				"toolbar": [
+					"bold",
+					"italic",
+					"underline",
+					"strikethrough",
+					"fontsizeselect",
+					"forecolor",
+					"backcolor",
+					"removeformat"
+				]
+			},
 			"display": null,
 			"display_options": null,
 			"readonly": false,
@@ -15673,8 +16090,19 @@
 			"collection": "block_hero_slide",
 			"field": "headline_emphasis",
 			"special": null,
-			"interface": "input",
-			"options": null,
+			"interface": "input-rich-text-html",
+			"options": {
+				"toolbar": [
+					"bold",
+					"italic",
+					"underline",
+					"strikethrough",
+					"fontsizeselect",
+					"forecolor",
+					"backcolor",
+					"removeformat"
+				]
+			},
 			"display": null,
 			"display_options": null,
 			"readonly": false,
@@ -15717,8 +16145,19 @@
 			"collection": "block_hero_slide",
 			"field": "description",
 			"special": null,
-			"interface": "input-multiline",
-			"options": null,
+			"interface": "input-rich-text-html",
+			"options": {
+				"toolbar": [
+					"bold",
+					"italic",
+					"forecolor",
+					"underline",
+					"customLink",
+					"bullist",
+					"numlist",
+					"removeformat"
+				]
+			},
 			"display": null,
 			"display_options": null,
 			"readonly": false,
@@ -15726,7 +16165,7 @@
 			"sort": 14,
 			"width": "full",
 			"translations": null,
-			"note": "Supporting copy below the headline for this slide.",
+			"note": "Supporting copy below the headline for this slide. Supports bold, italic, colored text, links and lists.",
 			"conditions": null,
 			"required": false,
 			"group": null,
@@ -16164,6 +16603,51 @@
 			"width": "half",
 			"translations": null,
 			"note": "Font size for this line",
+			"conditions": null,
+			"required": false,
+			"group": null,
+			"validation": null,
+			"validation_message": null,
+			"searchable": true
+		}
+	},
+	{
+		"collection": "block_hero_headline_line",
+		"field": "color",
+		"type": "string",
+		"schema": {
+			"name": "color",
+			"table": "block_hero_headline_line",
+			"data_type": "character varying",
+			"default_value": null,
+			"max_length": 255,
+			"numeric_precision": null,
+			"numeric_scale": null,
+			"is_generated": false,
+			"is_nullable": true,
+			"is_unique": false,
+			"is_indexed": false,
+			"is_primary_key": false,
+			"has_auto_increment": false,
+			"foreign_key_schema": null,
+			"foreign_key_table": null,
+			"foreign_key_column": null,
+			"comment": null
+		},
+		"meta": {
+			"collection": "block_hero_headline_line",
+			"field": "color",
+			"special": null,
+			"interface": "select-color",
+			"options": null,
+			"display": null,
+			"display_options": null,
+			"readonly": false,
+			"hidden": false,
+			"sort": 5,
+			"width": "half",
+			"translations": null,
+			"note": "Optional color override for this headline line (CSS hex color). Leave empty to use default text color.",
 			"conditions": null,
 			"required": false,
 			"group": null,
@@ -16667,6 +17151,3190 @@
 			"group": null,
 			"validation": null,
 			"validation_message": null
+		}
+	},
+	{
+		"collection": "block_credentials",
+		"field": "id",
+		"type": "uuid",
+		"meta": {
+			"collection": "block_credentials",
+			"field": "id",
+			"special": [
+				"uuid"
+			],
+			"interface": null,
+			"options": null,
+			"display": null,
+			"display_options": null,
+			"readonly": true,
+			"hidden": true,
+			"sort": 1,
+			"width": "full",
+			"translations": null,
+			"note": null,
+			"conditions": null,
+			"required": false,
+			"group": null,
+			"validation": null,
+			"validation_message": null
+		},
+		"schema": {
+			"name": "id",
+			"table": "block_credentials",
+			"data_type": "uuid",
+			"default_value": null,
+			"is_generated": false,
+			"is_nullable": false,
+			"is_unique": true,
+			"is_indexed": false,
+			"is_primary_key": true,
+			"has_auto_increment": false,
+			"foreign_key_schema": null,
+			"foreign_key_table": null,
+			"foreign_key_column": null
+		}
+	},
+	{
+		"collection": "block_credentials",
+		"field": "headline",
+		"type": "string",
+		"meta": {
+			"collection": "block_credentials",
+			"field": "headline",
+			"special": null,
+			"interface": "input-rich-text-html",
+			"options": {
+				"toolbar": [
+					"bold",
+					"italic",
+					"underline",
+					"strikethrough",
+					"fontsizeselect",
+					"forecolor",
+					"backcolor",
+					"removeformat"
+				]
+			},
+			"display": null,
+			"display_options": null,
+			"readonly": false,
+			"hidden": false,
+			"sort": 2,
+			"width": "half",
+			"translations": null,
+			"note": null,
+			"conditions": null,
+			"required": false,
+			"group": null,
+			"validation": null,
+			"validation_message": null
+		},
+		"schema": {
+			"name": "headline",
+			"table": "block_credentials",
+			"data_type": "character varying",
+			"default_value": null,
+			"max_length": 255,
+			"is_generated": false,
+			"is_nullable": true,
+			"is_unique": false,
+			"is_indexed": false,
+			"is_primary_key": false,
+			"has_auto_increment": false,
+			"foreign_key_schema": null,
+			"foreign_key_table": null,
+			"foreign_key_column": null
+		}
+	},
+	{
+		"collection": "block_credentials",
+		"field": "headline_emphasis",
+		"type": "string",
+		"meta": {
+			"collection": "block_credentials",
+			"field": "headline_emphasis",
+			"special": null,
+			"interface": "input-rich-text-html",
+			"options": {
+				"toolbar": [
+					"bold",
+					"italic",
+					"underline",
+					"strikethrough",
+					"fontsizeselect",
+					"forecolor",
+					"backcolor",
+					"removeformat"
+				]
+			},
+			"display": null,
+			"display_options": null,
+			"readonly": false,
+			"hidden": false,
+			"sort": 3,
+			"width": "half",
+			"translations": null,
+			"note": null,
+			"conditions": null,
+			"required": false,
+			"group": null,
+			"validation": null,
+			"validation_message": null
+		},
+		"schema": {
+			"name": "headline_emphasis",
+			"table": "block_credentials",
+			"data_type": "character varying",
+			"default_value": null,
+			"max_length": 255,
+			"is_generated": false,
+			"is_nullable": true,
+			"is_unique": false,
+			"is_indexed": false,
+			"is_primary_key": false,
+			"has_auto_increment": false,
+			"foreign_key_schema": null,
+			"foreign_key_table": null,
+			"foreign_key_column": null
+		}
+	},
+	{
+		"collection": "block_credentials",
+		"field": "description",
+		"type": "text",
+		"meta": {
+			"collection": "block_credentials",
+			"field": "description",
+			"special": null,
+			"interface": "input-rich-text-html",
+			"options": {
+				"toolbar": [
+					"bold",
+					"italic",
+					"underline",
+					"strikethrough",
+					"fontsizeselect",
+					"forecolor",
+					"backcolor",
+					"removeformat"
+				]
+			},
+			"display": null,
+			"display_options": null,
+			"readonly": false,
+			"hidden": false,
+			"sort": 4,
+			"width": "full",
+			"translations": null,
+			"note": null,
+			"conditions": null,
+			"required": false,
+			"group": null,
+			"validation": null,
+			"validation_message": null
+		},
+		"schema": {
+			"name": "description",
+			"table": "block_credentials",
+			"data_type": "text",
+			"default_value": null,
+			"is_generated": false,
+			"is_nullable": true,
+			"is_unique": false,
+			"is_indexed": false,
+			"is_primary_key": false,
+			"has_auto_increment": false,
+			"foreign_key_schema": null,
+			"foreign_key_table": null,
+			"foreign_key_column": null
+		}
+	},
+	{
+		"collection": "block_credentials",
+		"field": "background_color",
+		"type": "string",
+		"meta": {
+			"collection": "block_credentials",
+			"field": "background_color",
+			"special": null,
+			"interface": "select-color",
+			"options": null,
+			"display": null,
+			"display_options": null,
+			"readonly": false,
+			"hidden": false,
+			"sort": 5,
+			"width": "half",
+			"translations": null,
+			"note": null,
+			"conditions": null,
+			"required": false,
+			"group": null,
+			"validation": null,
+			"validation_message": null
+		},
+		"schema": {
+			"name": "background_color",
+			"table": "block_credentials",
+			"data_type": "character varying",
+			"default_value": "#0b2e36",
+			"max_length": 255,
+			"is_generated": false,
+			"is_nullable": true,
+			"is_unique": false,
+			"is_indexed": false,
+			"is_primary_key": false,
+			"has_auto_increment": false,
+			"foreign_key_schema": null,
+			"foreign_key_table": null,
+			"foreign_key_column": null
+		}
+	},
+	{
+		"collection": "block_credentials",
+		"field": "badges",
+		"type": "alias",
+		"meta": {
+			"collection": "block_credentials",
+			"field": "badges",
+			"special": [
+				"o2m"
+			],
+			"interface": "list-o2m",
+			"options": {
+				"template": "{{alt}}",
+				"enableCreate": true,
+				"enableSelect": false
+			},
+			"display": null,
+			"display_options": null,
+			"readonly": false,
+			"hidden": false,
+			"sort": 6,
+			"width": "full",
+			"translations": null,
+			"note": null,
+			"conditions": null,
+			"required": false,
+			"group": null,
+			"validation": null,
+			"validation_message": null
+		},
+		"schema": null
+	},
+	{
+		"collection": "block_credentials_badge",
+		"field": "id",
+		"type": "uuid",
+		"meta": {
+			"collection": "block_credentials_badge",
+			"field": "id",
+			"special": [
+				"uuid"
+			],
+			"interface": null,
+			"options": null,
+			"display": null,
+			"display_options": null,
+			"readonly": true,
+			"hidden": true,
+			"sort": 1,
+			"width": "full",
+			"translations": null,
+			"note": null,
+			"conditions": null,
+			"required": false,
+			"group": null,
+			"validation": null,
+			"validation_message": null
+		},
+		"schema": {
+			"name": "id",
+			"table": "block_credentials_badge",
+			"data_type": "uuid",
+			"default_value": null,
+			"is_generated": false,
+			"is_nullable": false,
+			"is_unique": true,
+			"is_indexed": false,
+			"is_primary_key": true,
+			"has_auto_increment": false,
+			"foreign_key_schema": null,
+			"foreign_key_table": null,
+			"foreign_key_column": null
+		}
+	},
+	{
+		"collection": "block_credentials_badge",
+		"field": "sort",
+		"type": "integer",
+		"meta": {
+			"collection": "block_credentials_badge",
+			"field": "sort",
+			"special": null,
+			"interface": "input",
+			"options": null,
+			"display": null,
+			"display_options": null,
+			"readonly": false,
+			"hidden": true,
+			"sort": 2,
+			"width": "half",
+			"translations": null,
+			"note": null,
+			"conditions": null,
+			"required": false,
+			"group": null,
+			"validation": null,
+			"validation_message": null
+		},
+		"schema": {
+			"name": "sort",
+			"table": "block_credentials_badge",
+			"data_type": "integer",
+			"default_value": null,
+			"is_generated": false,
+			"is_nullable": true,
+			"is_unique": false,
+			"is_indexed": false,
+			"is_primary_key": false,
+			"has_auto_increment": false,
+			"foreign_key_schema": null,
+			"foreign_key_table": null,
+			"foreign_key_column": null
+		}
+	},
+	{
+		"collection": "block_credentials_badge",
+		"field": "date_created",
+		"type": "timestamp",
+		"meta": {
+			"collection": "block_credentials_badge",
+			"field": "date_created",
+			"special": [
+				"date-created"
+			],
+			"interface": null,
+			"options": null,
+			"display": "datetime",
+			"display_options": null,
+			"readonly": true,
+			"hidden": true,
+			"sort": 3,
+			"width": "half",
+			"translations": null,
+			"note": null,
+			"conditions": null,
+			"required": false,
+			"group": null,
+			"validation": null,
+			"validation_message": null
+		},
+		"schema": {
+			"name": "date_created",
+			"table": "block_credentials_badge",
+			"data_type": "timestamp with time zone",
+			"default_value": null,
+			"is_generated": false,
+			"is_nullable": true,
+			"is_unique": false,
+			"is_indexed": false,
+			"is_primary_key": false,
+			"has_auto_increment": false,
+			"foreign_key_schema": null,
+			"foreign_key_table": null,
+			"foreign_key_column": null
+		}
+	},
+	{
+		"collection": "block_credentials_badge",
+		"field": "user_created",
+		"type": "uuid",
+		"meta": {
+			"collection": "block_credentials_badge",
+			"field": "user_created",
+			"special": [
+				"user-created"
+			],
+			"interface": null,
+			"options": null,
+			"display": "user",
+			"display_options": null,
+			"readonly": true,
+			"hidden": true,
+			"sort": 4,
+			"width": "half",
+			"translations": null,
+			"note": null,
+			"conditions": null,
+			"required": false,
+			"group": null,
+			"validation": null,
+			"validation_message": null
+		},
+		"schema": {
+			"name": "user_created",
+			"table": "block_credentials_badge",
+			"data_type": "uuid",
+			"default_value": null,
+			"is_generated": false,
+			"is_nullable": true,
+			"is_unique": false,
+			"is_indexed": false,
+			"is_primary_key": false,
+			"has_auto_increment": false,
+			"foreign_key_schema": null,
+			"foreign_key_table": null,
+			"foreign_key_column": null
+		}
+	},
+	{
+		"collection": "block_credentials_badge",
+		"field": "image",
+		"type": "uuid",
+		"meta": {
+			"collection": "block_credentials_badge",
+			"field": "image",
+			"special": [
+				"file"
+			],
+			"interface": "file-image",
+			"options": {
+				"crop": false
+			},
+			"display": null,
+			"display_options": null,
+			"readonly": false,
+			"hidden": false,
+			"sort": 5,
+			"width": "half",
+			"translations": null,
+			"note": null,
+			"conditions": null,
+			"required": false,
+			"group": null,
+			"validation": null,
+			"validation_message": null
+		},
+		"schema": {
+			"name": "image",
+			"table": "block_credentials_badge",
+			"data_type": "uuid",
+			"default_value": null,
+			"is_generated": false,
+			"is_nullable": true,
+			"is_unique": false,
+			"is_indexed": false,
+			"is_primary_key": false,
+			"has_auto_increment": false,
+			"foreign_key_schema": "public",
+			"foreign_key_table": "directus_files",
+			"foreign_key_column": "id"
+		}
+	},
+	{
+		"collection": "block_credentials_badge",
+		"field": "alt",
+		"type": "string",
+		"meta": {
+			"collection": "block_credentials_badge",
+			"field": "alt",
+			"special": null,
+			"interface": "input",
+			"options": {
+				"placeholder": "Alt text for accessibility"
+			},
+			"display": null,
+			"display_options": null,
+			"readonly": false,
+			"hidden": false,
+			"sort": 6,
+			"width": "half",
+			"translations": null,
+			"note": null,
+			"conditions": null,
+			"required": false,
+			"group": null,
+			"validation": null,
+			"validation_message": null
+		},
+		"schema": {
+			"name": "alt",
+			"table": "block_credentials_badge",
+			"data_type": "character varying",
+			"default_value": null,
+			"max_length": 255,
+			"is_generated": false,
+			"is_nullable": true,
+			"is_unique": false,
+			"is_indexed": false,
+			"is_primary_key": false,
+			"has_auto_increment": false,
+			"foreign_key_schema": null,
+			"foreign_key_table": null,
+			"foreign_key_column": null
+		}
+	},
+	{
+		"collection": "block_credentials_badge",
+		"field": "url",
+		"type": "string",
+		"meta": {
+			"collection": "block_credentials_badge",
+			"field": "url",
+			"special": null,
+			"interface": "input",
+			"options": {
+				"placeholder": "https://..."
+			},
+			"display": null,
+			"display_options": null,
+			"readonly": false,
+			"hidden": false,
+			"sort": 7,
+			"width": "full",
+			"translations": null,
+			"note": null,
+			"conditions": null,
+			"required": false,
+			"group": null,
+			"validation": null,
+			"validation_message": null
+		},
+		"schema": {
+			"name": "url",
+			"table": "block_credentials_badge",
+			"data_type": "character varying",
+			"default_value": null,
+			"max_length": 255,
+			"is_generated": false,
+			"is_nullable": true,
+			"is_unique": false,
+			"is_indexed": false,
+			"is_primary_key": false,
+			"has_auto_increment": false,
+			"foreign_key_schema": null,
+			"foreign_key_table": null,
+			"foreign_key_column": null
+		}
+	},
+	{
+		"collection": "block_credentials_badge",
+		"field": "block_credentials",
+		"type": "uuid",
+		"meta": {
+			"collection": "block_credentials_badge",
+			"field": "block_credentials",
+			"special": null,
+			"interface": "select-dropdown-m2o",
+			"options": null,
+			"display": null,
+			"display_options": null,
+			"readonly": false,
+			"hidden": true,
+			"sort": 8,
+			"width": "half",
+			"translations": null,
+			"note": null,
+			"conditions": null,
+			"required": false,
+			"group": null,
+			"validation": null,
+			"validation_message": null
+		},
+		"schema": {
+			"name": "block_credentials",
+			"table": "block_credentials_badge",
+			"data_type": "uuid",
+			"default_value": null,
+			"is_generated": false,
+			"is_nullable": true,
+			"is_unique": false,
+			"is_indexed": false,
+			"is_primary_key": false,
+			"has_auto_increment": false,
+			"foreign_key_schema": "public",
+			"foreign_key_table": "block_credentials",
+			"foreign_key_column": "id"
+		}
+	},
+	{
+		"collection": "block_logo_carousel",
+		"field": "id",
+		"type": "uuid",
+		"meta": {
+			"collection": "block_logo_carousel",
+			"field": "id",
+			"special": [
+				"uuid"
+			],
+			"interface": null,
+			"options": null,
+			"display": null,
+			"display_options": null,
+			"readonly": true,
+			"hidden": true,
+			"sort": 1,
+			"width": "full",
+			"translations": null,
+			"note": null,
+			"conditions": null,
+			"required": false,
+			"group": null,
+			"validation": null,
+			"validation_message": null
+		},
+		"schema": {
+			"name": "id",
+			"table": "block_logo_carousel",
+			"data_type": "uuid",
+			"default_value": null,
+			"is_generated": false,
+			"is_nullable": false,
+			"is_unique": true,
+			"is_indexed": false,
+			"is_primary_key": true,
+			"has_auto_increment": false,
+			"foreign_key_schema": null,
+			"foreign_key_table": null,
+			"foreign_key_column": null
+		}
+	},
+	{
+		"collection": "block_logo_carousel",
+		"field": "status",
+		"type": "string",
+		"meta": {
+			"collection": "block_logo_carousel",
+			"field": "status",
+			"special": null,
+			"interface": "select-dropdown",
+			"options": {
+				"choices": [
+					{
+						"text": "Published",
+						"value": "published"
+					},
+					{
+						"text": "Draft",
+						"value": "draft"
+					},
+					{
+						"text": "Archived",
+						"value": "archived"
+					}
+				]
+			},
+			"display": "labels",
+			"display_options": null,
+			"readonly": false,
+			"hidden": false,
+			"sort": 2,
+			"width": "full",
+			"translations": null,
+			"note": null,
+			"conditions": null,
+			"required": false,
+			"group": null,
+			"validation": null,
+			"validation_message": null
+		},
+		"schema": {
+			"name": "status",
+			"table": "block_logo_carousel",
+			"data_type": "character varying",
+			"default_value": "published",
+			"max_length": 255,
+			"is_generated": false,
+			"is_nullable": true,
+			"is_unique": false,
+			"is_indexed": false,
+			"is_primary_key": false,
+			"has_auto_increment": false,
+			"foreign_key_schema": null,
+			"foreign_key_table": null,
+			"foreign_key_column": null
+		}
+	},
+	{
+		"collection": "block_logo_carousel",
+		"field": "tagline",
+		"type": "string",
+		"meta": {
+			"collection": "block_logo_carousel",
+			"field": "tagline",
+			"special": null,
+			"interface": "input-rich-text-html",
+			"options": {
+				"toolbar": [
+					"bold",
+					"italic",
+					"underline",
+					"strikethrough",
+					"fontsizeselect",
+					"forecolor",
+					"backcolor",
+					"removeformat"
+				]
+			},
+			"display": null,
+			"display_options": null,
+			"readonly": false,
+			"hidden": false,
+			"sort": 3,
+			"width": "full",
+			"translations": null,
+			"note": "Centered text above the logos",
+			"conditions": null,
+			"required": false,
+			"group": null,
+			"validation": null,
+			"validation_message": null
+		},
+		"schema": {
+			"name": "tagline",
+			"table": "block_logo_carousel",
+			"data_type": "character varying",
+			"default_value": null,
+			"max_length": 255,
+			"is_generated": false,
+			"is_nullable": true,
+			"is_unique": false,
+			"is_indexed": false,
+			"is_primary_key": false,
+			"has_auto_increment": false,
+			"foreign_key_schema": null,
+			"foreign_key_table": null,
+			"foreign_key_column": null
+		}
+	},
+	{
+		"collection": "block_logo_carousel",
+		"field": "tagline_color",
+		"type": "string",
+		"meta": {
+			"collection": "block_logo_carousel",
+			"field": "tagline_color",
+			"special": null,
+			"interface": "select-color",
+			"options": null,
+			"display": null,
+			"display_options": null,
+			"readonly": false,
+			"hidden": false,
+			"sort": 4,
+			"width": "half",
+			"translations": null,
+			"note": "Text color for the tagline",
+			"conditions": null,
+			"required": false,
+			"group": null,
+			"validation": null,
+			"validation_message": null
+		},
+		"schema": {
+			"name": "tagline_color",
+			"table": "block_logo_carousel",
+			"data_type": "character varying",
+			"default_value": null,
+			"max_length": 255,
+			"is_generated": false,
+			"is_nullable": true,
+			"is_unique": false,
+			"is_indexed": false,
+			"is_primary_key": false,
+			"has_auto_increment": false,
+			"foreign_key_schema": null,
+			"foreign_key_table": null,
+			"foreign_key_column": null
+		}
+	},
+	{
+		"collection": "block_logo_carousel",
+		"field": "background_color",
+		"type": "string",
+		"meta": {
+			"collection": "block_logo_carousel",
+			"field": "background_color",
+			"special": null,
+			"interface": "select-color",
+			"options": null,
+			"display": null,
+			"display_options": null,
+			"readonly": false,
+			"hidden": false,
+			"sort": 5,
+			"width": "half",
+			"translations": null,
+			"note": "Section background color",
+			"conditions": null,
+			"required": false,
+			"group": null,
+			"validation": null,
+			"validation_message": null
+		},
+		"schema": {
+			"name": "background_color",
+			"table": "block_logo_carousel",
+			"data_type": "character varying",
+			"default_value": "#0b2d34",
+			"max_length": 255,
+			"is_generated": false,
+			"is_nullable": true,
+			"is_unique": false,
+			"is_indexed": false,
+			"is_primary_key": false,
+			"has_auto_increment": false,
+			"foreign_key_schema": null,
+			"foreign_key_table": null,
+			"foreign_key_column": null
+		}
+	},
+	{
+		"collection": "block_logo_carousel",
+		"field": "logos",
+		"type": "alias",
+		"meta": {
+			"collection": "block_logo_carousel",
+			"field": "logos",
+			"special": [
+				"o2m"
+			],
+			"interface": "list-o2m",
+			"options": {
+				"enableCreate": true,
+				"enableSelect": false,
+				"template": "{{name}}"
+			},
+			"display": "related-values",
+			"display_options": {
+				"template": "{{name}}"
+			},
+			"readonly": false,
+			"hidden": false,
+			"sort": 6,
+			"width": "full",
+			"translations": null,
+			"note": null,
+			"conditions": null,
+			"required": false,
+			"group": null,
+			"validation": null,
+			"validation_message": null
+		},
+		"schema": null
+	},
+	{
+		"collection": "block_logo_carousel_item",
+		"field": "id",
+		"type": "uuid",
+		"meta": {
+			"collection": "block_logo_carousel_item",
+			"field": "id",
+			"special": [
+				"uuid"
+			],
+			"interface": null,
+			"options": null,
+			"display": null,
+			"display_options": null,
+			"readonly": true,
+			"hidden": true,
+			"sort": 1,
+			"width": "full",
+			"translations": null,
+			"note": null,
+			"conditions": null,
+			"required": false,
+			"group": null,
+			"validation": null,
+			"validation_message": null
+		},
+		"schema": {
+			"name": "id",
+			"table": "block_logo_carousel_item",
+			"data_type": "uuid",
+			"default_value": null,
+			"is_generated": false,
+			"is_nullable": false,
+			"is_unique": true,
+			"is_indexed": false,
+			"is_primary_key": true,
+			"has_auto_increment": false,
+			"foreign_key_schema": null,
+			"foreign_key_table": null,
+			"foreign_key_column": null
+		}
+	},
+	{
+		"collection": "block_logo_carousel_item",
+		"field": "sort",
+		"type": "integer",
+		"meta": {
+			"collection": "block_logo_carousel_item",
+			"field": "sort",
+			"special": null,
+			"interface": "input",
+			"options": null,
+			"display": null,
+			"display_options": null,
+			"readonly": false,
+			"hidden": true,
+			"sort": 2,
+			"width": "full",
+			"translations": null,
+			"note": null,
+			"conditions": null,
+			"required": false,
+			"group": null,
+			"validation": null,
+			"validation_message": null
+		},
+		"schema": {
+			"name": "sort",
+			"table": "block_logo_carousel_item",
+			"data_type": "integer",
+			"default_value": null,
+			"is_generated": false,
+			"is_nullable": true,
+			"is_unique": false,
+			"is_indexed": false,
+			"is_primary_key": false,
+			"has_auto_increment": false,
+			"foreign_key_schema": null,
+			"foreign_key_table": null,
+			"foreign_key_column": null
+		}
+	},
+	{
+		"collection": "block_logo_carousel_item",
+		"field": "date_created",
+		"type": "timestamp",
+		"meta": {
+			"collection": "block_logo_carousel_item",
+			"field": "date_created",
+			"special": [
+				"date-created"
+			],
+			"interface": null,
+			"options": null,
+			"display": "datetime",
+			"display_options": null,
+			"readonly": true,
+			"hidden": true,
+			"sort": 3,
+			"width": "half",
+			"translations": null,
+			"note": null,
+			"conditions": null,
+			"required": false,
+			"group": null,
+			"validation": null,
+			"validation_message": null
+		},
+		"schema": {
+			"name": "date_created",
+			"table": "block_logo_carousel_item",
+			"data_type": "timestamp with time zone",
+			"default_value": null,
+			"is_generated": false,
+			"is_nullable": true,
+			"is_unique": false,
+			"is_indexed": false,
+			"is_primary_key": false,
+			"has_auto_increment": false,
+			"foreign_key_schema": null,
+			"foreign_key_table": null,
+			"foreign_key_column": null
+		}
+	},
+	{
+		"collection": "block_logo_carousel_item",
+		"field": "user_created",
+		"type": "uuid",
+		"meta": {
+			"collection": "block_logo_carousel_item",
+			"field": "user_created",
+			"special": [
+				"user-created"
+			],
+			"interface": null,
+			"options": null,
+			"display": "user",
+			"display_options": null,
+			"readonly": true,
+			"hidden": true,
+			"sort": 4,
+			"width": "half",
+			"translations": null,
+			"note": null,
+			"conditions": null,
+			"required": false,
+			"group": null,
+			"validation": null,
+			"validation_message": null
+		},
+		"schema": {
+			"name": "user_created",
+			"table": "block_logo_carousel_item",
+			"data_type": "uuid",
+			"default_value": null,
+			"is_generated": false,
+			"is_nullable": true,
+			"is_unique": false,
+			"is_indexed": false,
+			"is_primary_key": false,
+			"has_auto_increment": false,
+			"foreign_key_schema": null,
+			"foreign_key_table": null,
+			"foreign_key_column": null
+		}
+	},
+	{
+		"collection": "block_logo_carousel_item",
+		"field": "block_logo_carousel",
+		"type": "uuid",
+		"meta": {
+			"collection": "block_logo_carousel_item",
+			"field": "block_logo_carousel",
+			"special": null,
+			"interface": null,
+			"options": null,
+			"display": null,
+			"display_options": null,
+			"readonly": false,
+			"hidden": true,
+			"sort": 5,
+			"width": "full",
+			"translations": null,
+			"note": null,
+			"conditions": null,
+			"required": false,
+			"group": null,
+			"validation": null,
+			"validation_message": null
+		},
+		"schema": {
+			"name": "block_logo_carousel",
+			"table": "block_logo_carousel_item",
+			"data_type": "uuid",
+			"default_value": null,
+			"is_generated": false,
+			"is_nullable": true,
+			"is_unique": false,
+			"is_indexed": false,
+			"is_primary_key": false,
+			"has_auto_increment": false,
+			"foreign_key_schema": "public",
+			"foreign_key_table": "block_logo_carousel",
+			"foreign_key_column": "id"
+		}
+	},
+	{
+		"collection": "block_logo_carousel_item",
+		"field": "name",
+		"type": "string",
+		"meta": {
+			"collection": "block_logo_carousel_item",
+			"field": "name",
+			"special": null,
+			"interface": "input",
+			"options": {
+				"placeholder": "Company name"
+			},
+			"display": null,
+			"display_options": null,
+			"readonly": false,
+			"hidden": false,
+			"sort": 6,
+			"width": "half",
+			"translations": null,
+			"note": null,
+			"conditions": null,
+			"required": false,
+			"group": null,
+			"validation": null,
+			"validation_message": null
+		},
+		"schema": {
+			"name": "name",
+			"table": "block_logo_carousel_item",
+			"data_type": "character varying",
+			"default_value": null,
+			"max_length": 255,
+			"is_generated": false,
+			"is_nullable": true,
+			"is_unique": false,
+			"is_indexed": false,
+			"is_primary_key": false,
+			"has_auto_increment": false,
+			"foreign_key_schema": null,
+			"foreign_key_table": null,
+			"foreign_key_column": null
+		}
+	},
+	{
+		"collection": "block_logo_carousel_item",
+		"field": "url",
+		"type": "string",
+		"meta": {
+			"collection": "block_logo_carousel_item",
+			"field": "url",
+			"special": null,
+			"interface": "input",
+			"options": {
+				"placeholder": "https://example.com"
+			},
+			"display": null,
+			"display_options": null,
+			"readonly": false,
+			"hidden": false,
+			"sort": 7,
+			"width": "half",
+			"translations": null,
+			"note": "Optional link when clicking logo",
+			"conditions": null,
+			"required": false,
+			"group": null,
+			"validation": null,
+			"validation_message": null
+		},
+		"schema": {
+			"name": "url",
+			"table": "block_logo_carousel_item",
+			"data_type": "character varying",
+			"default_value": null,
+			"max_length": 255,
+			"is_generated": false,
+			"is_nullable": true,
+			"is_unique": false,
+			"is_indexed": false,
+			"is_primary_key": false,
+			"has_auto_increment": false,
+			"foreign_key_schema": null,
+			"foreign_key_table": null,
+			"foreign_key_column": null
+		}
+	},
+	{
+		"collection": "block_logo_carousel_item",
+		"field": "logo",
+		"type": "uuid",
+		"meta": {
+			"collection": "block_logo_carousel_item",
+			"field": "logo",
+			"special": [
+				"file"
+			],
+			"interface": "file-image",
+			"options": null,
+			"display": null,
+			"display_options": null,
+			"readonly": false,
+			"hidden": false,
+			"sort": 8,
+			"width": "full",
+			"translations": null,
+			"note": null,
+			"conditions": null,
+			"required": false,
+			"group": null,
+			"validation": null,
+			"validation_message": null
+		},
+		"schema": {
+			"name": "logo",
+			"table": "block_logo_carousel_item",
+			"data_type": "uuid",
+			"default_value": null,
+			"is_generated": false,
+			"is_nullable": true,
+			"is_unique": false,
+			"is_indexed": false,
+			"is_primary_key": false,
+			"has_auto_increment": false,
+			"foreign_key_schema": "public",
+			"foreign_key_table": "directus_files",
+			"foreign_key_column": "id"
+		}
+	},
+	{
+		"collection": "block_feature_split",
+		"field": "id",
+		"type": "uuid",
+		"meta": {
+			"collection": "block_feature_split",
+			"field": "id",
+			"special": [
+				"uuid"
+			],
+			"interface": null,
+			"options": null,
+			"display": null,
+			"display_options": null,
+			"readonly": true,
+			"hidden": true,
+			"sort": 1,
+			"width": "full",
+			"translations": null,
+			"note": null,
+			"conditions": null,
+			"required": false,
+			"group": null,
+			"validation": null,
+			"validation_message": null
+		},
+		"schema": {
+			"name": "id",
+			"table": "block_feature_split",
+			"data_type": "uuid",
+			"default_value": null,
+			"is_generated": false,
+			"is_nullable": false,
+			"is_unique": true,
+			"is_indexed": false,
+			"is_primary_key": true,
+			"has_auto_increment": false,
+			"foreign_key_schema": null,
+			"foreign_key_table": null,
+			"foreign_key_column": null
+		}
+	},
+	{
+		"collection": "block_feature_split",
+		"field": "status",
+		"type": "string",
+		"meta": {
+			"collection": "block_feature_split",
+			"field": "status",
+			"special": null,
+			"interface": "select-dropdown",
+			"options": {
+				"choices": [
+					{
+						"text": "Published",
+						"value": "published"
+					},
+					{
+						"text": "Draft",
+						"value": "draft"
+					},
+					{
+						"text": "Archived",
+						"value": "archived"
+					}
+				]
+			},
+			"display": "labels",
+			"display_options": null,
+			"readonly": false,
+			"hidden": false,
+			"sort": 2,
+			"width": "full",
+			"translations": null,
+			"note": null,
+			"conditions": null,
+			"required": false,
+			"group": null,
+			"validation": null,
+			"validation_message": null
+		},
+		"schema": {
+			"name": "status",
+			"table": "block_feature_split",
+			"data_type": "character varying",
+			"default_value": "'published'::character varying",
+			"max_length": 255,
+			"is_generated": false,
+			"is_nullable": true,
+			"is_unique": false,
+			"is_indexed": false,
+			"is_primary_key": false,
+			"has_auto_increment": false,
+			"foreign_key_schema": null,
+			"foreign_key_table": null,
+			"foreign_key_column": null
+		}
+	},
+	{
+		"collection": "block_feature_split",
+		"field": "headline",
+		"type": "string",
+		"meta": {
+			"collection": "block_feature_split",
+			"field": "headline",
+			"special": null,
+			"interface": "input-rich-text-html",
+			"options": {
+				"toolbar": [
+					"bold",
+					"italic",
+					"underline",
+					"strikethrough",
+					"fontsizeselect",
+					"forecolor",
+					"backcolor",
+					"removeformat"
+				]
+			},
+			"display": null,
+			"display_options": null,
+			"readonly": false,
+			"hidden": false,
+			"sort": 3,
+			"width": "half",
+			"translations": null,
+			"note": "First part of the heading (dark text)",
+			"conditions": null,
+			"required": false,
+			"group": null,
+			"validation": null,
+			"validation_message": null
+		},
+		"schema": {
+			"name": "headline",
+			"table": "block_feature_split",
+			"data_type": "character varying",
+			"default_value": null,
+			"max_length": 255,
+			"is_generated": false,
+			"is_nullable": true,
+			"is_unique": false,
+			"is_indexed": false,
+			"is_primary_key": false,
+			"has_auto_increment": false,
+			"foreign_key_schema": null,
+			"foreign_key_table": null,
+			"foreign_key_column": null
+		}
+	},
+	{
+		"collection": "block_feature_split",
+		"field": "headline_emphasis",
+		"type": "string",
+		"meta": {
+			"collection": "block_feature_split",
+			"field": "headline_emphasis",
+			"special": null,
+			"interface": "input-rich-text-html",
+			"options": {
+				"toolbar": [
+					"bold",
+					"italic",
+					"underline",
+					"strikethrough",
+					"fontsizeselect",
+					"forecolor",
+					"backcolor",
+					"removeformat"
+				]
+			},
+			"display": null,
+			"display_options": null,
+			"readonly": false,
+			"hidden": false,
+			"sort": 4,
+			"width": "half",
+			"translations": null,
+			"note": "Italic red emphasis part",
+			"conditions": null,
+			"required": false,
+			"group": null,
+			"validation": null,
+			"validation_message": null
+		},
+		"schema": {
+			"name": "headline_emphasis",
+			"table": "block_feature_split",
+			"data_type": "character varying",
+			"default_value": null,
+			"max_length": 255,
+			"is_generated": false,
+			"is_nullable": true,
+			"is_unique": false,
+			"is_indexed": false,
+			"is_primary_key": false,
+			"has_auto_increment": false,
+			"foreign_key_schema": null,
+			"foreign_key_table": null,
+			"foreign_key_column": null
+		}
+	},
+	{
+		"collection": "block_feature_split",
+		"field": "description",
+		"type": "text",
+		"meta": {
+			"collection": "block_feature_split",
+			"field": "description",
+			"special": null,
+			"interface": "input-rich-text-html",
+			"options": {
+				"toolbar": [
+					"bold",
+					"italic",
+					"underline",
+					"strikethrough",
+					"fontsizeselect",
+					"forecolor",
+					"backcolor",
+					"removeformat"
+				]
+			},
+			"display": null,
+			"display_options": null,
+			"readonly": false,
+			"hidden": false,
+			"sort": 5,
+			"width": "full",
+			"translations": null,
+			"note": null,
+			"conditions": null,
+			"required": false,
+			"group": null,
+			"validation": null,
+			"validation_message": null
+		},
+		"schema": {
+			"name": "description",
+			"table": "block_feature_split",
+			"data_type": "text",
+			"default_value": null,
+			"is_generated": false,
+			"is_nullable": true,
+			"is_unique": false,
+			"is_indexed": false,
+			"is_primary_key": false,
+			"has_auto_increment": false,
+			"foreign_key_schema": null,
+			"foreign_key_table": null,
+			"foreign_key_column": null
+		}
+	},
+	{
+		"collection": "block_feature_split",
+		"field": "image",
+		"type": "uuid",
+		"meta": {
+			"collection": "block_feature_split",
+			"field": "image",
+			"special": [
+				"file"
+			],
+			"interface": "file-image",
+			"options": null,
+			"display": null,
+			"display_options": null,
+			"readonly": false,
+			"hidden": false,
+			"sort": 6,
+			"width": "full",
+			"translations": null,
+			"note": "Large feature image displayed on the right",
+			"conditions": null,
+			"required": false,
+			"group": null,
+			"validation": null,
+			"validation_message": null
+		},
+		"schema": {
+			"name": "image",
+			"table": "block_feature_split",
+			"data_type": "uuid",
+			"default_value": null,
+			"is_generated": false,
+			"is_nullable": true,
+			"is_unique": false,
+			"is_indexed": false,
+			"is_primary_key": false,
+			"has_auto_increment": false,
+			"foreign_key_schema": null,
+			"foreign_key_table": null,
+			"foreign_key_column": null
+		}
+	},
+	{
+		"collection": "block_feature_split",
+		"field": "items",
+		"type": "alias",
+		"meta": {
+			"collection": "block_feature_split",
+			"field": "items",
+			"special": [
+				"o2m"
+			],
+			"interface": "list-o2m",
+			"options": {
+				"enableCreate": true,
+				"enableSelect": false
+			},
+			"display": "related-values",
+			"display_options": {
+				"template": "{{title}}"
+			},
+			"readonly": false,
+			"hidden": false,
+			"sort": 7,
+			"width": "full",
+			"translations": null,
+			"note": null,
+			"conditions": null,
+			"required": false,
+			"group": null,
+			"validation": null,
+			"validation_message": null
+		}
+	},
+	{
+		"collection": "block_feature_split_item",
+		"field": "id",
+		"type": "uuid",
+		"meta": {
+			"collection": "block_feature_split_item",
+			"field": "id",
+			"special": [
+				"uuid"
+			],
+			"interface": null,
+			"options": null,
+			"display": null,
+			"display_options": null,
+			"readonly": true,
+			"hidden": true,
+			"sort": 1,
+			"width": "full",
+			"translations": null,
+			"note": null,
+			"conditions": null,
+			"required": false,
+			"group": null,
+			"validation": null,
+			"validation_message": null
+		},
+		"schema": {
+			"name": "id",
+			"table": "block_feature_split_item",
+			"data_type": "uuid",
+			"default_value": null,
+			"is_generated": false,
+			"is_nullable": false,
+			"is_unique": true,
+			"is_indexed": false,
+			"is_primary_key": true,
+			"has_auto_increment": false,
+			"foreign_key_schema": null,
+			"foreign_key_table": null,
+			"foreign_key_column": null
+		}
+	},
+	{
+		"collection": "block_feature_split_item",
+		"field": "sort",
+		"type": "integer",
+		"meta": {
+			"collection": "block_feature_split_item",
+			"field": "sort",
+			"special": null,
+			"interface": "input",
+			"options": null,
+			"display": null,
+			"display_options": null,
+			"readonly": false,
+			"hidden": true,
+			"sort": 2,
+			"width": "full",
+			"translations": null,
+			"note": null,
+			"conditions": null,
+			"required": false,
+			"group": null,
+			"validation": null,
+			"validation_message": null
+		},
+		"schema": {
+			"name": "sort",
+			"table": "block_feature_split_item",
+			"data_type": "integer",
+			"default_value": null,
+			"is_generated": false,
+			"is_nullable": true,
+			"is_unique": false,
+			"is_indexed": false,
+			"is_primary_key": false,
+			"has_auto_increment": false,
+			"foreign_key_schema": null,
+			"foreign_key_table": null,
+			"foreign_key_column": null
+		}
+	},
+	{
+		"collection": "block_feature_split_item",
+		"field": "date_created",
+		"type": "timestamp",
+		"meta": {
+			"collection": "block_feature_split_item",
+			"field": "date_created",
+			"special": [
+				"date-created"
+			],
+			"interface": null,
+			"options": null,
+			"display": "datetime",
+			"display_options": null,
+			"readonly": true,
+			"hidden": true,
+			"sort": 3,
+			"width": "half",
+			"translations": null,
+			"note": null,
+			"conditions": null,
+			"required": false,
+			"group": null,
+			"validation": null,
+			"validation_message": null
+		},
+		"schema": {
+			"name": "date_created",
+			"table": "block_feature_split_item",
+			"data_type": "timestamp with time zone",
+			"default_value": null,
+			"is_generated": false,
+			"is_nullable": true,
+			"is_unique": false,
+			"is_indexed": false,
+			"is_primary_key": false,
+			"has_auto_increment": false,
+			"foreign_key_schema": null,
+			"foreign_key_table": null,
+			"foreign_key_column": null
+		}
+	},
+	{
+		"collection": "block_feature_split_item",
+		"field": "user_created",
+		"type": "uuid",
+		"meta": {
+			"collection": "block_feature_split_item",
+			"field": "user_created",
+			"special": [
+				"user-created"
+			],
+			"interface": null,
+			"options": null,
+			"display": "user",
+			"display_options": null,
+			"readonly": true,
+			"hidden": true,
+			"sort": 4,
+			"width": "half",
+			"translations": null,
+			"note": null,
+			"conditions": null,
+			"required": false,
+			"group": null,
+			"validation": null,
+			"validation_message": null
+		},
+		"schema": {
+			"name": "user_created",
+			"table": "block_feature_split_item",
+			"data_type": "uuid",
+			"default_value": null,
+			"is_generated": false,
+			"is_nullable": true,
+			"is_unique": false,
+			"is_indexed": false,
+			"is_primary_key": false,
+			"has_auto_increment": false,
+			"foreign_key_schema": null,
+			"foreign_key_table": null,
+			"foreign_key_column": null
+		}
+	},
+	{
+		"collection": "block_feature_split_item",
+		"field": "block_feature_split",
+		"type": "uuid",
+		"meta": {
+			"collection": "block_feature_split_item",
+			"field": "block_feature_split",
+			"special": null,
+			"interface": null,
+			"options": null,
+			"display": null,
+			"display_options": null,
+			"readonly": false,
+			"hidden": true,
+			"sort": 5,
+			"width": "full",
+			"translations": null,
+			"note": null,
+			"conditions": null,
+			"required": false,
+			"group": null,
+			"validation": null,
+			"validation_message": null
+		},
+		"schema": {
+			"name": "block_feature_split",
+			"table": "block_feature_split_item",
+			"data_type": "uuid",
+			"default_value": null,
+			"is_generated": false,
+			"is_nullable": true,
+			"is_unique": false,
+			"is_indexed": false,
+			"is_primary_key": false,
+			"has_auto_increment": false,
+			"foreign_key_schema": null,
+			"foreign_key_table": null,
+			"foreign_key_column": null
+		}
+	},
+	{
+		"collection": "block_feature_split_item",
+		"field": "is_highlighted",
+		"type": "boolean",
+		"meta": {
+			"collection": "block_feature_split_item",
+			"field": "is_highlighted",
+			"special": null,
+			"interface": "boolean",
+			"options": null,
+			"display": null,
+			"display_options": null,
+			"readonly": false,
+			"hidden": false,
+			"sort": 6,
+			"width": "half",
+			"translations": null,
+			"note": "Shows red accent bar and red title colour",
+			"conditions": null,
+			"required": false,
+			"group": null,
+			"validation": null,
+			"validation_message": null
+		},
+		"schema": {
+			"name": "is_highlighted",
+			"table": "block_feature_split_item",
+			"data_type": "boolean",
+			"default_value": "false",
+			"is_generated": false,
+			"is_nullable": true,
+			"is_unique": false,
+			"is_indexed": false,
+			"is_primary_key": false,
+			"has_auto_increment": false,
+			"foreign_key_schema": null,
+			"foreign_key_table": null,
+			"foreign_key_column": null
+		}
+	},
+	{
+		"collection": "block_feature_split_item",
+		"field": "title",
+		"type": "string",
+		"meta": {
+			"collection": "block_feature_split_item",
+			"field": "title",
+			"special": null,
+			"interface": "input-rich-text-html",
+			"options": {
+				"toolbar": [
+					"bold",
+					"italic",
+					"underline",
+					"strikethrough",
+					"fontsizeselect",
+					"forecolor",
+					"backcolor",
+					"removeformat"
+				]
+			},
+			"display": null,
+			"display_options": null,
+			"readonly": false,
+			"hidden": false,
+			"sort": 7,
+			"width": "full",
+			"translations": null,
+			"note": null,
+			"conditions": null,
+			"required": false,
+			"group": null,
+			"validation": null,
+			"validation_message": null
+		},
+		"schema": {
+			"name": "title",
+			"table": "block_feature_split_item",
+			"data_type": "character varying",
+			"default_value": null,
+			"max_length": 255,
+			"is_generated": false,
+			"is_nullable": true,
+			"is_unique": false,
+			"is_indexed": false,
+			"is_primary_key": false,
+			"has_auto_increment": false,
+			"foreign_key_schema": null,
+			"foreign_key_table": null,
+			"foreign_key_column": null
+		}
+	},
+	{
+		"collection": "block_feature_split_item",
+		"field": "description",
+		"type": "text",
+		"meta": {
+			"collection": "block_feature_split_item",
+			"field": "description",
+			"special": null,
+			"interface": "input-rich-text-html",
+			"options": {
+				"toolbar": [
+					"bold",
+					"italic",
+					"underline",
+					"strikethrough",
+					"fontsizeselect",
+					"forecolor",
+					"backcolor",
+					"removeformat"
+				]
+			},
+			"display": null,
+			"display_options": null,
+			"readonly": false,
+			"hidden": false,
+			"sort": 8,
+			"width": "full",
+			"translations": null,
+			"note": null,
+			"conditions": null,
+			"required": false,
+			"group": null,
+			"validation": null,
+			"validation_message": null
+		},
+		"schema": {
+			"name": "description",
+			"table": "block_feature_split_item",
+			"data_type": "text",
+			"default_value": null,
+			"is_generated": false,
+			"is_nullable": true,
+			"is_unique": false,
+			"is_indexed": false,
+			"is_primary_key": false,
+			"has_auto_increment": false,
+			"foreign_key_schema": null,
+			"foreign_key_table": null,
+			"foreign_key_column": null
+		}
+	},
+	{
+		"collection": "block_feature_split_item",
+		"field": "link_label",
+		"type": "string",
+		"meta": {
+			"collection": "block_feature_split_item",
+			"field": "link_label",
+			"special": null,
+			"interface": "input",
+			"options": {
+				"placeholder": "See our wins with AWS"
+			},
+			"display": null,
+			"display_options": null,
+			"readonly": false,
+			"hidden": false,
+			"sort": 9,
+			"width": "half",
+			"translations": null,
+			"note": null,
+			"conditions": null,
+			"required": false,
+			"group": null,
+			"validation": null,
+			"validation_message": null
+		},
+		"schema": {
+			"name": "link_label",
+			"table": "block_feature_split_item",
+			"data_type": "character varying",
+			"default_value": null,
+			"max_length": 255,
+			"is_generated": false,
+			"is_nullable": true,
+			"is_unique": false,
+			"is_indexed": false,
+			"is_primary_key": false,
+			"has_auto_increment": false,
+			"foreign_key_schema": null,
+			"foreign_key_table": null,
+			"foreign_key_column": null
+		}
+	},
+	{
+		"collection": "block_feature_split_item",
+		"field": "url",
+		"type": "string",
+		"meta": {
+			"collection": "block_feature_split_item",
+			"field": "url",
+			"special": null,
+			"interface": "input",
+			"options": {
+				"placeholder": "https://"
+			},
+			"display": null,
+			"display_options": null,
+			"readonly": false,
+			"hidden": false,
+			"sort": 10,
+			"width": "half",
+			"translations": null,
+			"note": null,
+			"conditions": null,
+			"required": false,
+			"group": null,
+			"validation": null,
+			"validation_message": null
+		},
+		"schema": {
+			"name": "url",
+			"table": "block_feature_split_item",
+			"data_type": "character varying",
+			"default_value": null,
+			"max_length": 255,
+			"is_generated": false,
+			"is_nullable": true,
+			"is_unique": false,
+			"is_indexed": false,
+			"is_primary_key": false,
+			"has_auto_increment": false,
+			"foreign_key_schema": null,
+			"foreign_key_table": null,
+			"foreign_key_column": null
+		}
+	},
+	{
+		"collection": "block_insights",
+		"field": "id",
+		"type": "uuid",
+		"meta": {
+			"collection": "block_insights",
+			"field": "id",
+			"special": [
+				"uuid"
+			],
+			"interface": null,
+			"options": null,
+			"display": null,
+			"display_options": null,
+			"readonly": true,
+			"hidden": true,
+			"sort": 1,
+			"width": "full",
+			"translations": null,
+			"note": null,
+			"conditions": null,
+			"required": false,
+			"group": null,
+			"validation": null,
+			"validation_message": null
+		},
+		"schema": {
+			"name": "id",
+			"table": "block_insights",
+			"data_type": "uuid",
+			"default_value": null,
+			"is_generated": false,
+			"is_nullable": false,
+			"is_unique": true,
+			"is_indexed": false,
+			"is_primary_key": true,
+			"has_auto_increment": false,
+			"foreign_key_schema": null,
+			"foreign_key_table": null,
+			"foreign_key_column": null
+		}
+	},
+	{
+		"collection": "block_insights",
+		"field": "status",
+		"type": "string",
+		"meta": {
+			"collection": "block_insights",
+			"field": "status",
+			"special": null,
+			"interface": "select-dropdown",
+			"options": {
+				"choices": [
+					{
+						"text": "Published",
+						"value": "published"
+					},
+					{
+						"text": "Draft",
+						"value": "draft"
+					},
+					{
+						"text": "Archived",
+						"value": "archived"
+					}
+				]
+			},
+			"display": "labels",
+			"display_options": null,
+			"readonly": false,
+			"hidden": false,
+			"sort": 2,
+			"width": "full",
+			"translations": null,
+			"note": null,
+			"conditions": null,
+			"required": false,
+			"group": null,
+			"validation": null,
+			"validation_message": null
+		},
+		"schema": {
+			"name": "status",
+			"table": "block_insights",
+			"data_type": "character varying",
+			"default_value": "'published'::character varying",
+			"max_length": 255,
+			"is_generated": false,
+			"is_nullable": true,
+			"is_unique": false,
+			"is_indexed": false,
+			"is_primary_key": false,
+			"has_auto_increment": false,
+			"foreign_key_schema": null,
+			"foreign_key_table": null,
+			"foreign_key_column": null
+		}
+	},
+	{
+		"collection": "block_insights",
+		"field": "headline",
+		"type": "string",
+		"meta": {
+			"collection": "block_insights",
+			"field": "headline",
+			"special": null,
+			"interface": "input-rich-text-html",
+			"options": {
+				"toolbar": [
+					"bold",
+					"italic",
+					"underline",
+					"strikethrough",
+					"fontsizeselect",
+					"forecolor",
+					"backcolor",
+					"removeformat"
+				]
+			},
+			"display": null,
+			"display_options": null,
+			"readonly": false,
+			"hidden": false,
+			"sort": 3,
+			"width": "half",
+			"translations": null,
+			"note": "First part of heading (dark text)",
+			"conditions": null,
+			"required": false,
+			"group": null,
+			"validation": null,
+			"validation_message": null
+		},
+		"schema": {
+			"name": "headline",
+			"table": "block_insights",
+			"data_type": "character varying",
+			"default_value": null,
+			"max_length": 255,
+			"is_generated": false,
+			"is_nullable": true,
+			"is_unique": false,
+			"is_indexed": false,
+			"is_primary_key": false,
+			"has_auto_increment": false,
+			"foreign_key_schema": null,
+			"foreign_key_table": null,
+			"foreign_key_column": null
+		}
+	},
+	{
+		"collection": "block_insights",
+		"field": "headline_emphasis",
+		"type": "string",
+		"meta": {
+			"collection": "block_insights",
+			"field": "headline_emphasis",
+			"special": null,
+			"interface": "input-rich-text-html",
+			"options": {
+				"toolbar": [
+					"bold",
+					"italic",
+					"underline",
+					"strikethrough",
+					"fontsizeselect",
+					"forecolor",
+					"backcolor",
+					"removeformat"
+				]
+			},
+			"display": null,
+			"display_options": null,
+			"readonly": false,
+			"hidden": false,
+			"sort": 4,
+			"width": "half",
+			"translations": null,
+			"note": "Italic red emphasis part",
+			"conditions": null,
+			"required": false,
+			"group": null,
+			"validation": null,
+			"validation_message": null
+		},
+		"schema": {
+			"name": "headline_emphasis",
+			"table": "block_insights",
+			"data_type": "character varying",
+			"default_value": null,
+			"max_length": 255,
+			"is_generated": false,
+			"is_nullable": true,
+			"is_unique": false,
+			"is_indexed": false,
+			"is_primary_key": false,
+			"has_auto_increment": false,
+			"foreign_key_schema": null,
+			"foreign_key_table": null,
+			"foreign_key_column": null
+		}
+	},
+	{
+		"collection": "block_insights",
+		"field": "tagline",
+		"type": "string",
+		"meta": {
+			"collection": "block_insights",
+			"field": "tagline",
+			"special": null,
+			"interface": "input-rich-text-html",
+			"options": {
+				"toolbar": [
+					"bold",
+					"italic",
+					"underline",
+					"strikethrough",
+					"fontsizeselect",
+					"forecolor",
+					"backcolor",
+					"removeformat"
+				]
+			},
+			"display": null,
+			"display_options": null,
+			"readonly": false,
+			"hidden": false,
+			"sort": 5,
+			"width": "full",
+			"translations": null,
+			"note": "Small uppercase label above the post list",
+			"conditions": null,
+			"required": false,
+			"group": null,
+			"validation": null,
+			"validation_message": null
+		},
+		"schema": {
+			"name": "tagline",
+			"table": "block_insights",
+			"data_type": "character varying",
+			"default_value": "'CURATED INSIGHTS FROM OUR WORK'::character varying",
+			"max_length": 255,
+			"is_generated": false,
+			"is_nullable": true,
+			"is_unique": false,
+			"is_indexed": false,
+			"is_primary_key": false,
+			"has_auto_increment": false,
+			"foreign_key_schema": null,
+			"foreign_key_table": null,
+			"foreign_key_column": null
+		}
+	},
+	{
+		"collection": "block_insights",
+		"field": "limit",
+		"type": "integer",
+		"meta": {
+			"collection": "block_insights",
+			"field": "limit",
+			"special": null,
+			"interface": "input",
+			"options": null,
+			"display": null,
+			"display_options": null,
+			"readonly": false,
+			"hidden": false,
+			"sort": 8,
+			"width": "half",
+			"translations": null,
+			"note": "Total posts to fetch (1 featured + rest in sidebar). Default: 4",
+			"conditions": null,
+			"required": false,
+			"group": null,
+			"validation": null,
+			"validation_message": null
+		},
+		"schema": {
+			"name": "limit",
+			"table": "block_insights",
+			"data_type": "integer",
+			"default_value": "4",
+			"is_generated": false,
+			"is_nullable": true,
+			"is_unique": false,
+			"is_indexed": false,
+			"is_primary_key": false,
+			"has_auto_increment": false,
+			"foreign_key_schema": null,
+			"foreign_key_table": null,
+			"foreign_key_column": null
+		}
+	},
+	{
+		"collection": "block_testimonials",
+		"field": "id",
+		"type": "uuid",
+		"meta": {
+			"collection": "block_testimonials",
+			"field": "id",
+			"special": [
+				"uuid"
+			],
+			"interface": null,
+			"options": null,
+			"display": null,
+			"display_options": null,
+			"readonly": true,
+			"hidden": true,
+			"sort": 1,
+			"width": "full",
+			"translations": null,
+			"note": null,
+			"conditions": null,
+			"required": false,
+			"group": null,
+			"validation": null,
+			"validation_message": null
+		},
+		"schema": {
+			"name": "id",
+			"table": "block_testimonials",
+			"data_type": "uuid",
+			"default_value": null,
+			"is_generated": false,
+			"is_nullable": false,
+			"is_unique": true,
+			"is_indexed": false,
+			"is_primary_key": true,
+			"has_auto_increment": false,
+			"foreign_key_schema": null,
+			"foreign_key_table": null,
+			"foreign_key_column": null
+		}
+	},
+	{
+		"collection": "block_testimonials",
+		"field": "status",
+		"type": "string",
+		"meta": {
+			"collection": "block_testimonials",
+			"field": "status",
+			"special": null,
+			"interface": "select-dropdown",
+			"options": {
+				"choices": [
+					{
+						"text": "Published",
+						"value": "published"
+					},
+					{
+						"text": "Draft",
+						"value": "draft"
+					},
+					{
+						"text": "Archived",
+						"value": "archived"
+					}
+				]
+			},
+			"display": "labels",
+			"display_options": {
+				"showAsDot": true,
+				"choices": [
+					{
+						"text": "Published",
+						"value": "published",
+						"foreground": "#FFFFFF",
+						"background": "#2ecda7"
+					},
+					{
+						"text": "Draft",
+						"value": "draft",
+						"foreground": "#FFFFFF",
+						"background": "#d35400"
+					},
+					{
+						"text": "Archived",
+						"value": "archived",
+						"foreground": "#FFFFFF",
+						"background": "#a2b5cd"
+					}
+				]
+			},
+			"readonly": false,
+			"hidden": false,
+			"sort": 2,
+			"width": "full",
+			"translations": null,
+			"note": null,
+			"conditions": null,
+			"required": false,
+			"group": null,
+			"validation": null,
+			"validation_message": null
+		},
+		"schema": {
+			"name": "status",
+			"table": "block_testimonials",
+			"data_type": "character varying",
+			"default_value": "'published'::character varying",
+			"max_length": 255,
+			"is_generated": false,
+			"is_nullable": true,
+			"is_unique": false,
+			"is_indexed": false,
+			"is_primary_key": false,
+			"has_auto_increment": false,
+			"foreign_key_schema": null,
+			"foreign_key_table": null,
+			"foreign_key_column": null
+		}
+	},
+	{
+		"collection": "block_testimonials",
+		"field": "headline",
+		"type": "string",
+		"meta": {
+			"collection": "block_testimonials",
+			"field": "headline",
+			"special": null,
+			"interface": "input-rich-text-html",
+			"options": {
+				"toolbar": [
+					"bold",
+					"italic",
+					"underline",
+					"strikethrough",
+					"fontsizeselect",
+					"forecolor",
+					"backcolor",
+					"removeformat"
+				]
+			},
+			"display": null,
+			"display_options": null,
+			"readonly": false,
+			"hidden": false,
+			"sort": 3,
+			"width": "half",
+			"translations": null,
+			"note": "First part of the heading (white text)",
+			"conditions": null,
+			"required": false,
+			"group": null,
+			"validation": null,
+			"validation_message": null
+		},
+		"schema": {
+			"name": "headline",
+			"table": "block_testimonials",
+			"data_type": "character varying",
+			"default_value": null,
+			"max_length": 255,
+			"is_generated": false,
+			"is_nullable": true,
+			"is_unique": false,
+			"is_indexed": false,
+			"is_primary_key": false,
+			"has_auto_increment": false,
+			"foreign_key_schema": null,
+			"foreign_key_table": null,
+			"foreign_key_column": null
+		}
+	},
+	{
+		"collection": "block_testimonials",
+		"field": "headline_emphasis",
+		"type": "string",
+		"meta": {
+			"collection": "block_testimonials",
+			"field": "headline_emphasis",
+			"special": null,
+			"interface": "input-rich-text-html",
+			"options": {
+				"toolbar": [
+					"bold",
+					"italic",
+					"underline",
+					"strikethrough",
+					"fontsizeselect",
+					"forecolor",
+					"backcolor",
+					"removeformat"
+				]
+			},
+			"display": null,
+			"display_options": null,
+			"readonly": false,
+			"hidden": false,
+			"sort": 4,
+			"width": "half",
+			"translations": null,
+			"note": "Italic red emphasis part of heading",
+			"conditions": null,
+			"required": false,
+			"group": null,
+			"validation": null,
+			"validation_message": null
+		},
+		"schema": {
+			"name": "headline_emphasis",
+			"table": "block_testimonials",
+			"data_type": "character varying",
+			"default_value": null,
+			"max_length": 255,
+			"is_generated": false,
+			"is_nullable": true,
+			"is_unique": false,
+			"is_indexed": false,
+			"is_primary_key": false,
+			"has_auto_increment": false,
+			"foreign_key_schema": null,
+			"foreign_key_table": null,
+			"foreign_key_column": null
+		}
+	},
+	{
+		"collection": "block_testimonials",
+		"field": "background_color",
+		"type": "string",
+		"meta": {
+			"collection": "block_testimonials",
+			"field": "background_color",
+			"special": null,
+			"interface": "select-color",
+			"options": null,
+			"display": null,
+			"display_options": null,
+			"readonly": false,
+			"hidden": false,
+			"sort": 5,
+			"width": "half",
+			"translations": null,
+			"note": null,
+			"conditions": null,
+			"required": false,
+			"group": null,
+			"validation": null,
+			"validation_message": null
+		},
+		"schema": {
+			"name": "background_color",
+			"table": "block_testimonials",
+			"data_type": "character varying",
+			"default_value": "'#0b2d34'::character varying",
+			"max_length": 255,
+			"is_generated": false,
+			"is_nullable": true,
+			"is_unique": false,
+			"is_indexed": false,
+			"is_primary_key": false,
+			"has_auto_increment": false,
+			"foreign_key_schema": null,
+			"foreign_key_table": null,
+			"foreign_key_column": null
+		}
+	},
+	{
+		"collection": "block_testimonials",
+		"field": "stats",
+		"type": "alias",
+		"meta": {
+			"collection": "block_testimonials",
+			"field": "stats",
+			"special": [
+				"o2m"
+			],
+			"interface": "list-o2m",
+			"options": {
+				"enableCreate": true,
+				"enableSelect": false
+			},
+			"display": "related-values",
+			"display_options": {
+				"template": "{{value}} � {{label}}"
+			},
+			"readonly": false,
+			"hidden": false,
+			"sort": 6,
+			"width": "full",
+			"translations": null,
+			"note": null,
+			"conditions": null,
+			"required": false,
+			"group": null,
+			"validation": null,
+			"validation_message": null
+		}
+	},
+	{
+		"collection": "block_testimonials",
+		"field": "testimonials",
+		"type": "alias",
+		"meta": {
+			"collection": "block_testimonials",
+			"field": "testimonials",
+			"special": [
+				"o2m"
+			],
+			"interface": "list-o2m",
+			"options": {
+				"enableCreate": true,
+				"enableSelect": false
+			},
+			"display": "related-values",
+			"display_options": {
+				"template": "{{author_name}}"
+			},
+			"readonly": false,
+			"hidden": false,
+			"sort": 7,
+			"width": "full",
+			"translations": null,
+			"note": null,
+			"conditions": null,
+			"required": false,
+			"group": null,
+			"validation": null,
+			"validation_message": null
+		}
+	},
+	{
+		"collection": "block_testimonials_item",
+		"field": "id",
+		"type": "uuid",
+		"meta": {
+			"collection": "block_testimonials_item",
+			"field": "id",
+			"special": [
+				"uuid"
+			],
+			"interface": null,
+			"options": null,
+			"display": null,
+			"display_options": null,
+			"readonly": true,
+			"hidden": true,
+			"sort": 1,
+			"width": "full",
+			"translations": null,
+			"note": null,
+			"conditions": null,
+			"required": false,
+			"group": null,
+			"validation": null,
+			"validation_message": null
+		},
+		"schema": {
+			"name": "id",
+			"table": "block_testimonials_item",
+			"data_type": "uuid",
+			"default_value": null,
+			"is_generated": false,
+			"is_nullable": false,
+			"is_unique": true,
+			"is_indexed": false,
+			"is_primary_key": true,
+			"has_auto_increment": false,
+			"foreign_key_schema": null,
+			"foreign_key_table": null,
+			"foreign_key_column": null
+		}
+	},
+	{
+		"collection": "block_testimonials_item",
+		"field": "sort",
+		"type": "integer",
+		"meta": {
+			"collection": "block_testimonials_item",
+			"field": "sort",
+			"special": null,
+			"interface": "input",
+			"options": null,
+			"display": null,
+			"display_options": null,
+			"readonly": false,
+			"hidden": true,
+			"sort": 2,
+			"width": "full",
+			"translations": null,
+			"note": null,
+			"conditions": null,
+			"required": false,
+			"group": null,
+			"validation": null,
+			"validation_message": null
+		},
+		"schema": {
+			"name": "sort",
+			"table": "block_testimonials_item",
+			"data_type": "integer",
+			"default_value": null,
+			"is_generated": false,
+			"is_nullable": true,
+			"is_unique": false,
+			"is_indexed": false,
+			"is_primary_key": false,
+			"has_auto_increment": false,
+			"foreign_key_schema": null,
+			"foreign_key_table": null,
+			"foreign_key_column": null
+		}
+	},
+	{
+		"collection": "block_testimonials_item",
+		"field": "date_created",
+		"type": "timestamp",
+		"meta": {
+			"collection": "block_testimonials_item",
+			"field": "date_created",
+			"special": [
+				"date-created"
+			],
+			"interface": null,
+			"options": null,
+			"display": "datetime",
+			"display_options": null,
+			"readonly": true,
+			"hidden": true,
+			"sort": 3,
+			"width": "half",
+			"translations": null,
+			"note": null,
+			"conditions": null,
+			"required": false,
+			"group": null,
+			"validation": null,
+			"validation_message": null
+		},
+		"schema": {
+			"name": "date_created",
+			"table": "block_testimonials_item",
+			"data_type": "timestamp with time zone",
+			"default_value": null,
+			"is_generated": false,
+			"is_nullable": true,
+			"is_unique": false,
+			"is_indexed": false,
+			"is_primary_key": false,
+			"has_auto_increment": false,
+			"foreign_key_schema": null,
+			"foreign_key_table": null,
+			"foreign_key_column": null
+		}
+	},
+	{
+		"collection": "block_testimonials_item",
+		"field": "user_created",
+		"type": "uuid",
+		"meta": {
+			"collection": "block_testimonials_item",
+			"field": "user_created",
+			"special": [
+				"user-created"
+			],
+			"interface": null,
+			"options": null,
+			"display": "user",
+			"display_options": null,
+			"readonly": true,
+			"hidden": true,
+			"sort": 4,
+			"width": "half",
+			"translations": null,
+			"note": null,
+			"conditions": null,
+			"required": false,
+			"group": null,
+			"validation": null,
+			"validation_message": null
+		},
+		"schema": {
+			"name": "user_created",
+			"table": "block_testimonials_item",
+			"data_type": "uuid",
+			"default_value": null,
+			"is_generated": false,
+			"is_nullable": true,
+			"is_unique": false,
+			"is_indexed": false,
+			"is_primary_key": false,
+			"has_auto_increment": false,
+			"foreign_key_schema": null,
+			"foreign_key_table": null,
+			"foreign_key_column": null
+		}
+	},
+	{
+		"collection": "block_testimonials_item",
+		"field": "date_updated",
+		"type": "timestamp",
+		"meta": {
+			"collection": "block_testimonials_item",
+			"field": "date_updated",
+			"special": [
+				"date-updated"
+			],
+			"interface": null,
+			"options": null,
+			"display": "datetime",
+			"display_options": null,
+			"readonly": true,
+			"hidden": true,
+			"sort": 5,
+			"width": "half",
+			"translations": null,
+			"note": null,
+			"conditions": null,
+			"required": false,
+			"group": null,
+			"validation": null,
+			"validation_message": null
+		},
+		"schema": {
+			"name": "date_updated",
+			"table": "block_testimonials_item",
+			"data_type": "timestamp with time zone",
+			"default_value": null,
+			"is_generated": false,
+			"is_nullable": true,
+			"is_unique": false,
+			"is_indexed": false,
+			"is_primary_key": false,
+			"has_auto_increment": false,
+			"foreign_key_schema": null,
+			"foreign_key_table": null,
+			"foreign_key_column": null
+		}
+	},
+	{
+		"collection": "block_testimonials_item",
+		"field": "user_updated",
+		"type": "uuid",
+		"meta": {
+			"collection": "block_testimonials_item",
+			"field": "user_updated",
+			"special": [
+				"user-updated"
+			],
+			"interface": null,
+			"options": null,
+			"display": "user",
+			"display_options": null,
+			"readonly": true,
+			"hidden": true,
+			"sort": 6,
+			"width": "half",
+			"translations": null,
+			"note": null,
+			"conditions": null,
+			"required": false,
+			"group": null,
+			"validation": null,
+			"validation_message": null
+		},
+		"schema": {
+			"name": "user_updated",
+			"table": "block_testimonials_item",
+			"data_type": "uuid",
+			"default_value": null,
+			"is_generated": false,
+			"is_nullable": true,
+			"is_unique": false,
+			"is_indexed": false,
+			"is_primary_key": false,
+			"has_auto_increment": false,
+			"foreign_key_schema": null,
+			"foreign_key_table": null,
+			"foreign_key_column": null
+		}
+	},
+	{
+		"collection": "block_testimonials_item",
+		"field": "block_testimonials",
+		"type": "uuid",
+		"meta": {
+			"collection": "block_testimonials_item",
+			"field": "block_testimonials",
+			"special": null,
+			"interface": null,
+			"options": null,
+			"display": null,
+			"display_options": null,
+			"readonly": false,
+			"hidden": true,
+			"sort": 7,
+			"width": "full",
+			"translations": null,
+			"note": null,
+			"conditions": null,
+			"required": false,
+			"group": null,
+			"validation": null,
+			"validation_message": null
+		},
+		"schema": {
+			"name": "block_testimonials",
+			"table": "block_testimonials_item",
+			"data_type": "uuid",
+			"default_value": null,
+			"is_generated": false,
+			"is_nullable": true,
+			"is_unique": false,
+			"is_indexed": false,
+			"is_primary_key": false,
+			"has_auto_increment": false,
+			"foreign_key_schema": null,
+			"foreign_key_table": null,
+			"foreign_key_column": null
+		}
+	},
+	{
+		"collection": "block_testimonials_item",
+		"field": "quote",
+		"type": "text",
+		"meta": {
+			"collection": "block_testimonials_item",
+			"field": "quote",
+			"special": null,
+			"interface": "input-rich-text-html",
+			"options": {
+				"toolbar": [
+					"bold",
+					"italic",
+					"underline",
+					"strikethrough",
+					"fontsizeselect",
+					"forecolor",
+					"backcolor",
+					"removeformat"
+				]
+			},
+			"display": null,
+			"display_options": null,
+			"readonly": false,
+			"hidden": false,
+			"sort": 8,
+			"width": "full",
+			"translations": null,
+			"note": null,
+			"conditions": null,
+			"required": false,
+			"group": null,
+			"validation": null,
+			"validation_message": null
+		},
+		"schema": {
+			"name": "quote",
+			"table": "block_testimonials_item",
+			"data_type": "text",
+			"default_value": null,
+			"is_generated": false,
+			"is_nullable": true,
+			"is_unique": false,
+			"is_indexed": false,
+			"is_primary_key": false,
+			"has_auto_increment": false,
+			"foreign_key_schema": null,
+			"foreign_key_table": null,
+			"foreign_key_column": null
+		}
+	},
+	{
+		"collection": "block_testimonials_item",
+		"field": "background_color",
+		"type": "string",
+		"meta": {
+			"collection": "block_testimonials_item",
+			"field": "background_color",
+			"special": null,
+			"interface": "select-color",
+			"options": null,
+			"display": null,
+			"display_options": null,
+			"readonly": false,
+			"hidden": false,
+			"sort": 8,
+			"width": "half",
+			"translations": null,
+			"note": "Card background color",
+			"conditions": null,
+			"required": false,
+			"group": null,
+			"validation": null,
+			"validation_message": null
+		},
+		"schema": {
+			"name": "background_color",
+			"table": "block_testimonials_item",
+			"data_type": "character varying",
+			"default_value": null,
+			"max_length": 255,
+			"is_generated": false,
+			"is_nullable": true,
+			"is_unique": false,
+			"is_indexed": false,
+			"is_primary_key": false,
+			"has_auto_increment": false,
+			"foreign_key_schema": null,
+			"foreign_key_table": null,
+			"foreign_key_column": null
+		}
+	},
+	{
+		"collection": "block_testimonials_item",
+		"field": "image",
+		"type": "uuid",
+		"meta": {
+			"collection": "block_testimonials_item",
+			"field": "image",
+			"special": [
+				"file"
+			],
+			"interface": "file-image",
+			"options": null,
+			"display": null,
+			"display_options": null,
+			"readonly": false,
+			"hidden": false,
+			"sort": 9,
+			"width": "full",
+			"translations": null,
+			"note": "Featured image or video thumbnail",
+			"conditions": null,
+			"required": false,
+			"group": null,
+			"validation": null,
+			"validation_message": null
+		},
+		"schema": {
+			"name": "image",
+			"table": "block_testimonials_item",
+			"data_type": "uuid",
+			"default_value": null,
+			"is_generated": false,
+			"is_nullable": true,
+			"is_unique": false,
+			"is_indexed": false,
+			"is_primary_key": false,
+			"has_auto_increment": false,
+			"foreign_key_schema": null,
+			"foreign_key_table": null,
+			"foreign_key_column": null
+		}
+	},
+	{
+		"collection": "block_testimonials_item",
+		"field": "font_color",
+		"type": "string",
+		"meta": {
+			"collection": "block_testimonials_item",
+			"field": "font_color",
+			"special": null,
+			"interface": "select-color",
+			"options": null,
+			"display": null,
+			"display_options": null,
+			"readonly": false,
+			"hidden": false,
+			"sort": 9,
+			"width": "half",
+			"translations": null,
+			"note": "Card text color",
+			"conditions": null,
+			"required": false,
+			"group": null,
+			"validation": null,
+			"validation_message": null
+		},
+		"schema": {
+			"name": "font_color",
+			"table": "block_testimonials_item",
+			"data_type": "character varying",
+			"default_value": null,
+			"max_length": 255,
+			"is_generated": false,
+			"is_nullable": true,
+			"is_unique": false,
+			"is_indexed": false,
+			"is_primary_key": false,
+			"has_auto_increment": false,
+			"foreign_key_schema": null,
+			"foreign_key_table": null,
+			"foreign_key_column": null
+		}
+	},
+	{
+		"collection": "block_testimonials_item",
+		"field": "author_name",
+		"type": "string",
+		"meta": {
+			"collection": "block_testimonials_item",
+			"field": "author_name",
+			"special": null,
+			"interface": "input",
+			"options": {
+				"placeholder": "Ben Richmond"
+			},
+			"display": null,
+			"display_options": null,
+			"readonly": false,
+			"hidden": false,
+			"sort": 10,
+			"width": "half",
+			"translations": null,
+			"note": null,
+			"conditions": null,
+			"required": false,
+			"group": null,
+			"validation": null,
+			"validation_message": null
+		},
+		"schema": {
+			"name": "author_name",
+			"table": "block_testimonials_item",
+			"data_type": "character varying",
+			"default_value": null,
+			"max_length": 255,
+			"is_generated": false,
+			"is_nullable": true,
+			"is_unique": false,
+			"is_indexed": false,
+			"is_primary_key": false,
+			"has_auto_increment": false,
+			"foreign_key_schema": null,
+			"foreign_key_table": null,
+			"foreign_key_column": null
+		}
+	},
+	{
+		"collection": "block_testimonials_item",
+		"field": "author_role",
+		"type": "string",
+		"meta": {
+			"collection": "block_testimonials_item",
+			"field": "author_role",
+			"special": null,
+			"interface": "input",
+			"options": {
+				"placeholder": "CEO & Founder, Cube Global UK"
+			},
+			"display": null,
+			"display_options": null,
+			"readonly": false,
+			"hidden": false,
+			"sort": 11,
+			"width": "half",
+			"translations": null,
+			"note": null,
+			"conditions": null,
+			"required": false,
+			"group": null,
+			"validation": null,
+			"validation_message": null
+		},
+		"schema": {
+			"name": "author_role",
+			"table": "block_testimonials_item",
+			"data_type": "character varying",
+			"default_value": null,
+			"max_length": 255,
+			"is_generated": false,
+			"is_nullable": true,
+			"is_unique": false,
+			"is_indexed": false,
+			"is_primary_key": false,
+			"has_auto_increment": false,
+			"foreign_key_schema": null,
+			"foreign_key_table": null,
+			"foreign_key_column": null
+		}
+	},
+	{
+		"collection": "block_testimonials_item",
+		"field": "author_avatar",
+		"type": "uuid",
+		"meta": {
+			"collection": "block_testimonials_item",
+			"field": "author_avatar",
+			"special": [
+				"file"
+			],
+			"interface": "file-image",
+			"options": null,
+			"display": null,
+			"display_options": null,
+			"readonly": false,
+			"hidden": false,
+			"sort": 12,
+			"width": "half",
+			"translations": null,
+			"note": "Author avatar photo",
+			"conditions": null,
+			"required": false,
+			"group": null,
+			"validation": null,
+			"validation_message": null
+		},
+		"schema": {
+			"name": "author_avatar",
+			"table": "block_testimonials_item",
+			"data_type": "uuid",
+			"default_value": null,
+			"is_generated": false,
+			"is_nullable": true,
+			"is_unique": false,
+			"is_indexed": false,
+			"is_primary_key": false,
+			"has_auto_increment": false,
+			"foreign_key_schema": null,
+			"foreign_key_table": null,
+			"foreign_key_column": null
 		}
 	}
 ]

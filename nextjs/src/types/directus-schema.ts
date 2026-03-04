@@ -131,6 +131,8 @@ export interface BlockHeroSlide {
 	headline_emphasis?: string | null;
 	/** @description Supporting copy below the headline for this slide. */
 	description?: string | null;
+	/** @description Where to position the text block within this slide. */
+	text_placement?: 'center_left' | 'bottom_center' | 'bottom_left' | 'center_center' | null;
 	date_created?: string | null;
 	user_created?: DirectusUser | string | null;
 	date_updated?: string | null;
@@ -151,6 +153,8 @@ export interface BlockHeroHeadlineLine {
 	font_style?: string | null;
 	/** @description Named size: sm, md, lg, xl, 2xl, or 3xl. */
 	font_size?: string | null;
+	/** @description Optional color override for this headline line (CSS color value). */
+	color?: string | null;
 }
 
 export interface BlockHero {
@@ -180,6 +184,12 @@ export interface BlockHero {
 	headline_lines?: BlockHeroHeadlineLine[] | string[];
 	/** @description Slides for the carousel. */
 	slides?: BlockHeroSlide[] | string[];
+	/** @description Enable a dark gradient overlay on the expanded image for improved text legibility. */
+	enable_gradient_overlay?: boolean | null;
+	/** @description Where to position the text block within the image_expanded layout. */
+	expanded_text_placement?: 'center_left' | 'bottom_center' | 'bottom_left' | 'center_center' | null;
+	/** @description Horizontal alignment of text within the content block. */
+	expanded_text_alignment?: 'left' | 'center' | 'right' | null;
 	date_created?: string | null;
 	user_created?: DirectusUser | string | null;
 	date_updated?: string | null;
@@ -303,6 +313,86 @@ export interface BlockServices {
 	background_color?: string | null;
 	/** @description Service cards shown in the grid. */
 	items?: BlockServicesItem[] | string[];
+	date_created?: string | null;
+	user_created?: DirectusUser | string | null;
+	date_updated?: string | null;
+	user_updated?: DirectusUser | string | null;
+}
+
+export interface BlockLogoCarouselItem {
+	/** @primaryKey */
+	id: string;
+	sort?: number | null;
+	date_created?: string | null;
+	user_created?: DirectusUser | string | null;
+	/** @description The parent logo carousel this item belongs to. */
+	block_logo_carousel?: BlockLogoCarousel | string | null;
+	/** @description Company or partner name. */
+	name?: string | null;
+	/** @description Optional link when clicking the logo. */
+	url?: string | null;
+	/** @description The logo image. */
+	logo?: DirectusFile | string | null;
+}
+
+export interface BlockLogoCarousel {
+	/** @primaryKey */
+	id: string;
+	status?: 'published' | 'draft' | 'archived' | null;
+	/** @description Centered text displayed above the scrolling logos. */
+	tagline?: string | null;
+	/** @description Text color for the tagline (CSS color value, defaults to white). */
+	tagline_color?: string | null;
+	/** @description Background color of the section (CSS color value, default #0b2d34). */
+	background_color?: string | null;
+	/** @description Logo items in the carousel. */
+	logos?: BlockLogoCarouselItem[] | string[];
+}
+
+export interface BlockCardGridItem {
+	/** @primaryKey */
+	id: string;
+	sort?: number | null;
+	/** @description The parent card grid this item belongs to. */
+	block_card_grid?: BlockCardGrid | string | null;
+	/** @description Card display variant: feature (bordered, icon-based) or testimonial (logo-based, quote). */
+	variant?: 'feature' | 'testimonial' | null;
+	/** @description Image for the card (icon for feature variant, logo for testimonial variant). */
+	image?: DirectusFile | string | null;
+	/** @description Card title (used for feature variant). */
+	title?: string | null;
+	/** @description Card description (used for feature variant). */
+	description?: string | null;
+	/** @description Testimonial quote (used for testimonial variant). */
+	quote?: string | null;
+	/** @description Author name (used for testimonial variant). */
+	author_name?: string | null;
+	/** @description Author role/position (used for testimonial variant). */
+	author_role?: string | null;
+	/** @description Optional accent color for the card (CSS color value). */
+	accent_color?: string | null;
+	date_created?: string | null;
+	user_created?: DirectusUser | string | null;
+	date_updated?: string | null;
+	user_updated?: DirectusUser | string | null;
+}
+
+export interface BlockCardGrid {
+	/** @primaryKey */
+	id: string;
+	status?: 'published' | 'draft' | 'archived' | null;
+	/** @description Smaller copy shown above the headline to label a section or add extra context. */
+	tagline?: string | null;
+	/** @description Larger main headline for this page section. */
+	headline?: string | null;
+	/** @description Description text shown below the headline. */
+	description?: string | null;
+	/** @description Number of columns on desktop (1-4). Automatically responsive on smaller screens. */
+	columns?: number | null;
+	/** @description Background color of the section (CSS color value). */
+	background_color?: string | null;
+	/** @description Card items displayed in the grid. Can mix feature and testimonial variants. */
+	items?: BlockCardGridItem[] | string[];
 	date_created?: string | null;
 	user_created?: DirectusUser | string | null;
 	date_updated?: string | null;
@@ -1047,6 +1137,8 @@ export interface Schema {
 	block_richtext: BlockRichtext[];
 	block_services: BlockServices[];
 	block_services_item: BlockServicesItem[];
+	block_card_grid: BlockCardGrid[];
+	block_card_grid_item: BlockCardGridItem[];
 	form_fields: FormField[];
 	forms: Form[];
 	form_submissions: FormSubmission[];
@@ -1100,6 +1192,8 @@ export enum CollectionNames {
 	block_pricing = 'block_pricing',
 	block_pricing_cards = 'block_pricing_cards',
 	block_richtext = 'block_richtext',
+	block_card_grid = 'block_card_grid',
+	block_card_grid_item = 'block_card_grid_item',
 	form_fields = 'form_fields',
 	forms = 'forms',
 	form_submissions = 'form_submissions',

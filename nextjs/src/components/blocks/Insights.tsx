@@ -38,9 +38,9 @@ export default function Insights({ data }: InsightsProps) {
 			{/* Centered heading */}
 			<Container className="pt-[48px] lg:pt-[80px] pb-0 text-center">
 				<h2 className="font-heading font-semibold text-[32px] leading-[38px] md:text-[40px] md:leading-[44px] lg:text-[48px] lg:leading-[48px] text-[#1d2939]">
-					{headline && <span>{headline} </span>}
+					<span dangerouslySetInnerHTML={{ __html: headline }} />
 					{headline_emphasis && (
-						<span className="italic text-[#ee4065]">{headline_emphasis}</span>
+						<span className="italic text-[#ee4065]" dangerouslySetInnerHTML={{ __html: headline_emphasis }} />
 					)}
 				</h2>
 			</Container>
@@ -72,9 +72,7 @@ export default function Insights({ data }: InsightsProps) {
 				{/* Right: tagline + sidebar post list */}
 				<div className="flex flex-col gap-[24px] px-4 lg:px-[60px] flex-1 min-w-0">
 					{tagline && (
-						<p className="font-heading font-semibold text-[14px] lg:text-[16px] leading-[26px] text-[#1d2939] uppercase tracking-wide">
-							{tagline}
-						</p>
+						<div className="font-heading font-semibold text-[14px] lg:text-[16px] leading-[26px] text-[#1d2939] uppercase tracking-wide" dangerouslySetInnerHTML={{ __html: tagline }} />
 					)}
 
 					<div className="flex flex-col gap-[21px]">

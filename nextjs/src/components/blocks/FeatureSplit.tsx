@@ -40,15 +40,13 @@ export default function FeatureSplit({ data }: FeatureSplitProps) {
 					data-directus={setAttr({ collection: 'block_feature_split', item: id, fields: ['headline', 'headline_emphasis', 'description'], mode: 'popover' })}
 				>
 					<h2 className="font-heading font-semibold text-[32px] leading-[38px] md:text-[40px] md:leading-[44px] lg:text-[48px] lg:leading-[40px] text-[#1d2939] max-w-[509px]">
-						{headline && <span>{headline} </span>}
+						<span dangerouslySetInnerHTML={{ __html: headline }} />
 						{headline_emphasis && (
-							<span className="italic text-[#ee4065]">{headline_emphasis}</span>
+							<span className="italic text-[#ee4065]" dangerouslySetInnerHTML={{ __html: headline_emphasis }} />
 						)}
 					</h2>
 					{description && (
-						<p className="font-sans font-normal text-[16px] leading-[26px] lg:text-[22px] lg:leading-[30px] text-[#1d2939] max-w-[509px]">
-							{description}
-						</p>
+						<div className="font-sans font-normal text-[16px] leading-[26px] lg:text-[22px] lg:leading-[30px] text-[#1d2939] max-w-[509px]" dangerouslySetInnerHTML={{ __html: description }} />
 					)}
 				</div>
 
@@ -80,17 +78,14 @@ export default function FeatureSplit({ data }: FeatureSplitProps) {
 								{sortedItems.map((item) => (
 									<div key={item.id} className="flex flex-col gap-[12px] lg:gap-[16px]">
 										{item.title && (
-											<p
+											<div
 												className="font-heading font-semibold text-[20px] leading-[24px] lg:text-[26px] lg:leading-[26px]"
 												style={{ color: item.is_highlighted ? '#ee4065' : '#1d2939' }}
-											>
-												{item.title}
-											</p>
+												dangerouslySetInnerHTML={{ __html: item.title }}
+											/>
 										)}
 										{item.description && (
-											<p className="font-sans font-normal text-[15px] leading-[24px] lg:text-[18px] lg:leading-[26px] text-[#1d2939]">
-												{item.description}
-											</p>
+											<div className="font-sans font-normal text-[15px] leading-[24px] lg:text-[18px] lg:leading-[26px] text-[#1d2939]" dangerouslySetInnerHTML={{ __html: item.description }} />
 										)}
 										{item.link_label && (
 											<a

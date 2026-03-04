@@ -34,6 +34,7 @@ interface HeadlineLine {
 	font_weight: string | null;
 	font_style: string | null;
 	font_size: string | null;
+	color: string | null;
 }
 
 interface HeroSlide {
@@ -71,6 +72,9 @@ interface HeroProps {
 		image: string | null;
 		enable_carousel?: boolean | null;
 		autoplay_interval?: number | null;
+		enable_gradient_overlay?: boolean | null;
+		expanded_text_placement?: TextPlacement | null;
+		expanded_text_alignment?: 'left' | 'center' | 'right' | null;
 		headline_lines?: HeadlineLine[];
 		slides?: HeroSlide[];
 		button_group?: {
@@ -87,9 +91,24 @@ function sanitize(html: string | null): string {
 	return DOMPurify.sanitize(html, { ALLOWED_TAGS: ['b', 'strong', 'i', 'em', 'span', 'br'], ALLOWED_ATTR: ['style'] });
 }
 
+function sanitizeHtml(html: string | null): string {
+	if (!html) return '';
+	if (typeof window === 'undefined') return html;
+
+	return DOMPurify.sanitize(html, {
+		ALLOWED_TAGS: ['p', 'br', 'b', 'strong', 'i', 'em', 'u', 's', 'span', 'a', 'ul', 'ol', 'li', 'blockquote'],
+		ALLOWED_ATTR: ['style', 'href', 'target', 'rel'],
+	});
+}
+
 export default function Hero({ data }: HeroProps) {
-	const { id, layout, tagline, tagline_type, tagline_image, tagline_image_alt, headline_lines, description, image, button_group, enable_carousel, autoplay_interval, slides } =
-		data;
+	const {
+		id, layout, tagline, tagline_type, tagline_image, tagline_image_alt,
+		headline_lines, description, image, button_group,
+		enable_carousel, autoplay_interval, enable_gradient_overlay,
+		expanded_text_placement, expanded_text_alignment,
+		slides,
+	} = data;
 
 	const sortedHeadlineLines = headline_lines
 		? [...headline_lines].sort((a, b) => (a.sort ?? 0) - (b.sort ?? 0))
@@ -118,8 +137,15 @@ export default function Hero({ data }: HeroProps) {
 		const slide = isCarousel ? sortedSlides[currentSlide] : null;
 		const bgImage = slide?.background_image ?? image;
 		const bgColor = slide?.background_color;
-		const placement: TextPlacement = slide?.text_placement ?? 'center_left';
+		const placement: TextPlacement = slide?.text_placement ?? expanded_text_placement ?? 'center_left';
 		const pc = placementClasses[placement];
+
+		// Block-level text alignment (left/center/right) — only applied in non-carousel mode
+		const textAlign = expanded_text_alignment ?? 'left';
+		const textAlignClass =
+			textAlign === 'center' ? 'text-center items-center' :
+			textAlign === 'right'  ? 'text-right items-end' :
+			                         'text-left items-start';
 
 		return (
 			<section
@@ -144,17 +170,19 @@ export default function Hero({ data }: HeroProps) {
 				)}
 
 				{/* Gradient overlay for text legibility */}
-				{/* <div
-					className="absolute inset-0 pointer-events-none"
-					style={{
-						background: 'linear-gradient(180deg, rgba(30,30,30,0.85) 0%, rgba(30,30,30,0) 35%, rgba(30,30,30,0) 60%, rgba(30,30,30,0.55) 78%, rgba(30,30,30,0.95) 100%)',
-					}}
-				/> */}
+				{enable_gradient_overlay && (
+					<div
+						className="absolute inset-0 pointer-events-none z-[1]"
+						style={{
+							background: 'linear-gradient(180deg, rgba(30,30,30,1) 0%, rgba(30,30,30,0.23) 25%, rgba(30,30,30,0) 50%, rgba(30,30,30,0.41) 75%, rgba(30,30,30,1) 100%)',
+						}}
+					/>
+				)}
 
 				{/* Content overlay */}
-				<div className={cn('relative z-10 flex flex-col min-h-screen max-w-[1200px] mx-auto px-6 md:px-16 py-16 gap-8', pc.outer)}>
+				<div className={cn('relative z-10 flex flex-col min-h-screen mx-auto px-6 md:px-16 py-16 gap-8', pc.outer)}>
 					{/* Text content block */}
-					<div className={cn('flex flex-col gap-6 text-white max-w-3xl', pc.text)}>
+					<div className={cn('flex flex-col gap-6 text-white max-w-[1200px]', pc.text, !isCarousel && textAlignClass)}>
 						{slide?.tagline_image ? (
 							<div className="relative h-10 w-40">
 								<DirectusImage
@@ -187,14 +215,20 @@ export default function Hero({ data }: HeroProps) {
 							/>
 						) : null}
 
-						<h1 className="leading-tight">
+						<h1
+							className="leading-tight"
+							data-directus={setAttr({
+								collection: 'block_hero',
+								item: id,
+								fields: 'headline_lines',
+								mode: 'modal',
+							})}
+						>
 							{slide ? (
 								<>
-									<span className="block text-4xl md:text-5xl xl:text-6xl font-bold">{slide.headline}</span>
+									<span className="block text-4xl md:text-5xl xl:text-6xl font-bold" dangerouslySetInnerHTML={{ __html: sanitize(slide.headline) }} />
 									{slide.headline_emphasis && (
-										<em className="block text-4xl md:text-5xl xl:text-6xl font-light italic">
-											{slide.headline_emphasis}
-										</em>
+										<em className="block text-4xl md:text-5xl xl:text-6xl font-light italic" dangerouslySetInnerHTML={{ __html: sanitize(slide.headline_emphasis) }} />
 									)}
 								</>
 							) : (
@@ -205,6 +239,7 @@ export default function Hero({ data }: HeroProps) {
 										style={{
 											fontWeight: line.font_weight ?? '600',
 											fontStyle: line.font_style ?? 'normal',
+											...(line.color ? { color: line.color } : {}),
 										}}
 										dangerouslySetInnerHTML={{ __html: sanitize(line.text) }}
 									/>
@@ -213,9 +248,16 @@ export default function Hero({ data }: HeroProps) {
 						</h1>
 
 						{(slide?.description || description) && (
-							<p className="text-base md:text-lg text-white/80 max-w-lg">
-								{slide?.description ?? description}
-							</p>
+							<div
+								className="text-base md:text-lg text-white/80 max-w-lg [&_a]:underline [&_a]:text-white [&_ul]:list-disc [&_ul]:pl-5 [&_ol]:list-decimal [&_ol]:pl-5"
+								data-directus={setAttr({
+									collection: 'block_hero',
+									item: id,
+									fields: 'description',
+									mode: 'popover',
+								})}
+								dangerouslySetInnerHTML={{ __html: sanitizeHtml(slide?.description ?? description) }}
+							/>
 						)}
 
 						{button_group && button_group.buttons.length > 0 && (
@@ -226,7 +268,7 @@ export default function Hero({ data }: HeroProps) {
 									fields: 'buttons',
 									mode: 'modal',
 								})}
-								className='mt-2'
+								className="mt-2"
 							>
 								<ButtonGroup buttons={button_group.buttons} />
 							</div>
@@ -326,6 +368,7 @@ export default function Hero({ data }: HeroProps) {
 							style={{
 								fontWeight: line.font_weight ?? '600',
 								fontStyle: line.font_style ?? 'normal',
+								...(line.color ? { color: line.color } : {}),
 							}}
 							dangerouslySetInnerHTML={{ __html: sanitize(line.text) }}
 						/>
