@@ -227,6 +227,7 @@ const pageFields = [
 							],
 						},
 					],
+					block_acknowledgement: ['id', 'text'],
 				},
 			},
 		],

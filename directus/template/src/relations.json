@@ -1713,7 +1713,8 @@
         "block_feature_split",
         "block_insights",
         "block_credentials",
-        "block_reach_out"
+        "block_reach_out",
+        "block_acknowledgement"
       ],
       "junction_field": "page",
       "sort_field": null,

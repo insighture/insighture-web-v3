@@ -67,7 +67,7 @@ const FormBuilder = ({ form, className }: FormBuilderProps) => {
 	}
 
 	return (
-		<div className={cn('space-y-6 border border-input p-8 rounded-lg', className)}>
+		<div className={cn('border-input p-8 rounded-lg', className)}>
 			{form.show_title !== false && form.title && (
 				<h3 className="text-xl font-semibold mb-4">{form.title}</h3>
 			)}

@@ -13,6 +13,7 @@ import FeatureSplit from '@/components/blocks/FeatureSplit';
 import Insights from '@/components/blocks/Insights';
 import Credentials from '@/components/blocks/Credentials';
 import ReachOut from '@/components/blocks/ReachOut';
+import Acknowledgement from '@/components/blocks/Acknowledgement';
 
 interface BaseBlockProps {
 	block: {
@@ -37,6 +38,7 @@ const BaseBlock = ({ block }: BaseBlockProps) => {
 		block_insights: Insights,
 		block_credentials: Credentials,
 		block_reach_out: ReachOut,
+		block_acknowledgement: Acknowledgement,
 	};
 
 	const Component = components[block.collection];

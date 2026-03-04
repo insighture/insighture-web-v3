@@ -4,6 +4,10 @@ import { ChevronRight } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { forwardRef } from 'react';
+import { setAttr } from '@directus/visual-editing';
+import { usePathname } from 'next/navigation';
+
+
 
 interface SocialLink {
 	service: string;
@@ -49,8 +53,24 @@ const Footer = forwardRef<HTMLElement, FooterProps>(({ navigation, globals }, re
 			: '/images/logo.svg';
 
 	const navItems = navigation?.items ?? [];
+	const pathname = usePathname();
 
-	return (
+	return <>
+		{pathname === '/lets-talk' && (
+			<div className="w-full bg-[#ebf0f2] px-8 py-10 md:px-16 md:py-10 lg:px-[120px]">
+				<p
+					className="font-sans font-light text-sm leading-5 text-[#1d2939]"
+					data-directus={setAttr({
+						collection: 'block_acknowledgement',
+						item: 1,
+						fields: 'text',
+						mode: 'popover',
+					})}
+				>
+					Insighture acknowledges the Traditional Owners of the land on which we work and live and pay our respects to Elders past and present. We recognise and respect the continuing cultures, contributions and connection to Country of Aboriginal and Torres Strait Islander peoples.
+				</p>
+			</div>
+		)}
 		<footer ref={ref}>
 			{/* ── CTA Banner ──────────────────────────────────────────────── */}
 			<div
@@ -271,7 +291,7 @@ const Footer = forwardRef<HTMLElement, FooterProps>(({ navigation, globals }, re
 				</div>
 			</div>
 		</footer>
-	);
+	</>;
 });
 
 Footer.displayName = 'Footer';

@@ -327,6 +327,17 @@ export interface BlockReachOutContactItem {
 	user_updated?: DirectusUser | string | null;
 }
 
+export interface BlockAcknowledgement {
+	/** @primaryKey */
+	id: string;
+	/** @description The acknowledgement text displayed in the banner. */
+	text?: string | null;
+	date_created?: string | null;
+	user_created?: DirectusUser | string | null;
+	date_updated?: string | null;
+	user_updated?: DirectusUser | string | null;
+}
+
 export interface BlockReachOut {
 	/** @primaryKey */
 	id: number;
@@ -529,7 +540,7 @@ export interface PageBlock {
 	/** @description The id of the page that this block belongs to. */
 	page?: Page | string | null;
 	/** @description The data for the block. */
-	item?: BlockHero | BlockRichtext | BlockForm | BlockPost | BlockGallery | BlockPricing | BlockReachOut | string | null;
+	item?: BlockHero | BlockRichtext | BlockForm | BlockPost | BlockGallery | BlockPricing | BlockReachOut | BlockAcknowledgement | string | null;
 	/** @description The collection (type of block). */
 	collection?: string | null;
 	/** @description Temporarily hide this block on the website without having to remove it from your page. */
@@ -1100,6 +1111,7 @@ export interface Schema {
 	block_pricing: BlockPricing[];
 	block_pricing_cards: BlockPricingCard[];
 	block_reach_out: BlockReachOut[];
+	block_acknowledgement: BlockAcknowledgement[];
 	block_reach_out_contact_item: BlockReachOutContactItem[];
 	block_richtext: BlockRichtext[];
 	block_services: BlockServices[];
