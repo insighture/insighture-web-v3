@@ -15,8 +15,14 @@ interface FormBuilderProps {
 		on_success?: 'redirect' | 'message' | null;
 		sort?: number | null;
 		submit_label?: string;
+		submit_button_width?: 'auto' | 'full' | null;
 		success_message?: string | null;
 		title?: string | null;
+		show_title?: boolean | null;
+		intro_paragraph?: string | null;
+		privacy_policy_text?: string | null;
+		privacy_policy_link_text?: string | null;
+		privacy_policy_link_url?: string | null;
 		success_redirect_url?: string | null;
 		is_active?: boolean | null;
 		fields: FormField[];
@@ -62,7 +68,13 @@ const FormBuilder = ({ form, className }: FormBuilderProps) => {
 
 	return (
 		<div className={cn('space-y-6 border border-input p-8 rounded-lg', className)}>
-			{form.title && <h3 className="text-xl font-semibold mb-4">{form.title}</h3>}
+			{form.show_title !== false && form.title && (
+				<h3 className="text-xl font-semibold mb-4">{form.title}</h3>
+			)}
+
+			{form.intro_paragraph && (
+				<p className="text-lg text-gray-600">{form.intro_paragraph}</p>
+			)}
 
 			{error && (
 				<div className="p-4 text-red-500 bg-red-100 rounded-md">
@@ -74,6 +86,10 @@ const FormBuilder = ({ form, className }: FormBuilderProps) => {
 				fields={form.fields}
 				onSubmit={handleSubmit}
 				submitLabel={form.submit_label || 'Submit'}
+				submitButtonWidth={form.submit_button_width ?? 'auto'}
+				privacyPolicyText={form.privacy_policy_text ?? null}
+				privacyPolicyLinkText={form.privacy_policy_link_text ?? null}
+				privacyPolicyLinkUrl={form.privacy_policy_link_url ?? null}
 				id={form.id}
 			/>
 		</div>

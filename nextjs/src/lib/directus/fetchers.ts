@@ -158,11 +158,17 @@ const pageFields = [
 						form: [
 							'id',
 							'title',
+							'show_title',
+							'intro_paragraph',
 							'submit_label',
+							'submit_button_width',
 							'success_message',
 							'on_success',
 							'success_redirect_url',
 							'is_active',
+							'privacy_policy_text',
+							'privacy_policy_link_text',
+							'privacy_policy_link_url',
 							{
 								fields: [
 									'id',
@@ -192,11 +198,17 @@ const pageFields = [
 							form: [
 								'id',
 								'title',
+								'show_title',
+								'intro_paragraph',
 								'submit_label',
+								'submit_button_width',
 								'success_message',
 								'on_success',
 								'success_redirect_url',
 								'is_active',
+								'privacy_policy_text',
+								'privacy_policy_link_text',
+								'privacy_policy_link_url',
 								{
 									fields: [
 										'id',

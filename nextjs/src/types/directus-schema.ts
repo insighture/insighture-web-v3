@@ -398,6 +398,18 @@ export interface Form {
 	success_redirect_url?: string | null;
 	/** @description Show or hide this form from the site. */
 	is_active?: boolean | null;
+	/** @description Show or hide the form title on the frontend. */
+	show_title?: boolean | null;
+	/** @description Optional paragraph shown below the title and above the form fields. */
+	intro_paragraph?: string | null;
+	/** @description Full text for the privacy policy checkbox. Leave empty to hide. */
+	privacy_policy_text?: string | null;
+	/** @description The word or phrase in the checkbox text to turn into a link. */
+	privacy_policy_link_text?: string | null;
+	/** @description URL for the privacy policy link. */
+	privacy_policy_link_url?: string | null;
+	/** @description Controls the width of the submit button: 'auto' or 'full'. */
+	submit_button_width?: 'auto' | 'full' | null;
 	/** @description Setup email notifications when forms are submitted. */
 	emails?: Array<{ to: string[]; subject: string; message: string }> | null;
 	date_created?: string | null;

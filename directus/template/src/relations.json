@@ -1707,6 +1707,12 @@
         "block_posts",
         "block_gallery",
         "block_pricing",
+        "block_services",
+        "block_testimonials",
+        "block_logo_carousel",
+        "block_feature_split",
+        "block_insights",
+        "block_credentials",
         "block_reach_out"
       ],
       "junction_field": "page",

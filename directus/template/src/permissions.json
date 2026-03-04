@@ -148,13 +148,19 @@
       "sort",
       "title",
       "is_active",
+      "show_title",
+      "intro_paragraph",
       "meta_tabs",
       "meta_fields",
       "fields",
       "submit_label",
+      "submit_button_width",
       "on_success",
       "success_message",
-      "success_redirect_url"
+      "success_redirect_url",
+      "privacy_policy_text",
+      "privacy_policy_link_text",
+      "privacy_policy_link_url"
     ],
     "policy": "abf8a154-5b1c-4a46-ac9c-7300570f4f17"
   },

@@ -1,5 +1,6 @@
 'use client';
 
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import Button from '@/components/blocks/Button';
@@ -13,10 +14,24 @@ interface DynamicFormProps {
 	fields: FormFieldType[];
 	onSubmit: (data: Record<string, any>) => void;
 	submitLabel: string;
+	submitButtonWidth?: 'auto' | 'full';
+	privacyPolicyText?: string | null;
+	privacyPolicyLinkText?: string | null;
+	privacyPolicyLinkUrl?: string | null;
 	id: string;
 }
 
-const DynamicForm = ({ fields, onSubmit, submitLabel, id }: DynamicFormProps) => {
+const DynamicForm = ({
+	fields,
+	onSubmit,
+	submitLabel,
+	submitButtonWidth = 'auto',
+	privacyPolicyText,
+	privacyPolicyLinkText,
+	privacyPolicyLinkUrl,
+	id,
+}: DynamicFormProps) => {
+	const [privacyAccepted, setPrivacyAccepted] = useState(false);
 	const sortedFields = [...fields].sort((a, b) => (a.sort || 0) - (b.sort || 0));
 	const formSchema = buildZodSchema(fields);
 
@@ -60,7 +75,40 @@ const DynamicForm = ({ fields, onSubmit, submitLabel, id }: DynamicFormProps) =>
 						<Field key={field.id} field={field} form={form} />
 					</div>
 				))}
-				<div className="w-full">
+				{privacyPolicyText && (
+					<div className="w-full flex items-start gap-3">
+						<input
+							type="checkbox"
+							id={`privacy-${id}`}
+							checked={privacyAccepted}
+							onChange={(e) => setPrivacyAccepted(e.target.checked)}
+							className="mt-1 h-4 w-4 shrink-0 cursor-pointer accent-[#ee4065]"
+						/>
+						<label htmlFor={`privacy-${id}`} className="text-sm text-gray-600 cursor-pointer leading-snug italic">
+							{privacyPolicyLinkText && privacyPolicyLinkUrl
+								? privacyPolicyText.split(privacyPolicyLinkText).map((part, i, arr) =>
+									i < arr.length - 1 ? (
+										<span key={i}>
+											{part}
+											<a
+												href={privacyPolicyLinkUrl}
+												target="_blank"
+												rel="noopener noreferrer"
+												className="underline text-[#ee4065] hover:opacity-80"
+											>
+												{privacyPolicyLinkText}
+											</a>
+										</span>
+									) : (
+										<span key={i}>{part}</span>
+									),
+								)
+								: privacyPolicyText}
+						</label>
+					</div>
+				)}
+
+				<div className={submitButtonWidth === 'full' ? 'w-full' : 'w-auto'}>
 					<div
 						data-directus={setAttr({
 							collection: 'forms',
@@ -69,7 +117,21 @@ const DynamicForm = ({ fields, onSubmit, submitLabel, id }: DynamicFormProps) =>
 							mode: 'popover',
 						})}
 					>
-						<Button type="submit" label={submitLabel} icon="arrow" iconPosition="right" id={`submit-${id}`} />
+						<Button
+							type="submit"
+							label={submitLabel}
+							icon="arrow"
+							iconPosition="right"
+							id={`submit-${id}`}
+							disabled={!!privacyPolicyText && !privacyAccepted}
+							className={`
+								bg-[#EE4065]
+								hover:bg-[#d73758]
+								text-white
+								rounded-lg
+								${submitButtonWidth === 'full' ? 'w-full justify-center' : ''}
+							`}
+						/>
 					</div>
 				</div>
 			</form>
