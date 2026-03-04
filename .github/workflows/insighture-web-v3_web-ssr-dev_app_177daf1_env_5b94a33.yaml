@@ -5,8 +5,11 @@ name: >-
   push:
     branches:
       - develop
-    paths:
-      - nextjs/*
+    paths-ignore:
+      - .github/workflows/**
+      - .trivyignore
+      - Readme.md
+      - README.md
   workflow_dispatch: {}
   repository_dispatch:
     types: pipeline_60d76b9a-171d-4cc9-a6d4-92562892da55
