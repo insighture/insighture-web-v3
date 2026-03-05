@@ -9,7 +9,7 @@ export interface TextProps {
 const Text = ({ content, className, 'data-directus': dataDirectus }: TextProps) => {
 	return (
 		<div
-			className={cn('prose dark:prose-invert', className)}
+			className={cn(className)}
 			dangerouslySetInnerHTML={{ __html: content }}
 			data-directus={dataDirectus}
 		/>

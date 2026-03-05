@@ -25,7 +25,7 @@ const PageBuilder = ({ sections }: PageBuilderProps) => {
 				const sectionBg =
 					(block.collection === 'block_richtext' || block.collection === 'block_services' ||
 					block.collection === 'block_testimonials' || block.collection === 'block_logo_carousel' ||
-					block.collection === 'block_credentials') &&
+					block.collection === 'block_credentials' || block.collection === 'block_card_grid') &&
 					typeof block.item === 'object' &&
 					block.item !== null &&
 					'background_color' in block.item
@@ -46,7 +46,8 @@ const PageBuilder = ({ sections }: PageBuilderProps) => {
 					block.collection === 'block_values' ||
 					block.collection === 'block_people_say' ||
 					block.collection === 'block_intro_media' ||
-					block.collection === 'block_cta_split';
+					block.collection === 'block_cta_split' ||
+					block.collection === 'block_card_grid';
 
 				if (isFullBleed || sectionBg || isFullBleedBlock) {
 					return (

@@ -254,24 +254,39 @@ export interface BlockPricingCard {
 }
 
 export interface BlockRichtext {
+	/** @primaryKey */
+	id: string;
+	/** @description Layout variant: 'default' (centered, no button) or 'hero' (with button, bottom-aligned). */
+	variant?: 'default' | 'hero' | null;
 	/** @description Rich text content for this block. */
 	content?: string | null;
 	/** @description Larger main headline for this page section. */
 	headline?: string | null;
-	/** @primaryKey */
-	id: string;
 	/** @description Controls how the content block is positioned on the page. */
 	alignment?: 'left' | 'center' | 'right' | null;
 	/** @description Smaller copy shown above the headline to label a section or add extra context. */
 	tagline?: string | null;
 	/** @description Background color of the block (CSS color value). */
 	background_color?: string | null;
+	/** @description Full-width background image behind the section content. */
+	background_image?: string | null;
 	/** @description Main text color override. */
 	text_color?: string | null;
 	/** @description Color applied to italic/emphasized text (<em> tags). */
 	emphasis_color?: string | null;
 	/** @description Show decorative quotation mark in corners. */
 	show_quotes?: boolean | null;
+	button_text?: string | null;
+	button_url?: string | null;
+	button_page?: { permalink: string | null } | string | null;
+	button_variant?: string | null;
+	button_bg_color?: string | null;
+	button_text_color?: string | null;
+	button_border_color?: string | null;
+	headline_font_size?: string | null;
+	headline_font_weight?: string | null;
+	headline_font_style?: string | null;
+	headline_color?: string | null;
 	date_created?: string | null;
 	user_created?: DirectusUser | string | null;
 	date_updated?: string | null;
