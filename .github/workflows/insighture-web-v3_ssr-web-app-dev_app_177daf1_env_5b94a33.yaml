@@ -1,21 +1,18 @@
 name: >-
-  insighture-web-v3_web-ssr-dev_app_177daf1_env_5b94a33 Pipeline (Skyu
+  insighture-web-v3_ssr-web-app-dev_app_177daf1_env_5b94a33 Pipeline (Skyu
   Generated)
 'on':
   push:
     branches:
       - develop
-    paths-ignore:
-      - .github/workflows/**
-      - .trivyignore
-      - Readme.md
-      - README.md
+    paths:
+      - nextjs/*
   workflow_dispatch: {}
   repository_dispatch:
     types: pipeline_60d76b9a-171d-4cc9-a6d4-92562892da55
 env:
   ENCODED_PIPELINE_SECRET: >-
-    ${{secrets.INSIGHTUREWEBV3_INSIGHTUREWEBV3_WEBSSRDEV_APP_177DAF1_ENV_5B94A33}}
+    ${{secrets.INSIGHTUREWEBV3_INSIGHTUREWEBV3_SSRWEBAPPDEV_APP_177DAF1_ENV_5B94A33}}
   COMMIT_ID: ${{github.event.client_payload.commitId || github.sha || github.run_id}}
   BRANCH_NAME: >-
     ${{github.event.client_payload.branchName || github.event.branch ||
@@ -894,7 +891,6 @@ jobs:
             
     needs:
       - build-ssr-web-app
-      - _status_testing
     permissions: write-all
     if: github.event.client_payload.releaseData == null
     runs-on: ubuntu-latest
