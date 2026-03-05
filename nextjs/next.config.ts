@@ -44,16 +44,7 @@ const nextConfig: NextConfig = {
 				port: '8055',
 				pathname: '/assets/**',
 			},
-			{
-				protocol: 'https',
-				hostname: 'ec2-54-160-149-229.compute-1.amazonaws.com',
-				pathname: '/assets/**',
-			},
-			{
-				protocol: 'http',
-				hostname: 'ec2-54-160-149-229.compute-1.amazonaws.com',
-				pathname: '/assets/**',
-			},
+			
 		],
 	},
 	env: {
