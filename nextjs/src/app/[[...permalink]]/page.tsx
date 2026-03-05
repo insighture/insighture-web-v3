@@ -111,6 +111,12 @@ export default async function Page({
 					nav_dropdown_background_color: page.nav_dropdown_background_color,
 					nav_dropdown_text_color: page.nav_dropdown_text_color,
 					nav_dropdown_text_hover_color: page.nav_dropdown_text_hover_color,
+							}}
+				footerCTA={{
+					footer_cta_text: page.footer_cta_text,
+					footer_cta_button_text: page.footer_cta_button_text,
+					footer_cta_button_url: page.footer_cta_button_url,
+					footer_cta_button_page: page.footer_cta_button_page,
 				}}
 			/>
 		);

@@ -3,6 +3,11 @@ directus/data/*
 directus/uploads/*
 directus/extensions/.registry
 !directus/*/.gitkeep
+directus/sql/*
+# Ignore database export files (contain sensitive data)
+directus/*_migration_*.sql
+directus/*_backup_*.sql
+directus/directus_export.sql
 
 # Dependencies
 node_modules/
@@ -48,3 +53,7 @@ Thumbs.db
 # IDE / Editor Configs
 .idea
 .vscode
+
+# Documantation
+directus/docs/*
+/directus/ec2-backup

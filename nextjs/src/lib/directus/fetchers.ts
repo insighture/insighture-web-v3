@@ -26,6 +26,11 @@ const pageFields = [
 	'nav_dropdown_background_color',
 	'nav_dropdown_text_color',
 	'nav_dropdown_text_hover_color',
+	// footer_cta fields are optional - Footer has defaults if not provided
+	// 'footer_cta_text',
+	// 'footer_cta_button_text',
+	// 'footer_cta_button_url',
+	// { footer_cta_button_page: ['permalink'] },
 	{
 		blocks: [
 			'id',
@@ -36,7 +41,7 @@ const pageFields = [
 			'hide_block',
 			{
 				item: {
-					block_richtext: ['id', 'tagline', 'headline', 'content', 'alignment', 'background_color', 'text_color', 'emphasis_color', 'show_quotes'],
+					block_richtext: ['id', 'tagline', 'headline', 'content', 'alignment', 'background_color', 'text_color', 'emphasis_color', 'show_quotes', 'button_text', 'button_url', { button_page: ['permalink'] }, 'button_variant', 'button_bg_color', 'button_text_color', 'button_border_color', 'headline_font_size', 'headline_font_weight', 'headline_font_style', 'headline_color'],
 					block_gallery: ['id', 'tagline', 'headline', { items: ['id', 'directus_file', 'sort'] }],
 					block_pricing: [
 						'id',
@@ -66,10 +71,14 @@ const pageFields = [
 						'description',
 						'layout',
 						'image',
+						'background_color',
 						'enable_carousel',
 						'autoplay_interval',
+						'enable_gradient_overlay',
+						'expanded_text_placement',
+						'expanded_text_alignment',
 						{
-							headline_lines: ['id', 'sort', 'text', 'font_weight', 'font_style', 'font_size'],
+							headline_lines: ['id', 'sort', 'text', 'font_weight', 'font_style', 'font_size', 'color'],
 						},
 						{
 							button_group: [
@@ -91,6 +100,33 @@ const pageFields = [
 								'headline_emphasis',
 								'description',
 								'text_placement',
+								'button_1_text',
+								'button_1_url',
+								'button_1_variant',
+								'button_1_bg_color',
+								'button_1_text_color',
+								{ button_1_page: ['permalink'] },
+								'button_2_text',
+								'button_2_url',
+								'button_2_variant',
+								'button_2_bg_color',
+								'button_2_text_color',
+								{ button_2_page: ['permalink'] },
+								'nav_text_color',
+								'nav_text_hover_color',
+								'nav_hide_logo',
+								'nav_logo_override',
+								'nav_scrolled_background_color',
+								'nav_scrolled_text_color',
+								'nav_scrolled_text_hover_color',
+								'nav_dropdown_background_color',
+								'nav_dropdown_text_color',
+								'nav_dropdown_text_hover_color',
+								'carousel_indicator_color',
+								'nav_cta_background_color',
+								'nav_cta_text_color',
+								'nav_scrolled_cta_background_color',
+								'nav_scrolled_cta_text_color',
 							],
 						},
 					],
@@ -105,7 +141,7 @@ const pageFields = [
 							stats: ['id', 'sort', 'value', 'label'],
 						},
 						{
-							testimonials: ['id', 'sort', 'quote', 'image', 'author_name', 'author_role', 'author_avatar', 'background_color', 'font_color'],
+							testimonials: ['id', 'sort', 'quote', 'image', 'video', 'author_name', 'author_role', 'author_avatar', 'background_color', 'font_color'],
 						},
 					],
 					block_feature_split: [
@@ -121,9 +157,13 @@ const pageFields = [
 					block_logo_carousel: [
 						'id',
 						'tagline',
+						'tagline_color',
 						'background_color',
+						'variant',
+						'cards_per_view',
+						'show_navigation',
 						{
-							logos: ['id', 'sort', 'name', 'url', 'logo'],
+							logos: ['id', 'sort', 'name', 'url', 'logo', 'subtitle'],
 						},
 					],
 					block_services: [
@@ -144,6 +184,17 @@ const pageFields = [
 						'background_color',
 						{
 							badges: ['id', 'sort', 'image', 'alt', 'url'],
+						},
+					],
+					block_card_grid: [
+						'id',
+						'tagline',
+						'headline',
+						'description',
+						'columns',
+						'background_color',
+						{
+							items: ['id', 'sort', 'variant', 'image', 'title', 'description', 'quote', 'author_name', 'author_role', 'accent_color'],
 						},
 					],
 					block_reach_out: [

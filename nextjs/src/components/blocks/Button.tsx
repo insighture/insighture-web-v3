@@ -19,6 +19,9 @@ export interface ButtonProps {
 	onClick?: () => void;
 	disabled?: boolean;
 	block?: boolean;
+	bgColor?: string | null;
+	textColor?: string | null;
+	borderColor?: string | null;
 }
 
 const Button = ({
@@ -37,6 +40,9 @@ const Button = ({
 	onClick,
 	disabled = false,
 	block = false,
+	bgColor,
+	textColor,
+	borderColor,
 }: ButtonProps) => {
 	const icons: Record<string, LucideIcon> = {
 		arrow: ArrowRight,
@@ -51,6 +57,12 @@ const Button = ({
 
 		return url || undefined;
 	})();
+
+	const customStyle: React.CSSProperties = {
+		...(bgColor ? { backgroundColor: bgColor } : {}),
+		...(textColor ? { color: textColor } : {}),
+		...(borderColor ? { borderColor: borderColor } : {}),
+	};
 
 	const buttonClasses = cn(
 		buttonVariants({ variant: variant as any, size }),
@@ -69,7 +81,7 @@ const Button = ({
 
 	if (href) {
 		return (
-			<ShadcnButton asChild variant={variant as any} size={size} className={buttonClasses} disabled={disabled}>
+			<ShadcnButton asChild variant={variant as any} size={size} className={buttonClasses} disabled={disabled} style={customStyle}>
 				{href.startsWith('/') ? (
 					<Link href={href}>{content}</Link>
 				) : (
@@ -82,7 +94,7 @@ const Button = ({
 	}
 
 	return (
-		<ShadcnButton variant={variant as any} size={size} className={buttonClasses} onClick={onClick} disabled={disabled}>
+		<ShadcnButton variant={variant as any} size={size} className={buttonClasses} onClick={onClick} disabled={disabled} style={customStyle}>
 			{content}
 		</ShadcnButton>
 	);

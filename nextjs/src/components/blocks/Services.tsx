@@ -32,19 +32,18 @@ const Services = ({ data }: ServicesProps) => {
 	const sortedItems = items ? [...items].sort((a, b) => (a.sort ?? 0) - (b.sort ?? 0)) : [];
 
 	return (
-		<div id={`svc-${scopeId}`} className="w-full px-6 md:px-16 lg:px-[123px] py-20">
+		<div id={`svc-${scopeId}`} className="w-full px-6 md:px-16 lg:px-[120px] py-20">
 			{/* Scoped style for emphasis color in headline */}
 			<style>{`#svc-${scopeId} .svc-headline em { font-style: italic; }`}</style>
 
 			{/* Section header */}
-			<div className="flex flex-col gap-6 items-center text-center mb-10 max-w-[1190px] mx-auto">
+			<div className="flex flex-col gap-6 items-center text-center mb-10 max-w-[1440px] mx-auto">
 				{tagline && (
-					<p
+					<div
 						className="text-sm font-semibold uppercase tracking-widest text-primary"
+						dangerouslySetInnerHTML={{ __html: tagline }}
 						data-directus={setAttr({ collection: 'block_services', item: id, fields: 'tagline', mode: 'popover' })}
-					>
-						{tagline}
-					</p>
+					/>
 				)}
 				{headline && (
 					<div
@@ -54,19 +53,18 @@ const Services = ({ data }: ServicesProps) => {
 					/>
 				)}
 				{description && (
-					<p
+					<div
 						className="text-[18px] leading-[26px] text-[#1d2939] max-w-[800px]"
+						dangerouslySetInnerHTML={{ __html: description }}
 						data-directus={setAttr({ collection: 'block_services', item: id, fields: 'description', mode: 'popover' })}
-					>
-						{description}
-					</p>
+					/>
 				)}
 			</div>
 
 			{/* Card grid */}
 			{sortedItems.length > 0 && (
 				<div
-					className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 max-w-[1190px] mx-auto"
+					className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 max-w-[1440px] mx-auto"
 					data-directus={setAttr({ collection: 'block_services', item: id, fields: 'items', mode: 'modal' })}
 				>
 					{sortedItems.map((item) => (

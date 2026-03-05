@@ -12,6 +12,7 @@ import LogoCarousel from '@/components/blocks/LogoCarousel';
 import FeatureSplit from '@/components/blocks/FeatureSplit';
 import Insights from '@/components/blocks/Insights';
 import Credentials from '@/components/blocks/Credentials';
+import CardGrid from '@/components/blocks/CardGrid';
 import ReachOut from '@/components/blocks/ReachOut';
 import Acknowledgement from '@/components/blocks/Acknowledgement';
 import CultureGallery from '@/components/blocks/CultureGallery';
@@ -43,6 +44,7 @@ const BaseBlock = ({ block }: BaseBlockProps) => {
 		block_feature_split: FeatureSplit,
 		block_insights: Insights,
 		block_credentials: Credentials,
+		block_card_grid: CardGrid,
 		block_reach_out: ReachOut,
 		block_acknowledgement: Acknowledgement,
 		block_culture_gallery: CultureGallery,

@@ -14,6 +14,8 @@ const albertSans = Albert_Sans({
 import VisualEditingLayout from '@/components/layout/VisualEditingLayout';
 import { ThemeProvider } from '@/components/ui/ThemeProvider';
 import { NavOverridesProvider } from '@/contexts/NavOverridesContext';
+import { FooterCTAProvider } from '@/contexts/FooterCTAContext';
+import { NavigationProvider } from '@/contexts/NavigationContext';
 import { fetchSiteData } from '@/lib/directus/fetchers';
 import { getDirectusAssetURL } from '@/lib/directus/directus-utils';
 
@@ -44,15 +46,19 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
 		<html lang="en" className={albertSans.variable} style={{ '--accent-color': accentColor } as React.CSSProperties} suppressHydrationWarning>
 			<body className="antialiased font-sans flex flex-col min-h-screen">
 				<NavOverridesProvider>
-					<ThemeProvider>
-						<VisualEditingLayout
-							headerNavigation={headerNavigation}
-							footerNavigation={footerNavigation}
-							globals={globals}
-						>
-							<main className="flex-grow">{children}</main>
-						</VisualEditingLayout>
-					</ThemeProvider>
+				<FooterCTAProvider>
+					<NavigationProvider>
+						<ThemeProvider>
+							<VisualEditingLayout
+								headerNavigation={headerNavigation}
+								footerNavigation={footerNavigation}
+								globals={globals}
+							>
+								<main className="flex-grow">{children}</main>
+							</VisualEditingLayout>
+						</ThemeProvider>
+					</NavigationProvider>
+				</FooterCTAProvider>
 				</NavOverridesProvider>
 			</body>
 		</html>
