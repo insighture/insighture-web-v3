@@ -49,7 +49,7 @@ const PageBuilder = ({ sections }: PageBuilderProps) => {
 					block.collection === 'block_service_featured_article' ||
 					block.collection === 'block_service_credentials_cta' ||
 					block.collection === 'block_service_product_catalogue' ||
-				block.collection === 'block_platform_cta';
+				block.collection === 'block_service_platform_banner';
 
 				if (isFullBleed || sectionBg || isFullBleedBlock) {
 					return (
