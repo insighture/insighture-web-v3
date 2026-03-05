@@ -94,7 +94,7 @@ const DynamicForm = ({
 												href={privacyPolicyLinkUrl}
 												target="_blank"
 												rel="noopener noreferrer"
-												className="underline text-[#ee4065] hover:opacity-80"
+												className="underline hover:opacity-80"
 											>
 												{privacyPolicyLinkText}
 											</a>

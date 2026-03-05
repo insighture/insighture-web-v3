@@ -110,7 +110,7 @@ const Footer = forwardRef<HTMLElement, FooterProps>(({ navigation, globals }, re
 						{"Let's push boundaries, together."}
 					</p>
 					<Link
-						href="/contact"
+						href="/lets-talk"
 						className="inline-flex items-center gap-[8px] border border-solid border-[#f7f7f7] rounded-[48px] px-[24px] py-[8px] hover:bg-white/10 transition-colors"
 					>
 						<span className="font-heading font-bold text-[16px] leading-[26px] text-[#f7f7f7]">{"Let's talk"}</span>

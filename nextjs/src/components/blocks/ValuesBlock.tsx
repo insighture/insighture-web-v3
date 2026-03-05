@@ -48,7 +48,7 @@ export default function ValuesBlock({ data }: { data: ValuesBlockData }) {
 
 				{/* Center image */}
 				<div
-					className="relative hidden lg:block shrink-0 w-[400px] h-[640px] rounded-2xl overflow-hidden shadow-[2px_2px_10px_0px_rgba(7,29,34,0.2)]"
+					className="relative hidden lg:block shrink-0 w-[600px] h-[640px] rounded-2xl overflow-hidden shadow-[2px_2px_10px_0px_rgba(7,29,34,0.2)]"
 					data-directus={setAttr({ collection: 'block_values', item: id, fields: 'center_image', mode: 'popover' })}
 				>
 					{center_image ? (
@@ -56,7 +56,7 @@ export default function ValuesBlock({ data }: { data: ValuesBlockData }) {
 							uuid={center_image}
 							alt="Team photo"
 							fill
-							sizes="400px"
+							sizes="600px"
 							className="object-cover"
 						/>
 					) : (
