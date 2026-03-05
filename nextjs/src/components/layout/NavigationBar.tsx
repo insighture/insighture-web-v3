@@ -59,6 +59,7 @@ const NavigationBar = forwardRef<HTMLElement, NavigationBarProps>(({ navigation,
 	useEffect(() => {
 		const onScroll = () => setScrolled(window.scrollY > 20);
 		window.addEventListener('scroll', onScroll, { passive: true });
+
 		return () => window.removeEventListener('scroll', onScroll);
 	}, []);
 
@@ -203,14 +204,7 @@ const NavigationBar = forwardRef<HTMLElement, NavigationBarProps>(({ navigation,
 						<NavigationMenuList className="flex gap-8">
 							{navigation?.items?.map((section: any) => (
 								<NavigationMenuItem key={section.id} className="relative group/navitem">
-									<NavigationMenuLink
-											href={section.page?.permalink || section.url || '#'}
-											className="font-heading text-nav focus:outline-none"
-										>
-											{section.title}
-										</NavigationMenuLink>
-										{/* Removing to make the Navbar work */}
-									{/* {section.children && section.children.length > 0 ? (
+									{section.children && section.children.length > 0 ? (
 										<>
 											<NavigationMenuTrigger className="focus:outline-none !bg-transparent text-[14px] font-medium flex items-center gap-2.5">
 												<span>{section.title}</span>
