@@ -669,6 +669,14 @@ export interface BlockServiceCredentialsCTA {
 	user_updated?: DirectusUser | string | null;
 }
 
+export interface BlockFeaturedPostRecommendedPost {
+	/** @primaryKey */
+	id: string;
+	sort?: number | null;
+	block_featured_post_id?: BlockFeaturedPost | string | null;
+	posts_id?: Post | string | null;
+}
+
 export interface BlockFeaturedPost {
 	/** @primaryKey */
 	id: string;
@@ -679,8 +687,12 @@ export interface BlockFeaturedPost {
 	background_color?: string | null;
 	/** @description Hero image displayed on the left panel. Independent of the post image. */
 	image?: DirectusFile | string | null;
-	/** @description Optional pinned post. If null, the latest published post is used. */
-	post?: Post | string | null;
+	/** @description The post linked to the left panel. If null, the latest published post is used. */
+	special_post?: Post | string | null;
+	/** @description Custom display title shown under the image. Falls back to the post title if not set. */
+	special_post_title?: string | null;
+	/** @description Manually selected posts for the Recommended Today panel (up to 4). Falls back to latest posts if empty. */
+	recommended_posts?: BlockFeaturedPostRecommendedPost[] | string[] | null;
 	date_created?: string | null;
 	user_created?: DirectusUser | string | null;
 	date_updated?: string | null;
@@ -1347,6 +1359,7 @@ export interface Schema {
 	block_services: BlockServices[];
 	block_services_item: BlockServicesItem[];
 	block_featured_post: BlockFeaturedPost[];
+	block_featured_post_recommended_posts: BlockFeaturedPostRecommendedPost[];
 	block_service_featured_article: BlockServiceFeaturedArticle[];
 	block_service_credentials_cta: BlockServiceCredentialsCTA[];
 	block_service_credentials_cta_badge: BlockServiceCredentialsCTABadge[];
