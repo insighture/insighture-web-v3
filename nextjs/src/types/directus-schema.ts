@@ -327,6 +327,39 @@ export interface BlockReachOutContactItem {
 	user_updated?: DirectusUser | string | null;
 }
 
+export interface BlockCultureGallery {
+	/** @primaryKey */
+	id: string;
+	/** @description Section title as HTML (WYSIWYG). */
+	title?: string | null;
+	/** @description Subtitle paragraph below the heading. */
+	description?: string | null;
+	/** @description Smaller Polaroid photo at the top-left corner. */
+	side_photo_left?: DirectusFile | string | null;
+	/** @description Smaller Polaroid photo at the top-right corner. */
+	side_photo_right?: DirectusFile | string | null;
+	/** @description First bottom Polaroid photo. */
+	photo_1?: DirectusFile | string | null;
+	/** @description Caption for first bottom Polaroid. */
+	caption_1?: string | null;
+	/** @description Second bottom Polaroid photo. */
+	photo_2?: DirectusFile | string | null;
+	/** @description Caption for second bottom Polaroid. */
+	caption_2?: string | null;
+	/** @description Third bottom Polaroid photo. */
+	photo_3?: DirectusFile | string | null;
+	/** @description Caption for third bottom Polaroid. */
+	caption_3?: string | null;
+	/** @description Fourth bottom Polaroid photo. */
+	photo_4?: DirectusFile | string | null;
+	/** @description Caption for fourth bottom Polaroid. */
+	caption_4?: string | null;
+	date_created?: string | null;
+	user_created?: DirectusUser | string | null;
+	date_updated?: string | null;
+	user_updated?: DirectusUser | string | null;
+}
+
 export interface BlockAcknowledgement {
 	/** @primaryKey */
 	id: string;
@@ -540,7 +573,7 @@ export interface PageBlock {
 	/** @description The id of the page that this block belongs to. */
 	page?: Page | string | null;
 	/** @description The data for the block. */
-	item?: BlockHero | BlockRichtext | BlockForm | BlockPost | BlockGallery | BlockPricing | BlockReachOut | BlockAcknowledgement | string | null;
+	item?: BlockHero | BlockRichtext | BlockForm | BlockPost | BlockGallery | BlockPricing | BlockReachOut | BlockAcknowledgement | BlockCultureGallery | string | null;
 	/** @description The collection (type of block). */
 	collection?: string | null;
 	/** @description Temporarily hide this block on the website without having to remove it from your page. */
@@ -1112,6 +1145,7 @@ export interface Schema {
 	block_pricing_cards: BlockPricingCard[];
 	block_reach_out: BlockReachOut[];
 	block_acknowledgement: BlockAcknowledgement[];
+	block_culture_gallery: BlockCultureGallery[];
 	block_reach_out_contact_item: BlockReachOutContactItem[];
 	block_richtext: BlockRichtext[];
 	block_services: BlockServices[];

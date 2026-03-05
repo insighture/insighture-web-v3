@@ -14,6 +14,7 @@ import Insights from '@/components/blocks/Insights';
 import Credentials from '@/components/blocks/Credentials';
 import ReachOut from '@/components/blocks/ReachOut';
 import Acknowledgement from '@/components/blocks/Acknowledgement';
+import CultureGallery from '@/components/blocks/CultureGallery';
 
 interface BaseBlockProps {
 	block: {
@@ -39,6 +40,7 @@ const BaseBlock = ({ block }: BaseBlockProps) => {
 		block_credentials: Credentials,
 		block_reach_out: ReachOut,
 		block_acknowledgement: Acknowledgement,
+		block_culture_gallery: CultureGallery,
 	};
 
 	const Component = components[block.collection];

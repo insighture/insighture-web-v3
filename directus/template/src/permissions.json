@@ -1994,7 +1994,37 @@
     "permissions": {},
     "validation": {},
     "presets": null,
-    "fields": ["id", "text"],
+    "fields": [
+      "id",
+      "text"
+    ],
+    "policy": "abf8a154-5b1c-4a46-ac9c-7300570f4f17"
+  },
+  {
+    "collection": "block_culture_gallery",
+    "action": "read",
+    "permissions": {},
+    "validation": {},
+    "presets": null,
+    "fields": [
+      "id",
+      "title",
+      "description",
+      "side_photo_left",
+      "side_photo_right",
+      "photo_1",
+      "caption_1",
+      "photo_2",
+      "caption_2",
+      "photo_3",
+      "caption_3",
+      "photo_4",
+      "caption_4",
+      "date_created",
+      "user_created",
+      "date_updated",
+      "user_updated"
+    ],
     "policy": "abf8a154-5b1c-4a46-ac9c-7300570f4f17"
   }
 ]

@@ -1714,7 +1714,8 @@
         "block_insights",
         "block_credentials",
         "block_reach_out",
-        "block_acknowledgement"
+        "block_acknowledgement",
+        "block_culture_gallery"
       ],
       "junction_field": "page",
       "sort_field": null,
@@ -2103,6 +2104,162 @@
       "many_collection": "block_reach_out",
       "many_field": "form",
       "one_collection": "forms",
+      "one_field": null,
+      "one_collection_field": null,
+      "one_allowed_collections": null,
+      "junction_field": null,
+      "sort_field": null,
+      "one_deselect_action": "nullify"
+    }
+  },
+  {
+    "collection": "block_culture_gallery",
+    "field": "side_photo_left",
+    "related_collection": "directus_files",
+    "schema": {
+      "constraint_name": "block_culture_gallery_side_photo_left_foreign",
+      "table": "block_culture_gallery",
+      "column": "side_photo_left",
+      "foreign_key_schema": "public",
+      "foreign_key_table": "directus_files",
+      "foreign_key_column": "id",
+      "on_update": "NO ACTION",
+      "on_delete": "SET NULL"
+    },
+    "meta": {
+      "many_collection": "block_culture_gallery",
+      "many_field": "side_photo_left",
+      "one_collection": "directus_files",
+      "one_field": null,
+      "one_collection_field": null,
+      "one_allowed_collections": null,
+      "junction_field": null,
+      "sort_field": null,
+      "one_deselect_action": "nullify"
+    }
+  },
+  {
+    "collection": "block_culture_gallery",
+    "field": "side_photo_right",
+    "related_collection": "directus_files",
+    "schema": {
+      "constraint_name": "block_culture_gallery_side_photo_right_foreign",
+      "table": "block_culture_gallery",
+      "column": "side_photo_right",
+      "foreign_key_schema": "public",
+      "foreign_key_table": "directus_files",
+      "foreign_key_column": "id",
+      "on_update": "NO ACTION",
+      "on_delete": "SET NULL"
+    },
+    "meta": {
+      "many_collection": "block_culture_gallery",
+      "many_field": "side_photo_right",
+      "one_collection": "directus_files",
+      "one_field": null,
+      "one_collection_field": null,
+      "one_allowed_collections": null,
+      "junction_field": null,
+      "sort_field": null,
+      "one_deselect_action": "nullify"
+    }
+  },
+  {
+    "collection": "block_culture_gallery",
+    "field": "photo_1",
+    "related_collection": "directus_files",
+    "schema": {
+      "constraint_name": "block_culture_gallery_photo_1_foreign",
+      "table": "block_culture_gallery",
+      "column": "photo_1",
+      "foreign_key_schema": "public",
+      "foreign_key_table": "directus_files",
+      "foreign_key_column": "id",
+      "on_update": "NO ACTION",
+      "on_delete": "SET NULL"
+    },
+    "meta": {
+      "many_collection": "block_culture_gallery",
+      "many_field": "photo_1",
+      "one_collection": "directus_files",
+      "one_field": null,
+      "one_collection_field": null,
+      "one_allowed_collections": null,
+      "junction_field": null,
+      "sort_field": null,
+      "one_deselect_action": "nullify"
+    }
+  },
+  {
+    "collection": "block_culture_gallery",
+    "field": "photo_2",
+    "related_collection": "directus_files",
+    "schema": {
+      "constraint_name": "block_culture_gallery_photo_2_foreign",
+      "table": "block_culture_gallery",
+      "column": "photo_2",
+      "foreign_key_schema": "public",
+      "foreign_key_table": "directus_files",
+      "foreign_key_column": "id",
+      "on_update": "NO ACTION",
+      "on_delete": "SET NULL"
+    },
+    "meta": {
+      "many_collection": "block_culture_gallery",
+      "many_field": "photo_2",
+      "one_collection": "directus_files",
+      "one_field": null,
+      "one_collection_field": null,
+      "one_allowed_collections": null,
+      "junction_field": null,
+      "sort_field": null,
+      "one_deselect_action": "nullify"
+    }
+  },
+  {
+    "collection": "block_culture_gallery",
+    "field": "photo_3",
+    "related_collection": "directus_files",
+    "schema": {
+      "constraint_name": "block_culture_gallery_photo_3_foreign",
+      "table": "block_culture_gallery",
+      "column": "photo_3",
+      "foreign_key_schema": "public",
+      "foreign_key_table": "directus_files",
+      "foreign_key_column": "id",
+      "on_update": "NO ACTION",
+      "on_delete": "SET NULL"
+    },
+    "meta": {
+      "many_collection": "block_culture_gallery",
+      "many_field": "photo_3",
+      "one_collection": "directus_files",
+      "one_field": null,
+      "one_collection_field": null,
+      "one_allowed_collections": null,
+      "junction_field": null,
+      "sort_field": null,
+      "one_deselect_action": "nullify"
+    }
+  },
+  {
+    "collection": "block_culture_gallery",
+    "field": "photo_4",
+    "related_collection": "directus_files",
+    "schema": {
+      "constraint_name": "block_culture_gallery_photo_4_foreign",
+      "table": "block_culture_gallery",
+      "column": "photo_4",
+      "foreign_key_schema": "public",
+      "foreign_key_table": "directus_files",
+      "foreign_key_column": "id",
+      "on_update": "NO ACTION",
+      "on_delete": "SET NULL"
+    },
+    "meta": {
+      "many_collection": "block_culture_gallery",
+      "many_field": "photo_4",
+      "one_collection": "directus_files",
       "one_field": null,
       "one_collection_field": null,
       "one_allowed_collections": null,
