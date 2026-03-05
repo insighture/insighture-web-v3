@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useMemo } from 'react';
 import DOMPurify from 'dompurify';
 import Tagline from '../ui/Tagline';
 import BaseText from '@/components/ui/Text';
@@ -8,6 +8,7 @@ import DirectusImage from '@/components/shared/DirectusImage';
 import ButtonGroup from '@/components/blocks/ButtonGroup';
 import { cn } from '@/lib/utils';
 import { setAttr } from '@directus/visual-editing';
+import { useNavigationOptional } from '@/contexts/NavigationContext';
 
 const fontSizeMap: Record<string, string> = {
 	sm: 'text-2xl',
@@ -48,6 +49,33 @@ interface HeroSlide {
 	headline_emphasis: string | null;
 	description: string | null;
 	text_placement: TextPlacement | null;
+	button_1_text: string | null;
+	button_1_url: string | null;
+	button_1_page?: { permalink: string } | null;
+	button_1_variant: string | null;
+	button_1_bg_color: string | null;
+	button_1_text_color: string | null;
+	button_2_text: string | null;
+	button_2_url: string | null;
+	button_2_page?: { permalink: string } | null;
+	button_2_variant: string | null;
+	button_2_bg_color: string | null;
+	button_2_text_color: string | null;
+	nav_text_color: string | null;
+	nav_text_hover_color: string | null;
+	nav_scrolled_background_color: string | null;
+	nav_scrolled_text_color: string | null;
+	nav_scrolled_text_hover_color: string | null;
+	nav_dropdown_background_color: string | null;
+	nav_dropdown_text_color: string | null;
+	nav_dropdown_text_hover_color: string | null;
+	nav_hide_logo: boolean | null;
+	nav_logo_override: string | null;
+	nav_cta_background_color: string | null;
+	nav_cta_text_color: string | null;
+	nav_scrolled_cta_background_color: string | null;
+	nav_scrolled_cta_text_color: string | null;
+	carousel_indicator_color: string | null;
 }
 
 interface HeroButton {
@@ -58,6 +86,8 @@ interface HeroButton {
 	type: 'url' | 'page' | 'post';
 	pagePermalink?: string | null;
 	postSlug?: string | null;
+	bgColor?: string | null;
+	textColor?: string | null;
 }
 
 interface HeroProps {
@@ -70,6 +100,7 @@ interface HeroProps {
 		description: string;
 		layout: 'image_left' | 'image_center' | 'image_right' | 'image_expanded';
 		image: string | null;
+		background_color?: string | null;
 		enable_carousel?: boolean | null;
 		autoplay_interval?: number | null;
 		enable_gradient_overlay?: boolean | null;
@@ -101,25 +132,66 @@ function sanitizeHtml(html: string | null): string {
 	});
 }
 
+function buildSlideButtons(slide: HeroSlide): HeroButton[] {
+	const buttons: HeroButton[] = [];
+
+	if (slide.button_1_text) {
+		buttons.push({
+			id: `${slide.id}-btn1`,
+			label: slide.button_1_text,
+			variant: slide.button_1_variant || 'primary',
+			url: slide.button_1_url,
+			type: slide.button_1_page ? 'page' : 'url',
+			pagePermalink: slide.button_1_page?.permalink,
+			bgColor: slide.button_1_bg_color,
+			textColor: slide.button_1_text_color,
+		});
+	}
+
+	if (slide.button_2_text) {
+		buttons.push({
+			id: `${slide.id}-btn2`,
+			label: slide.button_2_text,
+			variant: slide.button_2_variant || 'secondary',
+			url: slide.button_2_url,
+			type: slide.button_2_page ? 'page' : 'url',
+			pagePermalink: slide.button_2_page?.permalink,
+			bgColor: slide.button_2_bg_color,
+			textColor: slide.button_2_text_color,
+		});
+	}
+
+	return buttons;
+}
+
 export default function Hero({ data }: HeroProps) {
 	const {
 		id, layout, tagline, tagline_type, tagline_image, tagline_image_alt,
-		headline_lines, description, image, button_group,
+		headline_lines, description, image, background_color, button_group,
 		enable_carousel, autoplay_interval, enable_gradient_overlay,
 		expanded_text_placement, expanded_text_alignment,
 		slides,
 	} = data;
 
-	const sortedHeadlineLines = headline_lines
-		? [...headline_lines].sort((a, b) => (a.sort ?? 0) - (b.sort ?? 0))
-		: [];
+	const sortedHeadlineLines = useMemo(
+		() => (headline_lines ? [...headline_lines].sort((a, b) => (a.sort ?? 0) - (b.sort ?? 0)) : []),
+		[headline_lines]
+	);
 
 	const [currentSlide, setCurrentSlide] = useState(0);
 	const [isPaused, setIsPaused] = useState(false);
 
-	const sortedSlides = slides ? [...slides].sort((a, b) => (a.sort ?? 0) - (b.sort ?? 0)) : [];
+	const sortedSlides = useMemo(
+		() => (slides ? [...slides].sort((a, b) => (a.sort ?? 0) - (b.sort ?? 0)) : []),
+		[slides]
+	);
 	const isCarousel = layout === 'image_expanded' && enable_carousel && sortedSlides.length > 0;
 	const interval = autoplay_interval ?? 4000;
+
+	// Navigation context for dynamic nav colors
+	const navigationContext = useNavigationOptional();
+	const setNavColors = navigationContext?.setColors;
+	const resetNavColors = navigationContext?.resetColors;
 
 	const nextSlide = useCallback(() => {
 		setCurrentSlide((prev) => (prev + 1) % sortedSlides.length);
@@ -132,11 +204,52 @@ export default function Hero({ data }: HeroProps) {
 		return () => clearInterval(timer);
 	}, [isCarousel, isPaused, nextSlide, interval, sortedSlides.length]);
 
+	// Update navigation colors when slide changes
+	useEffect(() => {
+		if (!isCarousel || !setNavColors || sortedSlides.length === 0) {
+			return;
+		}
+
+		const slide = sortedSlides[currentSlide];
+		const navData = {
+			textColor: slide.nav_text_color,
+			textHoverColor: slide.nav_text_hover_color,
+			scrolledBackgroundColor: slide.nav_scrolled_background_color,
+			scrolledTextColor: slide.nav_scrolled_text_color,
+			scrolledTextHoverColor: slide.nav_scrolled_text_hover_color,
+			dropdownBackgroundColor: slide.nav_dropdown_background_color,
+			dropdownTextColor: slide.nav_dropdown_text_color,
+			dropdownTextHoverColor: slide.nav_dropdown_text_hover_color,
+			ctaBackgroundColor: slide.nav_cta_background_color,
+			ctaTextColor: slide.nav_cta_text_color,
+			scrolledCtaBackgroundColor: slide.nav_scrolled_cta_background_color,
+			scrolledCtaTextColor: slide.nav_scrolled_cta_text_color,
+			hideLogo: slide.nav_hide_logo,
+			logoOverride: slide.nav_logo_override,
+		};
+
+		if (slide?.nav_text_color || slide?.nav_text_hover_color || slide?.nav_scrolled_background_color || slide?.nav_scrolled_text_color || slide?.nav_scrolled_text_hover_color || slide?.nav_dropdown_background_color || slide?.nav_dropdown_text_color || slide?.nav_dropdown_text_hover_color || slide?.nav_cta_background_color || slide?.nav_cta_text_color || slide?.nav_scrolled_cta_background_color || slide?.nav_scrolled_cta_text_color || slide?.nav_hide_logo !== null || slide?.nav_logo_override) {
+			setNavColors(navData);
+		} else {
+			// Reset to default if slide has no nav overrides
+			if (resetNavColors) {
+				resetNavColors();
+			}
+		}
+
+		// Cleanup: reset colors when component unmounts
+		return () => {
+			if (resetNavColors) {
+				resetNavColors();
+			}
+		};
+	}, [currentSlide, isCarousel, sortedSlides, setNavColors, resetNavColors]);
+
 	// image_expanded layout — full-bleed background with optional carousel
 	if (layout === 'image_expanded') {
 		const slide = isCarousel ? sortedSlides[currentSlide] : null;
 		const bgImage = slide?.background_image ?? image;
-		const bgColor = slide?.background_color;
+		const bgColor = slide?.background_color ?? background_color;
 		const placement: TextPlacement = slide?.text_placement ?? expanded_text_placement ?? 'center_left';
 		const pc = placementClasses[placement];
 
@@ -150,7 +263,7 @@ export default function Hero({ data }: HeroProps) {
 		return (
 			<section
 				className="relative w-full min-h-screen overflow-hidden"
-				onMouseEnter={() => setIsPaused(true)}
+				onMouseEnter={() => setIsPaused(false)}
 				onMouseLeave={() => setIsPaused(false)}
 			>
 				{/* Background layer */}
@@ -180,7 +293,7 @@ export default function Hero({ data }: HeroProps) {
 				)}
 
 				{/* Content overlay */}
-				<div className={cn('relative z-10 flex flex-col min-h-screen mx-auto px-6 md:px-16 py-16 gap-8', pc.outer)}>
+				<div className={cn('relative z-10 flex flex-col min-h-screen mx-auto px-6 md:px-16 lg:px-[120px] py-16 gap-8', pc.outer)}>
 					{/* Text content block */}
 					<div className={cn('flex flex-col gap-6 text-white max-w-[1200px]', pc.text, !isCarousel && textAlignClass)}>
 						{slide?.tagline_image ? (
@@ -260,19 +373,43 @@ export default function Hero({ data }: HeroProps) {
 							/>
 						)}
 
-						{button_group && button_group.buttons.length > 0 && (
-							<div
-								data-directus={setAttr({
-									collection: 'block_button_group',
-									item: button_group.id,
-									fields: 'buttons',
-									mode: 'modal',
-								})}
-								className="mt-2"
-							>
-								<ButtonGroup buttons={button_group.buttons} />
-							</div>
-						)}
+						{(() => {
+							// Use slide buttons if in carousel mode, otherwise use hero-level button_group
+							const slideButtons = slide ? buildSlideButtons(slide) : [];
+							const buttonsToRender = slideButtons.length > 0 ? slideButtons : (button_group?.buttons || []);
+
+							if (buttonsToRender.length === 0) return null;
+
+							return (
+								<div
+									data-directus={
+										slide
+											? setAttr({
+													collection: 'block_hero_slide',
+													item: slide.id,
+													fields: [
+														'button_1_text',
+														'button_1_url',
+														'button_1_page',
+														'button_2_text',
+														'button_2_url',
+														'button_2_page',
+													],
+													mode: 'modal',
+												})
+											: setAttr({
+													collection: 'block_button_group',
+													item: button_group?.id || '',
+													fields: 'buttons',
+													mode: 'modal',
+												})
+									}
+									className="mt-2"
+								>
+									<ButtonGroup buttons={buttonsToRender} />
+								</div>
+							);
+						})()}
 					</div>
 
 					{/* Right: subject image with decorative circles (only for center_left placement) */}
@@ -296,17 +433,24 @@ export default function Hero({ data }: HeroProps) {
 				{/* Carousel indicators */}
 				{isCarousel && sortedSlides.length > 1 && (
 					<div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex items-center gap-2 z-20">
-						{sortedSlides.map((_, i) => (
-							<button
-								key={i}
-								aria-label={`Go to slide ${i + 1}`}
-								onClick={() => setCurrentSlide(i)}
-								className={cn(
-									'h-2 rounded-full transition-all duration-300',
-									i === currentSlide ? 'w-8 bg-white' : 'w-2 bg-white/40 hover:bg-white/60',
-								)}
-							/>
-						))}
+						{sortedSlides.map((_, i) => {
+							const isActive = i === currentSlide;
+							const activeSlideColor = sortedSlides[currentSlide]?.carousel_indicator_color;
+
+							return (
+								<button
+									key={i}
+									aria-label={`Go to slide ${i + 1}`}
+									onClick={() => setCurrentSlide(i)}
+									className={cn(
+										'h-2 rounded-full transition-all duration-300',
+										isActive ? 'w-[68px]' : 'w-2 bg-white/40 hover:bg-white/60',
+										isActive && !activeSlideColor && 'bg-white',
+									)}
+									style={isActive && activeSlideColor ? { backgroundColor: activeSlideColor } : undefined}
+								/>
+							);
+						})}
 					</div>
 				)}
 			</section>
@@ -324,6 +468,7 @@ export default function Hero({ data }: HeroProps) {
 						? 'md:flex-row-reverse items-center'
 						: 'md:flex-row items-center',
 			)}
+			style={background_color ? { backgroundColor: background_color } : undefined}
 		>
 			<div
 				className={cn(
