@@ -535,30 +535,35 @@ jobs:
               app_id=$(echo "$app_list" | jq -r '.apps[] | select(.name == "${{ env.APPLICATION_NAME }}")' | jq -r .appId)
 
               build_spec='{
-                "version": 1,
-                "frontend": {
-                  "phases": {
-                    "preBuild": {
-                      "commands": [
-                        "${{ env.APP_INSTALL_DEPS_PRE_COMMAND }}",
-                        "${{ env.APP_INSTALL_DEPS_COMMAND }}"
-                      ]
-                    },
-                    "build": {
-                      "commands": [
-                        "${{ env.APP_BUILD_COMMAND }}"
-                      ]
-                    }
-                  },
-                  "artifacts": {
-                    "baseDirectory": "${{ env.APP_BUILD_FOLDER }}",
-                    "files": [
-                      "**/*"
-                    ]
-                  }
-                }
-              }'
-
+                          "version": 1,
+                          "applications": [
+                            {
+                              "appRoot": "nextjs",
+                              "frontend": {
+                                "phases": {
+                                  "preBuild": {
+                                    "commands": [
+                                      "${{ env.APP_INSTALL_DEPS_PRE_COMMAND }}",
+                                      "${{ env.APP_INSTALL_DEPS_COMMAND }}"
+                                    ]
+                                  },
+                                  "build": {
+                                    "commands": [
+                                      "${{ env.APP_BUILD_COMMAND }}"
+                                    ]
+                                  }
+                                },
+                                "artifacts": {
+                                  "baseDirectory": "${{ env.APP_BUILD_FOLDER }}",
+                                  "files": [
+                                    "**/*"
+                                  ]
+                                }
+                              }
+                            }
+                          ]
+                        }'
+                        
               if [ -n "$app_id" ]; then
                 echo "Amplify App already exists. Updating..."
 
