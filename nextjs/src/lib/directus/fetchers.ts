@@ -47,9 +47,7 @@ const pageFields = [
 					block_cta_split: ['*'],
 					block_intro_media: ['*'],
 					block_culture_gallery: ['*'],
-					block_featured_post: ['*'],
 					block_all_posts: ['*'],
-					block_services_tab: ['*'],
 
 					// Blocks with nested relations need explicit field paths
 					block_richtext: ['*', { button_page: ['permalink'] }],
@@ -72,20 +70,20 @@ const pageFields = [
 					block_open_roles: ['*', { jobs: ['*'] }],
 					block_people_say: ['*', { slides: ['*'] }],
 					block_values: ['*', { value_items: ['*'] }],
-					block_posts_carousel: ['*', { posts: ['id', { posts_id: ['id', 'title', 'slug', 'image', 'description', 'published_at'] }] }],
-					// block_featured_post: [
-					// 	'id',
-					// 	'tagline',
-					// 	'background_color',
-					// 	'image',
-					// 	'special_post_title',
-					// 	{
-					// 		special_post: ['id', 'title', 'slug', 'type'],
-					// 	},
-					// 	{
-					// 		recommended_posts: ['sort', { posts_id: ['id', 'title', 'slug', 'type'] }],
-					// 	},
-					// ],
+					block_posts_carousel: ['id','headline','description','limit',{selected_posts: ['sort',{ posts_id: ['id', 'title', 'slug', 'image', 'description', 'type'] }] }],
+					block_featured_post: [
+						'id',
+						'tagline',
+						'background_color',
+						'image',
+						'special_post_title',
+						{
+							special_post: ['id', 'title', 'slug', 'type'],
+						},
+						{
+							recommended_posts: ['sort', { posts_id: ['id', 'title', 'slug', 'type'] }],
+						},
+					],
 					block_service_tabs: [
 						'id',
 						'tagline',
@@ -104,23 +102,6 @@ const pageFields = [
 							],
 						},
 					],
-					// block_posts_carousel: [
-					// 	'id',
-					// 	'headline',
-					// 	'description',
-					// 	'limit',
-					// 	{
-					// 		selected_posts: [
-					// 			'sort',
-					// 			{ posts_id: ['id', 'title', 'slug', 'image', 'description', 'type'] },
-					// 		],
-					// 	},
-					// ],
-
-					// block_all_posts: [
-					// 	'id',
-					// 	'headline',
-					// ],
 					block_service_platform_banner: ['id', 'title', 'description', 'cta_label', 'cta_url', 'image'],
 		
 					block_service_featured_article: [
@@ -133,67 +114,67 @@ const pageFields = [
 						'image_alt',
 						'background_color',
 					],
-					// block_services_tab: [
-					// 	'id',
-					// 	'description',
-					// 	'heading',
-					// 	{
-					// 		items: [
-					// 			'id',
-					// 			'sort',
-					// 			'title',
-					// 			'accent_color',
-					// 			'key_services',
-					// 			'cta_type',
-					// 			{
-					// 				panel: [
-					// 					'id',
-					// 					'subtitle',
-					// 					'description',
-					// 					'image',
-					// 				],
-					// 			},
-					// 			{
-					// 				expertise_cards: [
-					// 					'id',
-					// 					'heading',
-					// 					{
-					// 						cards: [
-					// 							'id', 'sort', 'icon',
-					// 							'title', 'description',
-					// 							'link_label', 'url',
-					// 						],
-					// 					},
-					// 				],
-					// 			},
-					// 			{
-					// 				featured_article: [
-					// 					'id', 'tagline', 'headline',
-					// 					'cta_label', 'cta_url',
-					// 					'image', 'image_alt', 'background_color',
-					// 				],
-					// 			},
-					// 			{
-					// 				credentials_cta: [
-					// 					'id',
-					// 					'headline',
+					block_services_tab: [
+						'id',
+						'description',
+						'heading',
+						{
+							items: [
+								'id',
+								'sort',
+								'title',
+								'accent_color',
+								'key_services',
+								'cta_type',
+								{
+									panel: [
+										'id',
+										'subtitle',
+										'description',
+										'image',
+									],
+								},
+								{
+									expertise_cards: [
+										'id',
+										'heading',
+										{
+											cards: [
+												'id', 'sort', 'icon',
+												'title', 'description',
+												'link_label', 'url',
+											],
+										},
+									],
+								},
+								{
+									featured_article: [
+										'id', 'tagline', 'headline',
+										'cta_label', 'cta_url',
+										'image', 'image_alt', 'background_color',
+									],
+								},
+								{
+									credentials_cta: [
+										'id',
+										'headline',
 								
-					// 					{ badges: ['id', 'sort', 'image', 'alt'] },
-					// 					{ stats: ['id', 'sort', 'icon', 'value', 'label'] },
-					// 				],
-					// 			},
-					// 			{
-					// 				product_catalogue: [
-					// 					'id',
-					// 					'headline',
-					// 					'image',
-					// 					'image_alt',
-					// 					{ products: ['id', 'sort', 'label'] },
-					// 				],
-					// 			},
-					// 		],
-					// 	},
-					// ],
+										{ badges: ['id', 'sort', 'image', 'alt'] },
+										{ stats: ['id', 'sort', 'icon', 'value', 'label'] },
+									],
+								},
+								{
+									product_catalogue: [
+										'id',
+										'headline',
+										'image',
+										'image_alt',
+										{ products: ['id', 'sort', 'label'] },
+									],
+								},
+							],
+						},
+					],
 				
 					block_service_product_catalogue: [
 						'id',
@@ -208,22 +189,7 @@ const pageFields = [
 						{ badges: ['id', 'sort', 'image', 'alt'] },
 						{ stats: ['id', 'sort', 'icon', 'value', 'label'] },
 					],
-					// Uncomment this when ready, This throws a 404 error
-					// block_expertise_cards: [
-					// 	'id',
-					// 	'heading',
-					// 	{
-					// 		cards: [
-					// 			'id',
-					// 			'sort',
-					// 			'icon',
-					// 			'title',
-					// 			'description',
-					// 			'link_label',
-					// 			'url',
-					// 		],
-					// 	},
-					// ],
+					
 				},
 			},
 		],
