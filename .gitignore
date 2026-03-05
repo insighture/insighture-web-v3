@@ -60,3 +60,6 @@ directus/docs/*
 /directus/snapshots
 /directus/scripts
 /directus/.directus-sync
+./directus/*
+
+.claude

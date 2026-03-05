@@ -44,6 +44,7 @@ const nextConfig: NextConfig = {
 				port: '8055',
 				pathname: '/assets/**',
 			},
+			
 		],
 	},
 	env: {

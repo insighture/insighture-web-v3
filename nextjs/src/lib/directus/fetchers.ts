@@ -47,9 +47,7 @@ const pageFields = [
 					block_cta_split: ['*'],
 					block_intro_media: ['*'],
 					block_culture_gallery: ['*'],
-					block_featured_post: ['*'],
 					block_all_posts: ['*'],
-					block_services_tab: ['*'],
 
 					// Blocks with nested relations need explicit field paths
 					block_richtext: ['*', { button_page: ['permalink'] }],
@@ -72,7 +70,126 @@ const pageFields = [
 					block_open_roles: ['*', { jobs: ['*'] }],
 					block_people_say: ['*', { slides: ['*'] }],
 					block_values: ['*', { value_items: ['*'] }],
-					block_posts_carousel: ['*', { posts: ['id', { posts_id: ['id', 'title', 'slug', 'image', 'description', 'published_at'] }] }],
+					block_posts_carousel: ['id','headline','description','limit',{selected_posts: ['sort',{ posts_id: ['id', 'title', 'slug', 'image', 'description', 'type'] }] }],
+					block_featured_post: [
+						'id',
+						'tagline',
+						'background_color',
+						'image',
+						'special_post_title',
+						{
+							special_post: ['id', 'title', 'slug', 'type'],
+						},
+						{
+							recommended_posts: ['sort', { posts_id: ['id', 'title', 'slug', 'type'] }],
+						},
+					],
+					block_service_tabs: [
+						'id',
+						'tagline',
+						'headline',
+						{
+							items: [
+								'id',
+								'sort',
+								'label',
+								'accent_color',
+								'headline',
+								'description',
+								'image',
+								'link_label',
+								'url',
+							],
+						},
+					],
+					block_service_platform_banner: ['id', 'title', 'description', 'cta_label', 'cta_url', 'image'],
+		
+					block_service_featured_article: [
+						'id',
+						'tagline',
+						'headline',
+						'cta_label',
+						'cta_url',
+						'image',
+						'image_alt',
+						'background_color',
+					],
+					block_services_tab: [
+						'id',
+						'description',
+						'heading',
+						{
+							items: [
+								'id',
+								'sort',
+								'title',
+								'accent_color',
+								'key_services',
+								'cta_type',
+								{
+									panel: [
+										'id',
+										'subtitle',
+										'description',
+										'image',
+									],
+								},
+								{
+									expertise_cards: [
+										'id',
+										'heading',
+										{
+											cards: [
+												'id', 'sort', 'icon',
+												'title', 'description',
+												'link_label', 'url',
+											],
+										},
+									],
+								},
+								{
+									featured_article: [
+										'id', 'tagline', 'headline',
+										'cta_label', 'cta_url',
+										'image', 'image_alt', 'background_color',
+									],
+								},
+								{
+									credentials_cta: [
+										'id',
+										'headline',
+								
+										{ badges: ['id', 'sort', 'image', 'alt'] },
+										{ stats: ['id', 'sort', 'icon', 'value', 'label'] },
+									],
+								},
+								{
+									product_catalogue: [
+										'id',
+										'headline',
+										'image',
+										'image_alt',
+										{ products: ['id', 'sort', 'label'] },
+									],
+								},
+							],
+						},
+					],
+				
+					block_service_product_catalogue: [
+						'id',
+						'headline',	
+						'image',
+						'image_alt',
+						{ products: ['id', 'sort', 'label'] },
+					],
+					block_service_credentials_cta: [
+						'id',
+						'headline',
+						{ badges: ['id', 'sort', 'image', 'alt'] },
+						{ stats: ['id', 'sort', 'icon', 'value', 'label'] },
+					],
+					
 				},
 			},
 		],
@@ -152,6 +269,82 @@ export const fetchPageData = async (permalink: string, postPage = 1, token?: str
 						}),
 					);
 					(block.item as any).posts = insightsPosts;
+				}
+
+				// block_featured_post — if no pinned post, fetch the latest published post
+				// also resolve recommended posts: use manually selected if set, otherwise fetch latest
+				if (block.collection === 'block_featured_post' && block.item && typeof block.item !== 'string') {
+					const pinnedPost = (block.item as any).special_post;
+					const pinnedPostId = pinnedPost ? pinnedPost.id ?? pinnedPost : null;
+
+					if (!pinnedPost) {
+						const latestPosts: Post[] = await directus.request(
+							readItems('posts', {
+								fields: ['id', 'title', 'slug', 'type'],
+								filter: { status: { _eq: 'published' } },
+								sort: ['-published_at'],
+								limit: 1,
+							}),
+						);
+						(block.item as any).special_post = latestPosts[0] ?? null;
+					}
+
+					// Use manually selected recommended posts if set; otherwise auto-fetch latest (excluding featured)
+					const manualRecs = (block.item as any).recommended_posts as Array<{ sort: number; posts_id: any }> | null | undefined;
+					if (manualRecs && manualRecs.length > 0) {
+						(block.item as any).recommended_posts = [...manualRecs]
+							.sort((a, b) => (a.sort ?? 0) - (b.sort ?? 0))
+							.map((j) => j.posts_id)
+							.filter(Boolean);
+					} else {
+						const excludeFilter: QueryFilter<Schema, Post> = pinnedPostId
+							? { status: { _eq: 'published' as const }, id: { _neq: pinnedPostId } }
+							: { status: { _eq: 'published' as const } };
+
+						const recommendedPosts = await directus.request<Post[]>(
+							readItems<Schema, 'posts', any>('posts', {
+								fields: ['id', 'title', 'slug', 'type'],
+								filter: excludeFilter,
+								sort: ['-published_at'],
+								limit: 4,
+							}),
+						);
+						(block.item as any).recommended_posts = recommendedPosts;
+					}
+				}
+				// block_posts_carousel — use manually selected posts if set, otherwise fetch dynamically
+				if (block.collection === 'block_posts_carousel' && block.item && typeof block.item !== 'string') {
+					const item = block.item as any;
+					const selectedPosts = item.selected_posts as Array<{ sort: number; posts_id: any }> | null | undefined;
+					if (selectedPosts && selectedPosts.length > 0) {
+						item.posts = [...selectedPosts]
+							.sort((a, b) => (a.sort ?? 0) - (b.sort ?? 0))
+							.map((j) => j.posts_id)
+							.filter(Boolean);
+					} else {
+						const limit = item.limit ?? 9;
+						const carouselPosts = await directus.request(
+							readItems('posts', {
+								fields: ['id', 'title', 'slug', 'image', 'description', 'type'],
+								filter: { status: { _eq: 'published' } },
+								sort: ['-published_at'],
+								limit,
+							}),
+						);
+						item.posts = carouselPosts;
+					}
+				}
+				// block_all_posts — fetch all published posts with type + service for client-side filtering
+				if (block.collection === 'block_all_posts' && block.item && typeof block.item !== 'string') {
+					const allPosts = await directus.request(
+						readItems('posts', {
+							fields: ['id', 'title', 'slug', 'image', 'description', 'type'],
+							filter: { status: { _eq: 'published' } },
+							sort: ['-published_at'],
+							limit: -1,
+						}),
+					);
+					(block.item as any).posts = allPosts;
 				}
 			}
 		}
