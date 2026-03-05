@@ -64,7 +64,7 @@ export default function IntroMedia({ data }: { data: IntroMediaData }) {
 }
 
 function VideoEmbed({ url }: { url: string }) {
-	// Convert YouTube / Vimeo watch URLs to embed URLs
+	// Convert YouTube / Vimeo watch URLs to embed URLs.
 	let embedUrl = url;
 	const ytMatch = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&?/]+)/);
 	if (ytMatch) embedUrl = `https://www.youtube.com/embed/${ytMatch[1]}`;
