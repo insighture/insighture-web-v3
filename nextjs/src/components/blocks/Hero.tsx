@@ -83,6 +83,7 @@ interface HeroProps {
 function sanitize(html: string | null): string {
 	if (!html) return '';
 	if (typeof window === 'undefined') return html;
+
 	return DOMPurify.sanitize(html, { ALLOWED_TAGS: ['b', 'strong', 'i', 'em', 'span', 'br'], ALLOWED_ATTR: ['style'] });
 }
 
@@ -108,6 +109,7 @@ export default function Hero({ data }: HeroProps) {
 	useEffect(() => {
 		if (!isCarousel || isPaused || sortedSlides.length <= 1) return;
 		const timer = setInterval(nextSlide, interval);
+
 		return () => clearInterval(timer);
 	}, [isCarousel, isPaused, nextSlide, interval, sortedSlides.length]);
 
