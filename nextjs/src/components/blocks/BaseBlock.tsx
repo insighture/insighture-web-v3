@@ -12,17 +12,16 @@ import LogoCarousel from '@/components/blocks/LogoCarousel';
 import FeatureSplit from '@/components/blocks/FeatureSplit';
 import Insights from '@/components/blocks/Insights';
 import Credentials from '@/components/blocks/Credentials';
-import FeaturedPost from '@/components/blocks/FeaturedPost';
+import BlogFeaturedPost from '@/components/blocks/BlogFeaturedPost';
 import PostsCarousel from './PostsCarousel';
 import AllPostsGrid from './AllPostsGrid';
 import ServiceFeaturedArticle from './ServiceFeaturedArticle';
 import ServiceCredentialsCTA from './ServiceCredentialsCTA';
 import ServiceProductCatalogue from './ServiceProductCatalogue';
 import ServiceTabs from './ServiceTabs';
-import ServiceShowcase from './ServiceShowcase';
 import ServiceItems from './ServiceItems';
 import ExpertiseCards from './ExpertiseCards';
-import PlatformCta from './PlatformCta';
+import PlatformBanner from './PlatformBanner';
 
 interface BaseBlockProps {
 	block: {
@@ -46,17 +45,16 @@ const BaseBlock = ({ block }: BaseBlockProps) => {
 		block_feature_split: FeatureSplit,
 		block_insights: Insights,
 		block_credentials: Credentials,
-		block_featured_post: FeaturedPost,
+		block_featured_post: BlogFeaturedPost,
 		block_posts_carousel: PostsCarousel,
 		block_all_posts: AllPostsGrid,
 		block_service_featured_article: ServiceFeaturedArticle,
 		block_service_credentials_cta: ServiceCredentialsCTA,
 		block_service_product_catalogue: ServiceProductCatalogue,
 		block_service_tabs: ServiceTabs,
-		block_service_showcase: ServiceShowcase,
 		block_services_tab: ServiceItems,
 		block_expertise_cards: ExpertiseCards,
-		block_platform_cta: PlatformCta,
+		block_service_platform_banner: PlatformBanner,
 	};
 
 	const Component = components[block.collection];
