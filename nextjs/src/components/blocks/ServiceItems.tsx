@@ -75,7 +75,7 @@ export default function ServiceItems({ data }: ServiceItemsProps) {
 				mode: 'popover',
 			})}
 		>
-			<div className="max-w-[1440px] mx-auto sm:px-6 lg:px-16 px-4 py-[64px] lg:py-[96px] flex flex-col gap-[56px]">
+			<div className="max-w-[1440px] mx-auto py-[64px] lg:py-[96px] flex flex-col gap-[56px]">
 
 				{/* ── Section header ───────────────────────────────────────── */}
 				{(heading || description) && (
@@ -147,7 +147,7 @@ export default function ServiceItems({ data }: ServiceItemsProps) {
 												)}
 												{panel?.subtitle && (
 													<p
-														className="font-sans font-medium italic text-[20px] leading-[20px] text-[rgba(30,30,30,0.6)]"
+														className="font-sans font-medium italic text-[20px] leading-[20px] opacity-60"
 														dangerouslySetInnerHTML={{ __html: panel.subtitle }}
 													/>
 												)}
@@ -198,7 +198,7 @@ export default function ServiceItems({ data }: ServiceItemsProps) {
 										<div className="relative w-full lg:w-1/2 flex-1 min-h-[280px] lg:min-h-0 rounded-[8px] overflow-hidden">
 											<DirectusImage
 												uuid={panel.image}
-												alt={active.title ?? ''}
+												alt={active.title ?? 'Service Panel Image'}
 												fill
 												sizes="(max-width: 1024px) 100vw, 600px"
 												className="object-cover"

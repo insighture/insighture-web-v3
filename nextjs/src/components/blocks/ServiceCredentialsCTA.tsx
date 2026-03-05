@@ -48,7 +48,7 @@ export default function ServiceCredentialsCTA({ data, accentColor, contained }: 
 	});
 
 	const innerContent = (
-		<div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-[40px] lg:gap-[130px]">
+		<div className="flex flex-col lg:flex-row items-start justify-between lg:items-center gap-[40px] lg:gap-[130px]">
 
 			{/* ── Left column: headline + badges ─────────────────────── */}
 			<div className="flex flex-col gap-[41px] flex-1 min-w-0">
@@ -79,7 +79,7 @@ export default function ServiceCredentialsCTA({ data, accentColor, contained }: 
 										uuid={badge.image}
 										alt={badge.alt || ''}
 										fill
-										sizes="64px"
+										sizes="75px"
 										className="object-contain"
 									/>
 								)}

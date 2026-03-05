@@ -45,7 +45,7 @@ export default function PostsCarousel({ data }: PostsCarouselProps) {
 			className="w-full pt-[80px]"
 			data-directus={setAttr({ collection: 'block_posts_carousel', item: id, fields: ['headline', 'description', 'service'], mode: 'popover' })}
 		>
-			<div className="max-w-[1440px] mx-auto sm:px-6 lg:px-16 px-4 flex flex-col gap-[80px]">
+			<div className="max-w-[1440px] mx-auto flex flex-col gap-[56px]">
 				{/* Header */}
 				<div className="flex flex-col gap-[24px]">
 					<div className="flex items-end justify-between">

@@ -54,7 +54,7 @@ export default function BlogFeaturedPost({ data }: BlogFeaturedPostProps) {
 					)}
 
 					{/* Text: max 130px left padding, aligns with nav logo */}
-					{special_post && <div className="max-w-[1440px] ml-auto flex sm:pl-6 lg:px-10 px-6">
+					{special_post && <div className="max-w-[1440px] mx-auto flex flex-col gap-[56px]">
 
 						<div className="flex flex-col gap-8 items-start w-full lg:max-w-[556px]">
 							{(special_post_title || special_post.title) && (

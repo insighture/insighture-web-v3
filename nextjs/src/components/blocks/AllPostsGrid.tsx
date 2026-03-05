@@ -93,7 +93,7 @@ return true;
 			className="w-full py-[80px]"
 			data-directus={setAttr({ collection: 'block_all_posts', item: id, fields: ['headline'], mode: 'popover' })}
 		>
-			<div className="max-w-[1440px] mx-auto sm:px-6 lg:px-16 px-4 flex flex-col gap-[80px]">
+			<div className="max-w-[1440px] mx-auto flex flex-col gap-[56px]">
 				{/* Header + Filters */}
 				<div className="flex items-end justify-between gap-[16px]">
 					{headline && (
