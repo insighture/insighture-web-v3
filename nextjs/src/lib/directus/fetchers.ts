@@ -228,6 +228,14 @@ const pageFields = [
 						},
 					],
 					block_acknowledgement: ['id', 'text'],
+				block_values: [
+					'id',
+					'heading',
+					'center_image',
+					{
+						value_items: ['id', 'sort', 'icon', 'title', 'description'],
+					},
+				],
 					block_culture_gallery: [
 						'id',
 						'title',

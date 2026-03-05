@@ -360,6 +360,39 @@ export interface BlockCultureGallery {
 	user_updated?: DirectusUser | string | null;
 }
 
+export interface BlockValuesItem {
+	/** @primaryKey */
+	id: number;
+	sort?: number | null;
+	/** @description The values block this item belongs to. */
+	block_values?: BlockValues | number | null;
+	/** @description Icon image for the value card. */
+	icon?: string | null;
+	/** @description Value card title. */
+	title?: string | null;
+	/** @description Value card description text. */
+	description?: string | null;
+	date_created?: string | null;
+	user_created?: DirectusUser | string | null;
+	date_updated?: string | null;
+	user_updated?: DirectusUser | string | null;
+}
+
+export interface BlockValues {
+	/** @primaryKey */
+	id: number;
+	/** @description Section heading as HTML (supports pink italic accent text). */
+	heading?: string | null;
+	/** @description Center tall photo shown between the value cards. */
+	center_image?: string | null;
+	/** @description List of value cards (up to 4, first 2 on left, last 2 on right). */
+	value_items?: BlockValuesItem[] | string[];
+	date_created?: string | null;
+	user_created?: DirectusUser | string | null;
+	date_updated?: string | null;
+	user_updated?: DirectusUser | string | null;
+}
+
 export interface BlockAcknowledgement {
 	/** @primaryKey */
 	id: string;
@@ -573,7 +606,7 @@ export interface PageBlock {
 	/** @description The id of the page that this block belongs to. */
 	page?: Page | string | null;
 	/** @description The data for the block. */
-	item?: BlockHero | BlockRichtext | BlockForm | BlockPost | BlockGallery | BlockPricing | BlockReachOut | BlockAcknowledgement | BlockCultureGallery | string | null;
+	item?: BlockHero | BlockRichtext | BlockForm | BlockPost | BlockGallery | BlockPricing | BlockReachOut | BlockAcknowledgement | BlockCultureGallery | BlockValues | string | null;
 	/** @description The collection (type of block). */
 	collection?: string | null;
 	/** @description Temporarily hide this block on the website without having to remove it from your page. */
@@ -1147,6 +1180,8 @@ export interface Schema {
 	block_acknowledgement: BlockAcknowledgement[];
 	block_culture_gallery: BlockCultureGallery[];
 	block_reach_out_contact_item: BlockReachOutContactItem[];
+	block_values: BlockValues[];
+	block_values_item: BlockValuesItem[];
 	block_richtext: BlockRichtext[];
 	block_services: BlockServices[];
 	block_services_item: BlockServicesItem[];

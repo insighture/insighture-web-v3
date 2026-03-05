@@ -5,6 +5,7 @@ import { getDirectusAssetURL } from '@/lib/directus/directus-utils';
 import { setAttr } from '@directus/visual-editing';
 import FormBuilder from '@/components/forms/FormBuilder';
 import { FormField } from '@/types/directus-schema';
+import Container from '../ui/container';
 
 interface ReachOutContactItem {
 	id: number | string;
@@ -59,7 +60,7 @@ export default function ReachOut({ data }: ReachOutProps) {
 	const pdfUrl = brochure_pdf ? getDirectusAssetURL(brochure_pdf) : null;
 
 	const sidebar = (
-		<div className="w-full bg-[#ebf0f2] rounded-[8px] flex flex-col gap-[24px] py-[24px] pr-[24px]">
+		<div className="w-full bg-white rounded-[8px] flex flex-col gap-[24px] py-[24px] pr-[24px]">
 			{heading && (
 				<div className="px-[24px]">
 					<h2
@@ -141,22 +142,24 @@ export default function ReachOut({ data }: ReachOutProps) {
 
 	if (form) {
 		return (
-			<div className="grid grid-cols-12 gap-8 items-start">
-				<div
-					className="col-span-12 md:col-span-8"
-					data-directus={setAttr({ collection: 'block_reach_out', item: id, fields: 'form', mode: 'popover' })}
-				>
-					<FormBuilder form={form as any} />
+			<Container>
+				<div className="bg-white grid grid-cols-12 gap-8 items-start">
+					<div
+						className="col-span-12 md:col-span-8"
+						data-directus={setAttr({ collection: 'block_reach_out', item: id, fields: 'form', mode: 'popover' })}
+					>
+						<FormBuilder form={form as any} />
+					</div>
+					<div className="col-span-12 md:col-span-4">
+						{sidebar}
+					</div>
 				</div>
-				<div className="col-span-12 md:col-span-4">
-					{sidebar}
-				</div>
-			</div>
+			</Container>
 		);
 	}
 
 	return (
-		<div className="flex justify-center">
+		<div className="bg-white flex justify-center">
 			{sidebar}
 		</div>
 	);

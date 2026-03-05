@@ -32,19 +32,24 @@ const PageBuilder = ({ sections }: PageBuilderProps) => {
 						? (block.item as { background_color?: string | null }).background_color
 						: null;
 
+							const isReachOut = block.collection === 'block_reach_out';
+
 				const isFullBleedBlock =
 					block.collection === 'block_testimonials' ||
 					block.collection === 'block_logo_carousel' ||
 					block.collection === 'block_feature_split' ||
 					block.collection === 'block_insights' ||
-					block.collection === 'block_credentials';
+					block.collection === 'block_credentials' ||
+					block.collection === 'block_culture_gallery' ||
+					block.collection === 'block_reach_out' ||
+					block.collection === 'block_values';
 
 				if (isFullBleed || sectionBg || isFullBleedBlock) {
 					return (
 						<div
 							key={block.id}
 							data-background={block.background}
-							style={sectionBg ? { backgroundColor: sectionBg } : undefined}
+							style={sectionBg ? { backgroundColor: sectionBg } : isReachOut ? { backgroundColor: '#ffffff' } : undefined}
 						>
 							<BaseBlock
 								block={{
