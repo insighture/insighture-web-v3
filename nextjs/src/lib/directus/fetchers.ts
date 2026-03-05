@@ -26,6 +26,10 @@ const pageFields = [
 	'nav_dropdown_background_color',
 	'nav_dropdown_text_color',
 	'nav_dropdown_text_hover_color',
+	'footer_cta_text',
+	'footer_cta_button_text',
+	'footer_cta_button_url',
+	{ footer_cta_button_page: ['permalink'] },
 	{
 		blocks: [
 			'id',

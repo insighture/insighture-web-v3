@@ -848,6 +848,14 @@ export interface Page {
 	nav_dropdown_text_color?: string | null;
 	/** @description Hover color of nav dropdown links. Null = theme default. */
 	nav_dropdown_text_hover_color?: string | null;
+	/** @description Footer CTA text content. */
+	footer_cta_text?: string | null;
+	/** @description Footer CTA button label. */
+	footer_cta_button_text?: string | null;
+	/** @description Footer CTA button URL. */
+	footer_cta_button_url?: string | null;
+	/** @description Footer CTA button page link. */
+	footer_cta_button_page?: { permalink: string | null } | string | null;
 }
 
 export interface Post {

@@ -116,7 +116,7 @@ export default async function Page({
 					footer_cta_text: page.footer_cta_text,
 					footer_cta_button_text: page.footer_cta_button_text,
 					footer_cta_button_url: page.footer_cta_button_url,
-					footer_cta_button_page: page.footer_cta_button_page,
+					footer_cta_button_page: page.footer_cta_button_page as { permalink: string | null } | null,
 				}}
 			/>
 		);

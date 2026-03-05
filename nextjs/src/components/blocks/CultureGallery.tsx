@@ -82,7 +82,7 @@ const PolaroidCard = ({
 							className="object-cover"
 						/>
 					) : (
-						<div className="w-full h-full bg-gray-200" />
+						<div className="size-full bg-gray-200" />
 					)}
 				</div>
 				{caption && (
@@ -130,7 +130,7 @@ export default function CultureGallery({ data }: { data: CultureGalleryData }) {
 					viewBox="0 0 1440 860"
 					fill="none"
 					xmlns="http://www.w3.org/2000/svg"
-					className="absolute inset-0 w-full h-full"
+					className="absolute inset-0 size-full"
 					preserveAspectRatio="none"
 				>
 					<path
