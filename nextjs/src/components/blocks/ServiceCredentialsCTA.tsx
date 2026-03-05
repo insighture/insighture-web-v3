@@ -48,10 +48,10 @@ export default function ServiceCredentialsCTA({ data, accentColor, contained }: 
 	});
 
 	const innerContent = (
-		<div className="flex flex-col lg:flex-row items-start lg:items-center gap-[40px] lg:gap-[130px]">
+		<div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-[40px] lg:gap-[130px]">
 
 			{/* ── Left column: headline + badges ─────────────────────── */}
-			<div className="flex flex-col gap-[41px] lg:max-w-[471px]">
+			<div className="flex flex-col gap-[41px] flex-1 min-w-0">
 				{headline && (
 					<p
 						className="font-sans font-medium text-[40px] leading-[48px] text-[#fcfcfd]"
@@ -59,19 +59,14 @@ export default function ServiceCredentialsCTA({ data, accentColor, contained }: 
 					/>
 				)}
 
-				{/* Badge row — overlapping certification images */}
+				{/* Badge row — 6px gap between certification images */}
 				{sortedBadges.length > 0 && (
-					<div className="flex items-center">
-						{sortedBadges.map((badge, index) => (
+					<div className="flex items-center gap-[6px] flex-wrap">
+						{sortedBadges.map((badge) => (
 							<div
 								key={badge.id}
 								className="relative shrink-0"
-								style={{
-									width: '64px',
-									height: '72px',
-									marginLeft: index === 0 ? 0 : '-8px',
-									zIndex: index,
-								}}
+								style={{ width: '64px', height: '72px' }}
 								data-directus={setAttr({
 									collection: 'block_service_credentials_cta_badge',
 									item: badge.id,
@@ -100,7 +95,7 @@ export default function ServiceCredentialsCTA({ data, accentColor, contained }: 
 					{sortedStats.map((stat) => (
 						<div
 							key={stat.id}
-							className="flex items-center gap-[32px] p-[16px] rounded-[8px]"
+							className="flex items-center gap-[32px] p-[16px] rounded-[8px] w-full"
 							style={{ backgroundColor: '#11262b' }}
 							data-directus={setAttr({
 								collection: 'block_service_credentials_cta_stat',
@@ -109,30 +104,30 @@ export default function ServiceCredentialsCTA({ data, accentColor, contained }: 
 								mode: 'popover',
 							})}
 						>
-							{/* Icon */}
-							{stat.icon && (
-								<div className="relative shrink-0 size-[48px]">
-									<DirectusImage
-										uuid={stat.icon}
-										alt=""
-										fill
-										sizes="48px"
-										className="object-contain"
-									/>
-								</div>
-							)}
+							{/* Icon + Value group — fixed combined width so labels align across all rows */}
+							<div className="flex items-center gap-[32px] shrink-0 w-[160px]">
+								{stat.icon && (
+									<div className="relative shrink-0 size-[48px]">
+										<DirectusImage
+											uuid={stat.icon}
+											alt=""
+											fill
+											sizes="48px"
+											className="object-contain"
+										/>
+									</div>
+								)}
+								{stat.value && (
+									<p
+										className="font-sans font-bold text-[32px] leading-[50px] whitespace-nowrap"
+										style={{ color: accent }}
+									>
+										{stat.value}
+									</p>
+								)}
+							</div>
 
-							{/* Value */}
-							{stat.value && (
-								<p
-									className="font-sans font-bold text-[32px] leading-[50px] whitespace-nowrap shrink-0"
-									style={{ color: accent }}
-								>
-									{stat.value}
-								</p>
-							)}
-
-							{/* Label */}
+							{/* Label — always starts at the same x position */}
 							{stat.label && (
 								<p className="font-sans font-semibold text-[18px] leading-[25px] text-white">
 									{stat.label}

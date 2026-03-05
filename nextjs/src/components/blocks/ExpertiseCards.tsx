@@ -60,146 +60,144 @@ export default function ExpertiseCards({ data, accentColor, contained }: Experti
 				mode: 'popover',
 			})}
 		>
-			{/* Heading: e.g. "Explore our Data Expertise" */}
+			{/* Heading */}
 			{hasHeading && (
-				<h2 className="font-sans font-normal text-[32px] leading-[40px] text-[#1d2939]" dangerouslySetInnerHTML={{ __html: heading }}>
-				</h2>
+				<h2 className="font-sans font-normal text-[32px] leading-[40px] text-[#1d2939]" dangerouslySetInnerHTML={{ __html: heading }} />
 			)}
 
 			{sorted.length > 0 && (
-				<div className="flex flex-col gap-[32px]">
-					{/* Cards grid — 3 visible at a time */}
+				<div className="flex flex-col gap-[16px]">
+					{/* Cards grid — 3 visible at a time; min-h-[342px] keeps all cards the same height */}
 					<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[16px]">
 						{visible.map((card) => (
-								<div
-									key={card.id}
-									className="bg-[#fcfcfd] rounded-[8px] p-[20px] flex flex-col justify-between gap-[24px]"
-									data-directus={setAttr({
-										collection: 'block_expertise_cards_items',
-										item: card.id,
-										fields: ['icon', 'title', 'description', 'link_label', 'url'],
-										mode: 'popover',
-									})}
-								>
-									{/* Icon + text */}
-									<div className="flex flex-col gap-[24px]">
-										{card.icon && (
-											<div className="relative size-[48px] shrink-0">
-												<DirectusImage
-													uuid={card.icon}
-													alt=""
-													fill
-													sizes="48px"
-													className="object-contain"
-												/>
-											</div>
-										)}
-										<div className="flex flex-col gap-[16px]">
-											{card.title && (
-												<h3 className="font-sans font-semibold text-[24px] leading-[32px] text-[#1d2939]">
-													{card.title}
-												</h3>
-											)}
-											{card.description && (
-												<p className="font-sans font-normal text-[16px] leading-[22px] text-[#1d2939]">
-													{card.description}
-												</p>
-											)}
+							<div
+								key={card.id}
+								className="bg-[#fcfcfd] rounded-[8px] p-[20px] flex flex-col justify-between gap-[24px] min-h-[342px]"
+								data-directus={setAttr({
+									collection: 'block_expertise_cards_items',
+									item: card.id,
+									fields: ['icon', 'title', 'description', 'link_label', 'url'],
+									mode: 'popover',
+								})}
+							>
+								{/* Icon + text */}
+								<div className="flex flex-col gap-[24px]">
+									{card.icon && (
+										<div className="relative size-[48px] shrink-0">
+											<DirectusImage
+												uuid={card.icon}
+												alt=""
+												fill
+												sizes="48px"
+												className="object-contain"
+											/>
 										</div>
-									</div>
-
-									{/* CTA link */}
-									{card.link_label && card.url && (
-										<Link
-											href={card.url}
-											className="inline-flex items-center gap-[4px] font-sans font-semibold text-[14px] leading-[26px] self-start"
-											style={{ color: accent }}
-										>
-											{card.link_label}
-											<svg
-												width="16"
-												height="16"
-												viewBox="0 0 16 16"
-												fill="none"
-												aria-hidden="true"
-											>
-												<path
-													d="M3 8H13M13 8L9 4M13 8L9 12"
-													stroke="currentColor"
-													strokeWidth="1.5"
-													strokeLinecap="round"
-													strokeLinejoin="round"
-												/>
-											</svg>
-										</Link>
 									)}
-								</div>
-							))}
-						</div>
-
-						{/* Carousel navigation — only shown when >3 cards */}
-						{isCarousel && (
-							<div className="flex items-center justify-between">
-								{/* Page dots */}
-								<div className="flex items-center gap-[8px]">
-									{Array.from({ length: totalPages }).map((_, i) => (
-										<button
-											key={i}
-											onClick={() => setPage(i)}
-											aria-label={`Go to page ${i + 1}`}
-											className="rounded-full transition-all"
-											style={{
-												width: i === page ? '24px' : '8px',
-												height: '8px',
-												backgroundColor:
-													i === page ? accent : '#d0d5dd',
-											}}
-										/>
-									))}
+									<div className="flex flex-col gap-[16px]">
+										{card.title && (
+											<h3 className="font-sans font-semibold text-[24px] leading-[32px] text-[#1d2939]">
+												{card.title}
+											</h3>
+										)}
+										{card.description && (
+											<p className="font-sans font-normal text-[16px] leading-[22px] text-[#1d2939]">
+												{card.description}
+											</p>
+										)}
+									</div>
 								</div>
 
-								{/* Prev / Next arrows */}
-								<div className="flex items-center gap-[8px]">
-									<button
-										onClick={() => setPage((p) => Math.max(0, p - 1))}
-										disabled={page === 0}
-										aria-label="Previous"
-										className="size-[40px] rounded-full border border-[#e4e7ec] flex items-center justify-center transition-all disabled:opacity-30"
+								{/* CTA link */}
+								{card.link_label && card.url && (
+									<Link
+										href={card.url}
+										className="inline-flex items-center gap-[4px] font-sans font-semibold text-[14px] leading-[26px] self-start"
 										style={{ color: accent }}
 									>
-										<svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+										{card.link_label}
+										<svg
+											width="16"
+											height="16"
+											viewBox="0 0 16 16"
+											fill="none"
+											aria-hidden="true"
+										>
 											<path
-												d="M10 12L6 8L10 4"
+												d="M3 8H13M13 8L9 4M13 8L9 12"
 												stroke="currentColor"
 												strokeWidth="1.5"
 												strokeLinecap="round"
 												strokeLinejoin="round"
 											/>
 										</svg>
-									</button>
-									<button
-										onClick={() => setPage((p) => Math.min(totalPages - 1, p + 1))}
-										disabled={page === totalPages - 1}
-										aria-label="Next"
-										className="size-[40px] rounded-full border border-[#e4e7ec] flex items-center justify-center transition-all disabled:opacity-30"
-										style={{ color: accent }}
-									>
-										<svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-											<path
-												d="M6 4L10 8L6 12"
-												stroke="currentColor"
-												strokeWidth="1.5"
-												strokeLinecap="round"
-												strokeLinejoin="round"
-											/>
-										</svg>
-									</button>
-								</div>
+									</Link>
+								)}
 							</div>
-						)}
+						))}
 					</div>
-				)}
-			</div>
+
+					{/* Carousel navigation — dots left, prev/next arrows right, on the card section row */}
+					{isCarousel && (
+						<div className="flex items-center justify-between">
+							{/* Page dots */}
+							<div className="flex items-center gap-[8px]">
+								{Array.from({ length: totalPages }).map((_, i) => (
+									<button
+										key={i}
+										onClick={() => setPage(i)}
+										aria-label={`Go to page ${i + 1}`}
+										className="rounded-full transition-all"
+										style={{
+											width: i === page ? '24px' : '8px',
+											height: '8px',
+											backgroundColor: i === page ? accent : '#d0d5dd',
+										}}
+									/>
+								))}
+							</div>
+
+							{/* Prev / Next arrows */}
+							<div className="flex items-center gap-[8px]">
+								<button
+									onClick={() => setPage((p) => Math.max(0, p - 1))}
+									disabled={page === 0}
+									aria-label="Previous"
+									className="size-[40px] rounded-full border border-[#e4e7ec] flex items-center justify-center transition-all disabled:opacity-30"
+									style={{ color: accent }}
+								>
+									<svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+										<path
+											d="M10 12L6 8L10 4"
+											stroke="currentColor"
+											strokeWidth="1.5"
+											strokeLinecap="round"
+											strokeLinejoin="round"
+										/>
+									</svg>
+								</button>
+								<button
+									onClick={() => setPage((p) => Math.min(totalPages - 1, p + 1))}
+									disabled={page === totalPages - 1}
+									aria-label="Next"
+									className="size-[40px] rounded-full border border-[#e4e7ec] flex items-center justify-center transition-all disabled:opacity-30"
+									style={{ color: accent }}
+								>
+									<svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+										<path
+											d="M6 4L10 8L6 12"
+											stroke="currentColor"
+											strokeWidth="1.5"
+											strokeLinecap="round"
+											strokeLinejoin="round"
+										/>
+									</svg>
+								</button>
+							</div>
+						</div>
+					)}
+				</div>
+			)}
+		</div>
 	);
 
 	if (contained) {

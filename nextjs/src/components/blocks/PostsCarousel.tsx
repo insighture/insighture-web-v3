@@ -42,10 +42,10 @@ export default function PostsCarousel({ data }: PostsCarouselProps) {
 
 	return (
 		<section
-			className="w-full py-[80px]"
+			className="w-full pt-[80px]"
 			data-directus={setAttr({ collection: 'block_posts_carousel', item: id, fields: ['headline', 'description', 'service'], mode: 'popover' })}
 		>
-			<div className="mx-auto max-w-[1200px] px-4 lg:px-8 flex flex-col gap-[80px]">
+			<div className="max-w-[1440px] mx-auto sm:px-6 lg:px-16 px-4 flex flex-col gap-[80px]">
 				{/* Header */}
 				<div className="flex flex-col gap-[24px]">
 					<div className="flex items-end justify-between">
@@ -89,11 +89,11 @@ export default function PostsCarousel({ data }: PostsCarouselProps) {
 
 				{/* Cards grid */}
 				{visible.length > 0 && (
-					<div className="flex flex-col sm:flex-row gap-[33px] items-stretch">
+					<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[33px]">
 						{visible.map((post) => {
 							const readTime = getReadTime(post.description);
 							const card = (
-								<div className="bg-[#ebf0f2] flex flex-col size-full rounded-[16px] overflow-hidden sm:w-[378px] shrink-0">
+								<div className="bg-[#ebf0f2] flex flex-col size-full rounded-[16px] overflow-hidden">
 									{/* Image */}
 									<div className="relative h-[280px] shrink-0 w-full">
 										{post.image ? (
@@ -101,7 +101,7 @@ export default function PostsCarousel({ data }: PostsCarouselProps) {
 												uuid={post.image}
 												alt={post.title ?? ''}
 												fill
-												sizes="(max-width: 640px) 100vw, 378px"
+												sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 378px"
 												className="object-cover"
 											/>
 										) : (
@@ -131,7 +131,7 @@ export default function PostsCarousel({ data }: PostsCarouselProps) {
 							);
 
 							return post.slug ? (
-								<Link key={post.id} href={`/blog/${post.slug}`} className="flex w-full sm:w-[378px] shrink-0 group">
+								<Link key={post.id} href={`/blog/${post.slug}`} className="flex group min-h-[560px]">
 									<div className="bg-[#ebf0f2] flex flex-col size-full rounded-[16px] overflow-hidden group-hover:shadow-md transition-shadow">
 										{/* Image */}
 										<div className="relative h-[280px] shrink-0 w-full">
@@ -166,7 +166,7 @@ export default function PostsCarousel({ data }: PostsCarouselProps) {
 									</div>
 								</Link>
 							) : (
-								<div key={post.id} className="flex w-full sm:w-[378px] shrink-0">
+								<div key={post.id} className="flex min-h-[560px]">
 									{card}
 								</div>
 							);

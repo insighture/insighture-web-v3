@@ -15,7 +15,7 @@ interface PlatformCtaProps {
 	};
 }
 
-export default function PlatformCta({ data }: PlatformCtaProps) {
+export default function PlatformBanner({ data }: PlatformCtaProps) {
 	const { id, title, description, cta_label, cta_url, image } = data;
 
 	return (
@@ -38,7 +38,7 @@ export default function PlatformCta({ data }: PlatformCtaProps) {
 						<div className="flex flex-col gap-[40px] items-start lg:max-w-[487px]">
 							{title && (
 								<div
-									className="font-heading font-medium text-[32px] leading-[40px] md:text-[40px] md:leading-[48px] lg:text-[48px] lg:leading-[56px] text-[#1d2939] [&_em]:not-italic [&_em]:italic [&_em]:text-[#0182cb]"
+									className="font-heading font-medium text-[32px] leading-[40px] md:text-[40px] md:leading-[48px] lg:text-[48px] lg:leading-[56px] text-[#1d2939]"
 									dangerouslySetInnerHTML={{ __html: title }}
 									data-directus={setAttr({
 										collection: 'block_platform_cta',

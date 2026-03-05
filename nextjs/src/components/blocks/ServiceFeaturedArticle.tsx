@@ -61,10 +61,10 @@ export default function ServiceFeaturedArticle({ data, accentColor, contained }:
 					}}
 				/>
 
-				{/* Content row — starts at 112px from top */}
+				{/* Content row — vertically centered in the dark card */}
 				<div
-					className="absolute inset-x-0 flex items-start gap-10"
-					style={{ top: '112px' }}
+					className="absolute inset-x-0 flex items-center gap-10"
+					style={{ top: '56px', bottom: '56px' }}
 				>
 					{/* Image — bleeds from left-0; right corners rounded */}
 					{image && (
@@ -85,8 +85,8 @@ export default function ServiceFeaturedArticle({ data, accentColor, contained }:
 
 					{/* Text content */}
 					<div
-						className="flex-1 flex flex-col justify-between pr-16"
-						style={{ height: '368px', paddingTop: '24px' }}
+						className="flex-1 flex flex-col justify-between pr-16 py-6"
+						style={{ height: '368px'}}
 					>
 						<div className="flex flex-col gap-10">
 							{tagline && (
@@ -95,7 +95,7 @@ export default function ServiceFeaturedArticle({ data, accentColor, contained }:
 								</p>
 							)}
 							{headline && (
-								<div className="font-bold text-[36px] leading-[48px] text-[#fcfcfd] [&>p]:m-0" dangerouslySetInnerHTML={{ __html: headline }} />
+								<div className="text-[36px] leading-[48px] text-[#fcfcfd] [&>p]:m-0" dangerouslySetInnerHTML={{ __html: headline }} />
 							)}
 						</div>
 						{ctaButton}

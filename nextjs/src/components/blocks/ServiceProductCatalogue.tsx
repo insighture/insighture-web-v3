@@ -13,7 +13,6 @@ export interface ServiceProductItem {
 export interface ServiceProductCatalogueData {
 	id: string;
 	headline?: string | null;
-	headline_emphasis?: string | null;
 	image?: string | null;
 	image_alt?: string | null;
 	products?: ServiceProductItem[] | null;
@@ -33,11 +32,12 @@ function darkenColor(hex: string, amount = 0.41): string {
 	const r = Math.round(parseInt(h.slice(0, 2), 16) * (1 - amount));
 	const g = Math.round(parseInt(h.slice(2, 4), 16) * (1 - amount));
 	const b = Math.round(parseInt(h.slice(4, 6), 16) * (1 - amount));
-	return `#${r.toString(16).padStart(2, '0')}${g.toString(16).padStart(2, '0')}${b.toString(16).padStart(2, '0')}`;
+	
+return `#${r.toString(16).padStart(2, '0')}${g.toString(16).padStart(2, '0')}${b.toString(16).padStart(2, '0')}`;
 }
 
 export default function ServiceProductCatalogue({ data, accentColor, contained }: ServiceProductCatalogueProps) {
-	const { id, headline, headline_emphasis, image, image_alt, products } = data;
+	const { id, headline,  image, image_alt, products } = data;
 	const accent = accentColor || '#fab400';
 	const accentDark = darkenColor(accent);
 
@@ -45,21 +45,15 @@ export default function ServiceProductCatalogue({ data, accentColor, contained }
 	const [activeIndex, setActiveIndex] = useState(0);
 
 	const headlineBlock = (size: 'sm' | 'lg') => (
-		headline || headline_emphasis ? (
+		headline  ? (
 			<p
 				className="font-sans font-medium text-[#fcfcfd]"
 				style={size === 'lg'
 					? { fontSize: '40px', lineHeight: '48px' }
 					: { fontSize: '32px', lineHeight: '40px' }
 				}
-			>
-				{headline}
-				{headline_emphasis && (
-					<span className="font-semibold italic" style={{ color: accent }}>
-						{headline && !headline.endsWith(' ') ? ' ' : ''}
-						{headline_emphasis}
-					</span>
-				)}
+				dangerouslySetInnerHTML={{ __html: headline }}
+			>		
 			</p>
 		) : null
 	);

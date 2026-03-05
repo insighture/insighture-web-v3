@@ -46,14 +46,14 @@ interface ServiceItem {
 interface ServiceItemsProps {
 	data: {
 		id: string;
-		tagline?: string | null;
+		description?: string | null;
 		heading?: string | null;
 		items?: ServiceItem[];
 	};
 }
 
 export default function ServiceItems({ data }: ServiceItemsProps) {
-	const { id, tagline, heading, items = [] } = data;
+	const { id, description, heading, items = [] } = data;
 	const sorted = [...items].sort((a, b) => (a.sort ?? 0) - (b.sort ?? 0));
 	const [activeIndex, setActiveIndex] = useState(0);
 	const active = sorted[activeIndex];
@@ -71,14 +71,14 @@ export default function ServiceItems({ data }: ServiceItemsProps) {
 			data-directus={setAttr({
 				collection: 'block_services_tab',
 				item: id,
-				fields: ['tagline', 'heading'],
+				fields: ['description', 'heading'],
 				mode: 'popover',
 			})}
 		>
-			<div className="mx-auto max-w-[1200px] px-4 lg:px-8 py-[64px] lg:py-[96px] flex flex-col gap-[56px]">
+			<div className="max-w-[1440px] mx-auto sm:px-6 lg:px-16 px-4 py-[64px] lg:py-[96px] flex flex-col gap-[56px]">
 
 				{/* ── Section header ───────────────────────────────────────── */}
-				{(heading || tagline) && (
+				{(heading || description) && (
 					<div className="flex flex-col gap-[24px] lg:max-w-[649px]">
 						{heading && (
 							<h2
@@ -86,9 +86,9 @@ export default function ServiceItems({ data }: ServiceItemsProps) {
 								dangerouslySetInnerHTML={{ __html: heading }}
 							/>
 						)}
-						{tagline && (
+						{description && (
 							<p className="font-sans font-normal text-[18px] leading-[28px] text-[#1e1e1e]">
-								{tagline}
+								{description}
 							</p>
 						)}
 					</div>
@@ -131,10 +131,10 @@ export default function ServiceItems({ data }: ServiceItemsProps) {
 						{/* Content panel */}
 						{active && (
 							<div className="bg-[#fcfcfd] rounded-[8px] p-[24px]">
-								<div className="flex flex-col lg:flex-row gap-[40px] lg:h-[452px]">
+								<div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-[40px] lg:h-[452px] w-full">
 
 									{/* Left column */}
-									<div className="flex flex-col justify-between gap-[32px] lg:w-[500px] shrink-0">
+									<div className="flex flex-col justify-between w-full lg:w-1/2 lg:h-full shrink-0">
 										<div className="flex flex-col gap-[24px]">
 											<div className="flex flex-col gap-[24px]">
 												{active.title && (
@@ -173,7 +173,7 @@ export default function ServiceItems({ data }: ServiceItemsProps) {
 
 														return (
 															<>
-																<div className="flex flex-col gap-[2px] w-[200px] shrink-0">
+																<div className="flex flex-col gap-[2px] w-1/2 shrink-0">
 																	{col1.map((s, i) => (
 																		<span key={i}>• {s}</span>
 																	))}
@@ -195,7 +195,7 @@ export default function ServiceItems({ data }: ServiceItemsProps) {
 
 									{/* Right column: image */}
 									{panel?.image && (
-										<div className="relative flex-1 min-h-[280px] lg:min-h-0 rounded-[8px] overflow-hidden">
+										<div className="relative w-full lg:w-1/2 flex-1 min-h-[280px] lg:min-h-0 rounded-[8px] overflow-hidden">
 											<DirectusImage
 												uuid={panel.image}
 												alt={active.title ?? ''}

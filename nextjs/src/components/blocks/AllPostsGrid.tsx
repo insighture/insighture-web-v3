@@ -93,11 +93,11 @@ return true;
 			className="w-full py-[80px]"
 			data-directus={setAttr({ collection: 'block_all_posts', item: id, fields: ['headline'], mode: 'popover' })}
 		>
-			<div className="mx-auto max-w-[1200px] px-4 lg:px-8 flex flex-col gap-[80px]">
+			<div className="max-w-[1440px] mx-auto sm:px-6 lg:px-16 px-4 flex flex-col gap-[80px]">
 				{/* Header + Filters */}
-				<div className="flex flex-col gap-[40px]">
+				<div className="flex items-end justify-between gap-[16px]">
 					{headline && (
-						<h2 className="font-sans font-normal text-[40px] lg:text-[64px] leading-[1] text-[#1d2939]">
+						<h2 className="font-sans font-normal text-[40px] lg:text-[64px] leading-[1] text-[#1d2939] shrink-0">
 							{headline}
 						</h2>
 					)}
@@ -189,7 +189,7 @@ return true;
 								<Link
 									key={post.id}
 									href={`/blog/${post.slug}`}
-									className="flex group"
+									className="flex group min-h-[560px]"
 								>
 									<div className="bg-[#ebf0f2] flex flex-col size-full rounded-[16px] overflow-hidden group-hover:shadow-md transition-shadow">
 										<div className="relative h-[280px] shrink-0 w-full">
@@ -223,7 +223,7 @@ return true;
 									</div>
 								</Link>
 							) : (
-								<div key={post.id}>{inner}</div>
+								<div key={post.id} className="flex min-h-[560px]">{inner}</div>
 							);
 						})}
 					</div>
@@ -232,8 +232,8 @@ return true;
 				)}
 
 				{/* Pagination */}
-				{totalPages > 1 && (
-					<div className="flex items-center gap-[32px]">
+				{filtered.length > 0 && (
+					<div className="flex flex-row justify-center items-center gap-[32px]">
 						{/* Prev */}
 						<button
 							onClick={() => setPage((p) => Math.max(1, p - 1))}
