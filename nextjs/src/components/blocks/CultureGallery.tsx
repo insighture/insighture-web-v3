@@ -32,6 +32,7 @@ const PinIcon = ({ color, size = 'large' }: { color: string; size?: 'small' | 'l
 	const cx = w / 2;
 	const headR = size === 'small' ? 5.5 : 7;
 	const stemY1 = headR * 2 + 1;
+	
 	return (
 		<svg width={w} height={h} viewBox={`0 0 ${w} ${h}`} fill="none" xmlns="http://www.w3.org/2000/svg">
 			<circle cx={cx} cy={headR} r={headR} fill={color} />
