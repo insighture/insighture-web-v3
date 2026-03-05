@@ -16668,5 +16668,3716 @@
 			"validation": null,
 			"validation_message": null
 		}
+	},
+	{
+		"collection": "block_reach_out",
+		"field": "id",
+		"type": "uuid",
+		"schema": {
+			"name": "id",
+			"table": "block_reach_out",
+			"data_type": "uuid",
+			"default_value": null,
+			"generation_expression": null,
+			"max_length": null,
+			"numeric_precision": null,
+			"numeric_scale": null,
+			"is_generated": false,
+			"is_nullable": false,
+			"is_unique": true,
+			"is_indexed": false,
+			"is_primary_key": true,
+			"has_auto_increment": false,
+			"foreign_key_schema": null,
+			"foreign_key_table": null,
+			"foreign_key_column": null,
+			"comment": null
+		},
+		"meta": {
+			"collection": "block_reach_out",
+			"field": "id",
+			"special": [
+				"uuid"
+			],
+			"interface": "input",
+			"options": null,
+			"display": null,
+			"display_options": null,
+			"readonly": true,
+			"hidden": true,
+			"sort": 1,
+			"width": "full",
+			"translations": null,
+			"note": null,
+			"conditions": null,
+			"required": false,
+			"group": null,
+			"validation": null,
+			"validation_message": null
+		}
+	},
+	{
+		"collection": "block_reach_out",
+		"field": "date_created",
+		"type": "timestamp",
+		"schema": {
+			"name": "date_created",
+			"table": "block_reach_out",
+			"data_type": "timestamp with time zone",
+			"default_value": "CURRENT_TIMESTAMP",
+			"generation_expression": null,
+			"max_length": null,
+			"numeric_precision": null,
+			"numeric_scale": null,
+			"is_generated": false,
+			"is_nullable": true,
+			"is_unique": false,
+			"is_indexed": false,
+			"is_primary_key": false,
+			"has_auto_increment": false,
+			"foreign_key_schema": null,
+			"foreign_key_table": null,
+			"foreign_key_column": null,
+			"comment": null
+		},
+		"meta": {
+			"collection": "block_reach_out",
+			"field": "date_created",
+			"special": [
+				"date-created"
+			],
+			"interface": "datetime",
+			"options": null,
+			"display": "datetime",
+			"display_options": {
+				"relative": true
+			},
+			"readonly": true,
+			"hidden": true,
+			"sort": 2,
+			"width": "half",
+			"translations": null,
+			"note": null,
+			"conditions": null,
+			"required": false,
+			"group": null,
+			"validation": null,
+			"validation_message": null
+		}
+	},
+	{
+		"collection": "block_reach_out",
+		"field": "user_created",
+		"type": "uuid",
+		"schema": {
+			"name": "user_created",
+			"table": "block_reach_out",
+			"data_type": "uuid",
+			"default_value": null,
+			"generation_expression": null,
+			"max_length": null,
+			"numeric_precision": null,
+			"numeric_scale": null,
+			"is_generated": false,
+			"is_nullable": true,
+			"is_unique": false,
+			"is_indexed": false,
+			"is_primary_key": false,
+			"has_auto_increment": false,
+			"foreign_key_schema": "public",
+			"foreign_key_table": "directus_users",
+			"foreign_key_column": "id",
+			"comment": null
+		},
+		"meta": {
+			"collection": "block_reach_out",
+			"field": "user_created",
+			"special": [
+				"user-created"
+			],
+			"interface": "select-dropdown-m2o",
+			"options": {
+				"template": "{{avatar.$thumbnail}} {{first_name}} {{last_name}}"
+			},
+			"display": "user",
+			"display_options": null,
+			"readonly": true,
+			"hidden": true,
+			"sort": 3,
+			"width": "half",
+			"translations": null,
+			"note": null,
+			"conditions": null,
+			"required": false,
+			"group": null,
+			"validation": null,
+			"validation_message": null
+		}
+	},
+	{
+		"collection": "block_reach_out",
+		"field": "date_updated",
+		"type": "timestamp",
+		"schema": {
+			"name": "date_updated",
+			"table": "block_reach_out",
+			"data_type": "timestamp with time zone",
+			"default_value": null,
+			"generation_expression": null,
+			"max_length": null,
+			"numeric_precision": null,
+			"numeric_scale": null,
+			"is_generated": false,
+			"is_nullable": true,
+			"is_unique": false,
+			"is_indexed": false,
+			"is_primary_key": false,
+			"has_auto_increment": false,
+			"foreign_key_schema": null,
+			"foreign_key_table": null,
+			"foreign_key_column": null,
+			"comment": null
+		},
+		"meta": {
+			"collection": "block_reach_out",
+			"field": "date_updated",
+			"special": [
+				"date-updated"
+			],
+			"interface": "datetime",
+			"options": null,
+			"display": "datetime",
+			"display_options": {
+				"relative": true
+			},
+			"readonly": true,
+			"hidden": true,
+			"sort": 4,
+			"width": "half",
+			"translations": null,
+			"note": null,
+			"conditions": null,
+			"required": false,
+			"group": null,
+			"validation": null,
+			"validation_message": null
+		}
+	},
+	{
+		"collection": "block_reach_out",
+		"field": "user_updated",
+		"type": "uuid",
+		"schema": {
+			"name": "user_updated",
+			"table": "block_reach_out",
+			"data_type": "uuid",
+			"default_value": null,
+			"generation_expression": null,
+			"max_length": null,
+			"numeric_precision": null,
+			"numeric_scale": null,
+			"is_generated": false,
+			"is_nullable": true,
+			"is_unique": false,
+			"is_indexed": false,
+			"is_primary_key": false,
+			"has_auto_increment": false,
+			"foreign_key_schema": "public",
+			"foreign_key_table": "directus_users",
+			"foreign_key_column": "id",
+			"comment": null
+		},
+		"meta": {
+			"collection": "block_reach_out",
+			"field": "user_updated",
+			"special": [
+				"user-updated"
+			],
+			"interface": "select-dropdown-m2o",
+			"options": {
+				"template": "{{avatar.$thumbnail}} {{first_name}} {{last_name}}"
+			},
+			"display": "user",
+			"display_options": null,
+			"readonly": true,
+			"hidden": true,
+			"sort": 5,
+			"width": "half",
+			"translations": null,
+			"note": null,
+			"conditions": null,
+			"required": false,
+			"group": null,
+			"validation": null,
+			"validation_message": null
+		}
+	},
+	{
+		"collection": "block_reach_out",
+		"field": "heading",
+		"type": "string",
+		"schema": {
+			"name": "heading",
+			"table": "block_reach_out",
+			"data_type": "character varying",
+			"default_value": null,
+			"generation_expression": null,
+			"max_length": 255,
+			"numeric_precision": null,
+			"numeric_scale": null,
+			"is_generated": false,
+			"is_nullable": true,
+			"is_unique": false,
+			"is_indexed": false,
+			"is_primary_key": false,
+			"has_auto_increment": false,
+			"foreign_key_schema": null,
+			"foreign_key_table": null,
+			"foreign_key_column": null,
+			"comment": null
+		},
+		"meta": {
+			"collection": "block_reach_out",
+			"field": "heading",
+			"special": null,
+			"interface": "input",
+			"options": {
+				"placeholder": "e.g. Reach out"
+			},
+			"display": null,
+			"display_options": null,
+			"readonly": false,
+			"hidden": false,
+			"sort": 6,
+			"width": "full",
+			"translations": null,
+			"note": "Section heading shown at the top of the block.",
+			"conditions": null,
+			"required": false,
+			"group": null,
+			"validation": null,
+			"validation_message": null
+		}
+	},
+	{
+		"collection": "block_reach_out",
+		"field": "brochure_title",
+		"type": "string",
+		"schema": {
+			"name": "brochure_title",
+			"table": "block_reach_out",
+			"data_type": "character varying",
+			"default_value": null,
+			"generation_expression": null,
+			"max_length": 255,
+			"numeric_precision": null,
+			"numeric_scale": null,
+			"is_generated": false,
+			"is_nullable": true,
+			"is_unique": false,
+			"is_indexed": false,
+			"is_primary_key": false,
+			"has_auto_increment": false,
+			"foreign_key_schema": null,
+			"foreign_key_table": null,
+			"foreign_key_column": null,
+			"comment": null
+		},
+		"meta": {
+			"collection": "block_reach_out",
+			"field": "brochure_title",
+			"special": null,
+			"interface": "input",
+			"options": {
+				"placeholder": "e.g. Insighture at a glance"
+			},
+			"display": null,
+			"display_options": null,
+			"readonly": false,
+			"hidden": false,
+			"sort": 7,
+			"width": "full",
+			"translations": null,
+			"note": "Title shown on the brochure card.",
+			"conditions": null,
+			"required": false,
+			"group": null,
+			"validation": null,
+			"validation_message": null
+		}
+	},
+	{
+		"collection": "block_reach_out",
+		"field": "brochure_image",
+		"type": "uuid",
+		"schema": {
+			"name": "brochure_image",
+			"table": "block_reach_out",
+			"data_type": "uuid",
+			"default_value": null,
+			"generation_expression": null,
+			"max_length": null,
+			"numeric_precision": null,
+			"numeric_scale": null,
+			"is_generated": false,
+			"is_nullable": true,
+			"is_unique": false,
+			"is_indexed": false,
+			"is_primary_key": false,
+			"has_auto_increment": false,
+			"foreign_key_schema": "public",
+			"foreign_key_table": "directus_files",
+			"foreign_key_column": "id",
+			"comment": null
+		},
+		"meta": {
+			"collection": "block_reach_out",
+			"field": "brochure_image",
+			"special": [
+				"file"
+			],
+			"interface": "file-image",
+			"options": {
+				"crop": false
+			},
+			"display": null,
+			"display_options": null,
+			"readonly": false,
+			"hidden": false,
+			"sort": 8,
+			"width": "half",
+			"translations": null,
+			"note": "Thumbnail image shown on the brochure card.",
+			"conditions": null,
+			"required": false,
+			"group": null,
+			"validation": null,
+			"validation_message": null
+		}
+	},
+	{
+		"collection": "block_reach_out",
+		"field": "brochure_pdf",
+		"type": "uuid",
+		"schema": {
+			"name": "brochure_pdf",
+			"table": "block_reach_out",
+			"data_type": "uuid",
+			"default_value": null,
+			"generation_expression": null,
+			"max_length": null,
+			"numeric_precision": null,
+			"numeric_scale": null,
+			"is_generated": false,
+			"is_nullable": true,
+			"is_unique": false,
+			"is_indexed": false,
+			"is_primary_key": false,
+			"has_auto_increment": false,
+			"foreign_key_schema": "public",
+			"foreign_key_table": "directus_files",
+			"foreign_key_column": "id",
+			"comment": null
+		},
+		"meta": {
+			"collection": "block_reach_out",
+			"field": "brochure_pdf",
+			"special": [
+				"file"
+			],
+			"interface": "file",
+			"options": null,
+			"display": null,
+			"display_options": null,
+			"readonly": false,
+			"hidden": false,
+			"sort": 9,
+			"width": "half",
+			"translations": null,
+			"note": "PDF file users can download from the brochure card.",
+			"conditions": null,
+			"required": false,
+			"group": null,
+			"validation": null,
+			"validation_message": null
+		}
+	},
+	{
+		"collection": "block_reach_out",
+		"field": "brochure_download_label",
+		"type": "string",
+		"schema": {
+			"name": "brochure_download_label",
+			"table": "block_reach_out",
+			"data_type": "character varying",
+			"default_value": "Download PDF",
+			"generation_expression": null,
+			"max_length": 255,
+			"numeric_precision": null,
+			"numeric_scale": null,
+			"is_generated": false,
+			"is_nullable": true,
+			"is_unique": false,
+			"is_indexed": false,
+			"is_primary_key": false,
+			"has_auto_increment": false,
+			"foreign_key_schema": null,
+			"foreign_key_table": null,
+			"foreign_key_column": null,
+			"comment": null
+		},
+		"meta": {
+			"collection": "block_reach_out",
+			"field": "brochure_download_label",
+			"special": null,
+			"interface": "input",
+			"options": {
+				"placeholder": "Download PDF"
+			},
+			"display": null,
+			"display_options": null,
+			"readonly": false,
+			"hidden": false,
+			"sort": 10,
+			"width": "full",
+			"translations": null,
+			"note": "Label for the download link on the brochure card. Defaults to \"Download PDF\".",
+			"conditions": null,
+			"required": false,
+			"group": null,
+			"validation": null,
+			"validation_message": null
+		}
+	},
+	{
+		"collection": "block_reach_out",
+		"field": "inquiries_heading",
+		"type": "string",
+		"schema": {
+			"name": "inquiries_heading",
+			"table": "block_reach_out",
+			"data_type": "character varying",
+			"default_value": null,
+			"generation_expression": null,
+			"max_length": 255,
+			"numeric_precision": null,
+			"numeric_scale": null,
+			"is_generated": false,
+			"is_nullable": true,
+			"is_unique": false,
+			"is_indexed": false,
+			"is_primary_key": false,
+			"has_auto_increment": false,
+			"foreign_key_schema": null,
+			"foreign_key_table": null,
+			"foreign_key_column": null,
+			"comment": null
+		},
+		"meta": {
+			"collection": "block_reach_out",
+			"field": "inquiries_heading",
+			"special": null,
+			"interface": "input",
+			"options": {
+				"placeholder": "e.g. General Inquiries"
+			},
+			"display": null,
+			"display_options": null,
+			"readonly": false,
+			"hidden": false,
+			"sort": 11,
+			"width": "full",
+			"translations": null,
+			"note": "Heading shown above the contact information list.",
+			"conditions": null,
+			"required": false,
+			"group": null,
+			"validation": null,
+			"validation_message": null
+		}
+	},
+	{
+		"collection": "block_reach_out",
+		"field": "contact_items",
+		"type": "alias",
+		"meta": {
+			"collection": "block_reach_out",
+			"field": "contact_items",
+			"special": [
+				"o2m"
+			],
+			"interface": "list-o2m",
+			"options": {
+				"template": "{{label}} — {{value}}",
+				"enableCreate": true,
+				"enableSelect": false
+			},
+			"display": null,
+			"display_options": null,
+			"readonly": false,
+			"hidden": false,
+			"sort": 12,
+			"width": "full",
+			"translations": null,
+			"note": "Contact entries shown in the inquiries section (label, value, description).",
+			"conditions": null,
+			"required": false,
+			"group": null,
+			"validation": null,
+			"validation_message": null
+		},
+		"schema": null
+	},
+	{
+		"collection": "block_reach_out",
+		"field": "form",
+		"type": "uuid",
+		"schema": {
+			"name": "form",
+			"table": "block_reach_out",
+			"data_type": "uuid",
+			"default_value": null,
+			"generation_expression": null,
+			"max_length": null,
+			"numeric_precision": null,
+			"numeric_scale": null,
+			"is_generated": false,
+			"is_nullable": true,
+			"is_unique": false,
+			"is_indexed": false,
+			"is_primary_key": false,
+			"has_auto_increment": false,
+			"foreign_key_schema": "public",
+			"foreign_key_table": "forms",
+			"foreign_key_column": "id",
+			"comment": null
+		},
+		"meta": {
+			"collection": "block_reach_out",
+			"field": "form",
+			"special": [
+				"m2o"
+			],
+			"interface": "select-dropdown-m2o",
+			"options": null,
+			"display": null,
+			"display_options": null,
+			"readonly": false,
+			"hidden": false,
+			"sort": 13,
+			"width": "full",
+			"translations": null,
+			"note": "Form to display on the left side of the Reach Out block.",
+			"conditions": null,
+			"required": false,
+			"group": null,
+			"validation": null,
+			"validation_message": null
+		}
+	},
+	{
+		"collection": "block_reach_out_contact_item",
+		"field": "id",
+		"type": "uuid",
+		"schema": {
+			"name": "id",
+			"table": "block_reach_out_contact_item",
+			"data_type": "uuid",
+			"default_value": null,
+			"generation_expression": null,
+			"max_length": null,
+			"numeric_precision": null,
+			"numeric_scale": null,
+			"is_generated": false,
+			"is_nullable": false,
+			"is_unique": true,
+			"is_indexed": false,
+			"is_primary_key": true,
+			"has_auto_increment": false,
+			"foreign_key_schema": null,
+			"foreign_key_table": null,
+			"foreign_key_column": null,
+			"comment": null
+		},
+		"meta": {
+			"collection": "block_reach_out_contact_item",
+			"field": "id",
+			"special": [
+				"uuid"
+			],
+			"interface": "input",
+			"options": null,
+			"display": null,
+			"display_options": null,
+			"readonly": true,
+			"hidden": true,
+			"sort": 1,
+			"width": "full",
+			"translations": null,
+			"note": null,
+			"conditions": null,
+			"required": false,
+			"group": null,
+			"validation": null,
+			"validation_message": null
+		}
+	},
+	{
+		"collection": "block_reach_out_contact_item",
+		"field": "sort",
+		"type": "integer",
+		"schema": {
+			"name": "sort",
+			"table": "block_reach_out_contact_item",
+			"data_type": "integer",
+			"default_value": null,
+			"generation_expression": null,
+			"max_length": null,
+			"numeric_precision": 32,
+			"numeric_scale": 0,
+			"is_generated": false,
+			"is_nullable": true,
+			"is_unique": false,
+			"is_indexed": false,
+			"is_primary_key": false,
+			"has_auto_increment": false,
+			"foreign_key_schema": null,
+			"foreign_key_table": null,
+			"foreign_key_column": null,
+			"comment": null
+		},
+		"meta": {
+			"collection": "block_reach_out_contact_item",
+			"field": "sort",
+			"special": null,
+			"interface": "input",
+			"options": null,
+			"display": null,
+			"display_options": null,
+			"readonly": false,
+			"hidden": true,
+			"sort": 2,
+			"width": "full",
+			"translations": null,
+			"note": null,
+			"conditions": null,
+			"required": false,
+			"group": null,
+			"validation": null,
+			"validation_message": null
+		}
+	},
+	{
+		"collection": "block_reach_out_contact_item",
+		"field": "block_reach_out",
+		"type": "uuid",
+		"schema": {
+			"name": "block_reach_out",
+			"table": "block_reach_out_contact_item",
+			"data_type": "uuid",
+			"default_value": null,
+			"generation_expression": null,
+			"max_length": null,
+			"numeric_precision": null,
+			"numeric_scale": null,
+			"is_generated": false,
+			"is_nullable": true,
+			"is_unique": false,
+			"is_indexed": false,
+			"is_primary_key": false,
+			"has_auto_increment": false,
+			"foreign_key_schema": "public",
+			"foreign_key_table": "block_reach_out",
+			"foreign_key_column": "id",
+			"comment": null
+		},
+		"meta": {
+			"collection": "block_reach_out_contact_item",
+			"field": "block_reach_out",
+			"special": null,
+			"interface": "select-dropdown-m2o",
+			"options": null,
+			"display": null,
+			"display_options": null,
+			"readonly": false,
+			"hidden": true,
+			"sort": 3,
+			"width": "full",
+			"translations": null,
+			"note": null,
+			"conditions": null,
+			"required": false,
+			"group": null,
+			"validation": null,
+			"validation_message": null
+		}
+	},
+	{
+		"collection": "block_reach_out_contact_item",
+		"field": "label",
+		"type": "string",
+		"schema": {
+			"name": "label",
+			"table": "block_reach_out_contact_item",
+			"data_type": "character varying",
+			"default_value": null,
+			"generation_expression": null,
+			"max_length": 255,
+			"numeric_precision": null,
+			"numeric_scale": null,
+			"is_generated": false,
+			"is_nullable": true,
+			"is_unique": false,
+			"is_indexed": false,
+			"is_primary_key": false,
+			"has_auto_increment": false,
+			"foreign_key_schema": null,
+			"foreign_key_table": null,
+			"foreign_key_column": null,
+			"comment": null
+		},
+		"meta": {
+			"collection": "block_reach_out_contact_item",
+			"field": "label",
+			"special": null,
+			"interface": "input",
+			"options": {
+				"placeholder": "e.g. Email us"
+			},
+			"display": null,
+			"display_options": null,
+			"readonly": false,
+			"hidden": false,
+			"sort": 4,
+			"width": "full",
+			"translations": null,
+			"note": "Contact method label (e.g. \"Email us\", \"Global enquiries\").",
+			"conditions": null,
+			"required": false,
+			"group": null,
+			"validation": null,
+			"validation_message": null
+		}
+	},
+	{
+		"collection": "block_reach_out_contact_item",
+		"field": "value",
+		"type": "string",
+		"schema": {
+			"name": "value",
+			"table": "block_reach_out_contact_item",
+			"data_type": "character varying",
+			"default_value": null,
+			"generation_expression": null,
+			"max_length": 255,
+			"numeric_precision": null,
+			"numeric_scale": null,
+			"is_generated": false,
+			"is_nullable": true,
+			"is_unique": false,
+			"is_indexed": false,
+			"is_primary_key": false,
+			"has_auto_increment": false,
+			"foreign_key_schema": null,
+			"foreign_key_table": null,
+			"foreign_key_column": null,
+			"comment": null
+		},
+		"meta": {
+			"collection": "block_reach_out_contact_item",
+			"field": "value",
+			"special": null,
+			"interface": "input",
+			"options": {
+				"placeholder": "e.g. hello@insighture.com"
+			},
+			"display": null,
+			"display_options": null,
+			"readonly": false,
+			"hidden": false,
+			"sort": 5,
+			"width": "full",
+			"translations": null,
+			"note": "The contact value (email address, phone number, etc.).",
+			"conditions": null,
+			"required": false,
+			"group": null,
+			"validation": null,
+			"validation_message": null
+		}
+	},
+	{
+		"collection": "block_reach_out_contact_item",
+		"field": "description",
+		"type": "string",
+		"schema": {
+			"name": "description",
+			"table": "block_reach_out_contact_item",
+			"data_type": "character varying",
+			"default_value": null,
+			"generation_expression": null,
+			"max_length": 255,
+			"numeric_precision": null,
+			"numeric_scale": null,
+			"is_generated": false,
+			"is_nullable": true,
+			"is_unique": false,
+			"is_indexed": false,
+			"is_primary_key": false,
+			"has_auto_increment": false,
+			"foreign_key_schema": null,
+			"foreign_key_table": null,
+			"foreign_key_column": null,
+			"comment": null
+		},
+		"meta": {
+			"collection": "block_reach_out_contact_item",
+			"field": "description",
+			"special": null,
+			"interface": "input",
+			"options": {
+				"placeholder": "e.g. For all enquiries"
+			},
+			"display": null,
+			"display_options": null,
+			"readonly": false,
+			"hidden": false,
+			"sort": 6,
+			"width": "full",
+			"translations": null,
+			"note": "Supporting description shown below the contact value.",
+			"conditions": null,
+			"required": false,
+			"group": null,
+			"validation": null,
+			"validation_message": null
+		}
+	},
+	{
+		"collection": "block_reach_out_contact_item",
+		"field": "date_created",
+		"type": "timestamp",
+		"schema": {
+			"name": "date_created",
+			"table": "block_reach_out_contact_item",
+			"data_type": "timestamp with time zone",
+			"default_value": "CURRENT_TIMESTAMP",
+			"generation_expression": null,
+			"max_length": null,
+			"numeric_precision": null,
+			"numeric_scale": null,
+			"is_generated": false,
+			"is_nullable": true,
+			"is_unique": false,
+			"is_indexed": false,
+			"is_primary_key": false,
+			"has_auto_increment": false,
+			"foreign_key_schema": null,
+			"foreign_key_table": null,
+			"foreign_key_column": null,
+			"comment": null
+		},
+		"meta": {
+			"collection": "block_reach_out_contact_item",
+			"field": "date_created",
+			"special": [
+				"date-created"
+			],
+			"interface": "datetime",
+			"options": null,
+			"display": "datetime",
+			"display_options": {
+				"relative": true
+			},
+			"readonly": true,
+			"hidden": true,
+			"sort": 7,
+			"width": "half",
+			"translations": null,
+			"note": null,
+			"conditions": null,
+			"required": false,
+			"group": null,
+			"validation": null,
+			"validation_message": null
+		}
+	},
+	{
+		"collection": "block_reach_out_contact_item",
+		"field": "user_created",
+		"type": "uuid",
+		"schema": {
+			"name": "user_created",
+			"table": "block_reach_out_contact_item",
+			"data_type": "uuid",
+			"default_value": null,
+			"generation_expression": null,
+			"max_length": null,
+			"numeric_precision": null,
+			"numeric_scale": null,
+			"is_generated": false,
+			"is_nullable": true,
+			"is_unique": false,
+			"is_indexed": false,
+			"is_primary_key": false,
+			"has_auto_increment": false,
+			"foreign_key_schema": "public",
+			"foreign_key_table": "directus_users",
+			"foreign_key_column": "id",
+			"comment": null
+		},
+		"meta": {
+			"collection": "block_reach_out_contact_item",
+			"field": "user_created",
+			"special": [
+				"user-created"
+			],
+			"interface": "select-dropdown-m2o",
+			"options": {
+				"template": "{{avatar.$thumbnail}} {{first_name}} {{last_name}}"
+			},
+			"display": "user",
+			"display_options": null,
+			"readonly": true,
+			"hidden": true,
+			"sort": 8,
+			"width": "half",
+			"translations": null,
+			"note": null,
+			"conditions": null,
+			"required": false,
+			"group": null,
+			"validation": null,
+			"validation_message": null
+		}
+	},
+	{
+		"collection": "block_reach_out_contact_item",
+		"field": "date_updated",
+		"type": "timestamp",
+		"schema": {
+			"name": "date_updated",
+			"table": "block_reach_out_contact_item",
+			"data_type": "timestamp with time zone",
+			"default_value": null,
+			"generation_expression": null,
+			"max_length": null,
+			"numeric_precision": null,
+			"numeric_scale": null,
+			"is_generated": false,
+			"is_nullable": true,
+			"is_unique": false,
+			"is_indexed": false,
+			"is_primary_key": false,
+			"has_auto_increment": false,
+			"foreign_key_schema": null,
+			"foreign_key_table": null,
+			"foreign_key_column": null,
+			"comment": null
+		},
+		"meta": {
+			"collection": "block_reach_out_contact_item",
+			"field": "date_updated",
+			"special": [
+				"date-updated"
+			],
+			"interface": "datetime",
+			"options": null,
+			"display": "datetime",
+			"display_options": {
+				"relative": true
+			},
+			"readonly": true,
+			"hidden": true,
+			"sort": 9,
+			"width": "half",
+			"translations": null,
+			"note": null,
+			"conditions": null,
+			"required": false,
+			"group": null,
+			"validation": null,
+			"validation_message": null
+		}
+	},
+	{
+		"collection": "block_reach_out_contact_item",
+		"field": "user_updated",
+		"type": "uuid",
+		"schema": {
+			"name": "user_updated",
+			"table": "block_reach_out_contact_item",
+			"data_type": "uuid",
+			"default_value": null,
+			"generation_expression": null,
+			"max_length": null,
+			"numeric_precision": null,
+			"numeric_scale": null,
+			"is_generated": false,
+			"is_nullable": true,
+			"is_unique": false,
+			"is_indexed": false,
+			"is_primary_key": false,
+			"has_auto_increment": false,
+			"foreign_key_schema": "public",
+			"foreign_key_table": "directus_users",
+			"foreign_key_column": "id",
+			"comment": null
+		},
+		"meta": {
+			"collection": "block_reach_out_contact_item",
+			"field": "user_updated",
+			"special": [
+				"user-updated"
+			],
+			"interface": "select-dropdown-m2o",
+			"options": {
+				"template": "{{avatar.$thumbnail}} {{first_name}} {{last_name}}"
+			},
+			"display": "user",
+			"display_options": null,
+			"readonly": true,
+			"hidden": true,
+			"sort": 10,
+			"width": "half",
+			"translations": null,
+			"note": null,
+			"conditions": null,
+			"required": false,
+			"group": null,
+			"validation": null,
+			"validation_message": null
+		}
+	},
+	{
+		"collection": "forms",
+		"field": "show_title",
+		"type": "boolean",
+		"schema": {
+			"name": "show_title",
+			"table": "forms",
+			"data_type": "boolean",
+			"default_value": true,
+			"generation_expression": null,
+			"max_length": null,
+			"numeric_precision": null,
+			"numeric_scale": null,
+			"is_generated": false,
+			"is_nullable": true,
+			"is_unique": false,
+			"is_indexed": false,
+			"is_primary_key": false,
+			"has_auto_increment": false,
+			"foreign_key_schema": null,
+			"foreign_key_table": null,
+			"foreign_key_column": null,
+			"comment": null
+		},
+		"meta": {
+			"collection": "forms",
+			"field": "show_title",
+			"special": [
+				"cast-boolean"
+			],
+			"interface": "boolean",
+			"options": {
+				"label": "Show title on the form"
+			},
+			"display": "boolean",
+			"display_options": null,
+			"readonly": false,
+			"hidden": false,
+			"sort": 10,
+			"width": "half",
+			"translations": null,
+			"note": "Toggle to show or hide the form title on the frontend.",
+			"conditions": null,
+			"required": false,
+			"group": null,
+			"validation": null,
+			"validation_message": null
+		}
+	},
+	{
+		"collection": "forms",
+		"field": "intro_paragraph",
+		"type": "text",
+		"schema": {
+			"name": "intro_paragraph",
+			"table": "forms",
+			"data_type": "text",
+			"default_value": null,
+			"generation_expression": null,
+			"max_length": null,
+			"numeric_precision": null,
+			"numeric_scale": null,
+			"is_generated": false,
+			"is_nullable": true,
+			"is_unique": false,
+			"is_indexed": false,
+			"is_primary_key": false,
+			"has_auto_increment": false,
+			"foreign_key_schema": null,
+			"foreign_key_table": null,
+			"foreign_key_column": null,
+			"comment": null
+		},
+		"meta": {
+			"collection": "forms",
+			"field": "intro_paragraph",
+			"special": null,
+			"interface": "input-multiline",
+			"options": {
+				"placeholder": "Optional introductory text shown above the form fields."
+			},
+			"display": "raw",
+			"display_options": null,
+			"readonly": false,
+			"hidden": false,
+			"sort": 11,
+			"width": "full",
+			"translations": null,
+			"note": "Optional paragraph shown below the title and above the form fields.",
+			"conditions": null,
+			"required": false,
+			"group": null,
+			"validation": null,
+			"validation_message": null
+		}
+	},
+	{
+		"collection": "forms",
+		"field": "privacy_policy_text",
+		"type": "text",
+		"schema": {
+			"name": "privacy_policy_text",
+			"table": "forms",
+			"data_type": "text",
+			"default_value": null,
+			"generation_expression": null,
+			"max_length": null,
+			"numeric_precision": null,
+			"numeric_scale": null,
+			"is_generated": false,
+			"is_nullable": true,
+			"is_unique": false,
+			"is_indexed": false,
+			"is_primary_key": false,
+			"has_auto_increment": false,
+			"foreign_key_schema": null,
+			"foreign_key_table": null,
+			"foreign_key_column": null,
+			"comment": null
+		},
+		"meta": {
+			"collection": "forms",
+			"field": "privacy_policy_text",
+			"special": null,
+			"interface": "input-multiline",
+			"options": {
+				"placeholder": "e.g. I agree to the Privacy Policy and Terms of Service."
+			},
+			"display": "raw",
+			"display_options": null,
+			"readonly": false,
+			"hidden": false,
+			"sort": 12,
+			"width": "full",
+			"translations": null,
+			"note": "Full text for the privacy policy checkbox. Leave empty to hide the checkbox.",
+			"conditions": null,
+			"required": false,
+			"group": null,
+			"validation": null,
+			"validation_message": null
+		}
+	},
+	{
+		"collection": "forms",
+		"field": "privacy_policy_link_text",
+		"type": "string",
+		"schema": {
+			"name": "privacy_policy_link_text",
+			"table": "forms",
+			"data_type": "character varying",
+			"default_value": null,
+			"generation_expression": null,
+			"max_length": 255,
+			"numeric_precision": null,
+			"numeric_scale": null,
+			"is_generated": false,
+			"is_nullable": true,
+			"is_unique": false,
+			"is_indexed": false,
+			"is_primary_key": false,
+			"has_auto_increment": false,
+			"foreign_key_schema": null,
+			"foreign_key_table": null,
+			"foreign_key_column": null,
+			"comment": null
+		},
+		"meta": {
+			"collection": "forms",
+			"field": "privacy_policy_link_text",
+			"special": null,
+			"interface": "input",
+			"options": {
+				"placeholder": "e.g. Privacy Policy"
+			},
+			"display": "raw",
+			"display_options": null,
+			"readonly": false,
+			"hidden": false,
+			"sort": 13,
+			"width": "half",
+			"translations": null,
+			"note": "The word or phrase in the checkbox text to turn into a link. Must match exactly.",
+			"conditions": null,
+			"required": false,
+			"group": null,
+			"validation": null,
+			"validation_message": null
+		}
+	},
+	{
+		"collection": "forms",
+		"field": "privacy_policy_link_url",
+		"type": "string",
+		"schema": {
+			"name": "privacy_policy_link_url",
+			"table": "forms",
+			"data_type": "character varying",
+			"default_value": null,
+			"generation_expression": null,
+			"max_length": 255,
+			"numeric_precision": null,
+			"numeric_scale": null,
+			"is_generated": false,
+			"is_nullable": true,
+			"is_unique": false,
+			"is_indexed": false,
+			"is_primary_key": false,
+			"has_auto_increment": false,
+			"foreign_key_schema": null,
+			"foreign_key_table": null,
+			"foreign_key_column": null,
+			"comment": null
+		},
+		"meta": {
+			"collection": "forms",
+			"field": "privacy_policy_link_url",
+			"special": null,
+			"interface": "input",
+			"options": {
+				"placeholder": "e.g. /privacy-policy",
+				"iconLeft": "link"
+			},
+			"display": "raw",
+			"display_options": null,
+			"readonly": false,
+			"hidden": false,
+			"sort": 14,
+			"width": "half",
+			"translations": null,
+			"note": "URL for the privacy policy link.",
+			"conditions": null,
+			"required": false,
+			"group": null,
+			"validation": null,
+			"validation_message": null
+		}
+	},
+	{
+		"collection": "forms",
+		"field": "submit_button_width",
+		"type": "string",
+		"schema": {
+			"name": "submit_button_width",
+			"table": "forms",
+			"data_type": "character varying",
+			"default_value": "auto",
+			"generation_expression": null,
+			"max_length": 255,
+			"numeric_precision": null,
+			"numeric_scale": null,
+			"is_generated": false,
+			"is_nullable": true,
+			"is_unique": false,
+			"is_indexed": false,
+			"is_primary_key": false,
+			"has_auto_increment": false,
+			"foreign_key_schema": null,
+			"foreign_key_table": null,
+			"foreign_key_column": null,
+			"comment": null
+		},
+		"meta": {
+			"collection": "forms",
+			"field": "submit_button_width",
+			"special": null,
+			"interface": "select-dropdown",
+			"options": {
+				"choices": [
+					{
+						"text": "Auto",
+						"value": "auto"
+					},
+					{
+						"text": "Full Width",
+						"value": "full"
+					}
+				]
+			},
+			"display": "labels",
+			"display_options": null,
+			"readonly": false,
+			"hidden": false,
+			"sort": 4,
+			"width": "half",
+			"translations": null,
+			"note": "Controls the width of the submit button.",
+			"conditions": null,
+			"required": false,
+			"group": "meta_fields",
+			"validation": null,
+			"validation_message": null
+		}
+	},
+	{
+		"collection": "block_acknowledgement",
+		"field": "id",
+		"type": "uuid",
+		"schema": {
+			"name": "id",
+			"table": "block_acknowledgement",
+			"data_type": "uuid",
+			"default_value": null,
+			"generation_expression": null,
+			"max_length": null,
+			"numeric_precision": null,
+			"numeric_scale": null,
+			"is_generated": false,
+			"is_nullable": false,
+			"is_unique": true,
+			"is_indexed": true,
+			"is_primary_key": true,
+			"has_auto_increment": false,
+			"foreign_key_schema": null,
+			"foreign_key_table": null,
+			"foreign_key_column": null,
+			"comment": null
+		},
+		"meta": {
+			"collection": "block_acknowledgement",
+			"field": "id",
+			"special": [
+				"uuid"
+			],
+			"interface": "input",
+			"options": null,
+			"display": null,
+			"display_options": null,
+			"readonly": true,
+			"hidden": true,
+			"sort": 1,
+			"width": "full",
+			"translations": null,
+			"note": null,
+			"conditions": null,
+			"required": false,
+			"group": null,
+			"validation": null,
+			"validation_message": null
+		}
+	},
+	{
+		"collection": "block_acknowledgement",
+		"field": "text",
+		"type": "text",
+		"schema": {
+			"name": "text",
+			"table": "block_acknowledgement",
+			"data_type": "text",
+			"default_value": null,
+			"generation_expression": null,
+			"max_length": null,
+			"numeric_precision": null,
+			"numeric_scale": null,
+			"is_generated": false,
+			"is_nullable": true,
+			"is_unique": false,
+			"is_indexed": false,
+			"is_primary_key": false,
+			"has_auto_increment": false,
+			"foreign_key_schema": null,
+			"foreign_key_table": null,
+			"foreign_key_column": null,
+			"comment": null
+		},
+		"meta": {
+			"collection": "block_acknowledgement",
+			"field": "text",
+			"special": null,
+			"interface": "input-multiline",
+			"options": {
+				"placeholder": "Enter acknowledgement text..."
+			},
+			"display": "raw",
+			"display_options": null,
+			"readonly": false,
+			"hidden": false,
+			"sort": 2,
+			"width": "full",
+			"translations": null,
+			"note": "The acknowledgement text displayed in the banner.",
+			"conditions": null,
+			"required": false,
+			"group": null,
+			"validation": null,
+			"validation_message": null
+		}
+	},
+	{
+		"collection": "block_acknowledgement",
+		"field": "date_created",
+		"type": "timestamp",
+		"schema": {
+			"name": "date_created",
+			"table": "block_acknowledgement",
+			"data_type": "timestamp with time zone",
+			"default_value": "CURRENT_TIMESTAMP",
+			"generation_expression": null,
+			"max_length": null,
+			"numeric_precision": null,
+			"numeric_scale": null,
+			"is_generated": false,
+			"is_nullable": true,
+			"is_unique": false,
+			"is_indexed": false,
+			"is_primary_key": false,
+			"has_auto_increment": false,
+			"foreign_key_schema": null,
+			"foreign_key_table": null,
+			"foreign_key_column": null,
+			"comment": null
+		},
+		"meta": {
+			"collection": "block_acknowledgement",
+			"field": "date_created",
+			"special": [
+				"date-created"
+			],
+			"interface": "datetime",
+			"options": null,
+			"display": "datetime",
+			"display_options": {
+				"relative": true
+			},
+			"readonly": true,
+			"hidden": true,
+			"sort": 3,
+			"width": "half",
+			"translations": null,
+			"note": null,
+			"conditions": null,
+			"required": false,
+			"group": null,
+			"validation": null,
+			"validation_message": null
+		}
+	},
+	{
+		"collection": "block_acknowledgement",
+		"field": "user_created",
+		"type": "uuid",
+		"schema": {
+			"name": "user_created",
+			"table": "block_acknowledgement",
+			"data_type": "uuid",
+			"default_value": null,
+			"generation_expression": null,
+			"max_length": null,
+			"numeric_precision": null,
+			"numeric_scale": null,
+			"is_generated": false,
+			"is_nullable": true,
+			"is_unique": false,
+			"is_indexed": false,
+			"is_primary_key": false,
+			"has_auto_increment": false,
+			"foreign_key_schema": "public",
+			"foreign_key_table": "directus_users",
+			"foreign_key_column": "id",
+			"comment": null
+		},
+		"meta": {
+			"collection": "block_acknowledgement",
+			"field": "user_created",
+			"special": [
+				"user-created"
+			],
+			"interface": "select-dropdown-m2o",
+			"options": {
+				"template": "{{avatar.$thumbnail}} {{first_name}} {{last_name}}"
+			},
+			"display": "user",
+			"display_options": null,
+			"readonly": true,
+			"hidden": true,
+			"sort": 4,
+			"width": "half",
+			"translations": null,
+			"note": null,
+			"conditions": null,
+			"required": false,
+			"group": null,
+			"validation": null,
+			"validation_message": null
+		}
+	},
+	{
+		"collection": "block_acknowledgement",
+		"field": "date_updated",
+		"type": "timestamp",
+		"schema": {
+			"name": "date_updated",
+			"table": "block_acknowledgement",
+			"data_type": "timestamp with time zone",
+			"default_value": null,
+			"generation_expression": null,
+			"max_length": null,
+			"numeric_precision": null,
+			"numeric_scale": null,
+			"is_generated": false,
+			"is_nullable": true,
+			"is_unique": false,
+			"is_indexed": false,
+			"is_primary_key": false,
+			"has_auto_increment": false,
+			"foreign_key_schema": null,
+			"foreign_key_table": null,
+			"foreign_key_column": null,
+			"comment": null
+		},
+		"meta": {
+			"collection": "block_acknowledgement",
+			"field": "date_updated",
+			"special": [
+				"date-updated"
+			],
+			"interface": "datetime",
+			"options": null,
+			"display": "datetime",
+			"display_options": {
+				"relative": true
+			},
+			"readonly": true,
+			"hidden": true,
+			"sort": 5,
+			"width": "half",
+			"translations": null,
+			"note": null,
+			"conditions": null,
+			"required": false,
+			"group": null,
+			"validation": null,
+			"validation_message": null
+		}
+	},
+	{
+		"collection": "block_acknowledgement",
+		"field": "user_updated",
+		"type": "uuid",
+		"schema": {
+			"name": "user_updated",
+			"table": "block_acknowledgement",
+			"data_type": "uuid",
+			"default_value": null,
+			"generation_expression": null,
+			"max_length": null,
+			"numeric_precision": null,
+			"numeric_scale": null,
+			"is_generated": false,
+			"is_nullable": true,
+			"is_unique": false,
+			"is_indexed": false,
+			"is_primary_key": false,
+			"has_auto_increment": false,
+			"foreign_key_schema": "public",
+			"foreign_key_table": "directus_users",
+			"foreign_key_column": "id",
+			"comment": null
+		},
+		"meta": {
+			"collection": "block_acknowledgement",
+			"field": "user_updated",
+			"special": [
+				"user-updated"
+			],
+			"interface": "select-dropdown-m2o",
+			"options": {
+				"template": "{{avatar.$thumbnail}} {{first_name}} {{last_name}}"
+			},
+			"display": "user",
+			"display_options": null,
+			"readonly": true,
+			"hidden": true,
+			"sort": 6,
+			"width": "half",
+			"translations": null,
+			"note": null,
+			"conditions": null,
+			"required": false,
+			"group": null,
+			"validation": null,
+			"validation_message": null
+		}
+	},
+	{
+		"collection": "block_culture_gallery",
+		"field": "id",
+		"type": "uuid",
+		"schema": {
+			"name": "id",
+			"table": "block_culture_gallery",
+			"data_type": "uuid",
+			"is_nullable": false,
+			"is_primary_key": true,
+			"has_auto_increment": false,
+			"default_value": null
+		},
+		"meta": {
+			"collection": "block_culture_gallery",
+			"field": "id",
+			"special": [
+				"uuid"
+			],
+			"interface": "input",
+			"readonly": true,
+			"hidden": true,
+			"sort": 1,
+			"width": "full",
+			"required": false
+		}
+	},
+	{
+		"collection": "block_culture_gallery",
+		"field": "title",
+		"type": "text",
+		"schema": {
+			"name": "title",
+			"table": "block_culture_gallery",
+			"data_type": "text",
+			"is_nullable": true
+		},
+		"meta": {
+			"collection": "block_culture_gallery",
+			"field": "title",
+			"special": null,
+			"interface": "input-rich-text-html",
+			"display": "formatted-value",
+			"required": false,
+			"note": "Section title as rich text (WYSIWYG). Use italic + color for accent word.",
+			"sort": 2,
+			"width": "full"
+		}
+	},
+	{
+		"collection": "block_culture_gallery",
+		"field": "description",
+		"type": "text",
+		"schema": {
+			"name": "description",
+			"table": "block_culture_gallery",
+			"data_type": "text",
+			"is_nullable": true
+		},
+		"meta": {
+			"collection": "block_culture_gallery",
+			"field": "description",
+			"special": null,
+			"interface": "input-multiline",
+			"display": "raw",
+			"required": false,
+			"note": "Subtitle paragraph below the heading.",
+			"sort": 3,
+			"width": "full"
+		}
+	},
+	{
+		"collection": "block_culture_gallery",
+		"field": "side_photo_left",
+		"type": "uuid",
+		"schema": {
+			"name": "side_photo_left",
+			"table": "block_culture_gallery",
+			"data_type": "uuid",
+			"default_value": null,
+			"generation_expression": null,
+			"max_length": null,
+			"numeric_precision": null,
+			"numeric_scale": null,
+			"is_generated": false,
+			"is_nullable": true,
+			"is_unique": false,
+			"is_indexed": false,
+			"is_primary_key": false,
+			"has_auto_increment": false,
+			"foreign_key_schema": "public",
+			"foreign_key_table": "directus_files",
+			"foreign_key_column": "id",
+			"comment": null
+		},
+		"meta": {
+			"collection": "block_culture_gallery",
+			"field": "side_photo_left",
+			"special": [
+				"file"
+			],
+			"interface": "file-image",
+			"options": {
+				"crop": false
+			},
+			"display": "image",
+			"display_options": null,
+			"readonly": false,
+			"required": false,
+			"note": "Smaller Polaroid photo at the top-left corner.",
+			"sort": 4,
+			"width": "half"
+		}
+	},
+	{
+		"collection": "block_culture_gallery",
+		"field": "side_photo_right",
+		"type": "uuid",
+		"schema": {
+			"name": "side_photo_right",
+			"table": "block_culture_gallery",
+			"data_type": "uuid",
+			"default_value": null,
+			"generation_expression": null,
+			"max_length": null,
+			"numeric_precision": null,
+			"numeric_scale": null,
+			"is_generated": false,
+			"is_nullable": true,
+			"is_unique": false,
+			"is_indexed": false,
+			"is_primary_key": false,
+			"has_auto_increment": false,
+			"foreign_key_schema": "public",
+			"foreign_key_table": "directus_files",
+			"foreign_key_column": "id",
+			"comment": null
+		},
+		"meta": {
+			"collection": "block_culture_gallery",
+			"field": "side_photo_right",
+			"special": [
+				"file"
+			],
+			"interface": "file-image",
+			"options": {
+				"crop": false
+			},
+			"display": "image",
+			"display_options": null,
+			"readonly": false,
+			"required": false,
+			"note": "Smaller Polaroid photo at the top-right corner.",
+			"sort": 5,
+			"width": "half"
+		}
+	},
+	{
+		"collection": "block_culture_gallery",
+		"field": "photo_1",
+		"type": "uuid",
+		"schema": {
+			"name": "photo_1",
+			"table": "block_culture_gallery",
+			"data_type": "uuid",
+			"default_value": null,
+			"generation_expression": null,
+			"max_length": null,
+			"numeric_precision": null,
+			"numeric_scale": null,
+			"is_generated": false,
+			"is_nullable": true,
+			"is_unique": false,
+			"is_indexed": false,
+			"is_primary_key": false,
+			"has_auto_increment": false,
+			"foreign_key_schema": "public",
+			"foreign_key_table": "directus_files",
+			"foreign_key_column": "id",
+			"comment": null
+		},
+		"meta": {
+			"collection": "block_culture_gallery",
+			"field": "photo_1",
+			"special": [
+				"file"
+			],
+			"interface": "file-image",
+			"options": {
+				"crop": false
+			},
+			"display": "image",
+			"display_options": null,
+			"readonly": false,
+			"required": false,
+			"note": "First bottom Polaroid photo.",
+			"sort": 6,
+			"width": "half"
+		}
+	},
+	{
+		"collection": "block_culture_gallery",
+		"field": "caption_1",
+		"type": "string",
+		"schema": {
+			"name": "caption_1",
+			"table": "block_culture_gallery",
+			"data_type": "character varying",
+			"is_nullable": true
+		},
+		"meta": {
+			"collection": "block_culture_gallery",
+			"field": "caption_1",
+			"special": null,
+			"interface": "input",
+			"display": "raw",
+			"required": false,
+			"note": "Caption for first bottom Polaroid (handwritten style).",
+			"sort": 7,
+			"width": "half"
+		}
+	},
+	{
+		"collection": "block_culture_gallery",
+		"field": "photo_2",
+		"type": "uuid",
+		"schema": {
+			"name": "photo_2",
+			"table": "block_culture_gallery",
+			"data_type": "uuid",
+			"default_value": null,
+			"generation_expression": null,
+			"max_length": null,
+			"numeric_precision": null,
+			"numeric_scale": null,
+			"is_generated": false,
+			"is_nullable": true,
+			"is_unique": false,
+			"is_indexed": false,
+			"is_primary_key": false,
+			"has_auto_increment": false,
+			"foreign_key_schema": "public",
+			"foreign_key_table": "directus_files",
+			"foreign_key_column": "id",
+			"comment": null
+		},
+		"meta": {
+			"collection": "block_culture_gallery",
+			"field": "photo_2",
+			"special": [
+				"file"
+			],
+			"interface": "file-image",
+			"options": {
+				"crop": false
+			},
+			"display": "image",
+			"display_options": null,
+			"readonly": false,
+			"required": false,
+			"note": "Second bottom Polaroid photo.",
+			"sort": 8,
+			"width": "half"
+		}
+	},
+	{
+		"collection": "block_culture_gallery",
+		"field": "caption_2",
+		"type": "string",
+		"schema": {
+			"name": "caption_2",
+			"table": "block_culture_gallery",
+			"data_type": "character varying",
+			"is_nullable": true
+		},
+		"meta": {
+			"collection": "block_culture_gallery",
+			"field": "caption_2",
+			"special": null,
+			"interface": "input",
+			"display": "raw",
+			"required": false,
+			"note": "Caption for second bottom Polaroid (handwritten style).",
+			"sort": 9,
+			"width": "half"
+		}
+	},
+	{
+		"collection": "block_culture_gallery",
+		"field": "photo_3",
+		"type": "uuid",
+		"schema": {
+			"name": "photo_3",
+			"table": "block_culture_gallery",
+			"data_type": "uuid",
+			"default_value": null,
+			"generation_expression": null,
+			"max_length": null,
+			"numeric_precision": null,
+			"numeric_scale": null,
+			"is_generated": false,
+			"is_nullable": true,
+			"is_unique": false,
+			"is_indexed": false,
+			"is_primary_key": false,
+			"has_auto_increment": false,
+			"foreign_key_schema": "public",
+			"foreign_key_table": "directus_files",
+			"foreign_key_column": "id",
+			"comment": null
+		},
+		"meta": {
+			"collection": "block_culture_gallery",
+			"field": "photo_3",
+			"special": [
+				"file"
+			],
+			"interface": "file-image",
+			"options": {
+				"crop": false
+			},
+			"display": "image",
+			"display_options": null,
+			"readonly": false,
+			"required": false,
+			"note": "Third bottom Polaroid photo.",
+			"sort": 10,
+			"width": "half"
+		}
+	},
+	{
+		"collection": "block_culture_gallery",
+		"field": "caption_3",
+		"type": "string",
+		"schema": {
+			"name": "caption_3",
+			"table": "block_culture_gallery",
+			"data_type": "character varying",
+			"is_nullable": true
+		},
+		"meta": {
+			"collection": "block_culture_gallery",
+			"field": "caption_3",
+			"special": null,
+			"interface": "input",
+			"display": "raw",
+			"required": false,
+			"note": "Caption for third bottom Polaroid (handwritten style).",
+			"sort": 11,
+			"width": "half"
+		}
+	},
+	{
+		"collection": "block_culture_gallery",
+		"field": "photo_4",
+		"type": "uuid",
+		"schema": {
+			"name": "photo_4",
+			"table": "block_culture_gallery",
+			"data_type": "uuid",
+			"default_value": null,
+			"generation_expression": null,
+			"max_length": null,
+			"numeric_precision": null,
+			"numeric_scale": null,
+			"is_generated": false,
+			"is_nullable": true,
+			"is_unique": false,
+			"is_indexed": false,
+			"is_primary_key": false,
+			"has_auto_increment": false,
+			"foreign_key_schema": "public",
+			"foreign_key_table": "directus_files",
+			"foreign_key_column": "id",
+			"comment": null
+		},
+		"meta": {
+			"collection": "block_culture_gallery",
+			"field": "photo_4",
+			"special": [
+				"file"
+			],
+			"interface": "file-image",
+			"options": {
+				"crop": false
+			},
+			"display": "image",
+			"display_options": null,
+			"readonly": false,
+			"required": false,
+			"note": "Fourth bottom Polaroid photo.",
+			"sort": 12,
+			"width": "half"
+		}
+	},
+	{
+		"collection": "block_culture_gallery",
+		"field": "caption_4",
+		"type": "string",
+		"schema": {
+			"name": "caption_4",
+			"table": "block_culture_gallery",
+			"data_type": "character varying",
+			"is_nullable": true
+		},
+		"meta": {
+			"collection": "block_culture_gallery",
+			"field": "caption_4",
+			"special": null,
+			"interface": "input",
+			"display": "raw",
+			"required": false,
+			"note": "Caption for fourth bottom Polaroid (handwritten style).",
+			"sort": 13,
+			"width": "half"
+		}
+	},
+	{
+		"collection": "block_culture_gallery",
+		"field": "date_created",
+		"type": "timestamp",
+		"schema": {
+			"name": "date_created",
+			"table": "block_culture_gallery",
+			"data_type": "timestamp with time zone",
+			"is_nullable": true
+		},
+		"meta": {
+			"collection": "block_culture_gallery",
+			"field": "date_created",
+			"special": [
+				"date-created",
+				"cast-timestamp"
+			],
+			"interface": "datetime",
+			"readonly": true,
+			"hidden": true,
+			"sort": 14,
+			"width": "half"
+		}
+	},
+	{
+		"collection": "block_culture_gallery",
+		"field": "user_created",
+		"type": "uuid",
+		"schema": {
+			"name": "user_created",
+			"table": "block_culture_gallery",
+			"data_type": "uuid",
+			"is_nullable": true
+		},
+		"meta": {
+			"collection": "block_culture_gallery",
+			"field": "user_created",
+			"special": [
+				"user-created"
+			],
+			"interface": "select-dropdown-m2o",
+			"display": "user",
+			"readonly": true,
+			"hidden": true,
+			"sort": 15,
+			"width": "half"
+		}
+	},
+	{
+		"collection": "block_culture_gallery",
+		"field": "date_updated",
+		"type": "timestamp",
+		"schema": {
+			"name": "date_updated",
+			"table": "block_culture_gallery",
+			"data_type": "timestamp with time zone",
+			"is_nullable": true
+		},
+		"meta": {
+			"collection": "block_culture_gallery",
+			"field": "date_updated",
+			"special": [
+				"date-updated",
+				"cast-timestamp"
+			],
+			"interface": "datetime",
+			"readonly": true,
+			"hidden": true,
+			"sort": 16,
+			"width": "half"
+		}
+	},
+	{
+		"collection": "block_culture_gallery",
+		"field": "user_updated",
+		"type": "uuid",
+		"schema": {
+			"name": "user_updated",
+			"table": "block_culture_gallery",
+			"data_type": "uuid",
+			"is_nullable": true
+		},
+		"meta": {
+			"collection": "block_culture_gallery",
+			"field": "user_updated",
+			"special": [
+				"user-updated"
+			],
+			"interface": "select-dropdown-m2o",
+			"display": "user",
+			"readonly": true,
+			"hidden": true,
+			"sort": 17,
+			"width": "half"
+		}
+	},
+	{
+		"collection": "block_values",
+		"field": "id",
+		"type": "integer",
+		"schema": {
+			"name": "id",
+			"table": "block_values",
+			"data_type": "integer",
+			"is_nullable": false,
+			"is_primary_key": true,
+			"has_auto_increment": true
+		},
+		"meta": {
+			"collection": "block_values",
+			"field": "id",
+			"hidden": true,
+			"readonly": true,
+			"interface": "input",
+			"sort": 1
+		}
+	},
+	{
+		"collection": "block_values",
+		"field": "heading",
+		"type": "text",
+		"schema": {
+			"name": "heading",
+			"table": "block_values",
+			"data_type": "text",
+			"is_nullable": true
+		},
+		"meta": {
+			"collection": "block_values",
+			"field": "heading",
+			"interface": "input-rich-text-html",
+			"display": "formatted-value",
+			"note": "Section heading. Use italic + color styling for the accent portion.",
+			"sort": 2,
+			"width": "full"
+		}
+	},
+	{
+		"collection": "block_values",
+		"field": "center_image",
+		"type": "uuid",
+		"schema": {
+			"name": "center_image",
+			"table": "block_values",
+			"data_type": "uuid",
+			"is_nullable": true,
+			"foreign_key_schema": "public",
+			"foreign_key_table": "directus_files",
+			"foreign_key_column": "id"
+		},
+		"meta": {
+			"collection": "block_values",
+			"field": "center_image",
+			"interface": "file-image",
+			"display": "image",
+			"note": "Center photo displayed between the value cards.",
+			"options": {
+				"crop": false
+			},
+			"sort": 3,
+			"width": "full"
+		}
+	},
+	{
+		"collection": "block_values",
+		"field": "value_items",
+		"type": "alias",
+		"schema": null,
+		"meta": {
+			"collection": "block_values",
+			"field": "value_items",
+			"interface": "list-o2m",
+			"special": [
+				"o2m"
+			],
+			"display": "related-values",
+			"options": {
+				"template": "{{title}}",
+				"enableCreate": true,
+				"enableSelect": false
+			},
+			"sort": 4,
+			"width": "full"
+		}
+	},
+	{
+		"collection": "block_values",
+		"field": "date_created",
+		"type": "timestamp",
+		"schema": {
+			"name": "date_created",
+			"table": "block_values",
+			"data_type": "timestamp with time zone",
+			"is_nullable": true
+		},
+		"meta": {
+			"collection": "block_values",
+			"field": "date_created",
+			"special": [
+				"date-created",
+				"cast-timestamp"
+			],
+			"interface": "datetime",
+			"readonly": true,
+			"hidden": true,
+			"sort": 5,
+			"width": "half"
+		}
+	},
+	{
+		"collection": "block_values",
+		"field": "user_created",
+		"type": "uuid",
+		"schema": {
+			"name": "user_created",
+			"table": "block_values",
+			"data_type": "uuid",
+			"is_nullable": true
+		},
+		"meta": {
+			"collection": "block_values",
+			"field": "user_created",
+			"special": [
+				"user-created"
+			],
+			"interface": "select-dropdown-m2o",
+			"display": "user",
+			"readonly": true,
+			"hidden": true,
+			"sort": 6,
+			"width": "half"
+		}
+	},
+	{
+		"collection": "block_values",
+		"field": "date_updated",
+		"type": "timestamp",
+		"schema": {
+			"name": "date_updated",
+			"table": "block_values",
+			"data_type": "timestamp with time zone",
+			"is_nullable": true
+		},
+		"meta": {
+			"collection": "block_values",
+			"field": "date_updated",
+			"special": [
+				"date-updated",
+				"cast-timestamp"
+			],
+			"interface": "datetime",
+			"readonly": true,
+			"hidden": true,
+			"sort": 7,
+			"width": "half"
+		}
+	},
+	{
+		"collection": "block_values",
+		"field": "user_updated",
+		"type": "uuid",
+		"schema": {
+			"name": "user_updated",
+			"table": "block_values",
+			"data_type": "uuid",
+			"is_nullable": true
+		},
+		"meta": {
+			"collection": "block_values",
+			"field": "user_updated",
+			"special": [
+				"user-updated"
+			],
+			"interface": "select-dropdown-m2o",
+			"display": "user",
+			"readonly": true,
+			"hidden": true,
+			"sort": 8,
+			"width": "half"
+		}
+	},
+	{
+		"collection": "block_values_item",
+		"field": "id",
+		"type": "integer",
+		"schema": {
+			"name": "id",
+			"table": "block_values_item",
+			"data_type": "integer",
+			"is_nullable": false,
+			"is_primary_key": true,
+			"has_auto_increment": true
+		},
+		"meta": {
+			"collection": "block_values_item",
+			"field": "id",
+			"hidden": true,
+			"readonly": true,
+			"interface": "input",
+			"sort": 1
+		}
+	},
+	{
+		"collection": "block_values_item",
+		"field": "block_values",
+		"type": "integer",
+		"schema": {
+			"name": "block_values",
+			"table": "block_values_item",
+			"data_type": "integer",
+			"is_nullable": true,
+			"foreign_key_schema": "public",
+			"foreign_key_table": "block_values",
+			"foreign_key_column": "id"
+		},
+		"meta": {
+			"collection": "block_values_item",
+			"field": "block_values",
+			"hidden": true,
+			"sort": 2
+		}
+	},
+	{
+		"collection": "block_values_item",
+		"field": "sort",
+		"type": "integer",
+		"schema": {
+			"name": "sort",
+			"table": "block_values_item",
+			"data_type": "integer",
+			"is_nullable": true
+		},
+		"meta": {
+			"collection": "block_values_item",
+			"field": "sort",
+			"interface": "input",
+			"hidden": true,
+			"sort": 3
+		}
+	},
+	{
+		"collection": "block_values_item",
+		"field": "icon",
+		"type": "uuid",
+		"schema": {
+			"name": "icon",
+			"table": "block_values_item",
+			"data_type": "uuid",
+			"is_nullable": true,
+			"foreign_key_schema": "public",
+			"foreign_key_table": "directus_files",
+			"foreign_key_column": "id"
+		},
+		"meta": {
+			"collection": "block_values_item",
+			"field": "icon",
+			"interface": "file-image",
+			"display": "image",
+			"note": "64x64 icon image for the value card.",
+			"options": {
+				"crop": false
+			},
+			"sort": 4,
+			"width": "half"
+		}
+	},
+	{
+		"collection": "block_values_item",
+		"field": "title",
+		"type": "string",
+		"schema": {
+			"name": "title",
+			"table": "block_values_item",
+			"data_type": "character varying",
+			"is_nullable": true
+		},
+		"meta": {
+			"collection": "block_values_item",
+			"field": "title",
+			"interface": "input",
+			"display": "raw",
+			"note": "Value card title.",
+			"sort": 5,
+			"width": "half"
+		}
+	},
+	{
+		"collection": "block_values_item",
+		"field": "description",
+		"type": "text",
+		"schema": {
+			"name": "description",
+			"table": "block_values_item",
+			"data_type": "text",
+			"is_nullable": true
+		},
+		"meta": {
+			"collection": "block_values_item",
+			"field": "description",
+			"interface": "input-multiline",
+			"display": "raw",
+			"note": "Value card description text.",
+			"sort": 6,
+			"width": "full"
+		}
+	},
+	{
+		"collection": "block_values_item",
+		"field": "date_created",
+		"type": "timestamp",
+		"schema": {
+			"name": "date_created",
+			"table": "block_values_item",
+			"data_type": "timestamp with time zone",
+			"is_nullable": true
+		},
+		"meta": {
+			"collection": "block_values_item",
+			"field": "date_created",
+			"special": [
+				"date-created",
+				"cast-timestamp"
+			],
+			"interface": "datetime",
+			"readonly": true,
+			"hidden": true,
+			"sort": 7,
+			"width": "half"
+		}
+	},
+	{
+		"collection": "block_values_item",
+		"field": "user_created",
+		"type": "uuid",
+		"schema": {
+			"name": "user_created",
+			"table": "block_values_item",
+			"data_type": "uuid",
+			"is_nullable": true
+		},
+		"meta": {
+			"collection": "block_values_item",
+			"field": "user_created",
+			"special": [
+				"user-created"
+			],
+			"interface": "select-dropdown-m2o",
+			"display": "user",
+			"readonly": true,
+			"hidden": true,
+			"sort": 8,
+			"width": "half"
+		}
+	},
+	{
+		"collection": "block_values_item",
+		"field": "date_updated",
+		"type": "timestamp",
+		"schema": {
+			"name": "date_updated",
+			"table": "block_values_item",
+			"data_type": "timestamp with time zone",
+			"is_nullable": true
+		},
+		"meta": {
+			"collection": "block_values_item",
+			"field": "date_updated",
+			"special": [
+				"date-updated",
+				"cast-timestamp"
+			],
+			"interface": "datetime",
+			"readonly": true,
+			"hidden": true,
+			"sort": 9,
+			"width": "half"
+		}
+	},
+	{
+		"collection": "block_values_item",
+		"field": "user_updated",
+		"type": "uuid",
+		"schema": {
+			"name": "user_updated",
+			"table": "block_values_item",
+			"data_type": "uuid",
+			"is_nullable": true
+		},
+		"meta": {
+			"collection": "block_values_item",
+			"field": "user_updated",
+			"special": [
+				"user-updated"
+			],
+			"interface": "select-dropdown-m2o",
+			"display": "user",
+			"readonly": true,
+			"hidden": true,
+			"sort": 10,
+			"width": "half"
+		}
+	},
+	{
+		"collection": "block_people_say",
+		"field": "id",
+		"type": "integer",
+		"schema": {
+			"name": "id",
+			"table": "block_people_say",
+			"data_type": "integer",
+			"is_nullable": false,
+			"is_primary_key": true,
+			"has_auto_increment": true
+		},
+		"meta": {
+			"collection": "block_people_say",
+			"field": "id",
+			"hidden": true,
+			"readonly": true,
+			"interface": "input",
+			"sort": 1
+		}
+	},
+	{
+		"collection": "block_people_say",
+		"field": "heading",
+		"type": "text",
+		"schema": {
+			"name": "heading",
+			"table": "block_people_say",
+			"data_type": "text",
+			"is_nullable": true
+		},
+		"meta": {
+			"collection": "block_people_say",
+			"field": "heading",
+			"interface": "input-rich-text-html",
+			"display": "formatted-value",
+			"note": "Section heading (supports italic pink accent).",
+			"sort": 2,
+			"width": "full"
+		}
+	},
+	{
+		"collection": "block_people_say",
+		"field": "slides",
+		"type": "alias",
+		"schema": null,
+		"meta": {
+			"collection": "block_people_say",
+			"field": "slides",
+			"interface": "list-o2m",
+			"special": [
+				"o2m"
+			],
+			"options": {
+				"template": "{{name}}",
+				"enableCreate": true,
+				"enableSelect": false
+			},
+			"sort": 3,
+			"width": "full"
+		}
+	},
+	{
+		"collection": "block_people_say",
+		"field": "date_created",
+		"type": "timestamp",
+		"schema": {
+			"name": "date_created",
+			"table": "block_people_say",
+			"data_type": "timestamp with time zone",
+			"is_nullable": true
+		},
+		"meta": {
+			"collection": "block_people_say",
+			"field": "date_created",
+			"special": [
+				"date-created",
+				"cast-timestamp"
+			],
+			"interface": "datetime",
+			"readonly": true,
+			"hidden": true,
+			"sort": 4,
+			"width": "half"
+		}
+	},
+	{
+		"collection": "block_people_say",
+		"field": "user_created",
+		"type": "uuid",
+		"schema": {
+			"name": "user_created",
+			"table": "block_people_say",
+			"data_type": "uuid",
+			"is_nullable": true
+		},
+		"meta": {
+			"collection": "block_people_say",
+			"field": "user_created",
+			"special": [
+				"user-created"
+			],
+			"interface": "select-dropdown-m2o",
+			"display": "user",
+			"readonly": true,
+			"hidden": true,
+			"sort": 5,
+			"width": "half"
+		}
+	},
+	{
+		"collection": "block_people_say",
+		"field": "date_updated",
+		"type": "timestamp",
+		"schema": {
+			"name": "date_updated",
+			"table": "block_people_say",
+			"data_type": "timestamp with time zone",
+			"is_nullable": true
+		},
+		"meta": {
+			"collection": "block_people_say",
+			"field": "date_updated",
+			"special": [
+				"date-updated",
+				"cast-timestamp"
+			],
+			"interface": "datetime",
+			"readonly": true,
+			"hidden": true,
+			"sort": 6,
+			"width": "half"
+		}
+	},
+	{
+		"collection": "block_people_say",
+		"field": "user_updated",
+		"type": "uuid",
+		"schema": {
+			"name": "user_updated",
+			"table": "block_people_say",
+			"data_type": "uuid",
+			"is_nullable": true
+		},
+		"meta": {
+			"collection": "block_people_say",
+			"field": "user_updated",
+			"special": [
+				"user-updated"
+			],
+			"interface": "select-dropdown-m2o",
+			"display": "user",
+			"readonly": true,
+			"hidden": true,
+			"sort": 7,
+			"width": "half"
+		}
+	},
+	{
+		"collection": "block_people_say_slide",
+		"field": "id",
+		"type": "integer",
+		"schema": {
+			"name": "id",
+			"table": "block_people_say_slide",
+			"data_type": "integer",
+			"is_nullable": false,
+			"is_primary_key": true,
+			"has_auto_increment": true
+		},
+		"meta": {
+			"collection": "block_people_say_slide",
+			"field": "id",
+			"hidden": true,
+			"readonly": true,
+			"interface": "input",
+			"sort": 1
+		}
+	},
+	{
+		"collection": "block_people_say_slide",
+		"field": "block_people_say",
+		"type": "integer",
+		"schema": {
+			"name": "block_people_say",
+			"table": "block_people_say_slide",
+			"data_type": "integer",
+			"is_nullable": true,
+			"foreign_key_schema": "public",
+			"foreign_key_table": "block_people_say",
+			"foreign_key_column": "id"
+		},
+		"meta": {
+			"collection": "block_people_say_slide",
+			"field": "block_people_say",
+			"hidden": true,
+			"sort": 2
+		}
+	},
+	{
+		"collection": "block_people_say_slide",
+		"field": "sort",
+		"type": "integer",
+		"schema": {
+			"name": "sort",
+			"table": "block_people_say_slide",
+			"data_type": "integer",
+			"is_nullable": true
+		},
+		"meta": {
+			"collection": "block_people_say_slide",
+			"field": "sort",
+			"interface": "input",
+			"hidden": true,
+			"sort": 3
+		}
+	},
+	{
+		"collection": "block_people_say_slide",
+		"field": "image",
+		"type": "uuid",
+		"schema": {
+			"name": "image",
+			"table": "block_people_say_slide",
+			"data_type": "uuid",
+			"is_nullable": true,
+			"foreign_key_schema": "public",
+			"foreign_key_table": "directus_files",
+			"foreign_key_column": "id"
+		},
+		"meta": {
+			"collection": "block_people_say_slide",
+			"field": "image",
+			"interface": "file-image",
+			"display": "image",
+			"note": "Photo of the person.",
+			"options": {
+				"crop": false
+			},
+			"sort": 4,
+			"width": "half"
+		}
+	},
+	{
+		"collection": "block_people_say_slide",
+		"field": "name",
+		"type": "string",
+		"schema": {
+			"name": "name",
+			"table": "block_people_say_slide",
+			"data_type": "character varying",
+			"is_nullable": true
+		},
+		"meta": {
+			"collection": "block_people_say_slide",
+			"field": "name",
+			"interface": "input",
+			"display": "raw",
+			"sort": 5,
+			"width": "half"
+		}
+	},
+	{
+		"collection": "block_people_say_slide",
+		"field": "role",
+		"type": "string",
+		"schema": {
+			"name": "role",
+			"table": "block_people_say_slide",
+			"data_type": "character varying",
+			"is_nullable": true
+		},
+		"meta": {
+			"collection": "block_people_say_slide",
+			"field": "role",
+			"interface": "input",
+			"display": "raw",
+			"sort": 6,
+			"width": "half"
+		}
+	},
+	{
+		"collection": "block_people_say_slide",
+		"field": "quote",
+		"type": "text",
+		"schema": {
+			"name": "quote",
+			"table": "block_people_say_slide",
+			"data_type": "text",
+			"is_nullable": true
+		},
+		"meta": {
+			"collection": "block_people_say_slide",
+			"field": "quote",
+			"interface": "input-multiline",
+			"display": "raw",
+			"sort": 7,
+			"width": "full"
+		}
+	},
+	{
+		"collection": "block_people_say_slide",
+		"field": "date_created",
+		"type": "timestamp",
+		"schema": {
+			"name": "date_created",
+			"table": "block_people_say_slide",
+			"data_type": "timestamp with time zone",
+			"is_nullable": true
+		},
+		"meta": {
+			"collection": "block_people_say_slide",
+			"field": "date_created",
+			"special": [
+				"date-created",
+				"cast-timestamp"
+			],
+			"interface": "datetime",
+			"readonly": true,
+			"hidden": true,
+			"sort": 8,
+			"width": "half"
+		}
+	},
+	{
+		"collection": "block_people_say_slide",
+		"field": "user_created",
+		"type": "uuid",
+		"schema": {
+			"name": "user_created",
+			"table": "block_people_say_slide",
+			"data_type": "uuid",
+			"is_nullable": true
+		},
+		"meta": {
+			"collection": "block_people_say_slide",
+			"field": "user_created",
+			"special": [
+				"user-created"
+			],
+			"interface": "select-dropdown-m2o",
+			"display": "user",
+			"readonly": true,
+			"hidden": true,
+			"sort": 9,
+			"width": "half"
+		}
+	},
+	{
+		"collection": "block_people_say_slide",
+		"field": "date_updated",
+		"type": "timestamp",
+		"schema": {
+			"name": "date_updated",
+			"table": "block_people_say_slide",
+			"data_type": "timestamp with time zone",
+			"is_nullable": true
+		},
+		"meta": {
+			"collection": "block_people_say_slide",
+			"field": "date_updated",
+			"special": [
+				"date-updated",
+				"cast-timestamp"
+			],
+			"interface": "datetime",
+			"readonly": true,
+			"hidden": true,
+			"sort": 10,
+			"width": "half"
+		}
+	},
+	{
+		"collection": "block_people_say_slide",
+		"field": "user_updated",
+		"type": "uuid",
+		"schema": {
+			"name": "user_updated",
+			"table": "block_people_say_slide",
+			"data_type": "uuid",
+			"is_nullable": true
+		},
+		"meta": {
+			"collection": "block_people_say_slide",
+			"field": "user_updated",
+			"special": [
+				"user-updated"
+			],
+			"interface": "select-dropdown-m2o",
+			"display": "user",
+			"readonly": true,
+			"hidden": true,
+			"sort": 11,
+			"width": "half"
+		}
+	},
+	{
+		"collection": "block_intro_media",
+		"field": "id",
+		"type": "integer",
+		"schema": {
+			"name": "id",
+			"table": "block_intro_media",
+			"data_type": "integer",
+			"is_nullable": false,
+			"is_primary_key": true,
+			"has_auto_increment": true
+		},
+		"meta": {
+			"hidden": true,
+			"readonly": true,
+			"interface": "input",
+			"sort": 1
+		}
+	},
+	{
+		"collection": "block_intro_media",
+		"field": "heading",
+		"type": "text",
+		"schema": {
+			"name": "heading",
+			"table": "block_intro_media",
+			"data_type": "text",
+			"is_nullable": true
+		},
+		"meta": {
+			"interface": "input-rich-text-html",
+			"note": "Heading with pink italic accent.",
+			"sort": 2,
+			"width": "full"
+		}
+	},
+	{
+		"collection": "block_intro_media",
+		"field": "description",
+		"type": "text",
+		"schema": {
+			"name": "description",
+			"table": "block_intro_media",
+			"data_type": "text",
+			"is_nullable": true
+		},
+		"meta": {
+			"interface": "input-multiline",
+			"sort": 3,
+			"width": "full"
+		}
+	},
+	{
+		"collection": "block_intro_media",
+		"field": "image",
+		"type": "uuid",
+		"schema": {
+			"name": "image",
+			"table": "block_intro_media",
+			"data_type": "uuid",
+			"is_nullable": true,
+			"foreign_key_schema": "public",
+			"foreign_key_table": "directus_files",
+			"foreign_key_column": "id"
+		},
+		"meta": {
+			"interface": "file-image",
+			"display": "image",
+			"options": {
+				"crop": false
+			},
+			"sort": 4,
+			"width": "half"
+		}
+	},
+	{
+		"collection": "block_intro_media",
+		"field": "video_url",
+		"type": "string",
+		"schema": {
+			"name": "video_url",
+			"table": "block_intro_media",
+			"data_type": "character varying",
+			"is_nullable": true
+		},
+		"meta": {
+			"interface": "input",
+			"sort": 5,
+			"width": "half"
+		}
+	},
+	{
+		"collection": "block_intro_media",
+		"field": "date_created",
+		"type": "timestamp",
+		"schema": {
+			"name": "date_created",
+			"table": "block_intro_media",
+			"data_type": "timestamp with time zone",
+			"is_nullable": true
+		},
+		"meta": {
+			"special": [
+				"date-created",
+				"cast-timestamp"
+			],
+			"interface": "datetime",
+			"readonly": true,
+			"hidden": true,
+			"sort": 6,
+			"width": "half"
+		}
+	},
+	{
+		"collection": "block_intro_media",
+		"field": "user_created",
+		"type": "uuid",
+		"schema": {
+			"name": "user_created",
+			"table": "block_intro_media",
+			"data_type": "uuid",
+			"is_nullable": true
+		},
+		"meta": {
+			"special": [
+				"user-created"
+			],
+			"interface": "select-dropdown-m2o",
+			"display": "user",
+			"readonly": true,
+			"hidden": true,
+			"sort": 7,
+			"width": "half"
+		}
+	},
+	{
+		"collection": "block_intro_media",
+		"field": "date_updated",
+		"type": "timestamp",
+		"schema": {
+			"name": "date_updated",
+			"table": "block_intro_media",
+			"data_type": "timestamp with time zone",
+			"is_nullable": true
+		},
+		"meta": {
+			"special": [
+				"date-updated",
+				"cast-timestamp"
+			],
+			"interface": "datetime",
+			"readonly": true,
+			"hidden": true,
+			"sort": 8,
+			"width": "half"
+		}
+	},
+	{
+		"collection": "block_intro_media",
+		"field": "user_updated",
+		"type": "uuid",
+		"schema": {
+			"name": "user_updated",
+			"table": "block_intro_media",
+			"data_type": "uuid",
+			"is_nullable": true
+		},
+		"meta": {
+			"special": [
+				"user-updated"
+			],
+			"interface": "select-dropdown-m2o",
+			"display": "user",
+			"readonly": true,
+			"hidden": true,
+			"sort": 9,
+			"width": "half"
+		}
+	},
+	{
+		"collection": "block_open_roles",
+		"field": "id",
+		"type": "integer",
+		"schema": {
+			"name": "id",
+			"table": "block_open_roles",
+			"data_type": "integer",
+			"is_nullable": false,
+			"is_primary_key": true,
+			"has_auto_increment": true
+		},
+		"meta": {
+			"hidden": true,
+			"readonly": true,
+			"interface": "input",
+			"sort": 1
+		}
+	},
+	{
+		"collection": "block_open_roles",
+		"field": "heading",
+		"type": "text",
+		"schema": {
+			"name": "heading",
+			"table": "block_open_roles",
+			"data_type": "text",
+			"is_nullable": true
+		},
+		"meta": {
+			"interface": "input-rich-text-html",
+			"sort": 2,
+			"width": "full"
+		}
+	},
+	{
+		"collection": "block_open_roles",
+		"field": "description",
+		"type": "text",
+		"schema": {
+			"name": "description",
+			"table": "block_open_roles",
+			"data_type": "text",
+			"is_nullable": true
+		},
+		"meta": {
+			"interface": "input-multiline",
+			"sort": 3,
+			"width": "full"
+		}
+	},
+	{
+		"collection": "block_open_roles",
+		"field": "jobs",
+		"type": "alias",
+		"schema": null,
+		"meta": {
+			"interface": "list-o2m",
+			"special": [
+				"o2m"
+			],
+			"options": {
+				"template": "{{title}}",
+				"enableCreate": true,
+				"enableSelect": false
+			},
+			"sort": 4,
+			"width": "full"
+		}
+	},
+	{
+		"collection": "block_open_roles",
+		"field": "date_created",
+		"type": "timestamp",
+		"schema": {
+			"name": "date_created",
+			"table": "block_open_roles",
+			"data_type": "timestamp with time zone",
+			"is_nullable": true
+		},
+		"meta": {
+			"special": [
+				"date-created",
+				"cast-timestamp"
+			],
+			"interface": "datetime",
+			"readonly": true,
+			"hidden": true,
+			"sort": 5,
+			"width": "half"
+		}
+	},
+	{
+		"collection": "block_open_roles",
+		"field": "user_created",
+		"type": "uuid",
+		"schema": {
+			"name": "user_created",
+			"table": "block_open_roles",
+			"data_type": "uuid",
+			"is_nullable": true
+		},
+		"meta": {
+			"special": [
+				"user-created"
+			],
+			"interface": "select-dropdown-m2o",
+			"display": "user",
+			"readonly": true,
+			"hidden": true,
+			"sort": 6,
+			"width": "half"
+		}
+	},
+	{
+		"collection": "block_open_roles",
+		"field": "date_updated",
+		"type": "timestamp",
+		"schema": {
+			"name": "date_updated",
+			"table": "block_open_roles",
+			"data_type": "timestamp with time zone",
+			"is_nullable": true
+		},
+		"meta": {
+			"special": [
+				"date-updated",
+				"cast-timestamp"
+			],
+			"interface": "datetime",
+			"readonly": true,
+			"hidden": true,
+			"sort": 7,
+			"width": "half"
+		}
+	},
+	{
+		"collection": "block_open_roles",
+		"field": "user_updated",
+		"type": "uuid",
+		"schema": {
+			"name": "user_updated",
+			"table": "block_open_roles",
+			"data_type": "uuid",
+			"is_nullable": true
+		},
+		"meta": {
+			"special": [
+				"user-updated"
+			],
+			"interface": "select-dropdown-m2o",
+			"display": "user",
+			"readonly": true,
+			"hidden": true,
+			"sort": 8,
+			"width": "half"
+		}
+	},
+	{
+		"collection": "block_open_roles_job",
+		"field": "id",
+		"type": "integer",
+		"schema": {
+			"name": "id",
+			"table": "block_open_roles_job",
+			"data_type": "integer",
+			"is_nullable": false,
+			"is_primary_key": true,
+			"has_auto_increment": true
+		},
+		"meta": {
+			"hidden": true,
+			"readonly": true,
+			"interface": "input",
+			"sort": 1
+		}
+	},
+	{
+		"collection": "block_open_roles_job",
+		"field": "block_open_roles",
+		"type": "integer",
+		"schema": {
+			"name": "block_open_roles",
+			"table": "block_open_roles_job",
+			"data_type": "integer",
+			"is_nullable": true,
+			"foreign_key_schema": "public",
+			"foreign_key_table": "block_open_roles",
+			"foreign_key_column": "id"
+		},
+		"meta": {
+			"hidden": true,
+			"sort": 2
+		}
+	},
+	{
+		"collection": "block_open_roles_job",
+		"field": "sort",
+		"type": "integer",
+		"schema": {
+			"name": "sort",
+			"table": "block_open_roles_job",
+			"data_type": "integer",
+			"is_nullable": true
+		},
+		"meta": {
+			"interface": "input",
+			"hidden": true,
+			"sort": 3
+		}
+	},
+	{
+		"collection": "block_open_roles_job",
+		"field": "type",
+		"type": "string",
+		"schema": {
+			"name": "type",
+			"table": "block_open_roles_job",
+			"data_type": "character varying",
+			"is_nullable": true
+		},
+		"meta": {
+			"interface": "select-dropdown",
+			"options": {
+				"choices": [
+					{
+						"text": "Open Roles",
+						"value": "open_roles"
+					},
+					{
+						"text": "Internship",
+						"value": "internship"
+					}
+				]
+			},
+			"sort": 4,
+			"width": "half"
+		}
+	},
+	{
+		"collection": "block_open_roles_job",
+		"field": "title",
+		"type": "string",
+		"schema": {
+			"name": "title",
+			"table": "block_open_roles_job",
+			"data_type": "character varying",
+			"is_nullable": true
+		},
+		"meta": {
+			"interface": "input",
+			"sort": 5,
+			"width": "full"
+		}
+	},
+	{
+		"collection": "block_open_roles_job",
+		"field": "department",
+		"type": "string",
+		"schema": {
+			"name": "department",
+			"table": "block_open_roles_job",
+			"data_type": "character varying",
+			"is_nullable": true
+		},
+		"meta": {
+			"interface": "input",
+			"sort": 6,
+			"width": "half"
+		}
+	},
+	{
+		"collection": "block_open_roles_job",
+		"field": "location",
+		"type": "string",
+		"schema": {
+			"name": "location",
+			"table": "block_open_roles_job",
+			"data_type": "character varying",
+			"is_nullable": true
+		},
+		"meta": {
+			"interface": "input",
+			"sort": 7,
+			"width": "half"
+		}
+	},
+	{
+		"collection": "block_open_roles_job",
+		"field": "location_flag",
+		"type": "uuid",
+		"schema": {
+			"name": "location_flag",
+			"table": "block_open_roles_job",
+			"data_type": "uuid",
+			"is_nullable": true,
+			"foreign_key_schema": "public",
+			"foreign_key_table": "directus_files",
+			"foreign_key_column": "id"
+		},
+		"meta": {
+			"interface": "file-image",
+			"display": "image",
+			"options": {
+				"crop": false
+			},
+			"sort": 8,
+			"width": "half"
+		}
+	},
+	{
+		"collection": "block_open_roles_job",
+		"field": "apply_url",
+		"type": "string",
+		"schema": {
+			"name": "apply_url",
+			"table": "block_open_roles_job",
+			"data_type": "character varying",
+			"is_nullable": true
+		},
+		"meta": {
+			"interface": "input",
+			"sort": 9,
+			"width": "half"
+		}
+	},
+	{
+		"collection": "block_open_roles_job",
+		"field": "date_created",
+		"type": "timestamp",
+		"schema": {
+			"name": "date_created",
+			"table": "block_open_roles_job",
+			"data_type": "timestamp with time zone",
+			"is_nullable": true
+		},
+		"meta": {
+			"special": [
+				"date-created",
+				"cast-timestamp"
+			],
+			"interface": "datetime",
+			"readonly": true,
+			"hidden": true,
+			"sort": 10,
+			"width": "half"
+		}
+	},
+	{
+		"collection": "block_open_roles_job",
+		"field": "user_created",
+		"type": "uuid",
+		"schema": {
+			"name": "user_created",
+			"table": "block_open_roles_job",
+			"data_type": "uuid",
+			"is_nullable": true
+		},
+		"meta": {
+			"special": [
+				"user-created"
+			],
+			"interface": "select-dropdown-m2o",
+			"display": "user",
+			"readonly": true,
+			"hidden": true,
+			"sort": 11,
+			"width": "half"
+		}
+	},
+	{
+		"collection": "block_open_roles_job",
+		"field": "date_updated",
+		"type": "timestamp",
+		"schema": {
+			"name": "date_updated",
+			"table": "block_open_roles_job",
+			"data_type": "timestamp with time zone",
+			"is_nullable": true
+		},
+		"meta": {
+			"special": [
+				"date-updated",
+				"cast-timestamp"
+			],
+			"interface": "datetime",
+			"readonly": true,
+			"hidden": true,
+			"sort": 12,
+			"width": "half"
+		}
+	},
+	{
+		"collection": "block_open_roles_job",
+		"field": "user_updated",
+		"type": "uuid",
+		"schema": {
+			"name": "user_updated",
+			"table": "block_open_roles_job",
+			"data_type": "uuid",
+			"is_nullable": true
+		},
+		"meta": {
+			"special": [
+				"user-updated"
+			],
+			"interface": "select-dropdown-m2o",
+			"display": "user",
+			"readonly": true,
+			"hidden": true,
+			"sort": 13,
+			"width": "half"
+		}
+	},
+	{
+		"collection": "block_cta_split",
+		"field": "id",
+		"type": "integer",
+		"schema": {
+			"name": "id",
+			"table": "block_cta_split",
+			"data_type": "integer",
+			"is_nullable": false,
+			"is_primary_key": true,
+			"has_auto_increment": true
+		},
+		"meta": {
+			"hidden": true,
+			"readonly": true,
+			"interface": "input",
+			"sort": 1
+		}
+	},
+	{
+		"collection": "block_cta_split",
+		"field": "heading",
+		"type": "text",
+		"schema": {
+			"name": "heading",
+			"table": "block_cta_split",
+			"data_type": "text",
+			"is_nullable": true
+		},
+		"meta": {
+			"interface": "input-rich-text-html",
+			"sort": 2,
+			"width": "half"
+		}
+	},
+	{
+		"collection": "block_cta_split",
+		"field": "description",
+		"type": "text",
+		"schema": {
+			"name": "description",
+			"table": "block_cta_split",
+			"data_type": "text",
+			"is_nullable": true
+		},
+		"meta": {
+			"interface": "input-multiline",
+			"sort": 3,
+			"width": "half"
+		}
+	},
+	{
+		"collection": "block_cta_split",
+		"field": "date_created",
+		"type": "timestamp",
+		"schema": {
+			"name": "date_created",
+			"table": "block_cta_split",
+			"data_type": "timestamp with time zone",
+			"is_nullable": true
+		},
+		"meta": {
+			"special": [
+				"date-created",
+				"cast-timestamp"
+			],
+			"interface": "datetime",
+			"readonly": true,
+			"hidden": true,
+			"sort": 4,
+			"width": "half"
+		}
+	},
+	{
+		"collection": "block_cta_split",
+		"field": "user_created",
+		"type": "uuid",
+		"schema": {
+			"name": "user_created",
+			"table": "block_cta_split",
+			"data_type": "uuid",
+			"is_nullable": true
+		},
+		"meta": {
+			"special": [
+				"user-created"
+			],
+			"interface": "select-dropdown-m2o",
+			"display": "user",
+			"readonly": true,
+			"hidden": true,
+			"sort": 5,
+			"width": "half"
+		}
+	},
+	{
+		"collection": "block_cta_split",
+		"field": "date_updated",
+		"type": "timestamp",
+		"schema": {
+			"name": "date_updated",
+			"table": "block_cta_split",
+			"data_type": "timestamp with time zone",
+			"is_nullable": true
+		},
+		"meta": {
+			"special": [
+				"date-updated",
+				"cast-timestamp"
+			],
+			"interface": "datetime",
+			"readonly": true,
+			"hidden": true,
+			"sort": 6,
+			"width": "half"
+		}
+	},
+	{
+		"collection": "block_cta_split",
+		"field": "user_updated",
+		"type": "uuid",
+		"schema": {
+			"name": "user_updated",
+			"table": "block_cta_split",
+			"data_type": "uuid",
+			"is_nullable": true
+		},
+		"meta": {
+			"special": [
+				"user-updated"
+			],
+			"interface": "select-dropdown-m2o",
+			"display": "user",
+			"readonly": true,
+			"hidden": true,
+			"sort": 7,
+			"width": "half"
+		}
 	}
 ]
