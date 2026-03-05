@@ -62,4 +62,4 @@ directus/docs/*
 /directus/.directus-sync
 ./directus/*
 
-.claude/*
+.claude
