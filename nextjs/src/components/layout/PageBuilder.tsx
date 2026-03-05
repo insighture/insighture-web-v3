@@ -37,7 +37,19 @@ const PageBuilder = ({ sections }: PageBuilderProps) => {
 					block.collection === 'block_logo_carousel' ||
 					block.collection === 'block_feature_split' ||
 					block.collection === 'block_insights' ||
-					block.collection === 'block_credentials';
+					block.collection === 'block_credentials' ||
+					block.collection === 'block_featured_post' ||
+					block.collection === 'block_service_tabs' ||
+					block.collection === 'block_service_showcase' ||
+					block.collection === 'block_posts_carousel' ||
+					block.collection === 'block_all_posts' ||
+					// block_services_tab manages its own layout (gray card + sub-sections)
+					block.collection === 'block_services_tab' ||
+					// Standalone use of service sub-blocks (nested use handled by ServiceItems)
+					block.collection === 'block_service_featured_article' ||
+					block.collection === 'block_service_credentials_cta' ||
+					block.collection === 'block_service_product_catalogue' ||
+				block.collection === 'block_platform_cta';
 
 				if (isFullBleed || sectionBg || isFullBleedBlock) {
 					return (

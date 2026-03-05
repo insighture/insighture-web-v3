@@ -11,6 +11,25 @@ export interface ExtensionSeoMetadata {
 	no_follow?: boolean;
 }
 
+export interface BlockPlatformCta {
+	/** @primaryKey */
+	id: string;
+	/** @description Rich text / WYSIWYG headline. Use <em> for italic accent text. */
+	title?: string | null;
+	/** @description Supporting paragraph below the headline. */
+	description?: string | null;
+	/** @description Label text for the CTA button. */
+	cta_label?: string | null;
+	/** @description URL for the CTA button (relative or absolute). */
+	cta_url?: string | null;
+	/** @description Right-side feature image (Directus file UUID). */
+	image?: DirectusFile | string | null;
+	date_created?: string | null;
+	user_created?: DirectusUser | string | null;
+	date_updated?: string | null;
+	user_updated?: DirectusUser | string | null;
+}
+
 export interface AiPrompt {
 	/** @primaryKey */
 	id: string;
@@ -546,9 +565,289 @@ export interface Post {
 	description?: string | null;
 	/** @description Select the team member who wrote this post */
 	author?: DirectusUser | string | null;
+	/** @description The type of post: insight, story, or update. */
+	type?: 'insight' | 'story' | 'update' | null;
 	/** @description Publish now or schedule for later. */
 	published_at?: string | null;
 	seo?: ExtensionSeoMetadata | null;
+	date_created?: string | null;
+	user_created?: DirectusUser | string | null;
+	date_updated?: string | null;
+	user_updated?: DirectusUser | string | null;
+}
+
+export interface BlockServiceFeaturedArticle {
+	/** @primaryKey */
+	id: string;
+	sort?: number | null;
+	/** @description Small uppercase label shown above the headline. */
+	tagline?: string | null;
+	/** @description Main headline text. */
+	headline?: string | null;
+	/** @description CTA button label. */
+	cta_label?: string | null;
+	/** @description CTA button URL. */
+	cta_url?: string | null;
+	/** @description Featured image (Directus file UUID). Bleeds to the left edge on desktop. */
+	image?: DirectusFile | string | null;
+	/** @description Alt text for the featured image. */
+	image_alt?: string | null;
+	/** @description Outer section background color. Defaults to #0fa2bf. Overridden by parent service item accent_color when embedded in a service tab. */
+	background_color?: string | null;
+	date_created?: string | null;
+	user_created?: DirectusUser | string | null;
+	date_updated?: string | null;
+	user_updated?: DirectusUser | string | null;
+}
+
+export interface BlockServiceCredentialsCTABadge {
+	/** @primaryKey */
+	id: string;
+	sort?: number | null;
+	/** @description Certification badge image. */
+	image?: DirectusFile | string | null;
+	/** @description Alt text for the badge image. */
+	alt?: string | null;
+	block_service_credentials_cta?: BlockServiceCredentialsCTA | string | null;
+}
+
+export interface BlockServiceCredentialsCTAStat {
+	/** @primaryKey */
+	id: string;
+	sort?: number | null;
+	/** @description Icon image for the stat card. */
+	icon?: DirectusFile | string | null;
+	/** @description Numeric value display, e.g. "50+" */
+	value?: string | null;
+	/** @description Label below the value, e.g. "Experienced cloud consultants" */
+	label?: string | null;
+	block_service_credentials_cta?: BlockServiceCredentialsCTA | string | null;
+}
+
+export interface BlockServiceProductCatalogueItem {
+	/** @primaryKey */
+	id: string;
+	sort?: number | null;
+	/** @description Product name shown in the list item. */
+	label?: string | null;
+	block_service_product_catalogue?: BlockServiceProductCatalogue | string | null;
+}
+
+export interface BlockServiceProductCatalogue {
+	/** @primaryKey */
+	id: string;
+	/** @description Main headline text (without emphasis). */
+	headline?: string | null;
+	/** @description Italic accent-colored suffix, e.g. "designed to scale with your business." */
+	headline_emphasis?: string | null;
+	/** @description Large product screenshot shown on the right (bleeds to edge). */
+	image?: DirectusFile | string | null;
+	/** @description Alt text for the product screenshot. */
+	image_alt?: string | null;
+	/** @description Clickable product list items shown on the left. */
+	products?: BlockServiceProductCatalogueItem[] | string[];
+	date_created?: string | null;
+	user_created?: DirectusUser | string | null;
+	date_updated?: string | null;
+	user_updated?: DirectusUser | string | null;
+}
+
+export interface BlockServiceCredentialsCTA {
+	/** @primaryKey */
+	id: string;
+	/** @description Main headline (plain text, without emphasis). */
+	headline?: string | null;
+	/** @description Italic accent-colored suffix appended to the headline. */
+	headline_emphasis?: string | null;
+	/** @description Row of overlapping certification badge images. */
+	badges?: BlockServiceCredentialsCTABadge[] | string[];
+	/** @description Stat cards shown in the right column. */
+	stats?: BlockServiceCredentialsCTAStat[] | string[];
+	date_created?: string | null;
+	user_created?: DirectusUser | string | null;
+	date_updated?: string | null;
+	user_updated?: DirectusUser | string | null;
+}
+
+export interface BlockFeaturedPost {
+	/** @primaryKey */
+	id: string;
+	sort?: number | null;
+	/** @description Label shown above the headline (e.g. "Featured Article"). */
+	tagline?: string | null;
+	/** @description Background color of the section (CSS color value). Defaults to brand pink. */
+	background_color?: string | null;
+	/** @description Hero image displayed on the left panel. Independent of the post image. */
+	image?: DirectusFile | string | null;
+	/** @description Optional pinned post. If null, the latest published post is used. */
+	post?: Post | string | null;
+	date_created?: string | null;
+	user_created?: DirectusUser | string | null;
+	date_updated?: string | null;
+	user_updated?: DirectusUser | string | null;
+}
+export interface BlockServiceTabsItem {
+	/** @primaryKey */
+	id: string;
+	sort?: number | null;
+	/** @description The service tabs block this item belongs to. */
+	block_service_tabs?: BlockServiceTabs | string | null;
+	/** @description Label shown on the tab button. */
+	label?: string | null;
+	/** @description CSS accent color for the active tab indicator. */
+	accent_color?: string | null;
+	/** @description Headline shown in the content panel when this tab is active. */
+	headline?: string | null;
+	/** @description Body copy shown below the headline. */
+	description?: string | null;
+	/** @description Featured image shown alongside the text content. */
+	image?: DirectusFile | string | null;
+	/** @description CTA link label. */
+	link_label?: string | null;
+	/** @description CTA link URL. */
+	url?: string | null;
+	date_created?: string | null;
+	user_created?: DirectusUser | string | null;
+	date_updated?: string | null;
+	user_updated?: DirectusUser | string | null;
+}
+
+export interface BlockServiceTabs {
+	/** @primaryKey */
+	id: string;
+	sort?: number | null;
+	/** @description Small uppercase label shown above the headline. */
+	tagline?: string | null;
+	/** @description Main section headline. */
+	headline?: string | null;
+	/** @description Individual service tab items. */
+	items?: BlockServiceTabsItem[] | string[];
+	date_created?: string | null;
+	user_created?: DirectusUser | string | null;
+	date_updated?: string | null;
+	user_updated?: DirectusUser | string | null;
+}
+
+export interface BlockServiceShowcaseItemCard {
+	/** @primaryKey */
+	id: string;
+	sort?: number | null;
+	/** @description The showcase item this card belongs to. */
+	showcase_item?: BlockServiceShowcaseItem | string | null;
+	/** @description Emoji or icon identifier for the card. */
+	icon?: string | null;
+	/** @description Card title. */
+	title?: string | null;
+	/** @description Card body copy. */
+	description?: string | null;
+	/** @description CTA link label. */
+	link_label?: string | null;
+	/** @description CTA link URL. */
+	url?: string | null;
+	date_created?: string | null;
+	user_created?: DirectusUser | string | null;
+	date_updated?: string | null;
+	user_updated?: DirectusUser | string | null;
+}
+
+export interface BlockServiceShowcaseItemStat {
+	/** @primaryKey */
+	id: string;
+	sort?: number | null;
+	/** @description The showcase item this stat belongs to. */
+	showcase_item?: BlockServiceShowcaseItem | string | null;
+	/** @description Emoji or icon identifier for the stat. */
+	icon?: string | null;
+	/** @description The statistic value (e.g. "500+"). */
+	value?: string | null;
+	/** @description Descriptive label below the stat value. */
+	label?: string | null;
+	date_created?: string | null;
+	user_created?: DirectusUser | string | null;
+	date_updated?: string | null;
+	user_updated?: DirectusUser | string | null;
+}
+
+export interface BlockServiceShowcaseItemProduct {
+	/** @primaryKey */
+	id: string;
+	sort?: number | null;
+	/** @description The showcase item this product belongs to. */
+	showcase_item?: BlockServiceShowcaseItem | string | null;
+	/** @description Product name / list item title. */
+	title?: string | null;
+	/** @description Highlight this item with an accent marker. */
+	is_highlighted?: boolean | null;
+	date_created?: string | null;
+	user_created?: DirectusUser | string | null;
+	date_updated?: string | null;
+	user_updated?: DirectusUser | string | null;
+}
+
+export interface BlockServiceShowcaseItem {
+	/** @primaryKey */
+	id: string;
+	sort?: number | null;
+	/** @description The showcase block this item belongs to. */
+	block_service_showcase?: BlockServiceShowcase | string | null;
+	/** @description Label shown on the service selector tab. */
+	label?: string | null;
+	/** @description CSS accent color for this service's visual identity. */
+	accent_color?: string | null;
+	/** @description Service display name. */
+	service_name?: string | null;
+	/** @description Short tagline shown above the service name. */
+	service_tagline?: string | null;
+	/** @description Full description of the service. */
+	service_description?: string | null;
+	/** @description JSON array of key service bullet points. */
+	key_services?: string[] | null;
+	/** @description Hero image for the service overview. */
+	service_image?: DirectusFile | string | null;
+	/** @description Heading for the expertise / capabilities section. */
+	expertise_heading?: string | null;
+	/** @description Italic emphasis suffix for the expertise heading. */
+	expertise_heading_emphasis?: string | null;
+	/** @description Determines which CTA layout to render: 'credentials' or 'product'. */
+	cta_type?: 'credentials' | 'product' | null;
+	/** @description Headline for the credentials CTA block. */
+	cta_headline?: string | null;
+	/** @description Italic emphasis suffix for the credentials CTA headline. */
+	cta_headline_emphasis?: string | null;
+	/** @description Credentials/awards image for the credentials CTA. */
+	cta_credentials_image?: DirectusFile | string | null;
+	/** @description Headline for the product CTA block. */
+	product_cta_headline?: string | null;
+	/** @description Italic emphasis suffix for the product CTA headline. */
+	product_cta_emphasis?: string | null;
+	/** @description Product catalogue image for the product CTA. */
+	product_catalogue_image?: DirectusFile | string | null;
+	/** @description Optional featured post to highlight for this service. */
+	featured_post?: Post | string | null;
+	/** @description Expertise / capability cards. */
+	cards?: BlockServiceShowcaseItemCard[] | string[];
+	/** @description Key statistics for this service. */
+	stat_items?: BlockServiceShowcaseItemStat[] | string[];
+	/** @description Product list items for the product CTA. */
+	product_items?: BlockServiceShowcaseItemProduct[] | string[];
+	date_created?: string | null;
+	user_created?: DirectusUser | string | null;
+	date_updated?: string | null;
+	user_updated?: DirectusUser | string | null;
+}
+
+export interface BlockServiceShowcase {
+	/** @primaryKey */
+	id: string;
+	sort?: number | null;
+	/** @description Main page headline (dark header). */
+	page_headline?: string | null;
+	/** @description Italic emphasis suffix rendered after page_headline. */
+	page_headline_emphasis?: string | null;
+	/** @description Supporting description below the main headline. */
+	page_description?: string | null;
+	/** @description Individual service items (one per tab). */
+	items?: BlockServiceShowcaseItem[] | string[];
 	date_created?: string | null;
 	user_created?: DirectusUser | string | null;
 	date_updated?: string | null;
@@ -1047,6 +1346,20 @@ export interface Schema {
 	block_richtext: BlockRichtext[];
 	block_services: BlockServices[];
 	block_services_item: BlockServicesItem[];
+	block_featured_post: BlockFeaturedPost[];
+	block_service_featured_article: BlockServiceFeaturedArticle[];
+	block_service_credentials_cta: BlockServiceCredentialsCTA[];
+	block_service_credentials_cta_badge: BlockServiceCredentialsCTABadge[];
+	block_service_credentials_cta_stat: BlockServiceCredentialsCTAStat[];
+	block_service_product_catalogue: BlockServiceProductCatalogue[];
+	block_service_product_catalogue_item: BlockServiceProductCatalogueItem[];
+	block_service_tabs: BlockServiceTabs[];
+	block_service_tabs_items: BlockServiceTabsItem[];
+	block_service_showcase: BlockServiceShowcase[];
+	block_service_showcase_items: BlockServiceShowcaseItem[];
+	block_service_showcase_item_cards: BlockServiceShowcaseItemCard[];
+	block_service_showcase_item_stats: BlockServiceShowcaseItemStat[];
+	block_service_showcase_item_products: BlockServiceShowcaseItemProduct[];
 	form_fields: FormField[];
 	forms: Form[];
 	form_submissions: FormSubmission[];

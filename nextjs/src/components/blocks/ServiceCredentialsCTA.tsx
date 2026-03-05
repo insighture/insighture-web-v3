@@ -1,0 +1,173 @@
+'use client';
+
+import DirectusImage from '@/components/shared/DirectusImage';
+import { setAttr } from '@directus/visual-editing';
+
+export interface ServiceCredentialsBadge {
+	id: string;
+	sort?: number | null;
+	image?: string | null;
+	alt?: string | null;
+}
+
+export interface ServiceCredentialsStat {
+	id: string;
+	sort?: number | null;
+	icon?: string | null;
+	value?: string | null;
+	label?: string | null;
+}
+
+export interface ServiceCredentialsCTAData {
+	id: string;
+	headline?: string | null;
+	headline_emphasis?: string | null;
+	badges?: ServiceCredentialsBadge[] | null;
+	stats?: ServiceCredentialsStat[] | null;
+}
+
+interface ServiceCredentialsCTAProps {
+	data: ServiceCredentialsCTAData;
+	accentColor?: string | null;
+	/** When true, renders without outer <section> wrapper (used inside ServiceItems gray card) */
+	contained?: boolean;
+}
+
+export default function ServiceCredentialsCTA({ data, accentColor, contained }: ServiceCredentialsCTAProps) {
+	const { id, headline, badges, stats } = data;
+	const accent = accentColor || '#0fa2bf';
+
+	const sortedBadges = [...(badges || [])].sort((a, b) => (a.sort ?? 0) - (b.sort ?? 0));
+	const sortedStats = [...(stats || [])].sort((a, b) => (a.sort ?? 0) - (b.sort ?? 0));
+
+	const directusAttr = setAttr({
+		collection: 'block_service_credentials_cta',
+		item: id,
+		fields: ['headline'],
+		mode: 'popover',
+	});
+
+	const innerContent = (
+		<div className="flex flex-col lg:flex-row items-start lg:items-center gap-[40px] lg:gap-[130px]">
+
+			{/* ── Left column: headline + badges ─────────────────────── */}
+			<div className="flex flex-col gap-[41px] lg:max-w-[471px]">
+				{headline && (
+					<p
+						className="font-sans font-medium text-[40px] leading-[48px] text-[#fcfcfd]"
+						dangerouslySetInnerHTML={{ __html: headline }}
+					/>
+				)}
+
+				{/* Badge row — overlapping certification images */}
+				{sortedBadges.length > 0 && (
+					<div className="flex items-center">
+						{sortedBadges.map((badge, index) => (
+							<div
+								key={badge.id}
+								className="relative shrink-0"
+								style={{
+									width: '64px',
+									height: '72px',
+									marginLeft: index === 0 ? 0 : '-8px',
+									zIndex: index,
+								}}
+								data-directus={setAttr({
+									collection: 'block_service_credentials_cta_badge',
+									item: badge.id,
+									fields: ['image', 'alt'],
+									mode: 'popover',
+								})}
+							>
+								{badge.image && (
+									<DirectusImage
+										uuid={badge.image}
+										alt={badge.alt || ''}
+										fill
+										sizes="64px"
+										className="object-contain"
+									/>
+								)}
+							</div>
+						))}
+					</div>
+				)}
+			</div>
+
+			{/* ── Right column: stat cards ────────────────────────────── */}
+			{sortedStats.length > 0 && (
+				<div className="flex flex-col gap-[16px] w-full lg:w-[423px] shrink-0">
+					{sortedStats.map((stat) => (
+						<div
+							key={stat.id}
+							className="flex items-center gap-[32px] p-[16px] rounded-[8px]"
+							style={{ backgroundColor: '#11262b' }}
+							data-directus={setAttr({
+								collection: 'block_service_credentials_cta_stat',
+								item: stat.id,
+								fields: ['icon', 'value', 'label'],
+								mode: 'popover',
+							})}
+						>
+							{/* Icon */}
+							{stat.icon && (
+								<div className="relative shrink-0 size-[48px]">
+									<DirectusImage
+										uuid={stat.icon}
+										alt=""
+										fill
+										sizes="48px"
+										className="object-contain"
+									/>
+								</div>
+							)}
+
+							{/* Value */}
+							{stat.value && (
+								<p
+									className="font-sans font-bold text-[32px] leading-[50px] whitespace-nowrap shrink-0"
+									style={{ color: accent }}
+								>
+									{stat.value}
+								</p>
+							)}
+
+							{/* Label */}
+							{stat.label && (
+								<p className="font-sans font-semibold text-[18px] leading-[25px] text-white">
+									{stat.label}
+								</p>
+							)}
+						</div>
+					))}
+				</div>
+			)}
+		</div>
+	);
+
+	if (contained) {
+		return (
+			<div
+				className="w-full rounded-[8px] overflow-hidden"
+				style={{ backgroundColor: '#071d22' }}
+				data-directus={directusAttr}
+			>
+				<div className="py-[64px] px-4 lg:px-[64px]">
+					{innerContent}
+				</div>
+			</div>
+		);
+	}
+
+	return (
+		<section
+			className="w-full"
+			style={{ backgroundColor: '#071d22' }}
+			data-directus={directusAttr}
+		>
+			<div className="mx-auto max-w-[1200px] px-4 lg:px-8 py-[64px]">
+				{innerContent}
+			</div>
+		</section>
+	);
+}
