@@ -150,6 +150,8 @@ export interface BlockHeroSlide {
 	headline_emphasis?: string | null;
 	/** @description Supporting copy below the headline for this slide. */
 	description?: string | null;
+	/** @description Where to position the text block within this slide. */
+	text_placement?: 'center_left' | 'bottom_center' | 'bottom_left' | 'center_center' | null;
 	date_created?: string | null;
 	user_created?: DirectusUser | string | null;
 	date_updated?: string | null;
@@ -170,6 +172,8 @@ export interface BlockHeroHeadlineLine {
 	font_style?: string | null;
 	/** @description Named size: sm, md, lg, xl, 2xl, or 3xl. */
 	font_size?: string | null;
+	/** @description Optional color override for this headline line (CSS color value). */
+	color?: string | null;
 }
 
 export interface BlockHero {
@@ -199,6 +203,12 @@ export interface BlockHero {
 	headline_lines?: BlockHeroHeadlineLine[] | string[];
 	/** @description Slides for the carousel. */
 	slides?: BlockHeroSlide[] | string[];
+	/** @description Enable a dark gradient overlay on the expanded image for improved text legibility. */
+	enable_gradient_overlay?: boolean | null;
+	/** @description Where to position the text block within the image_expanded layout. */
+	expanded_text_placement?: 'center_left' | 'bottom_center' | 'bottom_left' | 'center_center' | null;
+	/** @description Horizontal alignment of text within the content block. */
+	expanded_text_alignment?: 'left' | 'center' | 'right' | null;
 	date_created?: string | null;
 	user_created?: DirectusUser | string | null;
 	date_updated?: string | null;
@@ -263,24 +273,39 @@ export interface BlockPricingCard {
 }
 
 export interface BlockRichtext {
+	/** @primaryKey */
+	id: string;
+	/** @description Layout variant: 'default' (centered, no button) or 'hero' (with button, bottom-aligned). */
+	variant?: 'default' | 'hero' | null;
 	/** @description Rich text content for this block. */
 	content?: string | null;
 	/** @description Larger main headline for this page section. */
 	headline?: string | null;
-	/** @primaryKey */
-	id: string;
 	/** @description Controls how the content block is positioned on the page. */
 	alignment?: 'left' | 'center' | 'right' | null;
 	/** @description Smaller copy shown above the headline to label a section or add extra context. */
 	tagline?: string | null;
 	/** @description Background color of the block (CSS color value). */
 	background_color?: string | null;
+	/** @description Full-width background image behind the section content. */
+	background_image?: string | null;
 	/** @description Main text color override. */
 	text_color?: string | null;
 	/** @description Color applied to italic/emphasized text (<em> tags). */
 	emphasis_color?: string | null;
 	/** @description Show decorative quotation mark in corners. */
 	show_quotes?: boolean | null;
+	button_text?: string | null;
+	button_url?: string | null;
+	button_page?: { permalink: string | null } | string | null;
+	button_variant?: string | null;
+	button_bg_color?: string | null;
+	button_text_color?: string | null;
+	button_border_color?: string | null;
+	headline_font_size?: string | null;
+	headline_font_weight?: string | null;
+	headline_font_style?: string | null;
+	headline_color?: string | null;
 	date_created?: string | null;
 	user_created?: DirectusUser | string | null;
 	date_updated?: string | null;
@@ -322,6 +347,306 @@ export interface BlockServices {
 	background_color?: string | null;
 	/** @description Service cards shown in the grid. */
 	items?: BlockServicesItem[] | string[];
+	date_created?: string | null;
+	user_created?: DirectusUser | string | null;
+	date_updated?: string | null;
+	user_updated?: DirectusUser | string | null;
+}
+
+export interface BlockLogoCarouselItem {
+	/** @primaryKey */
+	id: string;
+	sort?: number | null;
+	date_created?: string | null;
+	user_created?: DirectusUser | string | null;
+	/** @description The parent logo carousel this item belongs to. */
+	block_logo_carousel?: BlockLogoCarousel | string | null;
+	/** @description Company or partner name. */
+	name?: string | null;
+	/** @description Optional link when clicking the logo. */
+	url?: string | null;
+	/** @description The logo image. */
+	logo?: DirectusFile | string | null;
+	/** @description Year or subtitle (e.g., '2024', '2025'). */
+	subtitle?: string | null;
+}
+
+export interface BlockLogoCarousel {
+	/** @primaryKey */
+	id: string;
+	status?: 'published' | 'draft' | 'archived' | null;
+	/** @description Centered text displayed above the scrolling logos. */
+	tagline?: string | null;
+	/** @description Text color for the tagline (CSS color value, defaults to white). */
+	tagline_color?: string | null;
+	/** @description Background color of the section (CSS color value, default #0b2d34). */
+	background_color?: string | null;
+	/** @description Logo items in the carousel. */
+	logos?: BlockLogoCarouselItem[] | string[];
+	/** @description Display mode: 'auto' for continuous marquee, 'manual' for card-based pagination with arrows. */
+	variant?: 'auto' | 'manual' | null;
+	/** @description Number of cards visible at once in manual variant (1-6, default 3). */
+	cards_per_view?: number | null;
+	/** @description Show arrow navigation buttons in manual variant (default true). */
+	show_navigation?: boolean | null;
+}
+
+export interface BlockCardGridItem {
+	/** @primaryKey */
+	id: string;
+	sort?: number | null;
+	/** @description The parent card grid this item belongs to. */
+	block_card_grid?: BlockCardGrid | string | null;
+	/** @description Card display variant: feature (bordered, icon-based) or testimonial (logo-based, quote). */
+	variant?: 'feature' | 'testimonial' | null;
+	/** @description Image for the card (icon for feature variant, logo for testimonial variant). */
+	image?: DirectusFile | string | null;
+	/** @description Card title (used for feature variant). */
+	title?: string | null;
+	/** @description Card description (used for feature variant). */
+	description?: string | null;
+	/** @description Testimonial quote (used for testimonial variant). */
+	quote?: string | null;
+	/** @description Author name (used for testimonial variant). */
+	author_name?: string | null;
+	/** @description Author role/position (used for testimonial variant). */
+	author_role?: string | null;
+	/** @description Optional accent color for the card (CSS color value). */
+	accent_color?: string | null;
+}
+
+export interface BlockReachOutContactItem {
+	/** @primaryKey */
+	id: number;
+	sort?: number | null;
+	/** @description The reach out block this item belongs to. */
+	block_reach_out?: BlockReachOut | number | null;
+	/** @description Contact method label (e.g. "Email us", "Global enquiries"). */
+	label?: string | null;
+	/** @description Contact value (e.g. email address or phone number). */
+	value?: string | null;
+	/** @description Supporting description line below the value. */
+	description?: string | null;
+	date_created?: string | null;
+	user_created?: DirectusUser | string | null;
+	date_updated?: string | null;
+	user_updated?: DirectusUser | string | null;
+}
+
+export interface BlockCultureGallery {
+	/** @primaryKey */
+	id: string;
+	/** @description Section title as HTML (WYSIWYG). */
+	title?: string | null;
+	/** @description Subtitle paragraph below the heading. */
+	description?: string | null;
+	/** @description Smaller Polaroid photo at the top-left corner. */
+	side_photo_left?: DirectusFile | string | null;
+	/** @description Smaller Polaroid photo at the top-right corner. */
+	side_photo_right?: DirectusFile | string | null;
+	/** @description First bottom Polaroid photo. */
+	photo_1?: DirectusFile | string | null;
+	/** @description Caption for first bottom Polaroid. */
+	caption_1?: string | null;
+	/** @description Second bottom Polaroid photo. */
+	photo_2?: DirectusFile | string | null;
+	/** @description Caption for second bottom Polaroid. */
+	caption_2?: string | null;
+	/** @description Third bottom Polaroid photo. */
+	photo_3?: DirectusFile | string | null;
+	/** @description Caption for third bottom Polaroid. */
+	caption_3?: string | null;
+	/** @description Fourth bottom Polaroid photo. */
+	photo_4?: DirectusFile | string | null;
+	/** @description Caption for fourth bottom Polaroid. */
+	caption_4?: string | null;
+	date_created?: string | null;
+	user_created?: DirectusUser | string | null;
+	date_updated?: string | null;
+	user_updated?: DirectusUser | string | null;
+}
+
+export interface BlockCtaSplit {
+	/** @primaryKey */
+	id: number;
+	/** @description Left-side heading as HTML (supports italic pink accent). */
+	heading?: string | null;
+	/** @description Right-side description paragraph. */
+	description?: string | null;
+	date_created?: string | null;
+	user_created?: DirectusUser | string | null;
+	date_updated?: string | null;
+	user_updated?: DirectusUser | string | null;
+}
+
+export interface BlockOpenRolesJob {
+	/** @primaryKey */
+	id: number;
+	sort?: number | null;
+	block_open_roles?: BlockOpenRoles | number | null;
+	/** @description Tab this job appears under. */
+	type?: 'open_roles' | 'internship' | null;
+	/** @description Job title. */
+	title?: string | null;
+	/** @description Department/category used for grouping. */
+	department?: string | null;
+	/** @description Location label, e.g. "Colombo | Sri Lanka". */
+	location?: string | null;
+	/** @description Country flag image (optional). */
+	location_flag?: string | null;
+	/** @description URL to the application form or page. */
+	apply_url?: string | null;
+	date_created?: string | null;
+	user_created?: DirectusUser | string | null;
+	date_updated?: string | null;
+	user_updated?: DirectusUser | string | null;
+}
+
+export interface BlockOpenRoles {
+	/** @primaryKey */
+	id: number;
+	/** @description Section heading as HTML (supports italic pink accent). */
+	heading?: string | null;
+	/** @description Subtitle paragraph shown below the heading. */
+	description?: string | null;
+	/** @description List of job positions shown in the listing. */
+	jobs?: BlockOpenRolesJob[] | string[];
+	date_created?: string | null;
+	user_created?: DirectusUser | string | null;
+	date_updated?: string | null;
+	user_updated?: DirectusUser | string | null;
+}
+
+export interface BlockIntroMedia {
+	/** @primaryKey */
+	id: number;
+	/** @description Section heading as HTML (supports italic pink accent). */
+	heading?: string | null;
+	/** @description Paragraph text shown below the heading. */
+	description?: string | null;
+	/** @description Right-side image. */
+	image?: string | null;
+	/** @description Optional YouTube/Vimeo URL to embed instead of the image. */
+	video_url?: string | null;
+	date_created?: string | null;
+	user_created?: DirectusUser | string | null;
+	date_updated?: string | null;
+	user_updated?: DirectusUser | string | null;
+}
+
+export interface BlockPeopleSaySlide {
+	/** @primaryKey */
+	id: number;
+	sort?: number | null;
+	block_people_say?: BlockPeopleSay | number | null;
+	/** @description Photo of the person. */
+	image?: string | null;
+	/** @description The quote text. */
+	quote?: string | null;
+	/** @description Person's name. */
+	name?: string | null;
+	/** @description Person's job title/role. */
+	role?: string | null;
+	date_created?: string | null;
+	user_created?: DirectusUser | string | null;
+	date_updated?: string | null;
+	user_updated?: DirectusUser | string | null;
+}
+
+export interface BlockCardGrid {
+	/** @primaryKey */
+	id: string;
+	status?: 'published' | 'draft' | 'archived' | null;
+	/** @description Smaller copy shown above the headline to label a section or add extra context. */
+	tagline?: string | null;
+	/** @description Larger main headline for this page section. */
+	headline?: string | null;
+	/** @description Description text shown below the headline. */
+	description?: string | null;
+	/** @description Number of columns on desktop (1-4). Automatically responsive on smaller screens. */
+	columns?: number | null;
+	/** @description Background color of the section (CSS color value). */
+	background_color?: string | null;
+	/** @description Card items displayed in the grid. Can mix feature and testimonial variants. */
+	items?: BlockCardGridItem[] | string[];
+}
+
+export interface BlockPeopleSay {
+	/** @primaryKey */
+	id: number;
+	/** @description Section heading as HTML (supports italic pink accent). */
+	heading?: string | null;
+	/** @description Testimonial slides shown in the carousel. */
+	slides?: BlockPeopleSaySlide[] | string[];
+	date_created?: string | null;
+	user_created?: DirectusUser | string | null;
+	date_updated?: string | null;
+	user_updated?: DirectusUser | string | null;
+}
+
+export interface BlockValuesItem {
+	/** @primaryKey */
+	id: number;
+	sort?: number | null;
+	/** @description The values block this item belongs to. */
+	block_values?: BlockValues | number | null;
+	/** @description Icon image for the value card. */
+	icon?: string | null;
+	/** @description Value card title. */
+	title?: string | null;
+	/** @description Value card description text. */
+	description?: string | null;
+	date_created?: string | null;
+	user_created?: DirectusUser | string | null;
+	date_updated?: string | null;
+	user_updated?: DirectusUser | string | null;
+}
+
+export interface BlockValues {
+	/** @primaryKey */
+	id: number;
+	/** @description Section heading as HTML (supports pink italic accent text). */
+	heading?: string | null;
+	/** @description Center tall photo shown between the value cards. */
+	center_image?: string | null;
+	/** @description List of value cards (up to 4, first 2 on left, last 2 on right). */
+	value_items?: BlockValuesItem[] | string[];
+	date_created?: string | null;
+	user_created?: DirectusUser | string | null;
+	date_updated?: string | null;
+	user_updated?: DirectusUser | string | null;
+}
+
+export interface BlockAcknowledgement {
+	/** @primaryKey */
+	id: string;
+	/** @description The acknowledgement text displayed in the banner. */
+	text?: string | null;
+	date_created?: string | null;
+	user_created?: DirectusUser | string | null;
+	date_updated?: string | null;
+	user_updated?: DirectusUser | string | null;
+}
+
+export interface BlockReachOut {
+	/** @primaryKey */
+	id: number;
+	/** @description Form to display on the left side of the Reach Out block. */
+	form?: Form | string | null;
+	/** @description Section heading (e.g. "Reach out"). */
+	heading?: string | null;
+	/** @description Title shown on the brochure card. */
+	brochure_title?: string | null;
+	/** @description Thumbnail image for the brochure card. */
+	brochure_image?: DirectusFile | string | null;
+	/** @description PDF file for the downloadable brochure. */
+	brochure_pdf?: DirectusFile | string | null;
+	/** @description Label for the brochure download link. */
+	brochure_download_label?: string | null;
+	/** @description Heading for the contact information section. */
+	inquiries_heading?: string | null;
+	/** @description List of contact entries shown in the inquiries section. */
+	contact_items?: BlockReachOutContactItem[] | string[];
 	date_created?: string | null;
 	user_created?: DirectusUser | string | null;
 	date_updated?: string | null;
@@ -374,6 +699,18 @@ export interface Form {
 	success_redirect_url?: string | null;
 	/** @description Show or hide this form from the site. */
 	is_active?: boolean | null;
+	/** @description Show or hide the form title on the frontend. */
+	show_title?: boolean | null;
+	/** @description Optional paragraph shown below the title and above the form fields. */
+	intro_paragraph?: string | null;
+	/** @description Full text for the privacy policy checkbox. Leave empty to hide. */
+	privacy_policy_text?: string | null;
+	/** @description The word or phrase in the checkbox text to turn into a link. */
+	privacy_policy_link_text?: string | null;
+	/** @description URL for the privacy policy link. */
+	privacy_policy_link_url?: string | null;
+	/** @description Controls the width of the submit button: 'auto' or 'full'. */
+	submit_button_width?: 'auto' | 'full' | null;
 	/** @description Setup email notifications when forms are submitted. */
 	emails?: Array<{ to: string[]; subject: string; message: string }> | null;
 	date_created?: string | null;
@@ -493,7 +830,7 @@ export interface PageBlock {
 	/** @description The id of the page that this block belongs to. */
 	page?: Page | string | null;
 	/** @description The data for the block. */
-	item?: BlockHero | BlockRichtext | BlockForm | BlockPost | BlockGallery | BlockPricing | string | null;
+	item?: BlockHero | BlockRichtext | BlockForm | BlockPost | BlockGallery | BlockPricing | BlockReachOut | BlockAcknowledgement | BlockCultureGallery | BlockValues | BlockPeopleSay | BlockIntroMedia | BlockOpenRoles | BlockCtaSplit | string | null;
 	/** @description The collection (type of block). */
 	collection?: string | null;
 	/** @description Temporarily hide this block on the website without having to remove it from your page. */
@@ -545,6 +882,14 @@ export interface Page {
 	nav_dropdown_text_color?: string | null;
 	/** @description Hover color of nav dropdown links. Null = theme default. */
 	nav_dropdown_text_hover_color?: string | null;
+	/** @description Footer CTA text content. */
+	footer_cta_text?: string | null;
+	/** @description Footer CTA button label. */
+	footer_cta_button_text?: string | null;
+	/** @description Footer CTA button URL. */
+	footer_cta_button_url?: string | null;
+	/** @description Footer CTA button page link. */
+	footer_cta_button_page?: { permalink: string | null } | string | null;
 }
 
 export interface Post {
@@ -1355,6 +1700,18 @@ export interface Schema {
 	block_posts: BlockPost[];
 	block_pricing: BlockPricing[];
 	block_pricing_cards: BlockPricingCard[];
+	block_reach_out: BlockReachOut[];
+	block_acknowledgement: BlockAcknowledgement[];
+	block_culture_gallery: BlockCultureGallery[];
+	block_reach_out_contact_item: BlockReachOutContactItem[];
+	block_values: BlockValues[];
+	block_values_item: BlockValuesItem[];
+	block_people_say: BlockPeopleSay[];
+	block_people_say_slide: BlockPeopleSaySlide[];
+	block_intro_media: BlockIntroMedia[];
+	block_open_roles: BlockOpenRoles[];
+	block_open_roles_job: BlockOpenRolesJob[];
+	block_cta_split: BlockCtaSplit[];
 	block_richtext: BlockRichtext[];
 	block_services: BlockServices[];
 	block_services_item: BlockServicesItem[];
@@ -1373,6 +1730,8 @@ export interface Schema {
 	block_service_showcase_item_cards: BlockServiceShowcaseItemCard[];
 	block_service_showcase_item_stats: BlockServiceShowcaseItemStat[];
 	block_service_showcase_item_products: BlockServiceShowcaseItemProduct[];
+	block_card_grid: BlockCardGrid[];
+	block_card_grid_item: BlockCardGridItem[];
 	form_fields: FormField[];
 	forms: Form[];
 	form_submissions: FormSubmission[];
@@ -1426,6 +1785,8 @@ export enum CollectionNames {
 	block_pricing = 'block_pricing',
 	block_pricing_cards = 'block_pricing_cards',
 	block_richtext = 'block_richtext',
+	block_card_grid = 'block_card_grid',
+	block_card_grid_item = 'block_card_grid_item',
 	form_fields = 'form_fields',
 	forms = 'forms',
 	form_submissions = 'form_submissions',

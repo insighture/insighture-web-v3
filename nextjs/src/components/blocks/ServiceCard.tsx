@@ -25,14 +25,10 @@ const ServiceCard = ({ card }: ServiceCardProps) => {
 			<div className="flex flex-col flex-1 items-start justify-between p-6">
 				<div className="flex flex-col gap-4 w-full">
 					{title && (
-						<p className="font-heading font-bold text-3xl leading-snug text-[#1d2939]">
-							{title}
-						</p>
+						<div className="font-heading font-bold text-3xl leading-snug text-[#1d2939]" dangerouslySetInnerHTML={{ __html: title }} />
 					)}
 					{description && (
-						<p className="text-lg leading-normal text-[#1d2939] font-medium">
-							{description}
-						</p>
+						<div className="text-lg leading-normal text-[#1d2939] font-medium" dangerouslySetInnerHTML={{ __html: description }} />
 					)}
 				</div>
 

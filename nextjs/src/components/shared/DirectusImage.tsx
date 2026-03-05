@@ -6,7 +6,12 @@ export interface DirectusImageProps extends Omit<ImageProps, 'src'> {
 }
 
 const DirectusImage = ({ uuid, alt, width, height, ...rest }: DirectusImageProps) => {
-	const src = getDirectusAssetURL(uuid);
+	let src = getDirectusAssetURL(uuid);
+
+	// Use Directus transforms to request a pre-resized image
+	if (width && typeof width === 'number') {
+		src += `?width=${width}&quality=80&format=auto`;
+	}
 
 	return <Image src={src} alt={alt} width={width} height={height} {...rest} />;
 };

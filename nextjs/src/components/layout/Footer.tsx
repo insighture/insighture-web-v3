@@ -4,6 +4,11 @@ import { ChevronRight } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { forwardRef } from 'react';
+import { useFooterCTA } from '@/contexts/FooterCTAContext';
+import { setAttr } from '@directus/visual-editing';
+import { usePathname } from 'next/navigation';
+
+
 
 interface SocialLink {
 	service: string;
@@ -41,6 +46,11 @@ const AWS_BADGE = '/icons/09a5115de1f39d8de30ff1f6d2065773a2387789.svg';
 
 const Footer = forwardRef<HTMLElement, FooterProps>(({ navigation, globals }, ref) => {
 	const directusURL = process.env.NEXT_PUBLIC_DIRECTUS_URL;
+	// Get footer CTA overrides from context
+	const { footerCTA } = useFooterCTA();
+	const ctaText = footerCTA?.footer_cta_text || "Let's push boundaries, together.";
+	const ctaButtonText = footerCTA?.footer_cta_button_text || "Let's talk";
+	const ctaButtonHref = footerCTA?.footer_cta_button_page?.permalink || footerCTA?.footer_cta_button_url || "/contact";
 
 	const logoUrl = globals?.logo_dark_mode
 		? `${directusURL}/assets/${globals.logo_dark_mode}`
@@ -49,8 +59,24 @@ const Footer = forwardRef<HTMLElement, FooterProps>(({ navigation, globals }, re
 			: '/images/logo.svg';
 
 	const navItems = navigation?.items ?? [];
+	const pathname = usePathname();
 
-	return (
+	return <>
+		{pathname === '/lets-talk' && (
+			<div className="w-full bg-[#ebf0f2] px-8 py-10 md:px-16 md:py-10 lg:px-[120px]">
+				<p
+					className="font-sans font-light text-sm leading-5 text-[#1d2939]"
+					data-directus={setAttr({
+						collection: 'block_acknowledgement',
+						item: 1,
+						fields: 'text',
+						mode: 'popover',
+					})}
+				>
+					Insighture acknowledges the Traditional Owners of the land on which we work and live and pay our respects to Elders past and present. We recognise and respect the continuing cultures, contributions and connection to Country of Aboriginal and Torres Strait Islander peoples.
+				</p>
+			</div>
+		)}
 		<footer ref={ref}>
 			{/* ── CTA Banner ──────────────────────────────────────────────── */}
 			<div
@@ -87,13 +113,13 @@ const Footer = forwardRef<HTMLElement, FooterProps>(({ navigation, globals }, re
 				{/* Content */}
 				<div className="relative z-10 flex flex-col items-center gap-[24px] md:gap-[32px] py-[48px] md:py-[64px] lg:py-[84px] px-4">
 					<p className="font-heading font-semibold text-[26px] leading-[32px] md:text-[32px] md:leading-[38px] lg:text-[40px] lg:leading-[40px] text-[#f7f7f7] text-center max-w-[600px]">
-						{"Let's push boundaries, together."}
+						{ctaText}
 					</p>
 					<Link
-						href="/contact"
+						href={ctaButtonHref}
 						className="inline-flex items-center gap-[8px] border border-solid border-[#f7f7f7] rounded-[48px] px-[24px] py-[8px] hover:bg-white/10 transition-colors"
 					>
-						<span className="font-heading font-bold text-[16px] leading-[26px] text-[#f7f7f7]">{"Let's talk"}</span>
+						<span className="font-heading font-bold text-[16px] leading-[26px] text-[#f7f7f7]">{ctaButtonText}</span>
 						<span className="flex items-center justify-center shrink-0">
 							<ChevronRight
 								style={{
@@ -271,7 +297,7 @@ const Footer = forwardRef<HTMLElement, FooterProps>(({ navigation, globals }, re
 				</div>
 			</div>
 		</footer>
-	);
+	</>;
 });
 
 Footer.displayName = 'Footer';

@@ -34,27 +34,25 @@ export default function Credentials({ data }: CredentialsProps) {
 
 	return (
 		<div
-			className="w-full flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-8 px-6 md:px-12 lg:px-[120px] py-[60px] lg:py-[80px]"
+			className="w-full flex flex-col lg:flex-row items-center justify-between gap-8 md:gap-10 lg:gap-8 px-5 md:px-12 lg:px-[120px] py-12 md:py-16 lg:py-[80px]"
 			style={{ background: bgColor }}
 			data-directus={setAttr({ collection: 'block_credentials', item: id, fields: ['headline', 'headline_emphasis', 'description', 'badges', 'background_color'], mode: 'popover' })}
 		>
 			{/* Left — text content */}
 			<div
-				className="flex flex-col gap-6 max-w-full lg:max-w-[644px] shrink-0"
+				className="flex flex-col gap-4 md:gap-6 max-w-full lg:max-w-[644px] shrink-0"
 				data-directus={setAttr({ collection: 'block_credentials', item: id, fields: ['headline', 'headline_emphasis', 'description'], mode: 'popover' })}
 			>
 				{(headline || headline_emphasis) && (
-					<h2 className="font-heading font-normal text-[32px] leading-[40px] md:text-[40px] md:leading-[56px] text-white">
-						{headline && <span>{headline} </span>}
+					<h2 className="font-heading font-normal text-[26px] leading-[34px] sm:text-[32px] sm:leading-[40px] md:text-[40px] md:leading-[56px] text-white flex flex-wrap">
+						{headline && <span dangerouslySetInnerHTML={{ __html: headline }} />}
 						{headline_emphasis && (
-							<span className="font-bold italic text-[#ee4065]">{headline_emphasis}</span>
+							<span className="font-bold italic text-[#ee4065]" dangerouslySetInnerHTML={{ __html: headline_emphasis }} />
 						)}
 					</h2>
 				)}
 				{description && (
-					<p className="font-sans font-normal text-[16px] md:text-[18px] leading-[26px] text-white/90">
-						{description}
-					</p>
+					<div className="font-sans font-normal text-[15px] md:text-[18px] leading-[24px] md:leading-[26px] text-white/90" dangerouslySetInnerHTML={{ __html: description }} />
 				)}
 			</div>
 
@@ -66,7 +64,7 @@ export default function Credentials({ data }: CredentialsProps) {
 				>
 					{/* Top row */}
 					{topRow.length > 0 && (
-						<div className="flex flex-wrap gap-2 items-center justify-center lg:justify-start">
+						<div className="flex flex-wrap gap-2 md:gap-2 items-center justify-center lg:justify-start">
 							{topRow.map((badge) => (
 								<BadgeItem key={badge.id} badge={badge} />
 							))}
@@ -74,7 +72,7 @@ export default function Credentials({ data }: CredentialsProps) {
 					)}
 					{/* Bottom row — offset down to match design stagger */}
 					{bottomRow.length > 0 && (
-						<div className="flex flex-wrap gap-2 items-center justify-center lg:justify-start mt-4 lg:mt-6">
+						<div className="flex flex-wrap gap-2 md:gap-2 items-center justify-center lg:justify-start mt-3 md:mt-4 lg:mt-6">
 							{bottomRow.map((badge) => (
 								<BadgeItem key={badge.id} badge={badge} />
 							))}
@@ -88,12 +86,12 @@ export default function Credentials({ data }: CredentialsProps) {
 
 function BadgeItem({ badge }: { badge: CredentialsBadge }) {
 	const inner = badge.image ? (
-		<div className="relative h-[90px] w-[110px] md:h-[114px] md:w-[130px]">
+		<div className="relative h-[80px] w-[95px] sm:h-[90px] sm:w-[110px] md:h-[114px] md:w-[130px]">
 			<DirectusImage
 				uuid={badge.image}
 				alt={badge.alt ?? ''}
 				fill
-				sizes="(max-width: 768px) 110px, 130px"
+				sizes="(max-width: 640px) 95px, (max-width: 768px) 110px, 130px"
 				className="object-contain object-center"
 			/>
 		</div>

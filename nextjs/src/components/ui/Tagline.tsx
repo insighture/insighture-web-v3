@@ -13,9 +13,8 @@ const Tagline = ({ tagline, className = '', as: Component = 'h2', 'data-directus
 			className={`font-heading text-accent font-normal uppercase ${className}
          text-lg md:text-xl lg:text-tagline`}
 			data-directus={dataDirectus}
-		>
-			{tagline}
-		</Component>
+			dangerouslySetInnerHTML={{ __html: tagline }}
+		/>
 	);
 };
 

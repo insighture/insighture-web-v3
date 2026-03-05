@@ -17,6 +17,7 @@ interface TestimonialsItem {
 	sort?: number | null;
 	quote?: string | null;
 	image?: string | null;
+	video?: string | null;
 	author_name?: string | null;
 	author_role?: string | null;
 	author_avatar?: string | null;
@@ -84,24 +85,35 @@ function TestimonialCard({
 						/>
 					</svg>
 				</div>
-				{item.image && (
-					<div className="relative rounded-[8px] overflow-hidden w-full aspect-video lg:w-[478px] lg:h-[266px] lg:aspect-auto shrink-0">
-						<DirectusImage
-							uuid={item.image}
-							alt={item.author_name ?? 'Testimonial'}
-							fill
-							sizes="(max-width: 1024px) 100vw, 478px"
-							className="object-cover"
-						/>
-					</div>
-				)}
+		{(item.video || item.image) && (
+			<div className="relative rounded-[8px] overflow-hidden w-full aspect-video lg:w-[478px] lg:h-[266px] lg:aspect-auto shrink-0">
+				{item.video ? (
+					<video
+						src={`${process.env.NEXT_PUBLIC_DIRECTUS_URL}/assets/${item.video}`}
+						poster={item.image ? `${process.env.NEXT_PUBLIC_DIRECTUS_URL}/assets/${item.image}` : undefined}
+						autoPlay
+						muted
+						loop
+						playsInline
+						controls
+						className="size-full object-cover"
+					/>
+				) : item.image ? (
+					<DirectusImage
+						uuid={item.image}
+						alt={item.author_name ?? 'Testimonial'}
+						fill
+						sizes="(max-width: 1024px) 100vw, 478px"
+						className="object-cover"
+					/>
+				) : null}
+			</div>
+		)}
 			</div>
 
 			{/* Quote + author */}
 			<div className="flex flex-col gap-4 md:gap-5">
-				<p className="font-sans font-normal text-[15px] md:text-[18px] leading-[22px] md:leading-[24px]" style={{ color: fc }}>
-					{item.quote}
-				</p>
+				<div className="font-sans font-normal text-[15px] md:text-[18px] leading-[22px] md:leading-[24px]" style={{ color: fc }} dangerouslySetInnerHTML={{ __html: item.quote ?? '' }} />
 
 				<div className="w-full border-t" style={{ borderColor: fc, opacity: 0.3 }} />
 
@@ -195,12 +207,12 @@ export default function Testimonials({ data }: TestimonialsProps) {
 		>
 			<style>{KEYFRAMES}</style>
 
-			<Container className="relative z-10 sm:px-8 lg:px-[120px] py-10 md:py-16 lg:py-[83px]">
+			<Container className="relative z-10 sm:px-8 lg:px-[80px] py-10 md:py-16 lg:py-[83px]">
 				{/* Heading */}
 				<h2 className="font-heading font-semibold text-[28px] leading-[36px] sm:text-[36px] sm:leading-[44px] lg:text-[48px] lg:leading-[56px] text-white mb-8 md:mb-12 lg:mb-16">
-					{headline && <span>{headline} </span>}<br />
+					{headline && <span dangerouslySetInnerHTML={{ __html: headline }} />}<br />
 					{headline_emphasis && (
-						<span className="italic text-[#ee4065]">{headline_emphasis}</span>
+						<span className="italic text-[#ee4065]" dangerouslySetInnerHTML={{ __html: headline_emphasis }} />
 					)}
 				</h2>
 

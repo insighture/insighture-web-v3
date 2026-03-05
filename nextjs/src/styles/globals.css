@@ -28,12 +28,12 @@
 }
 
 @layer components {
-	input:focus,
-	textarea:focus,
-	select:focus,
-	button:focus,
-	a:focus,
-	[role='button']:focus {
+	input:focus-visible,
+	textarea:focus-visible,
+	select:focus-visible,
+	button:focus-visible,
+	a:focus-visible,
+	[role='button']:focus-visible {
 		@apply outline-none ring-2 ring-[var(--accent-color)] ring-offset-2 ring-offset-background;
 	}
 

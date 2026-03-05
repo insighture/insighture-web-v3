@@ -26,6 +26,10 @@ const pageFields = [
 	'nav_dropdown_background_color',
 	'nav_dropdown_text_color',
 	'nav_dropdown_text_hover_color',
+	'footer_cta_text',
+	'footer_cta_button_text',
+	'footer_cta_button_url',
+	{ footer_cta_button_page: ['permalink'] },
 	{
 		blocks: [
 			'id',
@@ -36,160 +40,52 @@ const pageFields = [
 			'hide_block',
 			{
 				item: {
-					block_richtext: ['id', 'tagline', 'headline', 'content', 'alignment', 'background_color', 'text_color', 'emphasis_color', 'show_quotes'],
-					block_gallery: ['id', 'tagline', 'headline', { items: ['id', 'directus_file', 'sort'] }],
-					block_pricing: [
-						'id',
-						'tagline',
-						'headline',
-						{
-							pricing_cards: [
-								'id',
-								'title',
-								'description',
-								'price',
-								'badge',
-								'features',
-								'is_highlighted',
-								{
-									button: ['id', 'label', 'variant', 'url', 'type', { page: ['permalink'] }, { post: ['slug'] }],
-								},
-							],
-						},
-					],
+					// Use '*' for simple blocks (no nested relations needing traversal)
+					block_posts: ['*'],
+					block_insights: ['*'],
+					block_acknowledgement: ['*'],
+					block_cta_split: ['*'],
+					block_intro_media: ['*'],
+					block_culture_gallery: ['*'],
+					block_featured_post: ['*'],
+					block_all_posts: ['*'],
+					block_services_tab: ['*'],
+
+					// Blocks with nested relations need explicit field paths
+					block_richtext: ['*', { button_page: ['permalink'] }],
+					block_gallery: ['*', { items: ['id', 'directus_file', 'sort'] }],
+					block_pricing: ['*', { pricing_cards: ['*', { button: ['*', { page: ['permalink'] }, { post: ['slug'] }] }] }],
 					block_hero: [
-						'id',
-						'tagline',
-						'tagline_type',
-						'tagline_image',
-						'tagline_image_alt',
-						'description',
-						'layout',
-						'image',
-						'enable_carousel',
-						'autoplay_interval',
-						{
-							headline_lines: ['id', 'sort', 'text', 'font_weight', 'font_style', 'font_size'],
-						},
-						{
-							button_group: [
-								'id',
-								{
-									buttons: ['id', 'label', 'variant', 'url', 'type', { page: ['permalink'] }, { post: ['slug'] }],
-								},
-							],
-						},
-						{
-							slides: [
-								'id',
-								'sort',
-								'background_image',
-								'background_color',
-								'tagline_image',
-								'subject_image',
-								'headline',
-								'headline_emphasis',
-								'description',
-								'text_placement',
-							],
-						},
+						'*',
+						{ headline_lines: ['*'] },
+						{ button_group: ['*', { buttons: ['*', { page: ['permalink'] }, { post: ['slug'] }] }] },
+						{ slides: ['*', { button_1_page: ['permalink'] }, { button_2_page: ['permalink'] }] },
 					],
-					block_posts: ['id', 'tagline', 'headline', 'collection', 'limit'],
-					block_insights: ['id', 'headline', 'headline_emphasis', 'tagline', 'limit'],
-					block_testimonials: [
-						'id',
-						'headline',
-						'headline_emphasis',
-						'background_color',
-						{
-							stats: ['id', 'sort', 'value', 'label'],
-						},
-						{
-							testimonials: ['id', 'sort', 'quote', 'image', 'author_name', 'author_role', 'author_avatar', 'background_color', 'font_color'],
-						},
-					],
-					block_feature_split: [
-						'id',
-						'headline',
-						'headline_emphasis',
-						'description',
-						'image',
-						{
-							items: ['id', 'sort', 'is_highlighted', 'title', 'description', 'link_label', 'url'],
-						},
-					],
-					block_logo_carousel: [
-						'id',
-						'tagline',
-						'background_color',
-						{
-							logos: ['id', 'sort', 'name', 'url', 'logo'],
-						},
-					],
-					block_services: [
-						'id',
-						'tagline',
-						'headline',
-						'description',
-						'background_color',
-						{
-							items: ['id', 'sort', 'title', 'description', 'accent_color', 'link_label', 'url'],
-						},
-					],
-					block_credentials: [
-						'id',
-						'headline',
-						'headline_emphasis',
-						'description',
-						'background_color',
-						{
-							badges: ['id', 'sort', 'image', 'alt', 'url'],
-						},
-					],
-					block_form: [
-						'id',
-						'tagline',
-						'headline',
-						{
-							form: [
-								'id',
-								'title',
-								'submit_label',
-								'success_message',
-								'on_success',
-								'success_redirect_url',
-								'is_active',
-								{
-									fields: [
-										'id',
-										'name',
-										'type',
-										'label',
-										'placeholder',
-										'help',
-										'validation',
-										'width',
-										'choices',
-										'required',
-										'sort',
-									],
-								},
-							],
-						},
-					],
-					block_featured_post: [
-						'id',
-						'tagline',
-						'background_color',
-						'image',
-						'special_post_title',
-						{
-							special_post: ['id', 'title', 'slug', 'type'],
-						},
-						{
-							recommended_posts: ['sort', { posts_id: ['id', 'title', 'slug', 'type'] }],
-						},
-					],
+					block_testimonials: ['*', { stats: ['*'] }, { testimonials: ['*'] }],
+					block_feature_split: ['*', { items: ['*'] }],
+					block_logo_carousel: ['*', { logos: ['*'] }],
+					block_services: ['*', { items: ['*'] }],
+					block_credentials: ['*', { badges: ['*'] }],
+					block_card_grid: ['*', { items: ['*'] }],
+					block_reach_out: ['*', { form: ['*', { fields: ['*'] }] }, { contact_items: ['*'] }],
+					block_form: ['*', { form: ['*', { fields: ['*'] }] }],
+					block_open_roles: ['*', { jobs: ['*'] }],
+					block_people_say: ['*', { slides: ['*'] }],
+					block_values: ['*', { value_items: ['*'] }],
+					block_posts_carousel: ['*', { posts: ['id', { posts_id: ['id', 'title', 'slug', 'image', 'description', 'published_at'] }] }],
+					// block_featured_post: [
+					// 	'id',
+					// 	'tagline',
+					// 	'background_color',
+					// 	'image',
+					// 	'special_post_title',
+					// 	{
+					// 		special_post: ['id', 'title', 'slug', 'type'],
+					// 	},
+					// 	{
+					// 		recommended_posts: ['sort', { posts_id: ['id', 'title', 'slug', 'type'] }],
+					// 	},
+					// ],
 					block_service_tabs: [
 						'id',
 						'tagline',
@@ -208,23 +104,23 @@ const pageFields = [
 							],
 						},
 					],
-					block_posts_carousel: [
-						'id',
-						'headline',
-						'description',
-						'limit',
-						{
-							selected_posts: [
-								'sort',
-								{ posts_id: ['id', 'title', 'slug', 'image', 'description', 'type'] },
-							],
-						},
-					],
+					// block_posts_carousel: [
+					// 	'id',
+					// 	'headline',
+					// 	'description',
+					// 	'limit',
+					// 	{
+					// 		selected_posts: [
+					// 			'sort',
+					// 			{ posts_id: ['id', 'title', 'slug', 'image', 'description', 'type'] },
+					// 		],
+					// 	},
+					// ],
 
-					block_all_posts: [
-						'id',
-						'headline',
-					],
+					// block_all_posts: [
+					// 	'id',
+					// 	'headline',
+					// ],
 					block_service_platform_banner: ['id', 'title', 'description', 'cta_label', 'cta_url', 'image'],
 		
 					block_service_featured_article: [
@@ -237,67 +133,67 @@ const pageFields = [
 						'image_alt',
 						'background_color',
 					],
-					block_services_tab: [
-						'id',
-						'description',
-						'heading',
-						{
-							items: [
-								'id',
-								'sort',
-								'title',
-								'accent_color',
-								'key_services',
-								'cta_type',
-								{
-									panel: [
-										'id',
-										'subtitle',
-										'description',
-										'image',
-									],
-								},
-								{
-									expertise_cards: [
-										'id',
-										'heading',
-										{
-											cards: [
-												'id', 'sort', 'icon',
-												'title', 'description',
-												'link_label', 'url',
-											],
-										},
-									],
-								},
-								{
-									featured_article: [
-										'id', 'tagline', 'headline',
-										'cta_label', 'cta_url',
-										'image', 'image_alt', 'background_color',
-									],
-								},
-								{
-									credentials_cta: [
-										'id',
-										'headline',
+					// block_services_tab: [
+					// 	'id',
+					// 	'description',
+					// 	'heading',
+					// 	{
+					// 		items: [
+					// 			'id',
+					// 			'sort',
+					// 			'title',
+					// 			'accent_color',
+					// 			'key_services',
+					// 			'cta_type',
+					// 			{
+					// 				panel: [
+					// 					'id',
+					// 					'subtitle',
+					// 					'description',
+					// 					'image',
+					// 				],
+					// 			},
+					// 			{
+					// 				expertise_cards: [
+					// 					'id',
+					// 					'heading',
+					// 					{
+					// 						cards: [
+					// 							'id', 'sort', 'icon',
+					// 							'title', 'description',
+					// 							'link_label', 'url',
+					// 						],
+					// 					},
+					// 				],
+					// 			},
+					// 			{
+					// 				featured_article: [
+					// 					'id', 'tagline', 'headline',
+					// 					'cta_label', 'cta_url',
+					// 					'image', 'image_alt', 'background_color',
+					// 				],
+					// 			},
+					// 			{
+					// 				credentials_cta: [
+					// 					'id',
+					// 					'headline',
 								
-										{ badges: ['id', 'sort', 'image', 'alt'] },
-										{ stats: ['id', 'sort', 'icon', 'value', 'label'] },
-									],
-								},
-								{
-									product_catalogue: [
-										'id',
-										'headline',
-										'image',
-										'image_alt',
-										{ products: ['id', 'sort', 'label'] },
-									],
-								},
-							],
-						},
-					],
+					// 					{ badges: ['id', 'sort', 'image', 'alt'] },
+					// 					{ stats: ['id', 'sort', 'icon', 'value', 'label'] },
+					// 				],
+					// 			},
+					// 			{
+					// 				product_catalogue: [
+					// 					'id',
+					// 					'headline',
+					// 					'image',
+					// 					'image_alt',
+					// 					{ products: ['id', 'sort', 'label'] },
+					// 				],
+					// 			},
+					// 		],
+					// 	},
+					// ],
 				
 					block_service_product_catalogue: [
 						'id',
@@ -341,22 +237,20 @@ export const fetchPageData = async (permalink: string, postPage = 1, token?: str
 	const { directus } = useDirectus();
 
 	try {
+		const query = readItems<Schema, 'pages', any>('pages', {
+			filter:
+				preview && token
+					? { permalink: { _eq: permalink } }
+					: { permalink: { _eq: permalink }, status: { _eq: 'published' } },
+			limit: 1,
+			fields: pageFields as any,
+			deep: {
+				blocks: { _sort: ['sort'], _filter: { hide_block: { _neq: true } } },
+			},
+		});
 		const pageData = (await directus.request(
-			withToken(
-				token as string,
-				readItems('pages', {
-					filter:
-						preview && token
-							? { permalink: { _eq: permalink } }
-							: { permalink: { _eq: permalink }, status: { _eq: 'published' } },
-					limit: 1,
-					fields: pageFields as any,
-					deep: {
-						blocks: { _sort: ['sort'], _filter: { hide_block: { _neq: true } } },
-					},
-				}),
-			),
-		)) as Page[];
+			token ? withToken(token, query) : query,
+		)) as unknown as Page[];
 
 		if (!pageData.length) {
 			throw new Error('Page not found');
@@ -539,16 +433,14 @@ export const getPageIdByPermalink = async (permalink: string, token?: string) =>
 	const { directus } = useDirectus();
 
 	try {
+		const query = readItems<Schema, 'pages', any>('pages', {
+			filter: { permalink: { _eq: permalink } },
+			limit: 1,
+			fields: ['id'],
+		});
 		const pageData = (await directus.request(
-			withToken(
-				token as string,
-				readItems('pages', {
-					filter: { permalink: { _eq: permalink } },
-					limit: 1,
-					fields: ['id'],
-				}),
-			),
-		)) as Pick<Page, 'id'>[];
+			token ? withToken(token, query) : query,
+		)) as unknown as Pick<Page, 'id'>[];
 
 		return pageData.length > 0 ? pageData[0].id : null;
 	} catch (error) {
@@ -569,16 +461,14 @@ export const getPostIdBySlug = async (slug: string, token?: string) => {
 	const { directus } = useDirectus();
 
 	try {
+		const query = readItems<Schema, 'posts', any>('posts', {
+			filter: { slug: { _eq: slug } },
+			limit: 1,
+			fields: ['id'],
+		});
 		const postData = (await directus.request(
-			withToken(
-				token as string,
-				readItems('posts', {
-					filter: { slug: { _eq: slug } },
-					limit: 1,
-					fields: ['id'],
-				}),
-			),
-		)) as Pick<Post, 'id'>[];
+			token ? withToken(token, query) : query,
+		)) as unknown as Pick<Post, 'id'>[];
 
 		return postData.length > 0 ? postData[0].id : null;
 	} catch (error) {
@@ -722,40 +612,32 @@ export const fetchPostBySlug = async (
 		const filter: QueryFilter<Schema, Post> =
 			token || draft ? { slug: { _eq: slug } } : { slug: { _eq: slug }, status: { _eq: 'published' } };
 
+		const postsQuery = readItems<Schema, 'posts', any>('posts', {
+			filter,
+			limit: 1,
+			fields: [
+				'id',
+				'title',
+				'content',
+				'status',
+				'published_at',
+				'image',
+				'description',
+				'slug',
+				'seo',
+				{
+					author: ['id', 'first_name', 'last_name', 'avatar'],
+				},
+			],
+		});
+		const relatedQuery = readItems<Schema, 'posts', any>('posts', {
+			filter: { slug: { _neq: slug }, status: { _eq: 'published' } },
+			limit: 2,
+			fields: ['id', 'title', 'slug', 'image'],
+		});
 		const [posts, relatedPosts] = await Promise.all([
-			directus.request<Post[]>(
-				withToken(
-					token as string,
-					readItems<Schema, 'posts', any>('posts', {
-						filter,
-						limit: 1,
-						fields: [
-							'id',
-							'title',
-							'content',
-							'status',
-							'published_at',
-							'image',
-							'description',
-							'slug',
-							'seo',
-							{
-								author: ['id', 'first_name', 'last_name', 'avatar'],
-							},
-						],
-					}),
-				),
-			),
-			directus.request<Post[]>(
-				withToken(
-					token as string,
-					readItems<Schema, 'posts', any>('posts', {
-						filter: { slug: { _neq: slug }, status: { _eq: 'published' } },
-						limit: 2,
-						fields: ['id', 'title', 'slug', 'image'],
-					}),
-				),
-			),
+			directus.request<Post[]>(token ? withToken(token, postsQuery) : postsQuery),
+			directus.request<Post[]>(token ? withToken(token, relatedQuery) : relatedQuery),
 		]);
 
 		const post: Post | null = posts.length > 0 ? (posts[0] as Post) : null;

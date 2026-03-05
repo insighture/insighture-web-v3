@@ -13,9 +13,8 @@ const Headline = ({ headline, className = '', as: Component = 'p', 'data-directu
 			className={`font-heading text-foreground font-normal ${className}
          text-4xl md:text-5xl lg:text-headline`}
 			data-directus={dataDirectus}
-		>
-			{headline}
-		</Component>
+			dangerouslySetInnerHTML={{ __html: headline }}
+		/>
 	);
 };
 

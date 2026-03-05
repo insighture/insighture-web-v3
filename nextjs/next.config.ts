@@ -19,6 +19,7 @@ const ContentSecurityPolicy = `
 `;
 
 const nextConfig: NextConfig = {
+	output: 'standalone',
 	webpack: (config) => {
 		config.cache = false;
 
@@ -29,7 +30,12 @@ const nextConfig: NextConfig = {
 		remotePatterns: [
 			{
 				protocol: 'https',
-				hostname: process.env.NEXT_PUBLIC_DIRECTUS_URL?.split('//')[1] || '',
+				hostname: 'directus-backend.qr.insighture.com',
+				pathname: '/assets/**',
+			},
+			{
+				protocol: 'http',
+				hostname: 'ec2-54-160-149-229.compute-1.amazonaws.com',
 				pathname: '/assets/**',
 			},
 			{

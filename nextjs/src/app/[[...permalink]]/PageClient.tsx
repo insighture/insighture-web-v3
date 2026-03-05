@@ -9,11 +9,13 @@ import { Button } from '@/components/ui/button';
 import { Pencil } from 'lucide-react';
 import { setAttr } from '@directus/visual-editing';
 import { useNavOverrides, NavOverrides } from '@/contexts/NavOverridesContext';
+import { useFooterCTA, FooterCTAOverrides } from '@/contexts/FooterCTAContext';
 
 interface PageClientProps {
 	sections: PageBlock[];
 	pageId?: string;
 	navOverrides?: NavOverrides | null;
+	footerCTA?: FooterCTAOverrides | null;
 }
 
 interface VisualEditingOptions {
@@ -21,16 +23,25 @@ interface VisualEditingOptions {
 	onSaved?: () => void;
 }
 
-export default function PageClient({ sections, pageId, navOverrides }: PageClientProps) {
+export default function PageClient({ sections, pageId, navOverrides, footerCTA }: PageClientProps) {
 	const { isVisualEditingEnabled, apply } = useVisualEditing();
 	const router = useRouter();
 	const { setNavOverrides } = useNavOverrides();
+	const { setFooterCTA } = useFooterCTA();
 
 	// Apply page-level nav overrides; clear them on unmount.
 	useEffect(() => {
 		setNavOverrides(navOverrides ?? null);
+
 		return () => setNavOverrides(null);
 	}, [navOverrides, setNavOverrides]);
+
+	// Apply page-level footer CTA overrides; clear them on unmount.
+	useEffect(() => {
+		setFooterCTA(footerCTA ?? null);
+
+		return () => setFooterCTA(null);
+	}, [footerCTA, setFooterCTA]);
 
 	useEffect(() => {
 		if (isVisualEditingEnabled) {

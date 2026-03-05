@@ -24,7 +24,11 @@ type SearchResult = {
 	link: string;
 };
 
-export default function SearchModal() {
+interface SearchModalProps {
+	children?: React.ReactNode;
+}
+
+export default function SearchModal({ children }: SearchModalProps = {}) {
 	const [open, setOpen] = useState(false);
 	const [results, setResults] = useState<SearchResult[]>([]);
 	const [loading, setLoading] = useState(false);
@@ -80,9 +84,15 @@ export default function SearchModal() {
 
 	return (
 		<div className="sm:max-w-[540px] max-w-full">
-			<Button variant="ghost" size="icon" onClick={() => setOpen(true)} aria-label="Search">
-				<Search className="size-5" />
-			</Button>
+			{children ? (
+				<div onClick={() => setOpen(true)} className="cursor-pointer">
+					{children}
+				</div>
+			) : (
+				<Button variant="ghost" size="icon" onClick={() => setOpen(true)} aria-label="Search">
+					<Search className="size-5" />
+				</Button>
+			)}
 
 			<CommandDialog open={open} onOpenChange={setOpen}>
 				<DialogTitle className="p-2 sr-only">Search</DialogTitle>

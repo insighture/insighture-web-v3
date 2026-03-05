@@ -1,4 +1,10 @@
 {
+  "env": {
+    "CLAUDE_CODE_USE_BEDROCK": "1",
+    "AWS_PROFILE": "insighture-web-Admin-Access-992382642401",
+    "AWS_REGION": "us-east-1",
+    "ANTHROPIC_MODEL": "us.anthropic.claude-sonnet-4-5-20250929-v1:0"
+  },
   "permissions": {
     "allow": [
       "mcp__figma-dev-mode-mcp-server__get_design_context",
@@ -30,7 +36,29 @@
       "WebFetch(domain:raw.githubusercontent.com)",
       "Bash(pnpm add:*)",
       "Bash(done)",
-      "Bash(grep:*)"
+      "Bash(grep:*)",
+      "mcp__figma-remote-mcp__get_design_context",
+      "mcp__ide__getDiagnostics",
+      "Bash(PERMALINK='/lets-talk' node:*)",
+      "Bash(psql:*)",
+      "Bash(PGPASSWORD=\"b0mtKDcNY59ys3kwbz5h\" psql:*)",
+      "Bash(chmod 400:*)",
+      "Bash(scp:*)",
+      "Bash(PGPASSWORD='b0mtKDcNY59ys3kwbz5h' psql:*)",
+      "Bash(__NEW_LINE_f2615ba309e891d7__ curl:*)",
+      "Bash(__NEW_LINE_6181d39cdd9b8563__ curl:*)",
+      "Bash(docker restart:*)",
+      "Bash(pkill:*)",
+      "Bash(wget:*)",
+      "Bash(docker-compose up:*)",
+      "Bash(bash:*)",
+      "Bash(docker:*)",
+      "Bash(chmod +x:*)",
+      "Bash(npx tsx:*)",
+      "Bash(read line:*)",
+      "Read(//c/Users/HP/Downloads/**)",
+      "Bash(chmod 600:*)",
+      "Bash(__NEW_LINE_c6ebfb6eacf24f1c__ ssh:*)"
     ]
   },
   "enableAllProjectMcpServers": true,
