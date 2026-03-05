@@ -333,6 +333,8 @@ export interface BlockLogoCarouselItem {
 	url?: string | null;
 	/** @description The logo image. */
 	logo?: DirectusFile | string | null;
+	/** @description Year or subtitle (e.g., '2024', '2025'). */
+	subtitle?: string | null;
 }
 
 export interface BlockLogoCarousel {
@@ -347,6 +349,12 @@ export interface BlockLogoCarousel {
 	background_color?: string | null;
 	/** @description Logo items in the carousel. */
 	logos?: BlockLogoCarouselItem[] | string[];
+	/** @description Display mode: 'auto' for continuous marquee, 'manual' for card-based pagination with arrows. */
+	variant?: 'auto' | 'manual' | null;
+	/** @description Number of cards visible at once in manual variant (1-6, default 3). */
+	cards_per_view?: number | null;
+	/** @description Show arrow navigation buttons in manual variant (default true). */
+	show_navigation?: boolean | null;
 }
 
 export interface BlockCardGridItem {

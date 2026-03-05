@@ -32,7 +32,7 @@ export default function FeatureSplit({ data }: FeatureSplitProps) {
 
 	return (
 		<div className="w-full bg-white">
-			<Container className="py-[48px] lg:py-[80px] lg:px-[120px] flex flex-col gap-[32px] lg:gap-[40px]">
+			<Container className="py-[48px] lg:p-[80px] flex flex-col gap-[32px] lg:gap-[40px]">
 
 				{/* Heading block */}
 				<div
@@ -40,7 +40,7 @@ export default function FeatureSplit({ data }: FeatureSplitProps) {
 					data-directus={setAttr({ collection: 'block_feature_split', item: id, fields: ['headline', 'headline_emphasis', 'description'], mode: 'popover' })}
 				>
 					<h2 className="font-heading font-semibold text-[32px] leading-[38px] md:text-[40px] md:leading-[44px] lg:text-[48px] lg:leading-[40px] text-[#1d2939] max-w-[509px]">
-						<span dangerouslySetInnerHTML={{ __html: headline }} />
+						{headline && <span dangerouslySetInnerHTML={{ __html: headline }} />}
 						{headline_emphasis && (
 							<span className="italic text-[#ee4065]" dangerouslySetInnerHTML={{ __html: headline_emphasis }} />
 						)}
