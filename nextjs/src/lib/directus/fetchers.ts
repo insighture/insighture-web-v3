@@ -228,6 +228,23 @@ const pageFields = [
 						},
 					],
 					block_acknowledgement: ['id', 'text'],
+				block_cta_split: ['id', 'heading', 'description'],
+				block_open_roles: [
+					'id',
+					'heading',
+					'description',
+					{
+						jobs: ['id', 'sort', 'type', 'title', 'department', 'location', 'location_flag', 'apply_url'],
+					},
+				],
+				block_intro_media: ['id', 'heading', 'description', 'image', 'video_url'],
+				block_people_say: [
+					'id',
+					'heading',
+					{
+						slides: ['id', 'sort', 'image', 'quote', 'name', 'role'],
+					},
+				],
 				block_values: [
 					'id',
 					'heading',

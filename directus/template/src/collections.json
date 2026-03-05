@@ -1324,5 +1324,223 @@
 			"name": "block_values_item",
 			"comment": null
 		}
+	},
+	{
+		"collection": "block_people_say",
+		"meta": {
+			"collection": "block_people_say",
+			"icon": "format_quote",
+			"note": "People testimonials carousel block.",
+			"display_template": "{{heading}}",
+			"hidden": true,
+			"singleton": false,
+			"translations": [
+				{
+					"language": "en-US",
+					"translation": "People Say",
+					"singular": "People Say",
+					"plural": "People Say"
+				}
+			],
+			"archive_field": null,
+			"archive_app_filter": true,
+			"archive_value": null,
+			"unarchive_value": null,
+			"sort_field": null,
+			"accountability": "all",
+			"color": null,
+			"item_duplication_fields": null,
+			"sort": 11,
+			"group": "blocks",
+			"collapse": "open",
+			"preview_url": null,
+			"versioning": false
+		},
+		"schema": {
+			"schema": "public",
+			"name": "block_people_say",
+			"comment": null
+		}
+	},
+	{
+		"collection": "block_people_say_slide",
+		"meta": {
+			"collection": "block_people_say_slide",
+			"icon": "person",
+			"note": "Individual testimonial slide.",
+			"display_template": "{{name}}",
+			"hidden": true,
+			"singleton": false,
+			"translations": [
+				{
+					"language": "en-US",
+					"translation": "Slide"
+				}
+			],
+			"archive_field": null,
+			"archive_app_filter": true,
+			"archive_value": null,
+			"unarchive_value": null,
+			"sort_field": "sort",
+			"accountability": "all",
+			"color": null,
+			"item_duplication_fields": null,
+			"sort": 1,
+			"group": "block_people_say",
+			"collapse": "open",
+			"preview_url": null,
+			"versioning": false
+		},
+		"schema": {
+			"schema": "public",
+			"name": "block_people_say_slide",
+			"comment": null
+		}
+	},
+	{
+		"collection": "block_intro_media",
+		"meta": {
+			"collection": "block_intro_media",
+			"icon": "play_circle",
+			"note": "Split layout block: text left, image/video right.",
+			"display_template": "{{heading}}",
+			"hidden": true,
+			"singleton": false,
+			"translations": [
+				{
+					"language": "en-US",
+					"translation": "Intro Media",
+					"singular": "Intro Media",
+					"plural": "Intro Media"
+				}
+			],
+			"archive_field": null,
+			"archive_app_filter": true,
+			"archive_value": null,
+			"unarchive_value": null,
+			"sort_field": null,
+			"accountability": "all",
+			"color": null,
+			"item_duplication_fields": null,
+			"sort": 12,
+			"group": "blocks",
+			"collapse": "open",
+			"preview_url": null,
+			"versioning": false
+		},
+		"schema": {
+			"schema": "public",
+			"name": "block_intro_media",
+			"comment": null
+		}
+	},
+	{
+		"collection": "block_open_roles",
+		"meta": {
+			"collection": "block_open_roles",
+			"icon": "work",
+			"note": "Jobs listing block.",
+			"display_template": "{{heading}}",
+			"hidden": true,
+			"singleton": false,
+			"translations": [
+				{
+					"language": "en-US",
+					"translation": "Open Roles",
+					"singular": "Open Roles",
+					"plural": "Open Roles"
+				}
+			],
+			"archive_field": null,
+			"archive_app_filter": true,
+			"archive_value": null,
+			"unarchive_value": null,
+			"sort_field": null,
+			"accountability": "all",
+			"color": null,
+			"item_duplication_fields": null,
+			"sort": 13,
+			"group": "blocks",
+			"collapse": "open",
+			"preview_url": null,
+			"versioning": false
+		},
+		"schema": {
+			"schema": "public",
+			"name": "block_open_roles",
+			"comment": null
+		}
+	},
+	{
+		"collection": "block_open_roles_job",
+		"meta": {
+			"collection": "block_open_roles_job",
+			"icon": "badge",
+			"note": "Individual job listing entry.",
+			"display_template": "{{title}}",
+			"hidden": true,
+			"singleton": false,
+			"translations": [
+				{
+					"language": "en-US",
+					"translation": "Job"
+				}
+			],
+			"archive_field": null,
+			"archive_app_filter": true,
+			"archive_value": null,
+			"unarchive_value": null,
+			"sort_field": "sort",
+			"accountability": "all",
+			"color": null,
+			"item_duplication_fields": null,
+			"sort": 1,
+			"group": "block_open_roles",
+			"collapse": "open",
+			"preview_url": null,
+			"versioning": false
+		},
+		"schema": {
+			"schema": "public",
+			"name": "block_open_roles_job",
+			"comment": null
+		}
+	},
+	{
+		"collection": "block_cta_split",
+		"meta": {
+			"collection": "block_cta_split",
+			"icon": "format_quote",
+			"note": "Dark teal two-column CTA block.",
+			"display_template": "{{heading}}",
+			"hidden": true,
+			"singleton": false,
+			"translations": [
+				{
+					"language": "en-US",
+					"translation": "CTA Split",
+					"singular": "CTA Split",
+					"plural": "CTA Split"
+				}
+			],
+			"archive_field": null,
+			"archive_app_filter": true,
+			"archive_value": null,
+			"unarchive_value": null,
+			"sort_field": null,
+			"accountability": "all",
+			"color": null,
+			"item_duplication_fields": null,
+			"sort": 14,
+			"group": "blocks",
+			"collapse": "open",
+			"preview_url": null,
+			"versioning": false
+		},
+		"schema": {
+			"schema": "public",
+			"name": "block_cta_split",
+			"comment": null
+		}
 	}
 ]

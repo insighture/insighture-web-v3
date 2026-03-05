@@ -29,7 +29,7 @@ export default function ValuesBlock({ data }: { data: ValuesBlockData }) {
 		<div className="bg-[#0b2d34] w-full px-8 lg:px-[120px] py-[80px]">
 			{heading && (
 				<div
-					className="mb-16 text-center text-[#fcfcfd] font-heading text-[40px] lg:text-[48px] leading-[56px] font-normal [&_em]:not-italic [&_em]:text-[#ee4065]"
+					className="mb-16 text-center text-[#fcfcfd] font-heading text-[40px] lg:text-[48px] leading-[56px] font-normal"
 					data-directus={setAttr({ collection: 'block_values', item: id, fields: 'heading', mode: 'popover' })}
 					dangerouslySetInnerHTML={{ __html: heading }}
 				/>

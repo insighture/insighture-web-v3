@@ -19251,5 +19251,1133 @@
 			"sort": 10,
 			"width": "half"
 		}
+	},
+	{
+		"collection": "block_people_say",
+		"field": "id",
+		"type": "integer",
+		"schema": {
+			"name": "id",
+			"table": "block_people_say",
+			"data_type": "integer",
+			"is_nullable": false,
+			"is_primary_key": true,
+			"has_auto_increment": true
+		},
+		"meta": {
+			"collection": "block_people_say",
+			"field": "id",
+			"hidden": true,
+			"readonly": true,
+			"interface": "input",
+			"sort": 1
+		}
+	},
+	{
+		"collection": "block_people_say",
+		"field": "heading",
+		"type": "text",
+		"schema": {
+			"name": "heading",
+			"table": "block_people_say",
+			"data_type": "text",
+			"is_nullable": true
+		},
+		"meta": {
+			"collection": "block_people_say",
+			"field": "heading",
+			"interface": "input-rich-text-html",
+			"display": "formatted-value",
+			"note": "Section heading (supports italic pink accent).",
+			"sort": 2,
+			"width": "full"
+		}
+	},
+	{
+		"collection": "block_people_say",
+		"field": "slides",
+		"type": "alias",
+		"schema": null,
+		"meta": {
+			"collection": "block_people_say",
+			"field": "slides",
+			"interface": "list-o2m",
+			"special": [
+				"o2m"
+			],
+			"options": {
+				"template": "{{name}}",
+				"enableCreate": true,
+				"enableSelect": false
+			},
+			"sort": 3,
+			"width": "full"
+		}
+	},
+	{
+		"collection": "block_people_say",
+		"field": "date_created",
+		"type": "timestamp",
+		"schema": {
+			"name": "date_created",
+			"table": "block_people_say",
+			"data_type": "timestamp with time zone",
+			"is_nullable": true
+		},
+		"meta": {
+			"collection": "block_people_say",
+			"field": "date_created",
+			"special": [
+				"date-created",
+				"cast-timestamp"
+			],
+			"interface": "datetime",
+			"readonly": true,
+			"hidden": true,
+			"sort": 4,
+			"width": "half"
+		}
+	},
+	{
+		"collection": "block_people_say",
+		"field": "user_created",
+		"type": "uuid",
+		"schema": {
+			"name": "user_created",
+			"table": "block_people_say",
+			"data_type": "uuid",
+			"is_nullable": true
+		},
+		"meta": {
+			"collection": "block_people_say",
+			"field": "user_created",
+			"special": [
+				"user-created"
+			],
+			"interface": "select-dropdown-m2o",
+			"display": "user",
+			"readonly": true,
+			"hidden": true,
+			"sort": 5,
+			"width": "half"
+		}
+	},
+	{
+		"collection": "block_people_say",
+		"field": "date_updated",
+		"type": "timestamp",
+		"schema": {
+			"name": "date_updated",
+			"table": "block_people_say",
+			"data_type": "timestamp with time zone",
+			"is_nullable": true
+		},
+		"meta": {
+			"collection": "block_people_say",
+			"field": "date_updated",
+			"special": [
+				"date-updated",
+				"cast-timestamp"
+			],
+			"interface": "datetime",
+			"readonly": true,
+			"hidden": true,
+			"sort": 6,
+			"width": "half"
+		}
+	},
+	{
+		"collection": "block_people_say",
+		"field": "user_updated",
+		"type": "uuid",
+		"schema": {
+			"name": "user_updated",
+			"table": "block_people_say",
+			"data_type": "uuid",
+			"is_nullable": true
+		},
+		"meta": {
+			"collection": "block_people_say",
+			"field": "user_updated",
+			"special": [
+				"user-updated"
+			],
+			"interface": "select-dropdown-m2o",
+			"display": "user",
+			"readonly": true,
+			"hidden": true,
+			"sort": 7,
+			"width": "half"
+		}
+	},
+	{
+		"collection": "block_people_say_slide",
+		"field": "id",
+		"type": "integer",
+		"schema": {
+			"name": "id",
+			"table": "block_people_say_slide",
+			"data_type": "integer",
+			"is_nullable": false,
+			"is_primary_key": true,
+			"has_auto_increment": true
+		},
+		"meta": {
+			"collection": "block_people_say_slide",
+			"field": "id",
+			"hidden": true,
+			"readonly": true,
+			"interface": "input",
+			"sort": 1
+		}
+	},
+	{
+		"collection": "block_people_say_slide",
+		"field": "block_people_say",
+		"type": "integer",
+		"schema": {
+			"name": "block_people_say",
+			"table": "block_people_say_slide",
+			"data_type": "integer",
+			"is_nullable": true,
+			"foreign_key_schema": "public",
+			"foreign_key_table": "block_people_say",
+			"foreign_key_column": "id"
+		},
+		"meta": {
+			"collection": "block_people_say_slide",
+			"field": "block_people_say",
+			"hidden": true,
+			"sort": 2
+		}
+	},
+	{
+		"collection": "block_people_say_slide",
+		"field": "sort",
+		"type": "integer",
+		"schema": {
+			"name": "sort",
+			"table": "block_people_say_slide",
+			"data_type": "integer",
+			"is_nullable": true
+		},
+		"meta": {
+			"collection": "block_people_say_slide",
+			"field": "sort",
+			"interface": "input",
+			"hidden": true,
+			"sort": 3
+		}
+	},
+	{
+		"collection": "block_people_say_slide",
+		"field": "image",
+		"type": "uuid",
+		"schema": {
+			"name": "image",
+			"table": "block_people_say_slide",
+			"data_type": "uuid",
+			"is_nullable": true,
+			"foreign_key_schema": "public",
+			"foreign_key_table": "directus_files",
+			"foreign_key_column": "id"
+		},
+		"meta": {
+			"collection": "block_people_say_slide",
+			"field": "image",
+			"interface": "file-image",
+			"display": "image",
+			"note": "Photo of the person.",
+			"options": {
+				"crop": false
+			},
+			"sort": 4,
+			"width": "half"
+		}
+	},
+	{
+		"collection": "block_people_say_slide",
+		"field": "name",
+		"type": "string",
+		"schema": {
+			"name": "name",
+			"table": "block_people_say_slide",
+			"data_type": "character varying",
+			"is_nullable": true
+		},
+		"meta": {
+			"collection": "block_people_say_slide",
+			"field": "name",
+			"interface": "input",
+			"display": "raw",
+			"sort": 5,
+			"width": "half"
+		}
+	},
+	{
+		"collection": "block_people_say_slide",
+		"field": "role",
+		"type": "string",
+		"schema": {
+			"name": "role",
+			"table": "block_people_say_slide",
+			"data_type": "character varying",
+			"is_nullable": true
+		},
+		"meta": {
+			"collection": "block_people_say_slide",
+			"field": "role",
+			"interface": "input",
+			"display": "raw",
+			"sort": 6,
+			"width": "half"
+		}
+	},
+	{
+		"collection": "block_people_say_slide",
+		"field": "quote",
+		"type": "text",
+		"schema": {
+			"name": "quote",
+			"table": "block_people_say_slide",
+			"data_type": "text",
+			"is_nullable": true
+		},
+		"meta": {
+			"collection": "block_people_say_slide",
+			"field": "quote",
+			"interface": "input-multiline",
+			"display": "raw",
+			"sort": 7,
+			"width": "full"
+		}
+	},
+	{
+		"collection": "block_people_say_slide",
+		"field": "date_created",
+		"type": "timestamp",
+		"schema": {
+			"name": "date_created",
+			"table": "block_people_say_slide",
+			"data_type": "timestamp with time zone",
+			"is_nullable": true
+		},
+		"meta": {
+			"collection": "block_people_say_slide",
+			"field": "date_created",
+			"special": [
+				"date-created",
+				"cast-timestamp"
+			],
+			"interface": "datetime",
+			"readonly": true,
+			"hidden": true,
+			"sort": 8,
+			"width": "half"
+		}
+	},
+	{
+		"collection": "block_people_say_slide",
+		"field": "user_created",
+		"type": "uuid",
+		"schema": {
+			"name": "user_created",
+			"table": "block_people_say_slide",
+			"data_type": "uuid",
+			"is_nullable": true
+		},
+		"meta": {
+			"collection": "block_people_say_slide",
+			"field": "user_created",
+			"special": [
+				"user-created"
+			],
+			"interface": "select-dropdown-m2o",
+			"display": "user",
+			"readonly": true,
+			"hidden": true,
+			"sort": 9,
+			"width": "half"
+		}
+	},
+	{
+		"collection": "block_people_say_slide",
+		"field": "date_updated",
+		"type": "timestamp",
+		"schema": {
+			"name": "date_updated",
+			"table": "block_people_say_slide",
+			"data_type": "timestamp with time zone",
+			"is_nullable": true
+		},
+		"meta": {
+			"collection": "block_people_say_slide",
+			"field": "date_updated",
+			"special": [
+				"date-updated",
+				"cast-timestamp"
+			],
+			"interface": "datetime",
+			"readonly": true,
+			"hidden": true,
+			"sort": 10,
+			"width": "half"
+		}
+	},
+	{
+		"collection": "block_people_say_slide",
+		"field": "user_updated",
+		"type": "uuid",
+		"schema": {
+			"name": "user_updated",
+			"table": "block_people_say_slide",
+			"data_type": "uuid",
+			"is_nullable": true
+		},
+		"meta": {
+			"collection": "block_people_say_slide",
+			"field": "user_updated",
+			"special": [
+				"user-updated"
+			],
+			"interface": "select-dropdown-m2o",
+			"display": "user",
+			"readonly": true,
+			"hidden": true,
+			"sort": 11,
+			"width": "half"
+		}
+	},
+	{
+		"collection": "block_intro_media",
+		"field": "id",
+		"type": "integer",
+		"schema": {
+			"name": "id",
+			"table": "block_intro_media",
+			"data_type": "integer",
+			"is_nullable": false,
+			"is_primary_key": true,
+			"has_auto_increment": true
+		},
+		"meta": {
+			"hidden": true,
+			"readonly": true,
+			"interface": "input",
+			"sort": 1
+		}
+	},
+	{
+		"collection": "block_intro_media",
+		"field": "heading",
+		"type": "text",
+		"schema": {
+			"name": "heading",
+			"table": "block_intro_media",
+			"data_type": "text",
+			"is_nullable": true
+		},
+		"meta": {
+			"interface": "input-rich-text-html",
+			"note": "Heading with pink italic accent.",
+			"sort": 2,
+			"width": "full"
+		}
+	},
+	{
+		"collection": "block_intro_media",
+		"field": "description",
+		"type": "text",
+		"schema": {
+			"name": "description",
+			"table": "block_intro_media",
+			"data_type": "text",
+			"is_nullable": true
+		},
+		"meta": {
+			"interface": "input-multiline",
+			"sort": 3,
+			"width": "full"
+		}
+	},
+	{
+		"collection": "block_intro_media",
+		"field": "image",
+		"type": "uuid",
+		"schema": {
+			"name": "image",
+			"table": "block_intro_media",
+			"data_type": "uuid",
+			"is_nullable": true,
+			"foreign_key_schema": "public",
+			"foreign_key_table": "directus_files",
+			"foreign_key_column": "id"
+		},
+		"meta": {
+			"interface": "file-image",
+			"display": "image",
+			"options": {
+				"crop": false
+			},
+			"sort": 4,
+			"width": "half"
+		}
+	},
+	{
+		"collection": "block_intro_media",
+		"field": "video_url",
+		"type": "string",
+		"schema": {
+			"name": "video_url",
+			"table": "block_intro_media",
+			"data_type": "character varying",
+			"is_nullable": true
+		},
+		"meta": {
+			"interface": "input",
+			"sort": 5,
+			"width": "half"
+		}
+	},
+	{
+		"collection": "block_intro_media",
+		"field": "date_created",
+		"type": "timestamp",
+		"schema": {
+			"name": "date_created",
+			"table": "block_intro_media",
+			"data_type": "timestamp with time zone",
+			"is_nullable": true
+		},
+		"meta": {
+			"special": [
+				"date-created",
+				"cast-timestamp"
+			],
+			"interface": "datetime",
+			"readonly": true,
+			"hidden": true,
+			"sort": 6,
+			"width": "half"
+		}
+	},
+	{
+		"collection": "block_intro_media",
+		"field": "user_created",
+		"type": "uuid",
+		"schema": {
+			"name": "user_created",
+			"table": "block_intro_media",
+			"data_type": "uuid",
+			"is_nullable": true
+		},
+		"meta": {
+			"special": [
+				"user-created"
+			],
+			"interface": "select-dropdown-m2o",
+			"display": "user",
+			"readonly": true,
+			"hidden": true,
+			"sort": 7,
+			"width": "half"
+		}
+	},
+	{
+		"collection": "block_intro_media",
+		"field": "date_updated",
+		"type": "timestamp",
+		"schema": {
+			"name": "date_updated",
+			"table": "block_intro_media",
+			"data_type": "timestamp with time zone",
+			"is_nullable": true
+		},
+		"meta": {
+			"special": [
+				"date-updated",
+				"cast-timestamp"
+			],
+			"interface": "datetime",
+			"readonly": true,
+			"hidden": true,
+			"sort": 8,
+			"width": "half"
+		}
+	},
+	{
+		"collection": "block_intro_media",
+		"field": "user_updated",
+		"type": "uuid",
+		"schema": {
+			"name": "user_updated",
+			"table": "block_intro_media",
+			"data_type": "uuid",
+			"is_nullable": true
+		},
+		"meta": {
+			"special": [
+				"user-updated"
+			],
+			"interface": "select-dropdown-m2o",
+			"display": "user",
+			"readonly": true,
+			"hidden": true,
+			"sort": 9,
+			"width": "half"
+		}
+	},
+	{
+		"collection": "block_open_roles",
+		"field": "id",
+		"type": "integer",
+		"schema": {
+			"name": "id",
+			"table": "block_open_roles",
+			"data_type": "integer",
+			"is_nullable": false,
+			"is_primary_key": true,
+			"has_auto_increment": true
+		},
+		"meta": {
+			"hidden": true,
+			"readonly": true,
+			"interface": "input",
+			"sort": 1
+		}
+	},
+	{
+		"collection": "block_open_roles",
+		"field": "heading",
+		"type": "text",
+		"schema": {
+			"name": "heading",
+			"table": "block_open_roles",
+			"data_type": "text",
+			"is_nullable": true
+		},
+		"meta": {
+			"interface": "input-rich-text-html",
+			"sort": 2,
+			"width": "full"
+		}
+	},
+	{
+		"collection": "block_open_roles",
+		"field": "description",
+		"type": "text",
+		"schema": {
+			"name": "description",
+			"table": "block_open_roles",
+			"data_type": "text",
+			"is_nullable": true
+		},
+		"meta": {
+			"interface": "input-multiline",
+			"sort": 3,
+			"width": "full"
+		}
+	},
+	{
+		"collection": "block_open_roles",
+		"field": "jobs",
+		"type": "alias",
+		"schema": null,
+		"meta": {
+			"interface": "list-o2m",
+			"special": [
+				"o2m"
+			],
+			"options": {
+				"template": "{{title}}",
+				"enableCreate": true,
+				"enableSelect": false
+			},
+			"sort": 4,
+			"width": "full"
+		}
+	},
+	{
+		"collection": "block_open_roles",
+		"field": "date_created",
+		"type": "timestamp",
+		"schema": {
+			"name": "date_created",
+			"table": "block_open_roles",
+			"data_type": "timestamp with time zone",
+			"is_nullable": true
+		},
+		"meta": {
+			"special": [
+				"date-created",
+				"cast-timestamp"
+			],
+			"interface": "datetime",
+			"readonly": true,
+			"hidden": true,
+			"sort": 5,
+			"width": "half"
+		}
+	},
+	{
+		"collection": "block_open_roles",
+		"field": "user_created",
+		"type": "uuid",
+		"schema": {
+			"name": "user_created",
+			"table": "block_open_roles",
+			"data_type": "uuid",
+			"is_nullable": true
+		},
+		"meta": {
+			"special": [
+				"user-created"
+			],
+			"interface": "select-dropdown-m2o",
+			"display": "user",
+			"readonly": true,
+			"hidden": true,
+			"sort": 6,
+			"width": "half"
+		}
+	},
+	{
+		"collection": "block_open_roles",
+		"field": "date_updated",
+		"type": "timestamp",
+		"schema": {
+			"name": "date_updated",
+			"table": "block_open_roles",
+			"data_type": "timestamp with time zone",
+			"is_nullable": true
+		},
+		"meta": {
+			"special": [
+				"date-updated",
+				"cast-timestamp"
+			],
+			"interface": "datetime",
+			"readonly": true,
+			"hidden": true,
+			"sort": 7,
+			"width": "half"
+		}
+	},
+	{
+		"collection": "block_open_roles",
+		"field": "user_updated",
+		"type": "uuid",
+		"schema": {
+			"name": "user_updated",
+			"table": "block_open_roles",
+			"data_type": "uuid",
+			"is_nullable": true
+		},
+		"meta": {
+			"special": [
+				"user-updated"
+			],
+			"interface": "select-dropdown-m2o",
+			"display": "user",
+			"readonly": true,
+			"hidden": true,
+			"sort": 8,
+			"width": "half"
+		}
+	},
+	{
+		"collection": "block_open_roles_job",
+		"field": "id",
+		"type": "integer",
+		"schema": {
+			"name": "id",
+			"table": "block_open_roles_job",
+			"data_type": "integer",
+			"is_nullable": false,
+			"is_primary_key": true,
+			"has_auto_increment": true
+		},
+		"meta": {
+			"hidden": true,
+			"readonly": true,
+			"interface": "input",
+			"sort": 1
+		}
+	},
+	{
+		"collection": "block_open_roles_job",
+		"field": "block_open_roles",
+		"type": "integer",
+		"schema": {
+			"name": "block_open_roles",
+			"table": "block_open_roles_job",
+			"data_type": "integer",
+			"is_nullable": true,
+			"foreign_key_schema": "public",
+			"foreign_key_table": "block_open_roles",
+			"foreign_key_column": "id"
+		},
+		"meta": {
+			"hidden": true,
+			"sort": 2
+		}
+	},
+	{
+		"collection": "block_open_roles_job",
+		"field": "sort",
+		"type": "integer",
+		"schema": {
+			"name": "sort",
+			"table": "block_open_roles_job",
+			"data_type": "integer",
+			"is_nullable": true
+		},
+		"meta": {
+			"interface": "input",
+			"hidden": true,
+			"sort": 3
+		}
+	},
+	{
+		"collection": "block_open_roles_job",
+		"field": "type",
+		"type": "string",
+		"schema": {
+			"name": "type",
+			"table": "block_open_roles_job",
+			"data_type": "character varying",
+			"is_nullable": true
+		},
+		"meta": {
+			"interface": "select-dropdown",
+			"options": {
+				"choices": [
+					{
+						"text": "Open Roles",
+						"value": "open_roles"
+					},
+					{
+						"text": "Internship",
+						"value": "internship"
+					}
+				]
+			},
+			"sort": 4,
+			"width": "half"
+		}
+	},
+	{
+		"collection": "block_open_roles_job",
+		"field": "title",
+		"type": "string",
+		"schema": {
+			"name": "title",
+			"table": "block_open_roles_job",
+			"data_type": "character varying",
+			"is_nullable": true
+		},
+		"meta": {
+			"interface": "input",
+			"sort": 5,
+			"width": "full"
+		}
+	},
+	{
+		"collection": "block_open_roles_job",
+		"field": "department",
+		"type": "string",
+		"schema": {
+			"name": "department",
+			"table": "block_open_roles_job",
+			"data_type": "character varying",
+			"is_nullable": true
+		},
+		"meta": {
+			"interface": "input",
+			"sort": 6,
+			"width": "half"
+		}
+	},
+	{
+		"collection": "block_open_roles_job",
+		"field": "location",
+		"type": "string",
+		"schema": {
+			"name": "location",
+			"table": "block_open_roles_job",
+			"data_type": "character varying",
+			"is_nullable": true
+		},
+		"meta": {
+			"interface": "input",
+			"sort": 7,
+			"width": "half"
+		}
+	},
+	{
+		"collection": "block_open_roles_job",
+		"field": "location_flag",
+		"type": "uuid",
+		"schema": {
+			"name": "location_flag",
+			"table": "block_open_roles_job",
+			"data_type": "uuid",
+			"is_nullable": true,
+			"foreign_key_schema": "public",
+			"foreign_key_table": "directus_files",
+			"foreign_key_column": "id"
+		},
+		"meta": {
+			"interface": "file-image",
+			"display": "image",
+			"options": {
+				"crop": false
+			},
+			"sort": 8,
+			"width": "half"
+		}
+	},
+	{
+		"collection": "block_open_roles_job",
+		"field": "apply_url",
+		"type": "string",
+		"schema": {
+			"name": "apply_url",
+			"table": "block_open_roles_job",
+			"data_type": "character varying",
+			"is_nullable": true
+		},
+		"meta": {
+			"interface": "input",
+			"sort": 9,
+			"width": "half"
+		}
+	},
+	{
+		"collection": "block_open_roles_job",
+		"field": "date_created",
+		"type": "timestamp",
+		"schema": {
+			"name": "date_created",
+			"table": "block_open_roles_job",
+			"data_type": "timestamp with time zone",
+			"is_nullable": true
+		},
+		"meta": {
+			"special": [
+				"date-created",
+				"cast-timestamp"
+			],
+			"interface": "datetime",
+			"readonly": true,
+			"hidden": true,
+			"sort": 10,
+			"width": "half"
+		}
+	},
+	{
+		"collection": "block_open_roles_job",
+		"field": "user_created",
+		"type": "uuid",
+		"schema": {
+			"name": "user_created",
+			"table": "block_open_roles_job",
+			"data_type": "uuid",
+			"is_nullable": true
+		},
+		"meta": {
+			"special": [
+				"user-created"
+			],
+			"interface": "select-dropdown-m2o",
+			"display": "user",
+			"readonly": true,
+			"hidden": true,
+			"sort": 11,
+			"width": "half"
+		}
+	},
+	{
+		"collection": "block_open_roles_job",
+		"field": "date_updated",
+		"type": "timestamp",
+		"schema": {
+			"name": "date_updated",
+			"table": "block_open_roles_job",
+			"data_type": "timestamp with time zone",
+			"is_nullable": true
+		},
+		"meta": {
+			"special": [
+				"date-updated",
+				"cast-timestamp"
+			],
+			"interface": "datetime",
+			"readonly": true,
+			"hidden": true,
+			"sort": 12,
+			"width": "half"
+		}
+	},
+	{
+		"collection": "block_open_roles_job",
+		"field": "user_updated",
+		"type": "uuid",
+		"schema": {
+			"name": "user_updated",
+			"table": "block_open_roles_job",
+			"data_type": "uuid",
+			"is_nullable": true
+		},
+		"meta": {
+			"special": [
+				"user-updated"
+			],
+			"interface": "select-dropdown-m2o",
+			"display": "user",
+			"readonly": true,
+			"hidden": true,
+			"sort": 13,
+			"width": "half"
+		}
+	},
+	{
+		"collection": "block_cta_split",
+		"field": "id",
+		"type": "integer",
+		"schema": {
+			"name": "id",
+			"table": "block_cta_split",
+			"data_type": "integer",
+			"is_nullable": false,
+			"is_primary_key": true,
+			"has_auto_increment": true
+		},
+		"meta": {
+			"hidden": true,
+			"readonly": true,
+			"interface": "input",
+			"sort": 1
+		}
+	},
+	{
+		"collection": "block_cta_split",
+		"field": "heading",
+		"type": "text",
+		"schema": {
+			"name": "heading",
+			"table": "block_cta_split",
+			"data_type": "text",
+			"is_nullable": true
+		},
+		"meta": {
+			"interface": "input-rich-text-html",
+			"sort": 2,
+			"width": "half"
+		}
+	},
+	{
+		"collection": "block_cta_split",
+		"field": "description",
+		"type": "text",
+		"schema": {
+			"name": "description",
+			"table": "block_cta_split",
+			"data_type": "text",
+			"is_nullable": true
+		},
+		"meta": {
+			"interface": "input-multiline",
+			"sort": 3,
+			"width": "half"
+		}
+	},
+	{
+		"collection": "block_cta_split",
+		"field": "date_created",
+		"type": "timestamp",
+		"schema": {
+			"name": "date_created",
+			"table": "block_cta_split",
+			"data_type": "timestamp with time zone",
+			"is_nullable": true
+		},
+		"meta": {
+			"special": [
+				"date-created",
+				"cast-timestamp"
+			],
+			"interface": "datetime",
+			"readonly": true,
+			"hidden": true,
+			"sort": 4,
+			"width": "half"
+		}
+	},
+	{
+		"collection": "block_cta_split",
+		"field": "user_created",
+		"type": "uuid",
+		"schema": {
+			"name": "user_created",
+			"table": "block_cta_split",
+			"data_type": "uuid",
+			"is_nullable": true
+		},
+		"meta": {
+			"special": [
+				"user-created"
+			],
+			"interface": "select-dropdown-m2o",
+			"display": "user",
+			"readonly": true,
+			"hidden": true,
+			"sort": 5,
+			"width": "half"
+		}
+	},
+	{
+		"collection": "block_cta_split",
+		"field": "date_updated",
+		"type": "timestamp",
+		"schema": {
+			"name": "date_updated",
+			"table": "block_cta_split",
+			"data_type": "timestamp with time zone",
+			"is_nullable": true
+		},
+		"meta": {
+			"special": [
+				"date-updated",
+				"cast-timestamp"
+			],
+			"interface": "datetime",
+			"readonly": true,
+			"hidden": true,
+			"sort": 6,
+			"width": "half"
+		}
+	},
+	{
+		"collection": "block_cta_split",
+		"field": "user_updated",
+		"type": "uuid",
+		"schema": {
+			"name": "user_updated",
+			"table": "block_cta_split",
+			"data_type": "uuid",
+			"is_nullable": true
+		},
+		"meta": {
+			"special": [
+				"user-updated"
+			],
+			"interface": "select-dropdown-m2o",
+			"display": "user",
+			"readonly": true,
+			"hidden": true,
+			"sort": 7,
+			"width": "half"
+		}
 	}
 ]

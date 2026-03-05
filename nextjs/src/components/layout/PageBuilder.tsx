@@ -32,7 +32,7 @@ const PageBuilder = ({ sections }: PageBuilderProps) => {
 						? (block.item as { background_color?: string | null }).background_color
 						: null;
 
-							const isReachOut = block.collection === 'block_reach_out';
+							const isBgWhite = block.collection === 'block_reach_out' || block.collection === 'block_people_say';
 
 				const isFullBleedBlock =
 					block.collection === 'block_testimonials' ||
@@ -42,14 +42,17 @@ const PageBuilder = ({ sections }: PageBuilderProps) => {
 					block.collection === 'block_credentials' ||
 					block.collection === 'block_culture_gallery' ||
 					block.collection === 'block_reach_out' ||
-					block.collection === 'block_values';
+					block.collection === 'block_values' ||
+					block.collection === 'block_people_say' ||
+					block.collection === 'block_intro_media' ||
+					block.collection === 'block_cta_split';
 
 				if (isFullBleed || sectionBg || isFullBleedBlock) {
 					return (
 						<div
 							key={block.id}
 							data-background={block.background}
-							style={sectionBg ? { backgroundColor: sectionBg } : isReachOut ? { backgroundColor: '#ffffff' } : undefined}
+							style={sectionBg ? { backgroundColor: sectionBg } : isBgWhite ? { backgroundColor: '#ffffff' } : undefined}
 						>
 							<BaseBlock
 								block={{

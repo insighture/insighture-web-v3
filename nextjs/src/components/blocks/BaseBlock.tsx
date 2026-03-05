@@ -16,6 +16,10 @@ import ReachOut from '@/components/blocks/ReachOut';
 import Acknowledgement from '@/components/blocks/Acknowledgement';
 import CultureGallery from '@/components/blocks/CultureGallery';
 import ValuesBlock from '@/components/blocks/ValuesBlock';
+import PeopleSay from '@/components/blocks/PeopleSay';
+import IntroMedia from '@/components/blocks/IntroMedia';
+import OpenRoles from '@/components/blocks/OpenRoles';
+import CtaSplit from '@/components/blocks/CtaSplit';
 
 interface BaseBlockProps {
 	block: {
@@ -43,6 +47,10 @@ const BaseBlock = ({ block }: BaseBlockProps) => {
 		block_acknowledgement: Acknowledgement,
 		block_culture_gallery: CultureGallery,
 		block_values: ValuesBlock,
+		block_people_say: PeopleSay,
+		block_intro_media: IntroMedia,
+		block_open_roles: OpenRoles,
+		block_cta_split: CtaSplit,
 	};
 
 	const Component = components[block.collection];

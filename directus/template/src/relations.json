@@ -1716,7 +1716,11 @@
 				"block_reach_out",
 				"block_acknowledgement",
 				"block_culture_gallery",
-				"block_values"
+				"block_values",
+				"block_people_say",
+				"block_intro_media",
+				"block_open_roles",
+				"block_cta_split"
 			],
 			"junction_field": "page",
 			"sort_field": null,
@@ -2301,6 +2305,70 @@
 		"related_collection": "directus_files",
 		"schema": {
 			"constraint_name": "block_values_item_icon_foreign",
+			"on_delete": "SET NULL"
+		},
+		"meta": {
+			"one_deselect_action": "nullify"
+		}
+	},
+	{
+		"collection": "block_people_say_slide",
+		"field": "block_people_say",
+		"related_collection": "block_people_say",
+		"schema": {
+			"constraint_name": "block_people_say_slide_block_people_say_foreign",
+			"on_delete": "SET NULL"
+		},
+		"meta": {
+			"one_field": "slides",
+			"sort_field": "sort",
+			"one_deselect_action": "nullify"
+		}
+	},
+	{
+		"collection": "block_people_say_slide",
+		"field": "image",
+		"related_collection": "directus_files",
+		"schema": {
+			"constraint_name": "block_people_say_slide_image_foreign",
+			"on_delete": "SET NULL"
+		},
+		"meta": {
+			"one_deselect_action": "nullify"
+		}
+	},
+	{
+		"collection": "block_intro_media",
+		"field": "image",
+		"related_collection": "directus_files",
+		"schema": {
+			"constraint_name": "block_intro_media_image_foreign",
+			"on_delete": "SET NULL"
+		},
+		"meta": {
+			"one_deselect_action": "nullify"
+		}
+	},
+	{
+		"collection": "block_open_roles_job",
+		"field": "block_open_roles",
+		"related_collection": "block_open_roles",
+		"schema": {
+			"constraint_name": "block_open_roles_job_block_open_roles_foreign",
+			"on_delete": "SET NULL"
+		},
+		"meta": {
+			"one_field": "jobs",
+			"sort_field": "sort",
+			"one_deselect_action": "nullify"
+		}
+	},
+	{
+		"collection": "block_open_roles_job",
+		"field": "location_flag",
+		"related_collection": "directus_files",
+		"schema": {
+			"constraint_name": "block_open_roles_job_location_flag_foreign",
 			"on_delete": "SET NULL"
 		},
 		"meta": {

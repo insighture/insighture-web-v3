@@ -360,6 +360,106 @@ export interface BlockCultureGallery {
 	user_updated?: DirectusUser | string | null;
 }
 
+export interface BlockCtaSplit {
+	/** @primaryKey */
+	id: number;
+	/** @description Left-side heading as HTML (supports italic pink accent). */
+	heading?: string | null;
+	/** @description Right-side description paragraph. */
+	description?: string | null;
+	date_created?: string | null;
+	user_created?: DirectusUser | string | null;
+	date_updated?: string | null;
+	user_updated?: DirectusUser | string | null;
+}
+
+export interface BlockOpenRolesJob {
+	/** @primaryKey */
+	id: number;
+	sort?: number | null;
+	block_open_roles?: BlockOpenRoles | number | null;
+	/** @description Tab this job appears under. */
+	type?: 'open_roles' | 'internship' | null;
+	/** @description Job title. */
+	title?: string | null;
+	/** @description Department/category used for grouping. */
+	department?: string | null;
+	/** @description Location label, e.g. "Colombo | Sri Lanka". */
+	location?: string | null;
+	/** @description Country flag image (optional). */
+	location_flag?: string | null;
+	/** @description URL to the application form or page. */
+	apply_url?: string | null;
+	date_created?: string | null;
+	user_created?: DirectusUser | string | null;
+	date_updated?: string | null;
+	user_updated?: DirectusUser | string | null;
+}
+
+export interface BlockOpenRoles {
+	/** @primaryKey */
+	id: number;
+	/** @description Section heading as HTML (supports italic pink accent). */
+	heading?: string | null;
+	/** @description Subtitle paragraph shown below the heading. */
+	description?: string | null;
+	/** @description List of job positions shown in the listing. */
+	jobs?: BlockOpenRolesJob[] | string[];
+	date_created?: string | null;
+	user_created?: DirectusUser | string | null;
+	date_updated?: string | null;
+	user_updated?: DirectusUser | string | null;
+}
+
+export interface BlockIntroMedia {
+	/** @primaryKey */
+	id: number;
+	/** @description Section heading as HTML (supports italic pink accent). */
+	heading?: string | null;
+	/** @description Paragraph text shown below the heading. */
+	description?: string | null;
+	/** @description Right-side image. */
+	image?: string | null;
+	/** @description Optional YouTube/Vimeo URL to embed instead of the image. */
+	video_url?: string | null;
+	date_created?: string | null;
+	user_created?: DirectusUser | string | null;
+	date_updated?: string | null;
+	user_updated?: DirectusUser | string | null;
+}
+
+export interface BlockPeopleSaySlide {
+	/** @primaryKey */
+	id: number;
+	sort?: number | null;
+	block_people_say?: BlockPeopleSay | number | null;
+	/** @description Photo of the person. */
+	image?: string | null;
+	/** @description The quote text. */
+	quote?: string | null;
+	/** @description Person's name. */
+	name?: string | null;
+	/** @description Person's job title/role. */
+	role?: string | null;
+	date_created?: string | null;
+	user_created?: DirectusUser | string | null;
+	date_updated?: string | null;
+	user_updated?: DirectusUser | string | null;
+}
+
+export interface BlockPeopleSay {
+	/** @primaryKey */
+	id: number;
+	/** @description Section heading as HTML (supports italic pink accent). */
+	heading?: string | null;
+	/** @description Testimonial slides shown in the carousel. */
+	slides?: BlockPeopleSaySlide[] | string[];
+	date_created?: string | null;
+	user_created?: DirectusUser | string | null;
+	date_updated?: string | null;
+	user_updated?: DirectusUser | string | null;
+}
+
 export interface BlockValuesItem {
 	/** @primaryKey */
 	id: number;
@@ -606,7 +706,7 @@ export interface PageBlock {
 	/** @description The id of the page that this block belongs to. */
 	page?: Page | string | null;
 	/** @description The data for the block. */
-	item?: BlockHero | BlockRichtext | BlockForm | BlockPost | BlockGallery | BlockPricing | BlockReachOut | BlockAcknowledgement | BlockCultureGallery | BlockValues | string | null;
+	item?: BlockHero | BlockRichtext | BlockForm | BlockPost | BlockGallery | BlockPricing | BlockReachOut | BlockAcknowledgement | BlockCultureGallery | BlockValues | BlockPeopleSay | BlockIntroMedia | BlockOpenRoles | BlockCtaSplit | string | null;
 	/** @description The collection (type of block). */
 	collection?: string | null;
 	/** @description Temporarily hide this block on the website without having to remove it from your page. */
@@ -1182,6 +1282,12 @@ export interface Schema {
 	block_reach_out_contact_item: BlockReachOutContactItem[];
 	block_values: BlockValues[];
 	block_values_item: BlockValuesItem[];
+	block_people_say: BlockPeopleSay[];
+	block_people_say_slide: BlockPeopleSaySlide[];
+	block_intro_media: BlockIntroMedia[];
+	block_open_roles: BlockOpenRoles[];
+	block_open_roles_job: BlockOpenRolesJob[];
+	block_cta_split: BlockCtaSplit[];
 	block_richtext: BlockRichtext[];
 	block_services: BlockServices[];
 	block_services_item: BlockServicesItem[];
