@@ -53,7 +53,12 @@
       "Bash(docker-compose up:*)",
       "Bash(bash:*)",
       "Bash(docker:*)",
-      "Bash(chmod +x:*)"
+      "Bash(chmod +x:*)",
+      "Bash(npx tsx:*)",
+      "Bash(read line:*)",
+      "Read(//c/Users/HP/Downloads/**)",
+      "Bash(chmod 600:*)",
+      "Bash(__NEW_LINE_c6ebfb6eacf24f1c__ ssh:*)"
     ]
   },
   "enableAllProjectMcpServers": true,

@@ -121,7 +121,7 @@ export default async function Page({
 			/>
 		);
 	} catch (error) {
-		console.error('Error loading page:', error);
+		console.error('Error loading page:', resolvedPermalink, error);
 		notFound();
 	}
 }
