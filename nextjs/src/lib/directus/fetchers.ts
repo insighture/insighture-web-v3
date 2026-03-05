@@ -182,8 +182,12 @@ const pageFields = [
 						'tagline',
 						'background_color',
 						'image',
+						'special_post_title',
 						{
-							post: ['id', 'title', 'slug', 'type'],
+							special_post: ['id', 'title', 'slug', 'type'],
+						},
+						{
+							recommended_posts: ['sort', { posts_id: ['id', 'title', 'slug', 'type'] }],
 						},
 					],
 					block_service_tabs: [
@@ -212,54 +216,17 @@ const pageFields = [
 						{
 							selected_posts: [
 								'sort',
-								{ posts_id: ['id', 'title', 'slug', 'image', 'description'] },
+								{ posts_id: ['id', 'title', 'slug', 'image', 'description', 'type'] },
 							],
 						},
 					],
-					block_service_showcase: [
-						'id',
-						'page_headline',
-						'page_headline_emphasis',
-						'page_description',
-						{
-							items: [
-								'id',
-								'sort',
-								'label',
-								'accent_color',
-								'service_name',
-								'service_tagline',
-								'service_description',
-								'key_services',
-								'service_image',
-								'expertise_heading',
-								'expertise_heading_emphasis',
-								// 'cta_type', // field does not exist in block_services_item
-								'cta_headline',
-								'cta_headline_emphasis',
-								'cta_credentials_image',
-								'product_cta_headline',
-								'product_cta_emphasis',
-								'product_catalogue_image',
-								{ featured_post: ['id', 'title', 'slug', 'image'] },
-								{
-									cards: ['id', 'sort', 'icon', 'title', 'description', 'link_label', 'url'],
-								},
-								{
-									stat_items: ['id', 'sort', 'icon', 'value', 'label'],
-								},
-								{
-									product_items: ['id', 'sort', 'title', 'is_highlighted'],
-								},
-							],
-						},
-					],
+
 					block_all_posts: [
 						'id',
 						'headline',
 					],
-					// block_platform_cta: ['id', 'title', 'description', 'cta_label', 'cta_url', 'image'],
-					// ^ Uncomment after creating block_platform_cta collection in Directus
+					block_service_platform_banner: ['id', 'title', 'description', 'cta_label', 'cta_url', 'image'],
+		
 					block_service_featured_article: [
 						'id',
 						'tagline',
@@ -272,7 +239,7 @@ const pageFields = [
 					],
 					block_services_tab: [
 						'id',
-						'tagline',
+						'description',
 						'heading',
 						{
 							items: [
@@ -281,7 +248,7 @@ const pageFields = [
 								'title',
 								'accent_color',
 								'key_services',
-								// 'cta_type', // field does not exist in block_services_item
+								'cta_type',
 								{
 									panel: [
 										'id',
@@ -314,20 +281,20 @@ const pageFields = [
 									credentials_cta: [
 										'id',
 										'headline',
+								
 										{ badges: ['id', 'sort', 'image', 'alt'] },
 										{ stats: ['id', 'sort', 'icon', 'value', 'label'] },
 									],
 								},
-								// product_catalogue field does not exist in block_services_item
-								// {
-								// 	product_catalogue: [
-								// 		'id',
-								// 		'headline',
-								// 		'image',
-								// 		'image_alt',
-								// 		{ products: ['id', 'sort', 'label'] },
-								// 	],
-								// },
+								{
+									product_catalogue: [
+										'id',
+										'headline',
+										'image',
+										'image_alt',
+										{ products: ['id', 'sort', 'label'] },
+									],
+								},
 							],
 						},
 					],
@@ -345,24 +312,23 @@ const pageFields = [
 						{ badges: ['id', 'sort', 'image', 'alt'] },
 						{ stats: ['id', 'sort', 'icon', 'value', 'label'] },
 					],
-				
-					block_expertise_cards: [
-						'id',
-						'heading',
-						
-						{
-							cards: [
-								'id',
-								'sort',
-								'icon',
-								'title',
-								'description',
-								'link_label',
-								'url',
-							],
-						},
-					],
-			},
+					// Uncomment this when ready, This throws a 404 error
+					// block_expertise_cards: [
+					// 	'id',
+					// 	'heading',
+					// 	{
+					// 		cards: [
+					// 			'id',
+					// 			'sort',
+					// 			'icon',
+					// 			'title',
+					// 			'description',
+					// 			'link_label',
+					// 			'url',
+					// 		],
+					// 	},
+					// ],
+				},
 			},
 		],
 	},
@@ -446,37 +412,45 @@ export const fetchPageData = async (permalink: string, postPage = 1, token?: str
 				}
 
 				// block_featured_post — if no pinned post, fetch the latest published post
-				// also fetch recommended posts for the right panel
+				// also resolve recommended posts: use manually selected if set, otherwise fetch latest
 				if (block.collection === 'block_featured_post' && block.item && typeof block.item !== 'string') {
-					const pinnedPost = (block.item as any).post;
+					const pinnedPost = (block.item as any).special_post;
 					const pinnedPostId = pinnedPost ? pinnedPost.id ?? pinnedPost : null;
 
 					if (!pinnedPost) {
 						const latestPosts: Post[] = await directus.request(
 							readItems('posts', {
-								fields: ['id', 'title', 'slug', 'image'],
+								fields: ['id', 'title', 'slug', 'type'],
 								filter: { status: { _eq: 'published' } },
 								sort: ['-published_at'],
 								limit: 1,
 							}),
 						);
-						(block.item as any).post = latestPosts[0] ?? null;
+						(block.item as any).special_post = latestPosts[0] ?? null;
 					}
 
-					// Fetch recommended posts (exclude the featured one)
-					const excludeFilter: QueryFilter<Schema, Post> = pinnedPostId
-						? { status: { _eq: 'published' as const }, id: { _neq: pinnedPostId } }
-						: { status: { _eq: 'published' as const } };
+					// Use manually selected recommended posts if set; otherwise auto-fetch latest (excluding featured)
+					const manualRecs = (block.item as any).recommended_posts as Array<{ sort: number; posts_id: any }> | null | undefined;
+					if (manualRecs && manualRecs.length > 0) {
+						(block.item as any).recommended_posts = [...manualRecs]
+							.sort((a, b) => (a.sort ?? 0) - (b.sort ?? 0))
+							.map((j) => j.posts_id)
+							.filter(Boolean);
+					} else {
+						const excludeFilter: QueryFilter<Schema, Post> = pinnedPostId
+							? { status: { _eq: 'published' as const }, id: { _neq: pinnedPostId } }
+							: { status: { _eq: 'published' as const } };
 
-					const recommendedPosts = await directus.request<Post[]>(
-						readItems<Schema, 'posts', any>('posts', {
-							fields: ['id', 'title', 'slug', 'type'],
-							filter: excludeFilter,
-							sort: ['-published_at'],
-							limit: 4,
-						}),
-					);
-					(block.item as any).recommended_posts = recommendedPosts;
+						const recommendedPosts = await directus.request<Post[]>(
+							readItems<Schema, 'posts', any>('posts', {
+								fields: ['id', 'title', 'slug', 'type'],
+								filter: excludeFilter,
+								sort: ['-published_at'],
+								limit: 4,
+							}),
+						);
+						(block.item as any).recommended_posts = recommendedPosts;
+					}
 				}
 				// block_posts_carousel — use manually selected posts if set, otherwise fetch dynamically
 				if (block.collection === 'block_posts_carousel' && block.item && typeof block.item !== 'string') {
@@ -491,7 +465,7 @@ export const fetchPageData = async (permalink: string, postPage = 1, token?: str
 						const limit = item.limit ?? 9;
 						const carouselPosts = await directus.request(
 							readItems('posts', {
-								fields: ['id', 'title', 'slug', 'image', 'description'],
+								fields: ['id', 'title', 'slug', 'image', 'description', 'type'],
 								filter: { status: { _eq: 'published' } },
 								sort: ['-published_at'],
 								limit,
@@ -521,6 +495,7 @@ export const fetchPageData = async (permalink: string, postPage = 1, token?: str
 		throw new Error('Failed to fetch page data');
 	}
 };
+
 /**
  * Fetches page data by id and version
  */
