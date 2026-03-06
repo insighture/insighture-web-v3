@@ -78,7 +78,7 @@ export default function ExpertiseCards({ data, accentColor, contained, externalP
 								className="hidden lg:flex absolute left-[-45px] top-1/2 -translate-y-1/2 z-10 size-[38px] rounded-full border border-[#7B858A] bg-[rgba(255,255,255,0.9)] shadow-[1px_1px_4px_0_#CED7DB] items-center justify-center transition-all hover:shadow-md disabled:opacity-30"
 							>
 								<svg width="20" height="20" viewBox="0 0 16 16" fill="none">
-									<path d="M10 12L6 8L10 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+									<path d="M10 12L6 8L10 4" stroke="#7B858A" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
 								</svg>
 							</button>
 							<button
@@ -88,7 +88,7 @@ export default function ExpertiseCards({ data, accentColor, contained, externalP
 								className="hidden lg:flex absolute right-[-45px] top-1/2 -translate-y-1/2 z-10 size-[40px] rounded-full border border-[#7B858A] bg-[rgba(255,255,255,0.9)] shadow-[1px_1px_4px_0_#CED7DB] items-center justify-center transition-all hover:shadow-md disabled:opacity-30"
 							>
 								<svg width="20" height="20" viewBox="0 0 16 16" fill="none">
-									<path d="M6 4L10 8L6 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+									<path d="M6 4L10 8L6 12" stroke="#7B858A" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
 								</svg>
 							</button>
 						</>
