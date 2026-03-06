@@ -55,8 +55,15 @@ export default function BlogFeaturedPost({ data }: BlogFeaturedPostProps) {
 
 					{/* Text: max 130px left padding, aligns with nav logo */}
 					{special_post && <div className="w-auto lg:px-[120px] flex flex-col gap-[56px]">
+					
+						<div className="flex flex-col gap-4 items-start w-full lg:max-w-[556px]">
+						{( special_post.type) && (
+							<p className="font-sans font-normal text-[16px] leading-[22px] text-[#fcfcfd] tracking-[0.96px] uppercase w-full">
+							{special_post.type}
+						</p>
+							)}
 
-						<div className="flex flex-col gap-8 items-start w-full lg:max-w-[556px]">
+
 							{(special_post_title || special_post.title) && (
 								<p className="font-sans font-medium text-[32px] leading-[40px] text-[#fcfcfd]" dangerouslySetInnerHTML={{ __html: (special_post_title || special_post.title)! }}>
 								</p>
@@ -65,7 +72,7 @@ export default function BlogFeaturedPost({ data }: BlogFeaturedPostProps) {
 							{special_post.slug && (
 								<Link
 									href={`/blog/${special_post.slug}`}
-									className="inline-flex items-center gap-[11px] bg-[#ee4065] px-6 py-2 rounded-[48px] text-[16px] font-bold leading-[26px] text-[#fcfcfd] hover:bg-[#d93a5a] transition-colors whitespace-nowrap"
+									className="inline-flex items-center gap-[11px] bg-[#ee4065] px-6 py-2 rounded-[48px] text-[16px] font-bold leading-[26px] text-[#fcfcfd] hover:bg-[#d93a5a] transition-colors whitespace-nowrap mt-4"
 								>
 									Read {special_post.type === 'story' ? 'story' : special_post.type === 'insight' ? 'insight' : 'more'}
 									<svg width="7" height="12" viewBox="0 0 7 12" fill="none" aria-hidden="true">
