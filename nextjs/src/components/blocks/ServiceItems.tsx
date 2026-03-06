@@ -130,8 +130,8 @@ export default function ServiceItems({ data }: ServiceItemsProps) {
 
 						{/* Content panel */}
 						{active && (
-							<div className="bg-[#fcfcfd] rounded-[8px] p-[24px]">
-								<div className="flex flex-col lg:flex-row justify-between items-start lg:items-stretch gap-[40px] lg:h-[452px] w-full">
+							<div className="bg-[#fcfcfd] rounded-[8px] p-[24px] overflow-hidden">
+								<div className="flex flex-col lg:flex-row justify-between items-start lg:items-stretch gap-[40px] lg:h-[452px] w-full min-w-0">
 
 									{/* Left column */}
 									<div className="flex flex-col justify-between w-full lg:max-w-[50%] lg:min-w-0 lg:shrink-0">
@@ -162,10 +162,10 @@ export default function ServiceItems({ data }: ServiceItemsProps) {
 										{/* Key services box */}
 										{active.key_services && active.key_services.length > 0 && (
 											<div className="bg-[#fafafa] border border-[#e5e7eb] rounded-[8px] p-[16px] flex flex-col gap-[8px]">
-												<p className="font-sans italic text-[14px] leading-[24px] text-[rgba(30,30,30,0.5)]">
+												<p className="font-sans italic font-semibold text-[18px] leading-[24px] text-[#999c9e]">
 													Key Services
 												</p>
-												<div className="flex gap-[24px] font-sans font-medium italic text-[12px] leading-[22px] text-[#60696e]">
+												<div className="flex gap-[24px] font-sans   italic text-[14px] leading-[22px] text-[#60696e]">
 													{(() => {
 														const half = Math.ceil(active.key_services!.length / 2);
 														const col1 = active.key_services!.slice(0, half);
@@ -195,7 +195,7 @@ export default function ServiceItems({ data }: ServiceItemsProps) {
 
 									{/* Right column: image */}
 									{panel?.image && (
-										<div className="relative w-full lg:w-1/2 lg:min-w-0 flex-shrink-0 min-h-[280px] lg:h-full rounded-[8px] overflow-hidden">
+										<div className="relative w-full lg:w-1/2 lg:max-w-[50%] lg:min-w-0 lg:min-h-0 min-h-[280px] lg:h-full rounded-[8px] overflow-hidden">
 											<DirectusImage
 												uuid={panel?.image}
 												alt={active.title ?? 'Service Panel Image'}
