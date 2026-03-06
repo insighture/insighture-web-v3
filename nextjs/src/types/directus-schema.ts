@@ -156,6 +156,8 @@ export interface BlockHeroSlide {
 	description?: string | null;
 	/** @description Where to position the text block within this slide. */
 	text_placement?: 'center_left' | 'bottom_center' | 'bottom_left' | 'center_center' | null;
+	/** @description Enable a dark gradient overlay on this slide for improved text legibility. */
+	enable_gradient_overlay?: boolean | null;
 	date_created?: string | null;
 	user_created?: DirectusUser | string | null;
 	date_updated?: string | null;

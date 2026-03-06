@@ -79,6 +79,7 @@ interface HeroSlide {
 	nav_scrolled_cta_background_color: string | null;
 	nav_scrolled_cta_text_color: string | null;
 	carousel_indicator_color: string | null;
+	enable_gradient_overlay: boolean | null;
 }
 
 interface HeroButton {
@@ -169,19 +170,25 @@ function buildSlideButtons(slide: HeroSlide): HeroButton[] {
 	return buttons;
 }
 
-function HeroVideo({ videoId, posterId, fill, className, loop = true, onEnded }: {
+function HeroVideo({ videoId, posterId, fill, className, loop = true, onEnded, priority = false }: {
 	videoId: string;
 	posterId?: string | null;
 	fill?: boolean;
 	className?: string;
 	loop?: boolean;
 	onEnded?: () => void;
+	priority?: boolean;
 }) {
 	const videoRef = useRef<HTMLVideoElement>(null);
 	const [isLoaded, setIsLoaded] = useState(false);
+	const videoSrc = getDirectusAssetURL(videoId);
 
 	return (
 		<>
+			{/* Preload hint for priority videos (first visible slide) */}
+			{priority && (
+				<link rel="preload" href={videoSrc} as="video" type="video/mp4" />
+			)}
 			{posterId && !isLoaded && (
 				<DirectusImage
 					uuid={posterId}
@@ -194,12 +201,12 @@ function HeroVideo({ videoId, posterId, fill, className, loop = true, onEnded }:
 			)}
 			<video
 				ref={videoRef}
-				src={getDirectusAssetURL(videoId)}
-				poster={posterId ? getDirectusAssetURL(posterId) : undefined}
+				src={videoSrc}
 				autoPlay
 				muted
 				loop={loop}
 				playsInline
+				preload="auto"
 				onCanPlay={() => setIsLoaded(true)}
 				onEnded={onEnded}
 				className={cn(
@@ -336,6 +343,7 @@ export default function Hero({ data }: HeroProps) {
 							className="object-cover"
 							loop={!isCarousel}
 							onEnded={isCarousel ? nextSlide : undefined}
+							priority={!isCarousel || currentSlide === 0}
 						/>
 					) : bgImage ? (
 						<DirectusImage
@@ -351,8 +359,8 @@ export default function Hero({ data }: HeroProps) {
 					) : null}
 				</div>
 
-				{/* Gradient overlay for text legibility */}
-				{enable_gradient_overlay && (
+				{/* Gradient overlay for text legibility (block-level or slide-level toggle) */}
+				{(slide?.enable_gradient_overlay ?? enable_gradient_overlay) && (
 					<div
 						className="absolute inset-0 pointer-events-none z-[1]"
 						style={{
