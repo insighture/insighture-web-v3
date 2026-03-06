@@ -136,14 +136,18 @@ export interface BlockHeroSlide {
 	sort?: number | null;
 	/** @description The hero block this slide belongs to. */
 	block_hero?: BlockHero | string | null;
-	/** @description Full-bleed background image for this slide. */
+	/** @description Full-bleed background image for this slide (also used as video poster). */
 	background_image?: DirectusFile | string | null;
+	/** @description Background video for this slide (replaces background_image when present). */
+	background_video?: DirectusFile | string | null;
 	/** @description CSS background value (color or gradient) used when no background image. */
 	background_color?: string | null;
 	/** @description Small logo or badge image displayed above the headline. */
 	tagline_image?: DirectusFile | string | null;
-	/** @description Portrait or subject image displayed on the right side. */
+	/** @description Portrait or subject image displayed on the right side (also used as video poster). */
 	subject_image?: DirectusFile | string | null;
+	/** @description Subject video for this slide (replaces subject_image when present). */
+	subject_video?: DirectusFile | string | null;
 	/** @description Main headline for this slide. */
 	headline?: string | null;
 	/** @description Styled italic suffix shown after the main headline (e.g. 'better'). */
@@ -179,8 +183,10 @@ export interface BlockHeroHeadlineLine {
 export interface BlockHero {
 	/** @primaryKey */
 	id: string;
-	/** @description Featured image in the hero. */
+	/** @description Featured image in the hero (also used as video poster). */
 	image?: DirectusFile | string | null;
+	/** @description Video file for the hero (replaces image when present; image becomes poster). */
+	video?: DirectusFile | string | null;
 	/** @description Action buttons that show below headline and description. */
 	button_group?: BlockButtonGroup | string | null;
 	/** @description Supporting copy that shows below the headline. */
@@ -209,6 +215,8 @@ export interface BlockHero {
 	expanded_text_placement?: 'center_left' | 'bottom_center' | 'bottom_left' | 'center_center' | null;
 	/** @description Horizontal alignment of text within the content block. */
 	expanded_text_alignment?: 'left' | 'center' | 'right' | null;
+	/** @description Height of the hero section in vh units (e.g. 75 for 75vh). Leave empty for full screen. */
+	height?: string | null;
 	date_created?: string | null;
 	user_created?: DirectusUser | string | null;
 	date_updated?: string | null;

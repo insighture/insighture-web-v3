@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useCallback, useMemo } from 'react';
+import { useState, useEffect, useCallback, useMemo, useRef } from 'react';
 import DOMPurify from 'dompurify';
 import Tagline from '../ui/Tagline';
 import BaseText from '@/components/ui/Text';
@@ -9,6 +9,7 @@ import ButtonGroup from '@/components/blocks/ButtonGroup';
 import { cn } from '@/lib/utils';
 import { setAttr } from '@directus/visual-editing';
 import { useNavigationOptional } from '@/contexts/NavigationContext';
+import { getDirectusAssetURL } from '@/lib/directus/directus-utils';
 
 const fontSizeMap: Record<string, string> = {
 	sm: 'text-2xl',
@@ -42,9 +43,11 @@ interface HeroSlide {
 	id: string;
 	sort: number | null;
 	background_image: string | null;
+	background_video: string | null;
 	background_color: string | null;
 	tagline_image: string | null;
 	subject_image: string | null;
+	subject_video: string | null;
 	headline: string | null;
 	headline_emphasis: string | null;
 	description: string | null;
@@ -100,10 +103,12 @@ interface HeroProps {
 		description: string;
 		layout: 'image_left' | 'image_center' | 'image_right' | 'image_expanded';
 		image: string | null;
+		video?: string | null;
 		background_color?: string | null;
 		enable_carousel?: boolean | null;
 		autoplay_interval?: number | null;
 		enable_gradient_overlay?: boolean | null;
+		height?: string | null;
 		expanded_text_placement?: TextPlacement | null;
 		expanded_text_alignment?: 'left' | 'center' | 'right' | null;
 		headline_lines?: HeadlineLine[];
@@ -164,14 +169,62 @@ function buildSlideButtons(slide: HeroSlide): HeroButton[] {
 	return buttons;
 }
 
+function HeroVideo({ videoId, posterId, fill, className, loop = true, onEnded }: {
+	videoId: string;
+	posterId?: string | null;
+	fill?: boolean;
+	className?: string;
+	loop?: boolean;
+	onEnded?: () => void;
+}) {
+	const videoRef = useRef<HTMLVideoElement>(null);
+	const [isLoaded, setIsLoaded] = useState(false);
+
+	return (
+		<>
+			{posterId && !isLoaded && (
+				<DirectusImage
+					uuid={posterId}
+					alt=""
+					fill={fill}
+					sizes="100vw"
+					className={cn(className, 'transition-opacity duration-500')}
+					priority
+				/>
+			)}
+			<video
+				ref={videoRef}
+				src={getDirectusAssetURL(videoId)}
+				poster={posterId ? getDirectusAssetURL(posterId) : undefined}
+				autoPlay
+				muted
+				loop={loop}
+				playsInline
+				onCanPlay={() => setIsLoaded(true)}
+				onEnded={onEnded}
+				className={cn(
+					fill ? 'absolute inset-0 size-full' : 'size-full',
+					className,
+					'transition-opacity duration-500',
+					!isLoaded && 'opacity-0',
+				)}
+			/>
+		</>
+	);
+}
+
 export default function Hero({ data }: HeroProps) {
 	const {
 		id, layout, tagline, tagline_type, tagline_image, tagline_image_alt,
-		headline_lines, description, image, background_color, button_group,
+		headline_lines, description, image, video, background_color, button_group,
 		enable_carousel, autoplay_interval, enable_gradient_overlay,
 		expanded_text_placement, expanded_text_alignment,
+		height,
 		slides,
 	} = data;
+
+	const heightStyle = height ? { minHeight: `${height}vh` } : undefined;
+	const heightClass = height ? '' : 'min-h-screen';
 
 	const sortedHeadlineLines = useMemo(
 		() => (headline_lines ? [...headline_lines].sort((a, b) => (a.sort ?? 0) - (b.sort ?? 0)) : []),
@@ -197,12 +250,16 @@ export default function Hero({ data }: HeroProps) {
 		setCurrentSlide((prev) => (prev + 1) % sortedSlides.length);
 	}, [sortedSlides.length]);
 
+	// Check if current slide has a video — if so, let onEnded advance instead of the timer
+	const currentSlideHasVideo = isCarousel && sortedSlides[currentSlide] &&
+		(sortedSlides[currentSlide].background_video || sortedSlides[currentSlide].subject_video);
+
 	useEffect(() => {
-		if (!isCarousel || isPaused || sortedSlides.length <= 1) return;
+		if (!isCarousel || isPaused || sortedSlides.length <= 1 || currentSlideHasVideo) return;
 		const timer = setInterval(nextSlide, interval);
 
 		return () => clearInterval(timer);
-	}, [isCarousel, isPaused, nextSlide, interval, sortedSlides.length]);
+	}, [isCarousel, isPaused, nextSlide, interval, sortedSlides.length, currentSlideHasVideo]);
 
 	// Update navigation colors when slide changes
 	useEffect(() => {
@@ -248,6 +305,7 @@ export default function Hero({ data }: HeroProps) {
 	// image_expanded layout — full-bleed background with optional carousel
 	if (layout === 'image_expanded') {
 		const slide = isCarousel ? sortedSlides[currentSlide] : null;
+		const bgVideo = slide?.background_video ?? video;
 		const bgImage = slide?.background_image ?? image;
 		const bgColor = slide?.background_color ?? background_color;
 		const placement: TextPlacement = slide?.text_placement ?? expanded_text_placement ?? 'center_left';
@@ -262,25 +320,36 @@ export default function Hero({ data }: HeroProps) {
 
 		return (
 			<section
-				className="relative w-full min-h-screen overflow-hidden"
+				className={cn('relative w-full overflow-hidden', heightClass)}
+				style={heightStyle}
 				onMouseEnter={() => setIsPaused(false)}
 				onMouseLeave={() => setIsPaused(false)}
 			>
-				{/* Background layer */}
-				{bgImage ? (
-					<DirectusImage
-						uuid={bgImage}
-						alt="Hero image"
-						fill
-						sizes="100vw"
-						className="object-cover"
-						priority
-					/>
-				) : bgColor ? (
-					<div className="absolute inset-0" style={{ background: bgColor }} />
-				) : (
-					<div className="absolute inset-0 bg-gradient-to-r from-primary to-primary/80" />
-				)}
+				{/* Background layer — wrapper ensures stable DOM structure across slides */}
+				<div className="absolute inset-0" style={!bgVideo && !bgImage && bgColor ? { background: bgColor } : undefined}>
+					{bgVideo ? (
+						<HeroVideo
+							key={isCarousel ? `bg-video-${currentSlide}` : 'bg-video'}
+							videoId={bgVideo}
+							posterId={bgImage}
+							fill
+							className="object-cover"
+							loop={!isCarousel}
+							onEnded={isCarousel ? nextSlide : undefined}
+						/>
+					) : bgImage ? (
+						<DirectusImage
+							uuid={bgImage}
+							alt="Hero image"
+							fill
+							sizes="100vw"
+							className="object-cover"
+							priority
+						/>
+					) : !bgColor ? (
+						<div className="absolute inset-0 bg-gradient-to-r from-primary to-primary/80" />
+					) : null}
+				</div>
 
 				{/* Gradient overlay for text legibility */}
 				{enable_gradient_overlay && (
@@ -293,7 +362,7 @@ export default function Hero({ data }: HeroProps) {
 				)}
 
 				{/* Content overlay */}
-				<div className={cn('relative z-10 flex flex-col min-h-screen mx-auto px-6 md:px-16 lg:px-[120px] py-16 gap-8', pc.outer)}>
+				<div className={cn('relative z-10 flex flex-col mx-auto px-6 md:px-16 lg:px-[120px] py-16 gap-8', heightClass, pc.outer)} style={heightStyle}>
 					{/* Text content block */}
 					<div className={cn('flex flex-col gap-6 text-white max-w-[1200px]', pc.text, !isCarousel && textAlignClass)}>
 						{slide?.tagline_image ? (
@@ -412,19 +481,31 @@ export default function Hero({ data }: HeroProps) {
 						})()}
 					</div>
 
-					{/* Right: subject image with decorative circles (only for center_left placement) */}
-					{slide?.subject_image && placement === 'center_left' && (
+					{/* Right: subject image/video with decorative circles (only for center_left placement) */}
+					{(slide?.subject_image || slide?.subject_video) && placement === 'center_left' && (
 						<div className="relative flex-1 hidden md:flex items-center justify-center">
 							<div className="absolute size-96 rounded-full border border-white/20" />
 							<div className="absolute size-72 rounded-full border border-white/20" />
 							<div className="relative h-[500px] w-full max-w-sm">
-								<DirectusImage
-									uuid={slide.subject_image}
-									alt={slide.headline ?? ''}
-									fill
-									sizes="(max-width: 768px) 100vw, 40vw"
-									className="object-contain object-bottom"
-								/>
+								{slide.subject_video ? (
+									<HeroVideo
+										key={isCarousel ? `subj-video-${currentSlide}` : 'subj-video'}
+										videoId={slide.subject_video}
+										posterId={slide.subject_image}
+										fill
+										className="object-contain object-bottom"
+										loop={!isCarousel}
+										onEnded={isCarousel ? nextSlide : undefined}
+									/>
+								) : slide.subject_image ? (
+									<DirectusImage
+										uuid={slide.subject_image}
+										alt={slide.headline ?? ''}
+										fill
+										sizes="(max-width: 768px) 100vw, 40vw"
+										className="object-contain object-bottom"
+									/>
+								) : null}
 							</div>
 						</div>
 					)}
@@ -432,7 +513,7 @@ export default function Hero({ data }: HeroProps) {
 
 				{/* Carousel indicators */}
 				{isCarousel && sortedSlides.length > 1 && (
-					<div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex items-center gap-2 z-20">
+					<div className="absolute bottom-12 left-6 md:left-16 lg:left-[120px] flex items-center gap-2 z-20">
 						{sortedSlides.map((_, i) => {
 							const isActive = i === currentSlide;
 							const activeSlideColor = sortedSlides[currentSlide]?.carousel_indicator_color;
@@ -544,7 +625,7 @@ export default function Hero({ data }: HeroProps) {
 					</div>
 				)}
 			</div>
-			{image && (
+			{(image || video) && (
 				<div
 					className={cn(
 						'relative w-full',
@@ -553,17 +634,21 @@ export default function Hero({ data }: HeroProps) {
 					data-directus={setAttr({
 						collection: 'block_hero',
 						item: id,
-						fields: ['image', 'layout'],
+						fields: ['image', 'video', 'layout'],
 						mode: 'modal',
 					})}
 				>
-					<DirectusImage
-						uuid={image}
-						alt={tagline || 'Hero Image'}
-						fill
-						sizes={layout === 'image_center' ? '100vw' : '(max-width: 768px) 100vw, 50vw'}
-						className="object-contain"
-					/>
+					{video ? (
+						<HeroVideo videoId={video} posterId={image} fill className="object-contain" />
+					) : image ? (
+						<DirectusImage
+							uuid={image}
+							alt={tagline || 'Hero Image'}
+							fill
+							sizes={layout === 'image_center' ? '100vw' : '(max-width: 768px) 100vw, 50vw'}
+							className="object-contain"
+						/>
+					) : null}
 				</div>
 			)}
 		</section>

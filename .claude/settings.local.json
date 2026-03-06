@@ -1,10 +1,4 @@
 {
-  "env": {
-    "CLAUDE_CODE_USE_BEDROCK": "1",
-    "AWS_PROFILE": "insighture-web-Admin-Access-992382642401",
-    "AWS_REGION": "us-east-1",
-    "ANTHROPIC_MODEL": "us.anthropic.claude-sonnet-4-5-20250929-v1:0"
-  },
   "permissions": {
     "allow": [
       "mcp__figma-dev-mode-mcp-server__get_design_context",
@@ -59,7 +53,9 @@
       "Read(//c/Users/HP/Downloads/**)",
       "Bash(chmod 600:*)",
       "Bash(__NEW_LINE_c6ebfb6eacf24f1c__ ssh:*)",
-      "Bash(aws cloudfront:*)"
+      "Bash(aws cloudfront:*)",
+      "Bash(tasklist:*)",
+      "Bash(npx next:*)"
     ]
   },
   "enableAllProjectMcpServers": true,
