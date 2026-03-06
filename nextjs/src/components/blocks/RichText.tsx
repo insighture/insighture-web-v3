@@ -158,7 +158,7 @@ const RichText = ({ data, className }: RichTextProps) => {
 					<div
 						className={cn('flex gap-6 items-end', button_text ? 'flex-col md:flex-row md:justify-between' : 'flex-col')}
 					>
-						<div className="space-y-6 flex-1">
+						<div className="space-y-10 flex-1">
 							{tagline && (
 								<Tagline
 									tagline={tagline}
