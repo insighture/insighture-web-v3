@@ -1,6 +1,7 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
+import { useSearchParams } from 'next/navigation';
 import { setAttr } from '@directus/visual-editing';
 import DirectusImage from '@/components/shared/DirectusImage';
 import ExpertiseCards, { type ExpertiseCardsData, CARDS_PER_PAGE } from './ExpertiseCards';
@@ -54,9 +55,13 @@ interface ServiceItemsProps {
 
 export default function ServiceItems({ data }: ServiceItemsProps) {
 	const { id, description, heading, items = [] } = data;
+	const searchParams = useSearchParams();
+	const tabParam = searchParams.get('tab');
 	const sorted = [...items].sort((a, b) => (a.sort ?? 0) - (b.sort ?? 0));
-	const [activeIndex, setActiveIndex] = useState(0);
+	const initialIndex = tabParam ? Math.max(sorted.findIndex((item) => item.id === tabParam), 0) : 0;
+	const [activeIndex, setActiveIndex] = useState(initialIndex);
 	const active = sorted[activeIndex];
+	const sectionRef = useRef<HTMLElement>(null);
 
 	const panel = active?.panel?.[0] ?? null;
 	const expertiseCards = active?.expertise_cards?.[0] ?? null;
@@ -72,8 +77,16 @@ export default function ServiceItems({ data }: ServiceItemsProps) {
 		setCarouselPage(0);
 	}, [activeIndex]);
 
+	useEffect(() => {
+		if (tabParam && sectionRef.current) {
+			sectionRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+		}
+	}, []);
+
 	return (
 		<section
+			ref={sectionRef}
+			id="services-tab-block"
 			className="w-full bg-white"
 			data-directus={setAttr({
 				collection: 'block_services_tab',
