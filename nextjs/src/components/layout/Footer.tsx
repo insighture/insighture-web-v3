@@ -50,7 +50,7 @@ const Footer = forwardRef<HTMLElement, FooterProps>(({ navigation, globals }, re
 	const { footerCTA } = useFooterCTA();
 	const ctaText = footerCTA?.footer_cta_text || "Let's push boundaries, together.";
 	const ctaButtonText = footerCTA?.footer_cta_button_text || "Let's talk";
-	const ctaButtonHref = footerCTA?.footer_cta_button_page?.permalink || footerCTA?.footer_cta_button_url || "/contact";
+	const ctaButtonHref = footerCTA?.footer_cta_button_page?.permalink || footerCTA?.footer_cta_button_url || "/lets-talk";
 
 	const logoUrl = globals?.logo_dark_mode
 		? `${directusURL}/assets/${globals.logo_dark_mode}`
@@ -79,61 +79,62 @@ const Footer = forwardRef<HTMLElement, FooterProps>(({ navigation, globals }, re
 		)}
 		<footer ref={ref}>
 			{/* ── CTA Banner ──────────────────────────────────────────────── */}
-			<div
-				className="relative w-full overflow-hidden"
-				style={{
-					backgroundImage:
-						'linear-gradient(90deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.2) 100%), linear-gradient(100.06deg, rgb(238, 64, 101) 9.8704%, rgb(150, 33, 59) 102.65%)',
-				}}
-			>
-				{/* Decorative vector */}
+			{pathname !== '/lets-talk' && (
 				<div
-					className="pointer-events-none absolute flex items-center justify-center"
+					className="relative w-full overflow-hidden"
 					style={{
-						left: 'calc(50% + 270px)',
-						top: '-220px',
-						width: '877.745px',
-						height: '871.967px',
+						backgroundImage:
+							'linear-gradient(90deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.2) 100%), linear-gradient(100.06deg, rgb(238, 64, 101) 9.8704%, rgb(150, 33, 59) 102.65%)',
 					}}
-					aria-hidden="true"
 				>
-					<div style={{ transform: 'rotate(90.28deg) scaleY(-1)', flexShrink: 0 }}>
-						<div style={{ width: '460px', height: '790px', position: 'relative' }}>
-							<Image
-								width={460}
-								height={790}
-								alt=""
-								className="absolute block max-w-none size-full"
-								src={CTA_DECORATIVE}
-							/>
+					{/* Decorative vector */}
+					<div
+						className="pointer-events-none absolute flex items-center justify-center"
+						style={{
+							left: 'calc(50% + 270px)',
+							top: '-220px',
+							width: '877.745px',
+							height: '871.967px',
+						}}
+						aria-hidden="true"
+					>
+						<div style={{ transform: 'rotate(90.28deg) scaleY(-1)', flexShrink: 0 }}>
+							<div style={{ width: '460px', height: '790px', position: 'relative' }}>
+								<Image
+									width={460}
+									height={790}
+									alt=""
+									className="absolute block max-w-none size-full"
+									src={CTA_DECORATIVE}
+								/>
+							</div>
 						</div>
 					</div>
-				</div>
 
-				{/* Content */}
-				<div className="relative z-10 flex flex-col items-center gap-[24px] md:gap-[32px] py-[48px] md:py-[64px] lg:py-[84px] px-4">
-					<p className="font-heading font-semibold text-[26px] leading-[32px] md:text-[32px] md:leading-[38px] lg:text-[40px] lg:leading-[40px] text-[#f7f7f7] text-center max-w-[600px]">
-						{ctaText}
-					</p>
-					<Link
-						href={ctaButtonHref}
-						className="inline-flex items-center gap-[8px] border border-solid border-[#f7f7f7] rounded-[48px] px-[24px] py-[8px] hover:bg-white/10 transition-colors"
-					>
-						<span className="font-heading font-bold text-[16px] leading-[26px] text-[#f7f7f7]">{ctaButtonText}</span>
-						<span className="flex items-center justify-center shrink-0">
-							<ChevronRight
-								style={{
-									width: '20px',
-									height: '20px',
-									display: 'block',
-									transformOrigin: 'center',
-								}}
-							/>
-						</span>
-					</Link>
+					{/* Content */}
+					<div className="relative z-10 flex flex-col items-center gap-[24px] md:gap-[32px] py-[48px] md:py-[64px] lg:py-[84px] px-4">
+						<p className="font-heading font-semibold text-[26px] leading-[32px] md:text-[32px] md:leading-[38px] lg:text-[40px] lg:leading-[40px] text-[#f7f7f7] text-center max-w-[600px]">
+							{ctaText}
+						</p>
+						<Link
+							href={ctaButtonHref}
+							className="inline-flex items-center gap-[8px] border border-solid border-[#f7f7f7] rounded-[48px] px-[24px] py-[8px] hover:bg-white/10 transition-colors"
+						>
+							<span className="font-heading font-bold text-[16px] leading-[26px] text-[#f7f7f7]">{ctaButtonText}</span>
+							<span className="flex items-center justify-center shrink-0">
+								<ChevronRight
+									style={{
+										width: '20px',
+										height: '20px',
+										display: 'block',
+										transformOrigin: 'center',
+									}}
+								/>
+							</span>
+						</Link>
+					</div>
 				</div>
-			</div>
-
+			)}
 			{/* ── Footer Body ─────────────────────────────────────────────── */}
 			<div className="w-full bg-[#0b2d34]">
 				<div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-[135px] pt-[48px] lg:pt-[80px] flex flex-col gap-[30px] lg:gap-[30px]">

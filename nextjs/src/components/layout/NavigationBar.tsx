@@ -252,7 +252,7 @@ const NavigationBar = forwardRef<HTMLElement, NavigationBarProps>(({ navigation,
 							color: effectiveCtaTextColor,
 						}}
 					>
-						<Link href="/contact">Let's talk</Link>
+						<Link href="/lets-talk">Let's talk</Link>
 					</Button>
 
 					{/* Search - Icon on mobile/tablet, text+icon on desktop */}
@@ -314,7 +314,7 @@ const NavigationBar = forwardRef<HTMLElement, NavigationBarProps>(({ navigation,
 									))}
 									{/* CTA in mobile menu - only on small mobile */}
 									<Link
-										href="/contact"
+										href="/lets-talk"
 										className="font-semibold text-center py-2.5 px-4 rounded-full mt-2 md:hidden"
 										style={{
 											backgroundColor: effectiveCtaBgColor,
