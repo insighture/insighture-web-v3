@@ -109,8 +109,8 @@ export default function ServiceProductCatalogue({ data, accentColor, contained }
 	);
 
 	const desktopContent = (
-		/* Total height: 63px top padding + 483px image + 63px bottom = 609px */
-		<div className="hidden lg:block relative" style={{ height: '609px' }}>
+		/* Total height: 63px top padding + 483px image = 546px (no bottom padding) */
+		<div className="hidden lg:block relative" style={{ height: '546px' }}>
 			{/* Left content */}
 			<div
 				className="absolute flex flex-col gap-[24px]"
