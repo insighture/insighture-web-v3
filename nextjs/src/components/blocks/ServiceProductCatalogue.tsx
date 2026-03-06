@@ -109,29 +109,22 @@ export default function ServiceProductCatalogue({ data, accentColor, contained }
 	);
 
 	const desktopContent = (
-		/* Total height: 63px top padding + 483px image = 546px (no bottom padding) */
-		<div className="hidden lg:block relative" style={{ height: '546px' }}>
+		<div className="hidden lg:flex pt-[63px] pl-[66px] overflow-hidden" >
 			{/* Left content */}
-			<div
-				className="absolute flex flex-col gap-[24px]"
-				style={{ left: '66px', top: '63px', width: '471px' }}
-			>
+			<div className="flex flex-col gap-[24px] pb-[63px] w-[471px] shrink-0 mr-[96px]">
 				{headlineBlock('lg')}
 				{sorted.length > 0 && productList}
 			</div>
 
-			{/* Right image — bleeds to right edge */}
+			{/* Right image — bleeds to right and bottom edges */}
 			{image && (
-				<div
-					className="absolute overflow-hidden rounded-[8px]"
-					style={{ left: '633px', top: '63px', right: '0', height: '483px' }}
-				>
+				<div className="flex-1 self-stretch relative overflow-hidden rounded-[8px] left-[96px]">
 					<DirectusImage
 						uuid={image}
 						alt={image_alt || headline || ''}
 						fill
 						sizes="(max-width: 1440px) 55vw, 780px"
-						className="object-cover object-left-top"
+						className="object-cover object-right-top grayscale"
 						priority
 					/>
 				</div>
