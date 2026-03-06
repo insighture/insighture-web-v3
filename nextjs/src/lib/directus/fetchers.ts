@@ -160,7 +160,7 @@ const pageFields = [
 										'headline',
 								
 										{ badges: ['id', 'sort', 'image', 'alt'] },
-										{ stats: ['id', 'sort', 'icon', 'value', 'label'] },
+										{ stats: ['id', 'sort', 'icon', 'value', 'label' , 'color'] },
 									],
 								},
 								{
@@ -187,7 +187,7 @@ const pageFields = [
 						'id',
 						'headline',
 						{ badges: ['id', 'sort', 'image', 'alt'] },
-						{ stats: ['id', 'sort', 'icon', 'value', 'label'] },
+						{ stats: ['id', 'sort', 'icon', 'value', 'label' , 'color'] },
 					],
 					
 				},

@@ -1,9 +1,9 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { setAttr } from '@directus/visual-editing';
 import DirectusImage from '@/components/shared/DirectusImage';
-import ExpertiseCards, { type ExpertiseCardsData } from './ExpertiseCards';
+import ExpertiseCards, { type ExpertiseCardsData, CARDS_PER_PAGE } from './ExpertiseCards';
 import ServiceFeaturedArticle from './ServiceFeaturedArticle';
 import ServiceCredentialsCTA, { type ServiceCredentialsCTAData } from './ServiceCredentialsCTA';
 import ServiceProductCatalogue, { type ServiceProductCatalogueData } from './ServiceProductCatalogue';
@@ -65,6 +65,13 @@ export default function ServiceItems({ data }: ServiceItemsProps) {
 	const credentialsCTA = active?.credentials_cta ?? null;
 	const productCatalogue = active?.product_catalogue ?? null;
 
+	// ─── Carousel page state — lifted so it resets on tab change ─────────────
+	const [carouselPage, setCarouselPage] = useState(0);
+
+	useEffect(() => {
+		setCarouselPage(0);
+	}, [activeIndex]);
+
 	return (
 		<section
 			className="w-full bg-white"
@@ -94,7 +101,7 @@ export default function ServiceItems({ data }: ServiceItemsProps) {
 					</div>
 				)}
 
-				{/* ── Gray container — wraps tabs + all sub-sections ───────── */}
+				{/* ── Gray container ────────────────────────────────────────── */}
 				{sorted.length > 0 && (
 					<div
 						className="bg-[#eff1f5] rounded-[16px] p-[24px] flex flex-col gap-[40px]"
@@ -130,8 +137,8 @@ export default function ServiceItems({ data }: ServiceItemsProps) {
 
 						{/* Content panel */}
 						{active && (
-							<div className="bg-[#fcfcfd] rounded-[8px] p-[24px]">
-								<div className="flex flex-col lg:flex-row justify-between items-start lg:items-stretch gap-[40px] lg:h-[452px] w-full">
+							<div className="bg-[#fcfcfd] rounded-[8px] p-[24px] overflow-hidden">
+								<div className="flex flex-col lg:flex-row justify-between items-start lg:items-stretch gap-[40px] lg:h-[452px] w-full min-w-0">
 
 									{/* Left column */}
 									<div className="flex flex-col justify-between w-full lg:max-w-[50%] lg:min-w-0 lg:shrink-0">
@@ -162,10 +169,10 @@ export default function ServiceItems({ data }: ServiceItemsProps) {
 										{/* Key services box */}
 										{active.key_services && active.key_services.length > 0 && (
 											<div className="bg-[#fafafa] border border-[#e5e7eb] rounded-[8px] p-[16px] flex flex-col gap-[8px]">
-												<p className="font-sans italic text-[14px] leading-[24px] text-[rgba(30,30,30,0.5)]">
+												<p className="font-sans italic font-semibold text-[18px] leading-[24px] text-[#999c9e]">
 													Key Services
 												</p>
-												<div className="flex gap-[24px] font-sans font-medium italic text-[12px] leading-[22px] text-[#60696e]">
+												<div className="flex gap-[24px] font-sans italic text-[14px] leading-[22px] text-[#60696e]">
 													{(() => {
 														const half = Math.ceil(active.key_services!.length / 2);
 														const col1 = active.key_services!.slice(0, half);
@@ -195,7 +202,7 @@ export default function ServiceItems({ data }: ServiceItemsProps) {
 
 									{/* Right column: image */}
 									{panel?.image && (
-										<div className="relative w-full lg:w-1/2 lg:min-w-0 flex-shrink-0 min-h-[280px] lg:h-full rounded-[8px] overflow-hidden">
+										<div className="relative w-full lg:w-1/2 lg:max-w-[50%] lg:min-w-0 lg:min-h-0 min-h-[280px] lg:h-full rounded-[8px] overflow-hidden">
 											<DirectusImage
 												uuid={panel?.image}
 												alt={active.title ?? 'Service Panel Image'}
@@ -209,17 +216,19 @@ export default function ServiceItems({ data }: ServiceItemsProps) {
 							</div>
 						)}
 
-						{/* Expertise cards — contained inside gray card */}
+						{/* Expertise cards — carousel page controlled here so it resets on tab switch */}
 						{expertiseCards && (
 							<ExpertiseCards
 								key={active?.id}
 								data={expertiseCards}
 								accentColor={active?.accent_color}
 								contained
+								externalPage={carouselPage}
+								onExternalPageChange={setCarouselPage}
 							/>
 						)}
 
-						{/* Featured article — contained, rounded clipping */}
+						{/* Featured article */}
 						{featuredArticle && (
 							<div className="overflow-hidden rounded-[8px]">
 								<ServiceFeaturedArticle

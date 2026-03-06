@@ -14,6 +14,8 @@ export interface ServiceCredentialsStat {
 	id: string;
 	sort?: number | null;
 	icon?: string | null;
+	/** Hex color for icon circular background and stat value text */
+	color?: string | null;
 	value?: string | null;
 	label?: string | null;
 }
@@ -100,27 +102,32 @@ export default function ServiceCredentialsCTA({ data, accentColor, contained }: 
 							data-directus={setAttr({
 								collection: 'block_service_credentials_cta_stat',
 								item: stat.id,
-								fields: ['icon', 'value', 'label'],
+								fields: ['icon', 'color', 'value', 'label'],
 								mode: 'popover',
 							})}
 						>
 							{/* Icon + Value group — fixed combined width so labels align across all rows */}
 							<div className="flex items-center gap-[32px] shrink-0 w-[160px]">
 								{stat.icon && (
-									<div className="relative shrink-0 size-[48px]">
-										<DirectusImage
-											uuid={stat.icon}
-											alt=""
-											fill
-											sizes="48px"
-											className="object-contain"
-										/>
+									<div
+										className="relative shrink-0 size-[48px] rounded-full flex items-center justify-center overflow-hidden"
+										style={{ backgroundColor: stat.color! }}
+									>
+										<div className="relative size-[32px]">
+											<DirectusImage
+												uuid={stat.icon}
+												alt=""
+												fill
+												sizes="32px"
+												className="object-contain"
+											/>
+										</div>
 									</div>
 								)}
 								{stat.value && (
 									<p
 										className="font-sans font-bold text-[32px] leading-[50px] whitespace-nowrap"
-										style={{ color: accent }}
+										style={{ color: stat.color!}}
 									>
 										{stat.value}
 									</p>
