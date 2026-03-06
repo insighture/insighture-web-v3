@@ -1,35 +1,116 @@
 'use client';
 
-import { useState, useEffect, forwardRef } from 'react';
-import Image from 'next/image';
-import Link from 'next/link';
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
+import { DropdownMenu, DropdownMenuContent, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 import {
 	NavigationMenu,
-	NavigationMenuList,
-	NavigationMenuItem,
-	NavigationMenuTrigger,
-	NavigationMenuLink,
 	NavigationMenuContent,
+	NavigationMenuItem,
+	NavigationMenuLink,
+	NavigationMenuList,
+	NavigationMenuTrigger,
 } from '@/components/ui/navigation-menu';
-import { DropdownMenu, DropdownMenuContent, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
-import { Button } from '@/components/ui/button';
-import { Collapsible, CollapsibleTrigger, CollapsibleContent } from '@/components/ui/collapsible';
-import { ChevronDown, Menu } from 'lucide-react';
-import ThemeToggle from '../ui/ThemeToggle';
-import SearchModal from '@/components/ui/SearchModal';
-import Container from '@/components/ui/container';
-import { cn } from '@/lib/utils';
-import { setAttr } from '@directus/visual-editing';
 import { useNavigationOptional } from '@/contexts/NavigationContext';
+import { cn, debounce } from '@/lib/utils';
+import { setAttr } from '@directus/visual-editing';
+import { ChevronDown, Menu } from 'lucide-react';
+import Image from 'next/image';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import { forwardRef, useCallback, useEffect, useRef, useState } from 'react';
 
 interface NavigationBarProps {
 	navigation: any;
 	globals: any;
 }
 
+type SearchResult = {
+	id: string;
+	title: string;
+	description: string;
+	type: string;
+	link: string;
+};
+
 const NavigationBar = forwardRef<HTMLElement, NavigationBarProps>(({ navigation, globals }, ref) => {
 	const [menuOpen, setMenuOpen] = useState(false);
 	const [scrolled, setScrolled] = useState(false);
+
+	// Inline search state
+	const [searchOpen, setSearchOpen] = useState(false);
+	const [searchQuery, setSearchQuery] = useState('');
+	const [searchResults, setSearchResults] = useState<SearchResult[]>([]);
+	const [searchLoading, setSearchLoading] = useState(false);
+	const [searchSearched, setSearchSearched] = useState(false);
+	const searchInputRef = useRef<HTMLInputElement>(null);
+	const searchContainerRef = useRef<HTMLDivElement>(null);
+	const router = useRouter();
+
+	const debouncedSearch = useCallback(
+		debounce(async (query: string) => {
+			if (query.length < 3) {
+				setSearchResults([]);
+				setSearchSearched(false);
+				
+				return;
+			}
+			setSearchLoading(true);
+			setSearchSearched(true);
+			try {
+				const res = await fetch(`/api/search?search=${encodeURIComponent(query)}`);
+				if (!res.ok) throw new Error('Failed to fetch');
+				const data: SearchResult[] = await res.json();
+				setSearchResults(data.filter((r) => r.link));
+			} catch {
+				setSearchResults([]);
+			} finally {
+				setSearchLoading(false);
+			}
+		}, 300),
+		[]
+	);
+
+	const openSearch = () => {
+		setSearchOpen(true);
+		setTimeout(() => searchInputRef.current?.focus(), 150);
+	};
+
+	const closeSearch = () => {
+		setSearchOpen(false);
+		setSearchQuery('');
+		setSearchResults([]);
+		setSearchSearched(false);
+		setSearchLoading(false);
+	};
+
+	// Close search on click outside
+	useEffect(() => {
+		if (!searchOpen) return;
+		const handleClickOutside = (e: MouseEvent) => {
+			if (searchContainerRef.current && !searchContainerRef.current.contains(e.target as Node)) {
+				closeSearch();
+			}
+		};
+		document.addEventListener('mousedown', handleClickOutside);
+
+		return () => document.removeEventListener('mousedown', handleClickOutside);
+	}, [searchOpen]);
+
+	// Close search on Escape, open on Ctrl+K
+	useEffect(() => {
+		const onKeyDown = (e: KeyboardEvent) => {
+			if (e.key === 'Escape' && searchOpen) closeSearch();
+			if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+				e.preventDefault();
+				searchOpen ? closeSearch() : openSearch();
+			}
+		};
+		document.addEventListener('keydown', onKeyDown);
+
+		return () => document.removeEventListener('keydown', onKeyDown);
+	}, [searchOpen]);
 
 	// Dynamic navigation colors from Hero slides
 	const navigationContext = useNavigationOptional();
@@ -246,24 +327,111 @@ const NavigationBar = forwardRef<HTMLElement, NavigationBarProps>(({ navigation,
 					{/* CTA Button - Visible on tablet and desktop */}
 					<Button
 						asChild
-						className="font-semibold text-[14px] md:text-[16px] px-4 md:px-6 py-2 h-[36px] md:h-[40px] rounded-full hidden md:flex hover:opacity-90"
+						className={cn(
+							'font-semibold text-[14px] md:text-[16px] px-4 md:px-6 py-2 h-[36px] md:h-[40px] rounded-full hidden md:flex hover:opacity-90 transition-all duration-300',
+						)}
 						style={{
 							backgroundColor: effectiveCtaBgColor,
 							color: effectiveCtaTextColor,
 						}}
 					>
-						<Link href="/lets-talk">Let's talk</Link>
+						<Link href="/lets-talk">Let&#39;s talk</Link>
 					</Button>
 
-					{/* Search - Icon on mobile/tablet, text+icon on desktop */}
-					<SearchModal>
-						<button className="flex items-center gap-2.5 text-[16px] font-medium hover:opacity-80 transition-opacity">
-							<svg width="20" height="20" viewBox="0 0 20 20" fill="none" className="shrink-0">
-								<path d="M9 17A8 8 0 1 0 9 1a8 8 0 0 0 0 16ZM18.5 18.5l-4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-							</svg>
-							<span className="hidden lg:inline">Search</span>
-						</button>
-					</SearchModal>
+					{/* Inline Expanding Search */}
+					<div ref={searchContainerRef} className="relative [&_*]:outline-none [&_*]:ring-0 [&_*]:ring-offset-0">
+						<div
+							className={cn(
+								'flex items-center rounded-full overflow-hidden border transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)]',
+								searchOpen
+									? 'w-[200px] sm:w-[260px] lg:w-[260px] border-white/30 bg-white/10 backdrop-blur-sm'
+									: 'w-[28px] lg:w-[100px] border-transparent bg-transparent',
+							)}
+						>
+							{/* Search icon — always visible, acts as open trigger when collapsed */}
+							<button
+								onClick={searchOpen ? undefined : openSearch}
+								className={cn(
+									'shrink-0 flex items-center gap-2.5 text-[16px] font-medium outline-none focus:outline-none focus-visible:outline-none transition-opacity',
+									searchOpen ? 'pl-3 pointer-events-none' : 'hover:opacity-80 cursor-pointer',
+								)}
+								style={{ boxShadow: 'none', outline: 'none' }}
+								tabIndex={searchOpen ? -1 : 0}
+							>
+								<svg width="20" height="20" viewBox="0 0 20 20" fill="none" className="shrink-0">
+									<path d="M9 17A8 8 0 1 0 9 1a8 8 0 0 0 0 16ZM18.5 18.5l-4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+								</svg>
+								<span className={cn('hidden lg:inline transition-opacity duration-300', searchOpen && '!hidden')}>Search</span>
+							</button>
+
+							{/* Input + close — always rendered, hidden when collapsed for smooth animation */}
+							<div className={cn(
+								'flex items-center flex-1 min-w-0 transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)]',
+								searchOpen ? 'opacity-100 max-w-[260px]' : 'opacity-0 max-w-0 pointer-events-none',
+							)}>
+								<input
+									ref={searchInputRef}
+									type="text"
+									placeholder="Search..."
+									value={searchQuery}
+									onChange={(e) => {
+										setSearchQuery(e.target.value);
+										debouncedSearch(e.target.value);
+									}}
+									onKeyDown={(e) => {
+										if (e.key === 'Escape') closeSearch();
+									}}
+									className="flex-1 min-w-0 bg-transparent border-none outline-none text-[14px] p-2 placeholder:text-current/50"
+									style={{ color: 'inherit', boxShadow: 'none', outline: 'none' }}
+								/>
+								<button
+									onClick={closeSearch}
+									className="shrink-0 pr-3 pl-1 py-2 bg-transparent border-none outline-none hover:opacity-80 transition-opacity cursor-pointer"
+									aria-label="Close search"
+									style={{ boxShadow: 'none', outline: 'none' }}
+								>
+									<svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+										<path d="M12 4L4 12M4 4l8 8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+									</svg>
+								</button>
+							</div>
+						</div>
+
+						{/* Search Results Dropdown */}
+						{searchOpen && (searchLoading || searchSearched) && (
+							<div className="absolute right-0 top-full mt-2 w-[280px] sm:w-[360px] lg:w-[420px] max-h-[400px] overflow-auto rounded-lg bg-white text-gray-900 shadow-xl border border-gray-200 z-[70]">
+								{searchLoading && (
+									<p className="py-4 text-sm text-center text-gray-500">Loading...</p>
+								)}
+								{!searchLoading && searchSearched && searchResults.length === 0 && (
+									<p className="py-4 text-sm text-center text-gray-500">No results found</p>
+								)}
+								{!searchLoading && searchResults.length > 0 && (
+									<ul className="py-2">
+										{searchResults.map((result) => (
+											<li key={result.id}>
+												<button
+													onClick={() => {
+														router.push(result.link);
+														closeSearch();
+													}}
+													className="flex items-start gap-3 w-full text-left px-4 py-3 hover:bg-gray-50 transition-colors"
+												>
+													<Badge variant="default" className="shrink-0 mt-0.5">{result.type}</Badge>
+													<div className="min-w-0">
+														<p className="font-medium text-sm">{result.title}</p>
+														{result.description && (
+															<p className="text-xs text-gray-500 mt-0.5 line-clamp-2">{result.description}</p>
+														)}
+													</div>
+												</button>
+											</li>
+										))}
+									</ul>
+								)}
+							</div>
+						)}
+					</div>
 
 					{/* Mobile/Tablet Menu */}
 					<div className="flex lg:hidden">
