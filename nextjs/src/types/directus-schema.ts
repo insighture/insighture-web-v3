@@ -158,6 +158,14 @@ export interface BlockHeroSlide {
 	text_placement?: 'center_left' | 'bottom_center' | 'bottom_left' | 'center_center' | null;
 	/** @description Enable a dark gradient overlay on this slide for improved text legibility. */
 	enable_gradient_overlay?: boolean | null;
+	/** @description Hover background color for button 1. */
+	button_1_hover_bg_color?: string | null;
+	/** @description Hover text color for button 1. */
+	button_1_hover_text_color?: string | null;
+	/** @description Hover background color for button 2. */
+	button_2_hover_bg_color?: string | null;
+	/** @description Hover text color for button 2. */
+	button_2_hover_text_color?: string | null;
 	date_created?: string | null;
 	user_created?: DirectusUser | string | null;
 	date_updated?: string | null;

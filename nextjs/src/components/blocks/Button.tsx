@@ -2,6 +2,7 @@ import { Button as ShadcnButton, buttonVariants } from '@/components/ui/button';
 import { LucideIcon, ArrowRight, Plus } from 'lucide-react';
 import Link from 'next/link';
 import { cn } from '@/lib/utils';
+import { useState } from 'react';
 
 export interface ButtonProps {
 	id: string;
@@ -22,6 +23,8 @@ export interface ButtonProps {
 	bgColor?: string | null;
 	textColor?: string | null;
 	borderColor?: string | null;
+	hoverBgColor?: string | null;
+	hoverTextColor?: string | null;
 }
 
 const Button = ({
@@ -43,7 +46,10 @@ const Button = ({
 	bgColor,
 	textColor,
 	borderColor,
+	hoverBgColor,
+	hoverTextColor,
 }: ButtonProps) => {
+	const [isHovered, setIsHovered] = useState(false);
 	const icons: Record<string, LucideIcon> = {
 		arrow: ArrowRight,
 		plus: Plus,
@@ -58,10 +64,16 @@ const Button = ({
 		return url || undefined;
 	})();
 
+	const hoverHandlers = (hoverBgColor || hoverTextColor) ? {
+		onMouseEnter: () => setIsHovered(true),
+		onMouseLeave: () => setIsHovered(false),
+	} : {};
+
 	const customStyle: React.CSSProperties = {
-		...(bgColor ? { backgroundColor: bgColor } : {}),
-		...(textColor ? { color: textColor } : {}),
+		...(bgColor ? { backgroundColor: isHovered && hoverBgColor ? hoverBgColor : bgColor } : isHovered && hoverBgColor ? { backgroundColor: hoverBgColor } : {}),
+		...(textColor ? { color: isHovered && hoverTextColor ? hoverTextColor : textColor } : isHovered && hoverTextColor ? { color: hoverTextColor } : {}),
 		...(borderColor ? { borderColor: borderColor } : {}),
+		transition: (hoverBgColor || hoverTextColor) ? 'background-color 0.2s ease, color 0.2s ease' : undefined,
 	};
 
 	const buttonClasses = cn(
@@ -81,7 +93,7 @@ const Button = ({
 
 	if (href) {
 		return (
-			<ShadcnButton asChild variant={variant as any} size={size} className={buttonClasses} disabled={disabled} style={customStyle}>
+			<ShadcnButton asChild variant={variant as any} size={size} className={buttonClasses} disabled={disabled} style={customStyle} {...hoverHandlers}>
 				{href.startsWith('/') ? (
 					<Link href={href}>{content}</Link>
 				) : (
@@ -94,7 +106,7 @@ const Button = ({
 	}
 
 	return (
-		<ShadcnButton variant={variant as any} size={size} className={buttonClasses} onClick={onClick} disabled={disabled} style={customStyle}>
+		<ShadcnButton variant={variant as any} size={size} className={buttonClasses} onClick={onClick} disabled={disabled} style={customStyle} {...hoverHandlers}>
 			{content}
 		</ShadcnButton>
 	);

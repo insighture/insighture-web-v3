@@ -58,12 +58,16 @@ interface HeroSlide {
 	button_1_variant: string | null;
 	button_1_bg_color: string | null;
 	button_1_text_color: string | null;
+	button_1_hover_bg_color: string | null;
+	button_1_hover_text_color: string | null;
 	button_2_text: string | null;
 	button_2_url: string | null;
 	button_2_page?: { permalink: string } | null;
 	button_2_variant: string | null;
 	button_2_bg_color: string | null;
 	button_2_text_color: string | null;
+	button_2_hover_bg_color: string | null;
+	button_2_hover_text_color: string | null;
 	nav_text_color: string | null;
 	nav_text_hover_color: string | null;
 	nav_scrolled_background_color: string | null;
@@ -92,6 +96,8 @@ interface HeroButton {
 	postSlug?: string | null;
 	bgColor?: string | null;
 	textColor?: string | null;
+	hoverBgColor?: string | null;
+	hoverTextColor?: string | null;
 }
 
 interface HeroProps {
@@ -151,6 +157,8 @@ function buildSlideButtons(slide: HeroSlide): HeroButton[] {
 			pagePermalink: slide.button_1_page?.permalink,
 			bgColor: slide.button_1_bg_color,
 			textColor: slide.button_1_text_color,
+			hoverBgColor: slide.button_1_hover_bg_color,
+			hoverTextColor: slide.button_1_hover_text_color,
 		});
 	}
 
@@ -164,6 +172,8 @@ function buildSlideButtons(slide: HeroSlide): HeroButton[] {
 			pagePermalink: slide.button_2_page?.permalink,
 			bgColor: slide.button_2_bg_color,
 			textColor: slide.button_2_text_color,
+			hoverBgColor: slide.button_2_hover_bg_color,
+			hoverTextColor: slide.button_2_hover_text_color,
 		});
 	}
 
