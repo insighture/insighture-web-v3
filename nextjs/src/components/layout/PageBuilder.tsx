@@ -32,7 +32,7 @@ const PageBuilder = ({ sections }: PageBuilderProps) => {
 						? (block.item as { background_color?: string | null }).background_color
 						: null;
 
-							const isBgWhite = block.collection === 'block_reach_out' || block.collection === 'block_people_say';
+							const isBgWhite = block.collection === 'block_reach_out' || block.collection === 'block_people_say' || block.collection === 'block_open_roles';
 
 				const isFullBleedBlock =
 					block.collection === 'block_richtext' ||
@@ -47,6 +47,7 @@ const PageBuilder = ({ sections }: PageBuilderProps) => {
 					block.collection === 'block_people_say' ||
 					block.collection === 'block_intro_media' ||
 					block.collection === 'block_cta_split' ||
+					block.collection === 'block_open_roles' ||
 					block.collection === 'block_card_grid' || 
 					block.collection === 'block_featured_post' ||
 					block.collection === 'block_service_tabs' ||
