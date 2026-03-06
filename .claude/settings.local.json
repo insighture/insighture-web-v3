@@ -58,7 +58,8 @@
       "Bash(read line:*)",
       "Read(//c/Users/HP/Downloads/**)",
       "Bash(chmod 600:*)",
-      "Bash(__NEW_LINE_c6ebfb6eacf24f1c__ ssh:*)"
+      "Bash(__NEW_LINE_c6ebfb6eacf24f1c__ ssh:*)",
+      "Bash(aws cloudfront:*)"
     ]
   },
   "enableAllProjectMcpServers": true,

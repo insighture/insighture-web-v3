@@ -44,7 +44,11 @@ const nextConfig: NextConfig = {
 				port: '8055',
 				pathname: '/assets/**',
 			},
-			
+			{
+				protocol: 'https',
+				hostname: 'd3eoeq8oukupzt.cloudfront.net',
+				pathname: '/assets/**',
+			},
 		],
 	},
 	env: {

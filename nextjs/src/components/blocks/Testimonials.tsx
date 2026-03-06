@@ -2,6 +2,7 @@
 
 import { useState, useCallback, useRef } from 'react';
 import DirectusImage from '@/components/shared/DirectusImage';
+import { getDirectusAssetURL } from '@/lib/directus/directus-utils';
 import Container from '@/components/ui/container';
 import { setAttr } from '@directus/visual-editing';
 
@@ -89,8 +90,8 @@ function TestimonialCard({
 			<div className="relative rounded-[8px] overflow-hidden w-full aspect-video lg:w-[478px] lg:h-[266px] lg:aspect-auto shrink-0">
 				{item.video ? (
 					<video
-						src={`${process.env.NEXT_PUBLIC_DIRECTUS_URL}/assets/${item.video}`}
-						poster={item.image ? `${process.env.NEXT_PUBLIC_DIRECTUS_URL}/assets/${item.image}` : undefined}
+						src={getDirectusAssetURL(item.video)}
+						poster={item.image ? getDirectusAssetURL(item.image) : undefined}
 						autoPlay
 						muted
 						loop
