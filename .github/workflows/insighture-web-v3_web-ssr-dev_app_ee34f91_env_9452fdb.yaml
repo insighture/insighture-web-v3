@@ -536,13 +536,15 @@ jobs:
               app_list=$(aws amplify list-apps --no-paginate --region ${{ env.region }})
               app_id=$(echo "$app_list" | jq -r '.apps[] | select(.name == "${{ env.APPLICATION_NAME }}")' | jq -r .appId)
 
-              if [ -n "${{ env.AMPLIFY_MONOREPO_APP_ROOT }}" ]; then
-                echo "Monorepo app root detected: ${{ env.AMPLIFY_MONOREPO_APP_ROOT }}"
+              MONOREPO_APP_ROOT=$(echo "${{ env.AMPLIFY_ENV_VARS }}" | tr ',' '\n' | grep '^AMPLIFY_MONOREPO_APP_ROOT=' | cut -d'=' -f2-)
+
+              if [ -n "$MONOREPO_APP_ROOT" ]; then
+                echo "Monorepo app root detected: $MONOREPO_APP_ROOT"
                 build_spec='{
                   "version": 1,
                   "applications": [
                     {
-                      "appRoot": "'${{ env.AMPLIFY_MONOREPO_APP_ROOT }}'",
+                      "appRoot": "'"$MONOREPO_APP_ROOT"'",
                       "frontend": {
                         "phases": {
                           "preBuild": {
