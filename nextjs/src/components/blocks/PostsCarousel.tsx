@@ -67,7 +67,7 @@ export default function PostsCarousel({ data }: PostsCarouselProps) {
 								onClick={() => setOffset((o) => Math.max(0, o - pageSize))}
 								disabled={!canPrev}
 								aria-label="Previous posts"
-								className="flex items-center justify-center size-[42px] rounded-full border border-[#1d2939] text-[#1d2939] disabled:opacity-30 hover:bg-[#1d2939] hover:text-white transition-colors"
+								className="flex items-center justify-center size-[42px] rounded-full border border-[#B0BFC4] text-[#EE4065] disabled:opacity-30 disabled:hover:bg-transparent disabled:hover:text-[#EE4065] hover:bg-[#EE4065] hover:text-white transition-colors"
 							>
 								<svg width="8" height="13" viewBox="0 0 8 13" fill="none" aria-hidden="true">
 									<path d="M7 1L2 6.5L7 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
@@ -77,7 +77,7 @@ export default function PostsCarousel({ data }: PostsCarouselProps) {
 								onClick={() => setOffset((o) => o + pageSize)}
 								disabled={!canNext}
 								aria-label="Next posts"
-								className="flex items-center justify-center size-[42px] rounded-full border border-[#1d2939] text-[#1d2939] disabled:opacity-30 hover:bg-[#1d2939] hover:text-white transition-colors"
+								className="flex items-center justify-center size-[42px] rounded-full border border-[#B0BFC4] text-[#EE4065] disabled:opacity-30 disabled:hover:bg-transparent disabled:hover:text-[#EE4065]  hover:bg-[#EE4065] hover:text-white transition-colors"
 							>
 								<svg width="8" height="13" viewBox="0 0 8 13" fill="none" aria-hidden="true">
 									<path d="M1 1L6 6.5L1 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
