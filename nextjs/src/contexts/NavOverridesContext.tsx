@@ -13,6 +13,9 @@ export interface NavOverrides {
 	nav_dropdown_background_color?: string | null;
 	nav_dropdown_text_color?: string | null;
 	nav_dropdown_text_hover_color?: string | null;
+	nav_logo_override?: string | null;
+	nav_cta_background_color?: string | null;
+	nav_cta_text_color?: string | null;
 }
 
 interface NavOverridesContextValue {

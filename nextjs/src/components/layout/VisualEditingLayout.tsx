@@ -46,6 +46,9 @@ export default function VisualEditingLayout({
 				dropdown_background_color: navOverrides.nav_dropdown_background_color ?? undefined,
 				dropdown_text_color: navOverrides.nav_dropdown_text_color ?? undefined,
 				dropdown_text_hover_color: navOverrides.nav_dropdown_text_hover_color ?? undefined,
+				logo_override: navOverrides.nav_logo_override ?? undefined,
+				cta_background_color: navOverrides.nav_cta_background_color ?? undefined,
+				cta_text_color: navOverrides.nav_cta_text_color ?? undefined,
 			}
 		: headerNavigation;
 

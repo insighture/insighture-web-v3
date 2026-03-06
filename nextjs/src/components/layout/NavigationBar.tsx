@@ -118,8 +118,9 @@ const NavigationBar = forwardRef<HTMLElement, NavigationBarProps>(({ navigation,
 
 	const directusURL = process.env.NEXT_PUBLIC_DIRECTUS_URL;
 
-	// Determine logo URLs - override from slide if available, otherwise use global
+	// Determine logo URLs - override from slide > page > global
 	const slideLogoOverride = contextColors.logoOverride;
+	const pageLogoOverride = navigation?.logo_override;
 	const darkLogoUrl = globals?.logo_dark_mode ? `${directusURL}/assets/${globals.logo_dark_mode}` : '';
 
 	// Determine if logo should be hidden
@@ -166,17 +167,22 @@ const NavigationBar = forwardRef<HTMLElement, NavigationBarProps>(({ navigation,
 	const effectiveDropdownTextColor = contextColors.dropdownTextColor || dropdownTextColor || '#1d2939';
 	const effectiveDropdownTextHoverColor = contextColors.dropdownTextHoverColor || dropdownTextHoverColor || undefined;
 
-	// Effective CTA button colors: context from Hero takes priority, with scrolled state support
+	// Page-level CTA overrides (from navigation merged props)
+	const pageCtaBgColor = navigation?.cta_background_color;
+	const pageCtaTextColor = navigation?.cta_text_color;
+
+	// Effective CTA button colors: Hero slide > page-level > defaults
 	const effectiveCtaBgColor = scrolled
-		? contextColors.scrolledCtaBackgroundColor || contextColors.ctaBackgroundColor || '#ffffff'
-		: contextColors.ctaBackgroundColor || '#ffffff';
+		? contextColors.scrolledCtaBackgroundColor || contextColors.ctaBackgroundColor || pageCtaBgColor || '#ffffff'
+		: contextColors.ctaBackgroundColor || pageCtaBgColor || '#ffffff';
 	const effectiveCtaTextColor = scrolled
-		? contextColors.scrolledCtaTextColor || contextColors.ctaTextColor || '#ec2b54'
-		: contextColors.ctaTextColor || '#ec2b54';
+		? contextColors.scrolledCtaTextColor || contextColors.ctaTextColor || pageCtaTextColor || '#ec2b54'
+		: contextColors.ctaTextColor || pageCtaTextColor || '#ec2b54';
 
 	const headerStyle: React.CSSProperties = {
 		...(effectiveBg && effectiveBg !== 'transparent' ? { backgroundColor: effectiveBg } : {}),
 		...(effectiveBg === 'transparent' ? { backgroundColor: 'transparent' } : {}),
+		...(effectiveTextColor ? { color: effectiveTextColor } : {}),
 		...(bgImage
 			? {
 					backgroundImage: `url(${directusURL}/assets/${bgImage})`,
@@ -215,7 +221,7 @@ const NavigationBar = forwardRef<HTMLElement, NavigationBarProps>(({ navigation,
 					{(!shouldHideLogo || scrolled) && (
 						<Link href="/" className="focus:outline-none block">
 							{scrolled ? (
-								// When scrolled, always use dark mode logo (never slide override)
+								// When scrolled, always use dark mode logo (never slide/page override)
 								<Image
 									key={`scrolled-${globals?.logo_dark_mode}`}
 									src={darkLogoUrl}
@@ -225,11 +231,11 @@ const NavigationBar = forwardRef<HTMLElement, NavigationBarProps>(({ navigation,
 									className="w-[100px] md:w-[120px] lg:w-[157px] h-auto"
 									priority
 								/>
-							) : slideLogoOverride ? (
-								// Not scrolled + slide override exists = use override
+							) : (slideLogoOverride || pageLogoOverride) ? (
+								// Not scrolled + slide or page override exists = use override
 								<Image
-									key={`override-${slideLogoOverride}`}
-									src={`${directusURL}/assets/${slideLogoOverride}?v=${slideLogoOverride}`}
+									key={`override-${slideLogoOverride || pageLogoOverride}`}
+									src={`${directusURL}/assets/${slideLogoOverride || pageLogoOverride}`}
 									alt="Logo"
 									className="w-[100px] md:w-[120px] lg:w-[157px] h-auto"
 									width={150}

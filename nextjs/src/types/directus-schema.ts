@@ -892,6 +892,12 @@ export interface Page {
 	nav_dropdown_text_color?: string | null;
 	/** @description Hover color of nav dropdown links. Null = theme default. */
 	nav_dropdown_text_hover_color?: string | null;
+	/** @description Override nav logo for this page (file UUID). Null = inherit. */
+	nav_logo_override?: string | null;
+	/** @description Override CTA button background color for this page. Null = inherit. */
+	nav_cta_background_color?: string | null;
+	/** @description Override CTA button text color for this page. Null = inherit. */
+	nav_cta_text_color?: string | null;
 	/** @description Footer CTA text content. */
 	footer_cta_text?: string | null;
 	/** @description Footer CTA button label. */
