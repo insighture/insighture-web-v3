@@ -1,9 +1,9 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { setAttr } from '@directus/visual-editing';
 import DirectusImage from '@/components/shared/DirectusImage';
-import ExpertiseCards, { type ExpertiseCardsData } from './ExpertiseCards';
+import ExpertiseCards, { type ExpertiseCardsData, CARDS_PER_PAGE } from './ExpertiseCards';
 import ServiceFeaturedArticle from './ServiceFeaturedArticle';
 import ServiceCredentialsCTA, { type ServiceCredentialsCTAData } from './ServiceCredentialsCTA';
 import ServiceProductCatalogue, { type ServiceProductCatalogueData } from './ServiceProductCatalogue';
@@ -65,6 +65,13 @@ export default function ServiceItems({ data }: ServiceItemsProps) {
 	const credentialsCTA = active?.credentials_cta ?? null;
 	const productCatalogue = active?.product_catalogue ?? null;
 
+	// ─── Carousel page state — lifted so it resets on tab change ─────────────
+	const [carouselPage, setCarouselPage] = useState(0);
+
+	useEffect(() => {
+		setCarouselPage(0);
+	}, [activeIndex]);
+
 	return (
 		<section
 			className="w-full bg-white"
@@ -94,7 +101,7 @@ export default function ServiceItems({ data }: ServiceItemsProps) {
 					</div>
 				)}
 
-				{/* ── Gray container — wraps tabs + all sub-sections ───────── */}
+				{/* ── Gray container ────────────────────────────────────────── */}
 				{sorted.length > 0 && (
 					<div
 						className="bg-[#eff1f5] rounded-[16px] p-[24px] flex flex-col gap-[40px]"
@@ -165,7 +172,7 @@ export default function ServiceItems({ data }: ServiceItemsProps) {
 												<p className="font-sans italic font-semibold text-[18px] leading-[24px] text-[#999c9e]">
 													Key Services
 												</p>
-												<div className="flex gap-[24px] font-sans   italic text-[14px] leading-[22px] text-[#60696e]">
+												<div className="flex gap-[24px] font-sans italic text-[14px] leading-[22px] text-[#60696e]">
 													{(() => {
 														const half = Math.ceil(active.key_services!.length / 2);
 														const col1 = active.key_services!.slice(0, half);
@@ -209,17 +216,19 @@ export default function ServiceItems({ data }: ServiceItemsProps) {
 							</div>
 						)}
 
-						{/* Expertise cards — contained inside gray card */}
+						{/* Expertise cards — carousel page controlled here so it resets on tab switch */}
 						{expertiseCards && (
 							<ExpertiseCards
 								key={active?.id}
 								data={expertiseCards}
 								accentColor={active?.accent_color}
 								contained
+								externalPage={carouselPage}
+								onExternalPageChange={setCarouselPage}
 							/>
 						)}
 
-						{/* Featured article — contained, rounded clipping */}
+						{/* Featured article */}
 						{featuredArticle && (
 							<div className="overflow-hidden rounded-[8px]">
 								<ServiceFeaturedArticle
