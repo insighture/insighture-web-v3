@@ -77,7 +77,7 @@ export default function ServiceItems({ data }: ServiceItemsProps) {
 		setCarouselPage(0);
 	}, [activeIndex]);
 
-	// Sync URL ?tab= with active tab and scroll section into view (single effect)
+	// Sync URL ?tab= with active tab and scroll section into view
 	useEffect(() => {
 		if (!tabParam) return;
 		const idx = sorted.findIndex((item) => item.id === tabParam);
