@@ -50,14 +50,14 @@ export default function PostsCarousel({ data }: PostsCarouselProps) {
 				<div className="flex flex-col gap-[24px]">
 					<div className="flex items-end justify-between">
 						{headline && (
-							<h2 className="font-sans font-normal text-[40px] lg:text-[56px] leading-[56px] text-[#1d2939] whitespace-nowrap">
+							<h2 className="font-sans font-normal lg:text-[56px] leading-[56px] text-[#1D2939] whitespace-nowrap">
 								{headline}
 							</h2>
 						)}
 					</div>
 					<div className="flex items-center justify-between gap-[40px]">
 						{description && (
-							<p className="font-sans font-normal text-[18px] leading-[26px] text-[#1e1e1e] max-w-[839px]">
+							<p className="font-sans font-normal text-[18px] leading-[26px] text-[#1E1E1E] max-w-[839px]">
 								{description}
 							</p>
 						)}
@@ -113,17 +113,17 @@ export default function PostsCarousel({ data }: PostsCarouselProps) {
 										<div className="flex flex-col gap-[8px] w-full flex-1">
 											{/* Type badge */}
 											{post.type && (
-												<p className="font-sans font-semibold text-[14px] leading-[24px] text-[#2d3236] tracking-[1.12px] uppercase">
+												<p className="font-sans font-semibold text-[14px] leading-[24px] text-[#2D3236] tracking-[1.12px] uppercase">
 													{post.type}
 												</p>
 											)}
 											{/* Title */}
-											<p className="font-sans font-semibold text-[24px] leading-[32px] text-[#15181a]">
+											<p className="font-sans font-semibold text-[24px] leading-[32px] text-[#15181A]">
 												{post.title}
 											</p>
 										</div>
 										{/* Read time */}
-										<p className="font-sans italic text-[14px] leading-[22px] text-[#2d3236] tracking-[1.12px] uppercase mt-[16px]">
+										<p className="font-sans italic text-[14px] leading-[22px] text-[#2D3236] tracking-[1.12px] uppercase mt-[16px]">
 											{readTime} minute read
 										</p>
 									</div>

@@ -221,10 +221,10 @@ const NavigationBar = forwardRef<HTMLElement, NavigationBarProps>(({ navigation,
 					{(!shouldHideLogo || scrolled) && (
 						<Link href="/" className="focus:outline-none block">
 							{scrolled ? (
-								// When scrolled, always use dark mode logo (never slide/page override)
+								// When scrolled, prefer page-level logo override if set, else fall back to dark mode logo
 								<Image
-									key={`scrolled-${globals?.logo_dark_mode}`}
-									src={darkLogoUrl}
+									key={`scrolled-${pageLogoOverride || globals?.logo_dark_mode}`}
+									src={pageLogoOverride ? `${directusURL}/assets/${pageLogoOverride}` : darkLogoUrl}
 									alt="Logo"
 									width={150}
 									height={100}
