@@ -77,17 +77,12 @@ export default function ServiceItems({ data }: ServiceItemsProps) {
 		setCarouselPage(0);
 	}, [activeIndex]);
 
+	// Sync URL ?tab= with active tab and scroll section into view (single effect)
 	useEffect(() => {
-		if (tabParam) {
-			const idx = sorted.findIndex((item) => item.id === tabParam);
-			if (idx >= 0) setActiveIndex(idx);
-		}
-	}, [tabParam]);
-
-	useEffect(() => {
-		if (tabParam && sectionRef.current) {
-			sectionRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
-		}
+		if (!tabParam) return;
+		const idx = sorted.findIndex((item) => item.id === tabParam);
+		if (idx >= 0) setActiveIndex(idx);
+		sectionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
 	}, [tabParam]);
 
 	return (
