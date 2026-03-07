@@ -78,10 +78,17 @@ export default function ServiceItems({ data }: ServiceItemsProps) {
 	}, [activeIndex]);
 
 	useEffect(() => {
+		if (tabParam) {
+			const idx = sorted.findIndex((item) => item.id === tabParam);
+			if (idx >= 0) setActiveIndex(idx);
+		}
+	}, [tabParam]);
+
+	useEffect(() => {
 		if (tabParam && sectionRef.current) {
 			sectionRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
 		}
-	}, []);
+	}, [tabParam]);
 
 	return (
 		<section
