@@ -118,12 +118,11 @@ export default function ServiceProductCatalogue({ data, accentColor, contained }
 
 			{/* Right image — bleeds to right and bottom edges */}
 			{image && (
-				<div className="flex-1 self-stretch relative overflow-hidden rounded-[8px] left-[96px]">
+				<div className="flex-1 self-stretch relative overflow-hidden rounded-[8px]">
 					<DirectusImage
 						uuid={image}
 						alt={image_alt || headline || ''}
 						fill
-						sizes="(max-width: 1440px) 55vw, 780px"
 						className="object-cover object-right-top grayscale"
 						priority
 					/>

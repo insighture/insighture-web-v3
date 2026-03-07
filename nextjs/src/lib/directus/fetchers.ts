@@ -73,7 +73,7 @@ const pageFields = [
 					block_open_roles: ['*', { jobs: ['*'] }],
 					block_people_say: ['*', { slides: ['*'] }],
 					block_values: ['*', { value_items: ['*'] }],
-					block_posts_carousel: ['id','headline','description','limit',{selected_posts: ['sort',{ posts_id: ['id', 'title', 'slug', 'image', 'description', 'type'] }] }],
+					block_posts_carousel: ['id','headline','description',{posts: ['sort',{ posts_id: ['id', 'title', 'slug', 'image', 'description', 'type'] }] }],
 					block_featured_post: [
 						'id',
 						'tagline',
@@ -315,39 +315,38 @@ export const fetchPageData = async (permalink: string, postPage = 1, token?: str
 						(block.item as any).recommended_posts = recommendedPosts;
 					}
 				}
-				// block_posts_carousel — use manually selected posts if set, otherwise fetch dynamically
+				// block_posts_carousel — use manually selected posts from M2M relation
 				if (block.collection === 'block_posts_carousel' && block.item && typeof block.item !== 'string') {
 					const item = block.item as any;
-					const selectedPosts = item.selected_posts as Array<{ sort: number; posts_id: any }> | null | undefined;
-					if (selectedPosts && selectedPosts.length > 0) {
-						item.posts = [...selectedPosts]
+					const junctionPosts = item.posts as Array<{ sort: number; posts_id: any }> | null | undefined;
+					item.posts = junctionPosts
+						? [...junctionPosts]
 							.sort((a, b) => (a.sort ?? 0) - (b.sort ?? 0))
 							.map((j) => j.posts_id)
-							.filter(Boolean);
-					} else {
-						const limit = item.limit ?? 9;
-						const carouselPosts = await directus.request(
-							readItems('posts', {
-								fields: ['id', 'title', 'slug', 'image', 'description', 'type'],
-								filter: { status: { _eq: 'published' } },
-								sort: ['-published_at'],
-								limit,
-							}),
-						);
-						item.posts = carouselPosts;
-					}
+							.filter(Boolean)
+						: [];
 				}
 				// block_all_posts — fetch all published posts with type + service for client-side filtering
 				if (block.collection === 'block_all_posts' && block.item && typeof block.item !== 'string') {
-					const allPosts = await directus.request(
-						readItems('posts', {
-							fields: ['id', 'title', 'slug', 'image', 'description', 'type'],
-							filter: { status: { _eq: 'published' } },
-							sort: ['-published_at'],
-							limit: -1,
-						}),
-					);
+					const [allPosts, serviceItems] = await Promise.all([
+						directus.request(
+							readItems('posts', {
+								fields: ['id', 'title', 'slug', 'image', 'description', 'type', { service: ['id', 'title'] } as any],
+								filter: { status: { _eq: 'published' } },
+								sort: ['-published_at'],
+								limit: -1,
+							}),
+						),
+						directus.request(
+							readItems('block_services_item', {
+								fields: ['id', 'title'],
+								sort: ['sort'],
+								limit: -1,
+							}),
+						),
+					]);
 					(block.item as any).posts = allPosts;
+					(block.item as any).services = serviceItems;
 				}
 			}
 		}
