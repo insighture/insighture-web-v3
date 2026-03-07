@@ -939,6 +939,7 @@ export interface Post {
 	/** @description Publish now or schedule for later. */
 	published_at?: string | null;
 	seo?: ExtensionSeoMetadata | null;
+	service? : BlockServicesItem | null;
 	date_created?: string | null;
 	user_created?: DirectusUser | string | null;
 	date_updated?: string | null;

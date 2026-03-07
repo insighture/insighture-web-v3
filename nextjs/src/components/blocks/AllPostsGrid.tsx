@@ -5,6 +5,11 @@ import Link from 'next/link';
 import DirectusImage from '@/components/shared/DirectusImage';
 import { setAttr } from '@directus/visual-editing';
 
+interface ServiceItem {
+	id: string;
+	title: string;
+}
+
 interface GridPost {
 	id: string;
 	title?: string | null;
@@ -12,7 +17,7 @@ interface GridPost {
 	image?: string | null;
 	description?: string | null;
 	type?: string | null;
-	service?: string | null;
+	service?: ServiceItem | null;
 }
 
 interface AllPostsGridProps {
@@ -20,6 +25,7 @@ interface AllPostsGridProps {
 		id: string;
 		headline?: string | null;
 		posts?: GridPost[];
+		services?: ServiceItem[];
 	};
 }
 
@@ -28,16 +34,6 @@ const TYPE_OPTIONS = [
 	{ label: 'Insight', value: 'insight' },
 	{ label: 'Story', value: 'story' },
 	{ label: 'Update', value: 'update' },
-];
-
-const SERVICE_OPTIONS = [
-	{ label: 'All Services', value: '' },
-	{ label: 'Migration & Modernisation', value: 'migration-modernisation' },
-	{ label: 'AI/ML', value: 'ai-ml' },
-	{ label: 'Product Innovation', value: 'product-innovation' },
-	{ label: 'Data', value: 'data' },
-	{ label: 'Security', value: 'security' },
-	{ label: 'Integrated Ecosystem', value: 'integrated-ecosystem' },
 ];
 
 const PAGE_SIZE = 9;
@@ -63,17 +59,22 @@ return pages;
 }
 
 export default function AllPostsGrid({ data }: AllPostsGridProps) {
-	const { id, headline, posts = [] } = data;
+	const { id, headline, posts = [], services = [] } = data;
 
 	const [typeFilter, setTypeFilter] = useState('');
 	const [serviceFilter, setServiceFilter] = useState('');
 	const [page, setPage] = useState(1);
 
+	const serviceOptions = useMemo(() => [
+		{ label: 'All Services', value: '' },
+		...services.map((s) => ({ label: s.title, value: s.id })),
+	], [services]);
+
 	const filtered = useMemo(() => {
 		return posts.filter((p) => {
 			if (typeFilter && p.type !== typeFilter) return false;
-			if (serviceFilter && p.service !== serviceFilter) return false;
-			
+			if (serviceFilter && p.service?.id !== serviceFilter) return false;
+
 return true;
 		});
 	}, [posts, typeFilter, serviceFilter]);
@@ -125,7 +126,7 @@ return true;
 								onChange={(e) => changeFilter(setServiceFilter, e.target.value)}
 								className="appearance-none bg-white border border-[#d0d5dd] rounded-[8px] px-[16px] py-[10px] pr-[40px] font-sans text-[14px] text-[#1d2939] cursor-pointer hover:border-[#1d2939] transition-colors focus:outline-none focus:border-[#1d2939]"
 							>
-								{SERVICE_OPTIONS.map((o) => (
+								{serviceOptions.map((o) => (
 									<option key={o.value} value={o.value}>{o.label}</option>
 								))}
 							</select>
@@ -148,7 +149,7 @@ return true;
 				{/* Grid */}
 				{visible.length > 0 ? (
 					<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[33px]">
-						{visible.map((post) => {
+		{visible.map((post) => {
 							const readTime = getReadTime(post.description);
 							const inner = (
 								<div className="bg-[#ebf0f2] flex flex-col size-full rounded-[16px] overflow-hidden">

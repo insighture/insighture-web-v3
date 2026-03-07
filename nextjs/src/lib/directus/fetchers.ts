@@ -328,15 +328,25 @@ export const fetchPageData = async (permalink: string, postPage = 1, token?: str
 				}
 				// block_all_posts — fetch all published posts with type + service for client-side filtering
 				if (block.collection === 'block_all_posts' && block.item && typeof block.item !== 'string') {
-					const allPosts = await directus.request(
-						readItems('posts', {
-							fields: ['id', 'title', 'slug', 'image', 'description', 'type'],
-							filter: { status: { _eq: 'published' } },
-							sort: ['-published_at'],
-							limit: -1,
-						}),
-					);
+					const [allPosts, serviceItems] = await Promise.all([
+						directus.request(
+							readItems('posts', {
+								fields: ['id', 'title', 'slug', 'image', 'description', 'type', { service: ['id', 'title'] } as any],
+								filter: { status: { _eq: 'published' } },
+								sort: ['-published_at'],
+								limit: -1,
+							}),
+						),
+						directus.request(
+							readItems('block_services_item', {
+								fields: ['id', 'title'],
+								sort: ['sort'],
+								limit: -1,
+							}),
+						),
+					]);
 					(block.item as any).posts = allPosts;
+					(block.item as any).services = serviceItems;
 				}
 			}
 		}
