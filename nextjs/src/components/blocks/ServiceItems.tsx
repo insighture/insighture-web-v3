@@ -140,8 +140,9 @@ export default function ServiceItems({ data }: ServiceItemsProps) {
 												color: isActive ? '#fcfcfd' : '#98a2b3',
 												border: isActive ? `1.2px solid ${accent}` : '1.2px solid transparent',
 											}}
+											dangerouslySetInnerHTML={{ __html: item.title! }}
 										>
-											{item.title}
+									
 										</button>
 									);
 								})}
@@ -161,8 +162,9 @@ export default function ServiceItems({ data }: ServiceItemsProps) {
 													<h3
 														className="font-sans font-semibold text-[32px] leading-[32px]"
 														style={{ color: active.accent_color || '#2ea1b8' }}
+														dangerouslySetInnerHTML={{ __html: active.title! }}
 													>
-														{active.title}
+													
 													</h3>
 												)}
 												{panel?.subtitle && (
