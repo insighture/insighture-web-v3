@@ -914,6 +914,14 @@ export interface Page {
 	nav_cta_background_color?: string | null;
 	/** @description Override CTA button text color for this page. Null = inherit. */
 	nav_cta_text_color?: string | null;
+	/** @description Override active nav item text color for this page. Null = inherit. */
+	nav_active_text_color?: string | null;
+	/** @description Override active nav item underline color for this page. Null = inherit. */
+	nav_active_underline_color?: string | null;
+	/** @description Override scrolled active text color for this page. Null = inherit. */
+	nav_scrolled_active_text_color?: string | null;
+	/** @description Override scrolled active underline color for this page. Null = inherit. */
+	nav_scrolled_active_underline_color?: string | null;
 	/** @description Footer CTA text content. */
 	footer_cta_text?: string | null;
 	/** @description Footer CTA button label. */

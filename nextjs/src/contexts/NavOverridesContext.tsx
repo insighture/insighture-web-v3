@@ -16,6 +16,10 @@ export interface NavOverrides {
 	nav_logo_override?: string | null;
 	nav_cta_background_color?: string | null;
 	nav_cta_text_color?: string | null;
+	nav_active_text_color?: string | null;
+	nav_active_underline_color?: string | null;
+	nav_scrolled_active_text_color?: string | null;
+	nav_scrolled_active_underline_color?: string | null;
 }
 
 interface NavOverridesContextValue {

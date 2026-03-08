@@ -114,6 +114,10 @@ export default async function Page({
 					nav_logo_override: page.nav_logo_override,
 					nav_cta_background_color: page.nav_cta_background_color,
 					nav_cta_text_color: page.nav_cta_text_color,
+					nav_active_text_color: page.nav_active_text_color,
+					nav_active_underline_color: page.nav_active_underline_color,
+					nav_scrolled_active_text_color: page.nav_scrolled_active_text_color,
+					nav_scrolled_active_underline_color: page.nav_scrolled_active_underline_color,
 				}}
 				footerCTA={{
 					footer_cta_text: page.footer_cta_text,
