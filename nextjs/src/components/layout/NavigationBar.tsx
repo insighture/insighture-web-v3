@@ -499,7 +499,8 @@ const NavigationBar = forwardRef<HTMLElement, NavigationBarProps>(({ navigation,
 									variant="ghost"
 									size="icon"
 									aria-label="Open menu"
-									className="text-current hover:bg-white/10"
+									className="hover:bg-white/10"
+									style={effectiveTextColor ? { color: effectiveTextColor } : undefined}
 								>
 									<Menu className="size-6" />
 								</Button>

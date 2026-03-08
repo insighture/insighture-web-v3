@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import DirectusImage from '@/components/shared/DirectusImage';
+import Container from '@/components/ui/container';
 import { setAttr } from '@directus/visual-editing';
 
 interface CarouselPost {
@@ -42,22 +43,22 @@ export default function PostsCarousel({ data }: PostsCarouselProps) {
 
 	return (
 		<section
-			className="w-full pt-[80px]"
+			className="w-full pt-[40px] md:pt-[60px] lg:pt-[80px] bg-white"
 			data-directus={setAttr({ collection: 'block_posts_carousel', item: id, fields: ['headline', 'description', 'service'], mode: 'popover' })}
 		>
-			<div className="w-auto lg:px-[120px] flex flex-col gap-[56px]">
+			<Container className="flex flex-col gap-[32px] md:gap-[40px] lg:gap-[56px]">
 				{/* Header */}
-				<div className="flex flex-col gap-[24px]">
+				<div className="flex flex-col gap-[16px] md:gap-[24px]">
 					<div className="flex items-end justify-between">
 						{headline && (
-							<h2 className="font-sans font-normal lg:text-[56px] leading-[56px] text-[#1D2939] whitespace-nowrap">
+							<h2 className="font-sans font-normal text-[28px] md:text-[40px] lg:text-[56px] leading-[1.1] lg:leading-[56px] text-[#1D2939]">
 								{headline}
 							</h2>
 						)}
 					</div>
-					<div className="flex items-center justify-between gap-[40px]">
+					<div className="flex flex-col md:flex-row md:items-center justify-between gap-[20px] md:gap-[40px]">
 						{description && (
-							<p className="font-sans font-normal text-[18px] leading-[26px] text-[#1E1E1E] max-w-[839px]">
+							<p className="font-sans font-normal text-[16px] md:text-[18px] leading-[24px] md:leading-[26px] text-[#1E1E1E] max-w-[839px]">
 								{description}
 							</p>
 						)}
@@ -95,7 +96,7 @@ export default function PostsCarousel({ data }: PostsCarouselProps) {
 							const card = (
 								<div className="bg-[#ebf0f2] flex flex-col size-full rounded-[16px] overflow-hidden">
 									{/* Image */}
-									<div className="relative h-[280px] shrink-0 w-full">
+									<div className="relative h-[200px] md:h-[280px] shrink-0 w-full">
 										{post.image ? (
 											<DirectusImage
 												uuid={post.image}
@@ -131,10 +132,10 @@ export default function PostsCarousel({ data }: PostsCarouselProps) {
 							);
 
 							return post.slug ? (
-								<Link key={post.id} href={`/blog/${post.slug}`} className="flex group min-h-[560px]">
+								<Link key={post.id} href={`/blog/${post.slug}`} className="flex group min-h-[420px] md:min-h-[560px]">
 									<div className="bg-[#ebf0f2] flex flex-col size-full rounded-[16px] overflow-hidden group-hover:shadow-md transition-shadow">
 										{/* Image */}
-										<div className="relative h-[280px] shrink-0 w-full">
+										<div className="relative h-[200px] md:h-[280px] shrink-0 w-full">
 											{post.image ? (
 												<DirectusImage
 													uuid={post.image}
@@ -166,7 +167,7 @@ export default function PostsCarousel({ data }: PostsCarouselProps) {
 									</div>
 								</Link>
 							) : (
-								<div key={post.id} className="flex min-h-[560px]">
+								<div key={post.id} className="flex min-h-[420px] md:min-h-[560px]">
 									{card}
 								</div>
 							);
@@ -177,7 +178,7 @@ export default function PostsCarousel({ data }: PostsCarouselProps) {
 				{posts.length === 0 && (
 					<p className="text-[#667085] text-[16px]">No posts available.</p>
 				)}
-			</div>
+			</Container>
 		</section>
 	);
 }

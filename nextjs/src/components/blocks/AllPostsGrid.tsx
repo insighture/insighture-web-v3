@@ -3,6 +3,7 @@
 import { useState, useMemo } from 'react';
 import Link from 'next/link';
 import DirectusImage from '@/components/shared/DirectusImage';
+import Container from '@/components/ui/container';
 import { setAttr } from '@directus/visual-editing';
 
 interface ServiceItem {
@@ -91,20 +92,20 @@ return true;
 
 	return (
 		<section
-			className="w-full py-[80px]"
+			className="w-full py-[40px] md:py-[60px] lg:py-[80px] bg-white"
 			data-directus={setAttr({ collection: 'block_all_posts', item: id, fields: ['headline'], mode: 'popover' })}
 		>
-			<div className="w-auto lg:px-[120px] flex flex-col gap-[56px]">
+			<Container className="flex flex-col gap-[32px] md:gap-[40px] lg:gap-[56px]">
 				{/* Header + Filters */}
-				<div className="flex items-end justify-between gap-[16px]">
+				<div className="flex flex-col md:flex-row md:items-end justify-between gap-[16px]">
 					{headline && (
-						<h2 className="font-sans font-normal text-[40px] lg:text-[64px] leading-[1] text-[#1d2939] shrink-0">
+						<h2 className="font-sans font-normal text-[32px] md:text-[40px] lg:text-[64px] leading-[1] text-[#1d2939] shrink-0">
 							{headline}
 						</h2>
 					)}
 
 					{/* Filter bar */}
-					<div className="flex flex-wrap gap-[16px]">
+					<div className="flex flex-wrap gap-[12px] md:gap-[16px]">
 						<div className="relative">
 							<select
 								value={typeFilter}
@@ -154,7 +155,7 @@ return true;
 							const inner = (
 								<div className="bg-[#ebf0f2] flex flex-col size-full rounded-[16px] overflow-hidden">
 									{/* Image */}
-									<div className="relative h-[280px] shrink-0 w-full">
+									<div className="relative h-[200px] md:h-[280px] shrink-0 w-full">
 										{post.image ? (
 											<DirectusImage
 												uuid={post.image}
@@ -190,10 +191,10 @@ return true;
 								<Link
 									key={post.id}
 									href={`/blog/${post.slug}`}
-									className="flex group min-h-[560px]"
+									className="flex group min-h-[420px] md:min-h-[560px]"
 								>
 									<div className="bg-[#ebf0f2] flex flex-col size-full rounded-[16px] overflow-hidden group-hover:shadow-md transition-shadow">
-										<div className="relative h-[280px] shrink-0 w-full">
+										<div className="relative h-[200px] md:h-[280px] shrink-0 w-full">
 											{post.image ? (
 												<DirectusImage
 													uuid={post.image}
@@ -224,7 +225,7 @@ return true;
 									</div>
 								</Link>
 							) : (
-								<div key={post.id} className="flex min-h-[560px]">{inner}</div>
+								<div key={post.id} className="flex min-h-[420px] md:min-h-[560px]">{inner}</div>
 							);
 						})}
 					</div>
@@ -234,7 +235,7 @@ return true;
 
 				{/* Pagination */}
 				{filtered.length > 0 && (
-					<div className="flex flex-row justify-center items-center gap-[32px]">
+					<div className="flex flex-row justify-center items-center gap-[16px] md:gap-[32px]">
 						{/* Prev */}
 						<button
 							onClick={() => setPage((p) => Math.max(1, p - 1))}
@@ -290,7 +291,7 @@ return true;
 						</button>
 					</div>
 				)}
-			</div>
+			</Container>
 		</section>
 	);
 }
