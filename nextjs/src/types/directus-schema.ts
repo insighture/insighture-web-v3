@@ -811,6 +811,14 @@ export interface Navigation {
 	user_created?: DirectusUser | string | null;
 	date_updated?: string | null;
 	user_updated?: DirectusUser | string | null;
+	/** @description Text color for the currently active navigation item. */
+	active_text_color?: string | null;
+	/** @description Underline color for the currently active navigation item. */
+	active_underline_color?: string | null;
+	/** @description Active text color when the page is scrolled. Falls back to active_text_color. */
+	scrolled_active_text_color?: string | null;
+	/** @description Active underline color when the page is scrolled. Falls back to active_underline_color. */
+	scrolled_active_underline_color?: string | null;
 	/** @description Links within the menu. */
 	items?: NavigationItem[] | string[];
 }

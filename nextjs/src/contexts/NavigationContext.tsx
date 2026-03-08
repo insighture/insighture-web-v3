@@ -15,6 +15,10 @@ interface NavigationColors {
 	ctaTextColor?: string | null;
 	scrolledCtaBackgroundColor?: string | null;
 	scrolledCtaTextColor?: string | null;
+	activeTextColor?: string | null;
+	activeUnderlineColor?: string | null;
+	scrolledActiveTextColor?: string | null;
+	scrolledActiveUnderlineColor?: string | null;
 	hideLogo?: boolean | null;
 	logoOverride?: string | null;
 }

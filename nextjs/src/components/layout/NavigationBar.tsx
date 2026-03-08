@@ -18,8 +18,8 @@ import { setAttr } from '@directus/visual-editing';
 import { ChevronDown, Menu } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
-import { forwardRef, useCallback, useEffect, useRef, useState } from 'react';
+import { usePathname, useRouter } from 'next/navigation';
+import { forwardRef, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 interface NavigationBarProps {
 	navigation: any;
@@ -47,6 +47,24 @@ const NavigationBar = forwardRef<HTMLElement, NavigationBarProps>(({ navigation,
 	const searchInputRef = useRef<HTMLInputElement>(null);
 	const searchContainerRef = useRef<HTMLDivElement>(null);
 	const router = useRouter();
+	const pathname = usePathname();
+
+	// Check if a nav item (or any of its children) matches the current path
+	const isNavItemActive = useMemo(() => {
+		return (section: any): boolean => {
+			const href = section.page?.permalink || section.url;
+			if (href && href !== '#' && pathname === href) return true;
+			if (section.children?.length) {
+				return section.children.some((child: any) => {
+					const childHref = child.page?.permalink || child.url;
+
+					return childHref && childHref !== '#' && pathname === childHref;
+				});
+			}
+			
+			return false;
+		};
+	}, [pathname]);
 
 	const debouncedSearch = useCallback(
 		debounce(async (query: string) => {
@@ -137,6 +155,10 @@ const NavigationBar = forwardRef<HTMLElement, NavigationBarProps>(({ navigation,
 	const dropdownBgColor = navigation?.dropdown_background_color;
 	const dropdownTextColor = navigation?.dropdown_text_color;
 	const dropdownTextHoverColor = navigation?.dropdown_text_hover_color;
+	const activeTextColor = navigation?.active_text_color;
+	const activeUnderlineColor = navigation?.active_underline_color;
+	const scrolledActiveTextColor = navigation?.scrolled_active_text_color;
+	const scrolledActiveUnderlineColor = navigation?.scrolled_active_underline_color;
 
 	useEffect(() => {
 		const onScroll = () => setScrolled(window.scrollY > 20);
@@ -166,6 +188,14 @@ const NavigationBar = forwardRef<HTMLElement, NavigationBarProps>(({ navigation,
 	const effectiveDropdownBgColor = contextColors.dropdownBackgroundColor || dropdownBgColor || '#ffffff';
 	const effectiveDropdownTextColor = contextColors.dropdownTextColor || dropdownTextColor || '#1d2939';
 	const effectiveDropdownTextHoverColor = contextColors.dropdownTextHoverColor || dropdownTextHoverColor || undefined;
+
+	// Effective active nav item colors: Hero slide context > scrolled variant > navigation defaults
+	const effectiveActiveTextColor = scrolled
+		? contextColors.scrolledActiveTextColor || scrolledActiveTextColor || contextColors.activeTextColor || activeTextColor || undefined
+		: contextColors.activeTextColor || activeTextColor || undefined;
+	const effectiveActiveUnderlineColor = scrolled
+		? contextColors.scrolledActiveUnderlineColor || scrolledActiveUnderlineColor || contextColors.activeUnderlineColor || activeUnderlineColor || undefined
+		: contextColors.activeUnderlineColor || activeUnderlineColor || undefined;
 
 	// Page-level CTA overrides (from navigation merged props)
 	const pageCtaBgColor = navigation?.cta_background_color;
@@ -289,12 +319,26 @@ const NavigationBar = forwardRef<HTMLElement, NavigationBarProps>(({ navigation,
 						}
 					>
 						<NavigationMenuList className="flex gap-8">
-							{navigation?.items?.map((section: any) => (
+							{navigation?.items?.map((section: any) => {
+							const active = isNavItemActive(section);
+
+							return (
 								<NavigationMenuItem key={section.id} className="relative group/navitem">
 									{section.children && section.children.length > 0 ? (
 										<>
-											<NavigationMenuTrigger className="focus:outline-none !bg-transparent text-[14px] font-medium flex items-center gap-2.5">
-												<span>{section.title}</span>
+											<NavigationMenuTrigger
+												className="focus:outline-none !bg-transparent text-[14px] font-medium flex items-center gap-2.5"
+												style={active && effectiveActiveTextColor ? { color: effectiveActiveTextColor } : undefined}
+											>
+												<span className="relative pb-1">
+													{section.title}
+													{active && effectiveActiveUnderlineColor && (
+														<span
+															className="absolute inset-x-0 bottom-0 h-[2px] rounded-full"
+															style={{ backgroundColor: effectiveActiveUnderlineColor }}
+														/>
+													)}
+												</span>
 											</NavigationMenuTrigger>
 											<NavigationMenuContent className="nav-dropdown absolute min-w-[200px] rounded-lg shadow-lg p-2" style={{
 													backgroundColor: effectiveDropdownBgColor,
@@ -317,13 +361,21 @@ const NavigationBar = forwardRef<HTMLElement, NavigationBarProps>(({ navigation,
 									) : (
 										<NavigationMenuLink
 											href={section.page?.permalink || section.url || '#'}
-											className="text-[14px] font-medium focus:outline-none hover:opacity-80 transition-opacity"
+											className="text-[14px] font-medium focus:outline-none hover:opacity-80 transition-opacity relative pb-1"
+											style={active && effectiveActiveTextColor ? { color: effectiveActiveTextColor } : undefined}
 										>
 											{section.title}
+											{active && effectiveActiveUnderlineColor && (
+												<span
+													className="absolute inset-x-0 bottom-0 h-[2px] rounded-full"
+													style={{ backgroundColor: effectiveActiveUnderlineColor }}
+												/>
+											)}
 										</NavigationMenuLink>
 									)}
 								</NavigationMenuItem>
-							))}
+							);
+							})}
 						</NavigationMenuList>
 					</NavigationMenu>
 				</nav>
@@ -454,38 +506,49 @@ const NavigationBar = forwardRef<HTMLElement, NavigationBarProps>(({ navigation,
 							</DropdownMenuTrigger>
 							<DropdownMenuContent align="end" className="w-[calc(100vw-2rem)] max-w-sm p-4 shadow-lg mr-2">
 								<div className="flex flex-col gap-3">
-									{navigation?.items?.map((section: any) => (
+									{navigation?.items?.map((section: any) => {
+										const mobileActive = isNavItemActive(section);
+
+										return (
 										<div key={section.id}>
 											{section.children && section.children.length > 0 ? (
 												<Collapsible>
-													<CollapsibleTrigger className="font-medium text-[15px] hover:opacity-70 w-full text-left flex items-center justify-between focus:outline-none py-1">
+													<CollapsibleTrigger className="font-medium text-[15px] hover:opacity-70 w-full text-left flex items-center justify-between focus:outline-none py-1" style={mobileActive && activeTextColor ? { color: activeTextColor } : undefined}>
 														<span>{section.title}</span>
 														<ChevronDown className="size-4 transition-transform" />
 													</CollapsibleTrigger>
 													<CollapsibleContent className="ml-3 mt-2 flex flex-col gap-2">
-														{section.children.map((child: any) => (
+														{section.children.map((child: any) => {
+															const childHref = child.page?.permalink || child.url || '#';
+															const childActive = childHref !== '#' && pathname === childHref;
+
+															return (
 															<Link
 																key={child.id}
-																href={child.page?.permalink || child.url || '#'}
+																href={childHref}
 																className="text-[14px] py-1 hover:opacity-70"
+																style={childActive && activeTextColor ? { color: activeTextColor } : undefined}
 																onClick={handleLinkClick}
 															>
 																{child.title}
 															</Link>
-														))}
+															);
+														})}
 													</CollapsibleContent>
 												</Collapsible>
 											) : (
 												<Link
 													href={section.page?.permalink || section.url || '#'}
 													className="font-medium text-[15px] hover:opacity-70 block py-1"
+													style={mobileActive && activeTextColor ? { color: activeTextColor } : undefined}
 													onClick={handleLinkClick}
 												>
 													{section.title}
 												</Link>
 											)}
 										</div>
-									))}
+									);
+									})}
 									{/* CTA in mobile menu - only on small mobile */}
 									<Link
 										href="/lets-talk"

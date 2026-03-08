@@ -55,7 +55,8 @@
       "Bash(__NEW_LINE_c6ebfb6eacf24f1c__ ssh:*)",
       "Bash(aws cloudfront:*)",
       "Bash(tasklist:*)",
-      "Bash(npx next:*)"
+      "Bash(npx next:*)",
+      "Bash(xxd:*)"
     ]
   },
   "enableAllProjectMcpServers": true,

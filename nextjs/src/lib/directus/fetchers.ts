@@ -525,6 +525,10 @@ export const fetchSiteData = async () => {
 					fields: [
 						'id',
 						'title',
+						'active_text_color',
+						'active_underline_color',
+						'scrolled_active_text_color',
+						'scrolled_active_underline_color',
 						{
 							items: [
 								'id',

@@ -82,6 +82,10 @@ interface HeroSlide {
 	nav_cta_text_color: string | null;
 	nav_scrolled_cta_background_color: string | null;
 	nav_scrolled_cta_text_color: string | null;
+	nav_active_text_color: string | null;
+	nav_active_underline_color: string | null;
+	nav_scrolled_active_text_color: string | null;
+	nav_scrolled_active_underline_color: string | null;
 	carousel_indicator_color: string | null;
 	enable_gradient_overlay: boolean | null;
 }
@@ -298,11 +302,15 @@ export default function Hero({ data }: HeroProps) {
 			ctaTextColor: slide.nav_cta_text_color,
 			scrolledCtaBackgroundColor: slide.nav_scrolled_cta_background_color,
 			scrolledCtaTextColor: slide.nav_scrolled_cta_text_color,
+			activeTextColor: slide.nav_active_text_color,
+			activeUnderlineColor: slide.nav_active_underline_color,
+			scrolledActiveTextColor: slide.nav_scrolled_active_text_color,
+			scrolledActiveUnderlineColor: slide.nav_scrolled_active_underline_color,
 			hideLogo: slide.nav_hide_logo,
 			logoOverride: slide.nav_logo_override,
 		};
 
-		if (slide?.nav_text_color || slide?.nav_text_hover_color || slide?.nav_scrolled_background_color || slide?.nav_scrolled_text_color || slide?.nav_scrolled_text_hover_color || slide?.nav_dropdown_background_color || slide?.nav_dropdown_text_color || slide?.nav_dropdown_text_hover_color || slide?.nav_cta_background_color || slide?.nav_cta_text_color || slide?.nav_scrolled_cta_background_color || slide?.nav_scrolled_cta_text_color || slide?.nav_hide_logo !== null || slide?.nav_logo_override) {
+		if (slide?.nav_text_color || slide?.nav_text_hover_color || slide?.nav_scrolled_background_color || slide?.nav_scrolled_text_color || slide?.nav_scrolled_text_hover_color || slide?.nav_dropdown_background_color || slide?.nav_dropdown_text_color || slide?.nav_dropdown_text_hover_color || slide?.nav_cta_background_color || slide?.nav_cta_text_color || slide?.nav_scrolled_cta_background_color || slide?.nav_scrolled_cta_text_color || slide?.nav_active_text_color || slide?.nav_active_underline_color || slide?.nav_scrolled_active_text_color || slide?.nav_scrolled_active_underline_color || slide?.nav_hide_logo !== null || slide?.nav_logo_override) {
 			setNavColors(navData);
 		} else {
 			// Reset to default if slide has no nav overrides
