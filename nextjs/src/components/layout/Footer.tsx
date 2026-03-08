@@ -7,6 +7,7 @@ import { forwardRef } from 'react';
 import { useFooterCTA } from '@/contexts/FooterCTAContext';
 import { setAttr } from '@directus/visual-editing';
 import { usePathname } from 'next/navigation';
+import Container from '../ui/container';
 
 
 
@@ -137,7 +138,7 @@ const Footer = forwardRef<HTMLElement, FooterProps>(({ navigation, globals }, re
 			)}
 			{/* ── Footer Body ─────────────────────────────────────────────── */}
 			<div className="w-full bg-[#0b2d34]">
-				<div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-[135px] pt-[48px] lg:pt-[80px] flex flex-col gap-[30px] lg:gap-[30px]">
+				<Container className="mx-auto px-4 sm:px-6 lg:px-[82px] pt-[48px] lg:pt-[80px] flex flex-col gap-[30px] lg:gap-[30px]">
 					{/* Top row — stacks on mobile, side-by-side on desktop */}
 					<div className="flex flex-col lg:flex-row gap-[40px] lg:gap-[64px] items-start">
 						{/* Brand column */}
@@ -295,7 +296,7 @@ const Footer = forwardRef<HTMLElement, FooterProps>(({ navigation, globals }, re
 							))}
 						</div>
 					</div>
-				</div>
+				</Container>
 			</div>
 		</footer>
 	</>;
