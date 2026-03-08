@@ -49,6 +49,8 @@ export default function VisualEditingLayout({
 				logo_override: navOverrides.nav_logo_override ?? undefined,
 				cta_background_color: navOverrides.nav_cta_background_color ?? undefined,
 				cta_text_color: navOverrides.nav_cta_text_color ?? undefined,
+				scrolled_cta_background_color: navOverrides.nav_scrolled_cta_background_color ?? undefined,
+				scrolled_cta_text_color: navOverrides.nav_scrolled_cta_text_color ?? undefined,
 				active_text_color: navOverrides.nav_active_text_color ?? undefined,
 				active_underline_color: navOverrides.nav_active_underline_color ?? undefined,
 				scrolled_active_text_color: navOverrides.nav_scrolled_active_text_color ?? undefined,

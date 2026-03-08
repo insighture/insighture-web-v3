@@ -200,13 +200,15 @@ const NavigationBar = forwardRef<HTMLElement, NavigationBarProps>(({ navigation,
 	// Page-level CTA overrides (from navigation merged props)
 	const pageCtaBgColor = navigation?.cta_background_color;
 	const pageCtaTextColor = navigation?.cta_text_color;
+	const pageScrolledCtaBgColor = navigation?.scrolled_cta_background_color;
+	const pageScrolledCtaTextColor = navigation?.scrolled_cta_text_color;
 
-	// Effective CTA button colors: Hero slide > page-level > defaults
+	// Effective CTA button colors: Hero slide > page-level scrolled > page-level default > defaults
 	const effectiveCtaBgColor = scrolled
-		? contextColors.scrolledCtaBackgroundColor || contextColors.ctaBackgroundColor || pageCtaBgColor || '#ffffff'
+		? contextColors.scrolledCtaBackgroundColor || pageScrolledCtaBgColor || contextColors.ctaBackgroundColor || pageCtaBgColor || '#ffffff'
 		: contextColors.ctaBackgroundColor || pageCtaBgColor || '#ffffff';
 	const effectiveCtaTextColor = scrolled
-		? contextColors.scrolledCtaTextColor || contextColors.ctaTextColor || pageCtaTextColor || '#ec2b54'
+		? contextColors.scrolledCtaTextColor || pageScrolledCtaTextColor || contextColors.ctaTextColor || pageCtaTextColor || '#ec2b54'
 		: contextColors.ctaTextColor || pageCtaTextColor || '#ec2b54';
 
 	const headerStyle: React.CSSProperties = {

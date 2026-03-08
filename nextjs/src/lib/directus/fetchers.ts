@@ -29,6 +29,8 @@ const pageFields = [
 	'nav_logo_override',
 	'nav_cta_background_color',
 	'nav_cta_text_color',
+	'nav_scrolled_cta_background_color',
+	'nav_scrolled_cta_text_color',
 	'nav_active_text_color',
 	'nav_active_underline_color',
 	'nav_scrolled_active_text_color',

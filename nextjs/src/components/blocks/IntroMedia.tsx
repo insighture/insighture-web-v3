@@ -1,6 +1,7 @@
 'use client';
 
 import DirectusImage from '@/components/shared/DirectusImage';
+import Container from '@/components/ui/container';
 import { setAttr } from '@directus/visual-editing';
 
 interface IntroMediaData {
@@ -15,34 +16,34 @@ export default function IntroMedia({ data }: { data: IntroMediaData }) {
 	const { id, heading, description, image, video_url } = data;
 
 	return (
-		<div className="bg-[#0b2d34] w-full flex items-center overflow-hidden py-16 lg:py-[64px]">
+		<div className="bg-[#0b2d34] w-full flex flex-col lg:flex-row items-center overflow-hidden pt-10 md:pt-12 lg:py-[64px]">
 			{/* Left: text content */}
-			<div className="flex items-stretch gap-8 flex-1 pl-8 lg:pl-[120px] pr-8 lg:pr-[80px] py-4">
+			<Container className="flex items-stretch gap-6 md:gap-8 flex-1 py-4 lg:pr-[80px]">
 				{/* Pink vertical accent line */}
 				<div className="w-[3px] shrink-0 bg-[#ee4065] rounded-full" />
 
-				<div className="flex flex-col gap-10 text-[#fcfcfd]">
+				<div className="flex flex-col gap-6 md:gap-10 text-[#fcfcfd]">
 					{heading && (
 						<div
-							className="font-heading font-medium text-[40px] lg:text-[48px] leading-[56px] [&_em]:not-italic [&_em]:text-[#ee4065] [&_em]:font-semibold"
+							className="font-heading font-medium text-[28px] md:text-[36px] lg:text-[48px] leading-[1.2] lg:leading-[56px] [&_em]:not-italic [&_em]:text-[#ee4065] [&_em]:font-semibold"
 							data-directus={setAttr({ collection: 'block_intro_media', item: id, fields: 'heading', mode: 'popover' })}
 							dangerouslySetInnerHTML={{ __html: heading }}
 						/>
 					)}
 					{description && (
 						<p
-							className="font-sans font-normal text-[16px] leading-[24px] text-[#fcfcfd] max-w-[487px]"
+							className="font-sans font-normal text-[14px] md:text-[16px] leading-[22px] md:leading-[24px] text-[#fcfcfd] max-w-[487px]"
 							data-directus={setAttr({ collection: 'block_intro_media', item: id, fields: 'description', mode: 'popover' })}
 						>
 							{description}
 						</p>
 					)}
 				</div>
-			</div>
+			</Container>
 
 			{/* Right: image / video */}
 			<div
-				className="shrink-0 w-[55%] lg:w-[700px] h-[340px] lg:h-[480px] rounded-tl-[8px] rounded-bl-[8px] overflow-hidden relative"
+				className="w-full lg:shrink-0 lg:w-[700px] h-[240px] sm:h-[300px] md:h-[380px] lg:h-[480px] lg:rounded-l-[8px] overflow-hidden relative mt-6 lg:mt-0"
 				data-directus={setAttr({ collection: 'block_intro_media', item: id, fields: video_url ? 'video_url' : 'image', mode: 'popover' })}
 			>
 				{video_url ? (
@@ -52,11 +53,11 @@ export default function IntroMedia({ data }: { data: IntroMediaData }) {
 						uuid={image}
 						alt={heading ?? ''}
 						fill
-						sizes="700px"
+						sizes="(max-width: 1024px) 100vw, 700px"
 						className="object-cover"
 					/>
 				) : (
-					<div className="w-full h-full bg-[#0f3b43]" />
+					<div className="size-full bg-[#0f3b43]" />
 				)}
 			</div>
 		</div>
@@ -74,7 +75,7 @@ function VideoEmbed({ url }: { url: string }) {
 	return (
 		<iframe
 			src={embedUrl}
-			className="w-full h-full"
+			className="size-full"
 			allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
 			allowFullScreen
 			title="Video"

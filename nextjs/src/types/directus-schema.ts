@@ -914,6 +914,10 @@ export interface Page {
 	nav_cta_background_color?: string | null;
 	/** @description Override CTA button text color for this page. Null = inherit. */
 	nav_cta_text_color?: string | null;
+	/** @description Override scrolled CTA button background color for this page. Null = inherit. */
+	nav_scrolled_cta_background_color?: string | null;
+	/** @description Override scrolled CTA button text color for this page. Null = inherit. */
+	nav_scrolled_cta_text_color?: string | null;
 	/** @description Override active nav item text color for this page. Null = inherit. */
 	nav_active_text_color?: string | null;
 	/** @description Override active nav item underline color for this page. Null = inherit. */
