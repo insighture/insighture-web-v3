@@ -507,7 +507,7 @@ const NavigationBar = forwardRef<HTMLElement, NavigationBarProps>(({ navigation,
 									<Menu className="size-6" />
 								</Button>
 							</DropdownMenuTrigger>
-							<DropdownMenuContent align="end" className="w-[calc(100vw-2rem)] max-w-sm p-4 shadow-lg mr-2">
+							<DropdownMenuContent align="end" className="w-[calc(100vw-2rem)] max-w-sm p-6 shadow-lg mt-3 mr-2">
 								<div className="flex flex-col gap-3">
 									{navigation?.items?.map((section: any) => {
 										const mobileActive = isNavItemActive(section);
