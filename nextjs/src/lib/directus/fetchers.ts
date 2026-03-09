@@ -76,7 +76,7 @@ const pageFields = [
 					block_card_grid: ['*', { items: ['*'] }],
 					block_reach_out: ['*', { form: ['*', { fields: ['*'] }] }, { contact_items: ['*'] }],
 					block_form: ['*', { form: ['*', { fields: ['*'] }] }],
-					block_open_roles: ['*', { jobs: ['*'] }],
+					block_open_roles: ['*', { jobs: ['*', { form: ['*', { fields: ['*'] }] }] }],
 					block_people_say: ['*', { slides: ['*'] }],
 					block_values: ['*', { value_items: ['*'] }],
 					block_posts_carousel: ['id','headline','description',{posts: ['sort',{ posts_id: ['id', 'title', 'slug', 'image', 'description', 'type'] }] }],
@@ -692,3 +692,36 @@ export async function fetchRedirects(): Promise<Pick<Redirect, 'url_from' | 'url
 
 	return response || [];
 }
+
+/**
+ * Fetches a single job posting from block_open_roles_job by its slug.
+ */
+export const fetchJobBySlug = async (slug: string) => {
+	const { directus } = useDirectus();
+
+	try {
+		const results = await directus.request(
+			readItems<Schema, 'block_open_roles_job', any>('block_open_roles_job', {
+				filter: { slug: { _eq: slug } },
+				limit: 1,
+				fields: [
+					'id',
+					'title',
+					'type',
+					'department',
+					'location',
+					'location_flag',
+					'slug',
+					'overview',
+					'responsibilities',
+					'requirements',
+					{ form: ['*', { fields: ['*'] }] },
+				],
+			}),
+		);
+		return (results as any[])[0] ?? null;
+	} catch (error) {
+		console.error('Error fetching job by slug:', error);
+		return null;
+	}
+};

@@ -13,6 +13,7 @@ interface OpenRolesJob {
 	location?: string | null;
 	location_flag?: string | null;
 	apply_url?: string | null;
+	slug?: string | null;
 }
 
 interface OpenRolesData {
@@ -157,17 +158,25 @@ function JobCard({ job }: { job: OpenRolesJob }) {
 			</div>
 
 			{/* Right: apply button */}
-			{job.apply_url && (
+			{job.slug ? (
+				<a
+					href={`/careers/${job.slug}`}
+					className="group shrink-0 flex items-center gap-6 h-12 px-3 py-[10px] bg-[#ee4065] border-[1.2px] border-[#ee4065] rounded-lg text-white font-heading font-semibold text-[16px] leading-[26px] hover:bg-white hover:text-[#ee4065] transition-colors"
+				>
+					Apply Here
+					<ChevronIcon />
+				</a>
+			) : job.apply_url ? (
 				<a
 					href={job.apply_url}
 					target="_blank"
 					rel="noopener noreferrer"
-					className="shrink-0 flex items-center gap-6 h-12 px-3 py-[10px] bg-[#ee4065] border-[1.2px] border-[#ee4065] rounded-lg text-white font-heading font-semibold text-[16px] leading-[26px] hover:opacity-90 transition-opacity"
+					className="group shrink-0 flex items-center gap-6 h-12 px-3 py-[10px] bg-[#ee4065] border-[1.2px] border-[#ee4065] rounded-lg text-white font-heading font-semibold text-[16px] leading-[26px] hover:bg-white hover:text-[#ee4065] transition-colors"
 				>
 					Apply here
 					<ChevronIcon />
 				</a>
-			)}
+			) : null}
 		</div>
 	);
 }
@@ -185,8 +194,8 @@ function BriefcaseIcon() {
 
 function ChevronIcon() {
 	return (
-		<svg width="7" height="12" viewBox="0 0 7 12" fill="none" aria-hidden="true" className="shrink-0">
-			<path d="M1 1L6 6L1 11" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+		<svg width="7" height="12" viewBox="0 0 7 12" fill="none" aria-hidden="true" className="shrink-0 group-hover:text-[#ee4065] transition-colors">
+			<path d="M1 1L6 6L1 11" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
 		</svg>
 	);
 }
