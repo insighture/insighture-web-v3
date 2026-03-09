@@ -1,6 +1,28 @@
 import { fetchPostBySlug, fetchPostByIdAndVersion, getPostIdBySlug } from '@/lib/directus/fetchers';
 import BlogPostClient from './BlogPostClient';
 import type { DirectusUser, Post } from '@/types/directus-schema';
+import type { Metadata } from 'next';
+
+export async function generateMetadata({
+	params,
+}: {
+	params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+	const { slug } = await params;
+	try {
+		const { post } = await fetchPostBySlug(slug, { draft: false });
+		if (!post) {
+			return { title: 'Post Not Found' };
+		}
+
+		return {
+			title: post.title,
+			description: post.description || post.title,
+		};
+	} catch {
+		return { title: 'Post Not Found' };
+	}
+}
 
 export default async function BlogPostPage({
 	params,

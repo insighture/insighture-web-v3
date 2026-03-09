@@ -1,19 +1,28 @@
 'use client';
 
-import { useCallback, useEffect } from 'react';
+import { useCallback, useEffect, useRef } from 'react';
 
 const SITE_KEY = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
 
 export function useRecaptcha() {
-	useEffect(() => {
-		if (!SITE_KEY) return;
+	const readyRef = useRef(false);
 
-		// Don't load if already present
-		if (document.querySelector(`script[src*="recaptcha/api.js"]`)) return;
+	useEffect(() => {
+		if (!SITE_KEY || readyRef.current) return;
+
+		if (document.querySelector(`script[src*="recaptcha/api.js"]`)) {
+			readyRef.current = true;
+
+			return;
+		}
 
 		const script = document.createElement('script');
 		script.src = `https://www.google.com/recaptcha/api.js?render=${SITE_KEY}`;
 		script.async = true;
+		script.defer = true;
+		script.onload = () => {
+			readyRef.current = true;
+		};
 		document.head.appendChild(script);
 	}, []);
 
@@ -21,18 +30,25 @@ export function useRecaptcha() {
 		if (!SITE_KEY) return null;
 
 		try {
-			await new Promise<void>((resolve) => {
-				if (window.grecaptcha) {
-					resolve();
-				} else {
-					const check = setInterval(() => {
+			// Wait for grecaptcha to be available (max 5s, no polling)
+			if (!window.grecaptcha) {
+				await new Promise<void>((resolve, reject) => {
+					const timeout = setTimeout(() => reject(new Error('reCAPTCHA timeout')), 5000);
+					const observer = new MutationObserver(() => {
 						if (window.grecaptcha) {
-							clearInterval(check);
+							observer.disconnect();
+							clearTimeout(timeout);
 							resolve();
 						}
-					}, 100);
-				}
-			});
+					});
+					observer.observe(document.head, { childList: true, subtree: true });
+					if (window.grecaptcha) {
+						observer.disconnect();
+						clearTimeout(timeout);
+						resolve();
+					}
+				});
+			}
 
 			const token = await window.grecaptcha.execute(SITE_KEY, { action });
 

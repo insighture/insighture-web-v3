@@ -1,7 +1,7 @@
 import '@/styles/globals.css';
 import { Albert_Sans, Open_Sans } from 'next/font/google';
 import { ReactNode } from 'react';
-import { Metadata } from 'next';
+import { Metadata, Viewport } from 'next';
 
 const albertSans = Albert_Sans({
 	subsets: ['latin'],
@@ -27,6 +27,12 @@ import { NavigationProvider } from '@/contexts/NavigationContext';
 import { fetchSiteData } from '@/lib/directus/fetchers';
 import { getDirectusAssetURL } from '@/lib/directus/directus-utils';
 import { Toaster } from 'sonner';
+
+export const viewport: Viewport = {
+	width: 'device-width',
+	initialScale: 1,
+	maximumScale: 5,
+};
 
 export async function generateMetadata(): Promise<Metadata> {
 	const { globals } = await fetchSiteData();

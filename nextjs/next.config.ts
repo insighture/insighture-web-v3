@@ -8,7 +8,7 @@ const withBundleAnalyzer = initializeBundleAnalyzer({
 
 const ContentSecurityPolicy = `
     default-src 'self';
-    script-src 'self' 'unsafe-eval' 'unsafe-inline';
+    script-src 'self' 'unsafe-eval' 'unsafe-inline' https://www.google.com/recaptcha/ https://www.gstatic.com/recaptcha/;
     frame-src *;
     style-src 'self' 'unsafe-inline';
     img-src * blob: data:;
@@ -21,8 +21,6 @@ const ContentSecurityPolicy = `
 const nextConfig: NextConfig = {
 	output: 'standalone',
 	webpack: (config) => {
-		config.cache = false;
-
 		return config;
 	},
 	images: {

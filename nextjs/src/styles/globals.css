@@ -4,7 +4,7 @@
 
 :root {
 	--background-color: #ffffff; /* Light background */
-	--foreground-color: #42566e; /* Light text */
+	--foreground-color: #ffffff; /* Light text */
 	--background-color-muted: color-mix(in srgb, var(--background-color), var(--foreground-color) 10%);
 	--accent-color: #6644ff; /* Accent color */
 	--background-variant-color: #172940;

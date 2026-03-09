@@ -206,7 +206,7 @@ function HeroVideo({ videoId, posterId, fill, className, loop = true, onEnded, p
 			{posterId && !isLoaded && (
 				<DirectusImage
 					uuid={posterId}
-					alt=""
+					alt="Video poster"
 					fill={fill}
 					sizes="100vw"
 					className={cn(className, 'transition-opacity duration-500')}

@@ -1,36 +1,40 @@
 'use client';
 
-import RichText from '@/components/blocks/RichText';
-import Hero from '@/components/blocks/Hero';
-import Gallery from '@/components/blocks/Gallery';
-import Pricing from '@/components/blocks/Pricing';
-import Posts from '@/components/blocks/Posts';
-import Form from '@/components/blocks/Form';
-import Services from '@/components/blocks/Services';
-import Testimonials from '@/components/blocks/Testimonials';
-import LogoCarousel from '@/components/blocks/LogoCarousel';
-import FeatureSplit from '@/components/blocks/FeatureSplit';
-import Insights from '@/components/blocks/Insights';
-import Credentials from '@/components/blocks/Credentials';
-import BlogFeaturedPost from '@/components/blocks/BlogFeaturedPost';
-import PostsCarousel from './PostsCarousel';
-import AllPostsGrid from './AllPostsGrid';
-import ServiceFeaturedArticle from './ServiceFeaturedArticle';
-import ServiceCredentialsCTA from './ServiceCredentialsCTA';
-import ServiceProductCatalogue from './ServiceProductCatalogue';
-import ServiceTabs from './ServiceTabs';
-import ServiceItems from './ServiceItems';
-import ExpertiseCards from './ExpertiseCards';
-import PlatformBanner from './PlatformBanner';
-import CardGrid from '@/components/blocks/CardGrid';
-import ReachOut from '@/components/blocks/ReachOut';
-import Acknowledgement from '@/components/blocks/Acknowledgement';
-import CultureGallery from '@/components/blocks/CultureGallery';
-import ValuesBlock from '@/components/blocks/ValuesBlock';
-import PeopleSay from '@/components/blocks/PeopleSay';
-import IntroMedia from '@/components/blocks/IntroMedia';
-import OpenRoles from '@/components/blocks/OpenRoles';
-import CtaSplit from '@/components/blocks/CtaSplit';
+import dynamic from 'next/dynamic';
+
+const components: Record<string, React.ComponentType<any>> = {
+	block_hero: dynamic(() => import('@/components/blocks/Hero')),
+	block_richtext: dynamic(() => import('@/components/blocks/RichText')),
+	block_gallery: dynamic(() => import('@/components/blocks/Gallery')),
+	block_pricing: dynamic(() => import('@/components/blocks/Pricing')),
+	block_posts: dynamic(() => import('@/components/blocks/Posts')),
+	block_form: dynamic(() => import('@/components/blocks/Form')),
+	block_services: dynamic(() => import('@/components/blocks/Services')),
+	block_testimonials: dynamic(() => import('@/components/blocks/Testimonials')),
+	block_logo_carousel: dynamic(() => import('@/components/blocks/LogoCarousel')),
+	block_feature_split: dynamic(() => import('@/components/blocks/FeatureSplit')),
+	block_insights: dynamic(() => import('@/components/blocks/Insights')),
+	block_credentials: dynamic(() => import('@/components/blocks/Credentials')),
+	block_featured_post: dynamic(() => import('@/components/blocks/BlogFeaturedPost')),
+	block_posts_carousel: dynamic(() => import('./PostsCarousel')),
+	block_all_posts: dynamic(() => import('./AllPostsGrid')),
+	block_service_featured_article: dynamic(() => import('./ServiceFeaturedArticle')),
+	block_service_credentials_cta: dynamic(() => import('./ServiceCredentialsCTA')),
+	block_service_product_catalogue: dynamic(() => import('./ServiceProductCatalogue')),
+	block_service_tabs: dynamic(() => import('./ServiceTabs')),
+	block_services_tab: dynamic(() => import('./ServiceItems')),
+	block_expertise_cards: dynamic(() => import('./ExpertiseCards')),
+	block_service_platform_banner: dynamic(() => import('./PlatformBanner')),
+	block_card_grid: dynamic(() => import('@/components/blocks/CardGrid')),
+	block_reach_out: dynamic(() => import('@/components/blocks/ReachOut')),
+	block_acknowledgement: dynamic(() => import('@/components/blocks/Acknowledgement')),
+	block_culture_gallery: dynamic(() => import('@/components/blocks/CultureGallery')),
+	block_values: dynamic(() => import('@/components/blocks/ValuesBlock')),
+	block_people_say: dynamic(() => import('@/components/blocks/PeopleSay')),
+	block_intro_media: dynamic(() => import('@/components/blocks/IntroMedia')),
+	block_open_roles: dynamic(() => import('@/components/blocks/OpenRoles')),
+	block_cta_split: dynamic(() => import('@/components/blocks/CtaSplit')),
+};
 
 interface BaseBlockProps {
 	block: {
@@ -41,40 +45,6 @@ interface BaseBlockProps {
 }
 
 const BaseBlock = ({ block }: BaseBlockProps) => {
-	const components: Record<string, React.ElementType> = {
-		block_hero: Hero,
-		block_richtext: RichText,
-		block_gallery: Gallery,
-		block_pricing: Pricing,
-		block_posts: Posts,
-		block_form: Form,
-		block_services: Services,
-		block_testimonials: Testimonials,
-		block_logo_carousel: LogoCarousel,
-		block_feature_split: FeatureSplit,
-		block_insights: Insights,
-		block_credentials: Credentials,
-		block_featured_post: BlogFeaturedPost,
-		block_posts_carousel: PostsCarousel,
-		block_all_posts: AllPostsGrid,
-		block_service_featured_article: ServiceFeaturedArticle,
-		block_service_credentials_cta: ServiceCredentialsCTA,
-		block_service_product_catalogue: ServiceProductCatalogue,
-		block_service_tabs: ServiceTabs,
-		block_services_tab: ServiceItems,
-		block_expertise_cards: ExpertiseCards,
-		block_service_platform_banner: PlatformBanner,
-		block_card_grid: CardGrid,
-		block_reach_out: ReachOut,
-		block_acknowledgement: Acknowledgement,
-		block_culture_gallery: CultureGallery,
-		block_values: ValuesBlock,
-		block_people_say: PeopleSay,
-		block_intro_media: IntroMedia,
-		block_open_roles: OpenRoles,
-		block_cta_split: CtaSplit,
-	};
-
 	const Component = components[block.collection];
 
 	if (!Component) {
