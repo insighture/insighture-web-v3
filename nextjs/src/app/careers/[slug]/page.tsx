@@ -17,7 +17,7 @@ export default async function CareerDetailPage({
 	const form = job.form && typeof job.form !== 'string' ? (job.form as Form & { fields: FormField[] }) : null;
 
 	return (
-		<main className="w-full">
+		<main className="w-full bg-[#fff]">
 			{/* Header */}
 			<div className="w-full py-[80px] px-8 lg:px-[160px] flex flex-col items-center text-center gap-6">
 				<h1 className="font-heading font-semibold text-[36px] lg:text-[48px] leading-[1.15] text-[#15181a]">
