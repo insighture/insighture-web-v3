@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import DirectusImage from '@/components/shared/DirectusImage';
 import { setAttr } from '@directus/visual-editing';
 
@@ -32,6 +32,19 @@ export default function OpenRoles({ data }: { data: OpenRolesData }) {
 	const { id, heading, description, jobs } = data;
 	const [activeTab, setActiveTab] = useState<'open_roles' | 'internship'>('open_roles');
 
+	useEffect(() => {
+		const applyHash = () => {
+			const hash = window.location.hash;
+			if (hash === '#open-roles') setActiveTab('open_roles');
+			else if (hash === '#internships') setActiveTab('internship');
+		};
+
+		applyHash();
+		window.addEventListener('hashchange', applyHash);
+
+		return () => window.removeEventListener('hashchange', applyHash);
+	}, []);
+
 	const sorted = jobs ? [...jobs].sort((a, b) => (a.sort ?? 0) - (b.sort ?? 0)) : [];
 	const filtered = sorted.filter((j) => !j.type || j.type === activeTab);
 
@@ -44,7 +57,8 @@ export default function OpenRoles({ data }: { data: OpenRolesData }) {
 	}
 
 	return (
-		<div className="w-full py-[96px] px-8 lg:px-[160px] flex flex-col gap-16">
+		<div id="open-roles" className="w-full py-[96px] px-8 lg:px-[160px] flex flex-col gap-16">
+			<span id="internships" className="sr-only" />
 			{/* Header */}
 			<div className="flex flex-col gap-10 items-center text-center">
 				{heading && (
