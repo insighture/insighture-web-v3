@@ -49,38 +49,37 @@ const FormBuilder = ({ form, className }: FormBuilderProps) => {
 			// Save submission to Directus
 			await submitForm(form.id, fieldsWithNames, data);
 
-			// Get reCAPTCHA v3 token
-			const recaptchaToken = await getToken('contact_form');
-
-			// Send email notification via SendGrid endpoint
-			const directusUrl = process.env.NEXT_PUBLIC_DIRECTUS_URL;
-			const emailFields = form.fields
-				.filter((field) => data[field.name || ''] !== undefined && data[field.name || ''] !== null)
-				.map((field) => ({
-					label: field.label || field.name || '',
-					value: String(data[field.name || ''] ?? ''),
-				}));
-
-			const sendgridRes = await fetch(`${directusUrl}/sendgrid/send`, {
-				method: 'POST',
-				headers: { 'Content-Type': 'application/json' },
-				body: JSON.stringify({
-					subject: `New Submission: ${form.title || 'Contact Form'}`,
-					fields: emailFields,
-					recaptchaToken,
-				}),
-			});
-
-			if (!sendgridRes.ok) {
-				const errBody = await sendgridRes.json().catch(() => ({}));
-				throw new Error(errBody.error || 'Failed to send email');
-			}
-
+			// Show success and reset form immediately after Directus save
 			if (form.on_success === 'redirect' && form.success_redirect_url) {
 				window.location.href = form.success_redirect_url;
-			} else {
-				toast.success(form.success_message || DEFAULT_SUCCESS_MESSAGE);
-				resetForm();
+				return;
+			}
+
+			toast.success(form.success_message || DEFAULT_SUCCESS_MESSAGE);
+			resetForm();
+
+			// Send email notification via SendGrid (fire-and-forget, don't block user)
+			try {
+				const recaptchaToken = await getToken('contact_form');
+				const directusUrl = process.env.NEXT_PUBLIC_DIRECTUS_URL;
+				const emailFields = form.fields
+					.filter((field) => data[field.name || ''] !== undefined && data[field.name || ''] !== null)
+					.map((field) => ({
+						label: field.label || field.name || '',
+						value: String(data[field.name || ''] ?? ''),
+					}));
+
+				await fetch(`${directusUrl}/sendgrid/send`, {
+					method: 'POST',
+					headers: { 'Content-Type': 'application/json' },
+					body: JSON.stringify({
+						subject: `New Submission: ${form.title || 'Contact Form'}`,
+						fields: emailFields,
+						recaptchaToken,
+					}),
+				});
+			} catch (emailErr) {
+				console.error('SendGrid email failed (submission was saved):', emailErr);
 			}
 		} catch (err) {
 			console.error('Error submitting form:', err);
