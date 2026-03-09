@@ -20,6 +20,7 @@ interface ReachOutForm {
 	on_success?: 'redirect' | 'message' | null;
 	submit_label?: string | null;
 	success_message?: string | null;
+	error_message?: string | null;
 	title?: string | null;
 	success_redirect_url?: string | null;
 	is_active?: boolean | null;
@@ -60,7 +61,7 @@ export default function ReachOut({ data }: ReachOutProps) {
 	const pdfUrl = brochure_pdf ? getDirectusAssetURL(brochure_pdf) : null;
 
 	const sidebar = (
-		<div className="w-full flex flex-col gap-[24px] py-[24px] pr-[24px]">
+		<div className="flex flex-col gap-[24px] py-[24px] pr-[24px]">
 			{heading && (
 				<div className="px-[24px]">
 					<h2
@@ -77,12 +78,10 @@ export default function ReachOut({ data }: ReachOutProps) {
 					className="relative h-[168px] w-full"
 					data-directus={setAttr({ collection: 'block_reach_out', item: id, fields: ['brochure_title', 'brochure_image', 'brochure_pdf', 'brochure_download_label'], mode: 'popover' })}
 				>
-					{/* White card: starts 24px from left edge, fills the rest */}
-					<div className="absolute inset-y-0 left-[24px] right-0 bg-white rounded-[8px]" />
-					{/* Content row: starts at left edge so image bleeds left of white card */}
-					<div className="absolute left-0 right-0 top-[24px] flex gap-[24px] items-center">
+					<div className="absolute inset-y-0 left-[24px] right-0 bg-[#f9fafb] rounded-[8px]" />
+					<div className="absolute inset-x-0 top-[24px] flex gap-[24px] items-center">
 						{brochure_image && (
-							<div className="relative shrink-0 w-[200px] h-[120px] rounded-tr-[8px] rounded-br-[8px] overflow-hidden">
+							<div className="relative shrink-0 w-[200px] h-[120px] rounded-r-[8px] overflow-hidden">
 								<DirectusImage
 									uuid={brochure_image}
 									alt={brochure_title ?? 'Brochure'}
@@ -94,7 +93,7 @@ export default function ReachOut({ data }: ReachOutProps) {
 						)}
 						<div className="flex flex-col gap-[48px] flex-1 min-w-0">
 							{brochure_title && (
-								<p className="font-heading font-semibold text-[16px] leading-[24px] text-[#15181a]">
+								<p className="font-heading font-semibold text-[18px] leading-[24px] text-[#15181a]">
 									{brochure_title}
 								</p>
 							)}
@@ -146,14 +145,14 @@ export default function ReachOut({ data }: ReachOutProps) {
 	if (form) {
 		return (
 			<Container>
-				<div className="grid grid-cols-12 gap-8 items-start py-16">
+				<div className="flex flex-col lg:flex-row gap-[32px] lg:gap-[64px] items-start py-16">
 					<div
-						className="col-span-12 md:col-span-8"
+						className="w-full lg:flex-1"
 						data-directus={setAttr({ collection: 'block_reach_out', item: id, fields: 'form', mode: 'popover' })}
 					>
-						<FormBuilder form={form as any} />
+						<FormBuilder form={form as any} className="!p-0" />
 					</div>
-					<div className="col-span-12 md:col-span-4 bg-[#f9fafa] rounded-[10px]">
+					<div className="w-full lg:w-[440px] shrink-0 bg-[#ebf0f2] rounded-[8px]">
 						{sidebar}
 					</div>
 				</div>

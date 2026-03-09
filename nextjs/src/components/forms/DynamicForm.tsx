@@ -12,7 +12,7 @@ import { setAttr } from '@directus/visual-editing';
 
 interface DynamicFormProps {
 	fields: FormFieldType[];
-	onSubmit: (data: Record<string, any>) => void;
+	onSubmit: (data: Record<string, any>, resetForm: () => void) => void;
 	submitLabel: string;
 	submitButtonWidth?: 'auto' | 'full';
 	privacyPolicyText?: string | null;
@@ -70,8 +70,11 @@ const DynamicForm = ({
 	return (
 		<Form {...form}>
 			<form
-				onSubmit={form.handleSubmit(onSubmit)}
-				className="grid grid-cols-6 gap-4"
+				onSubmit={form.handleSubmit((data) => onSubmit(data, () => {
+					form.reset();
+					setPrivacyAccepted(false);
+				}))}
+				className="flex flex-col gap-[32px]"
 				data-directus={setAttr({
 					collection: 'forms',
 					item: id,
@@ -79,68 +82,78 @@ const DynamicForm = ({
 					mode: 'popover',
 				})}
 			>
-				{sortedFields.map((field) => (
-					<div key={field.id} className={colSpan(field.width)}>
+				<div className="flex flex-wrap gap-[16px]">
+					{sortedFields.map((field) => (
 						<Field key={field.id} field={field} form={form} />
-					</div>
-				))}
-				{privacyPolicyText && (
-					<div className="col-span-6 flex items-start gap-3">
-						<input
-							type="checkbox"
-							id={`privacy-${id}`}
-							checked={privacyAccepted}
-							onChange={(e) => setPrivacyAccepted(e.target.checked)}
-							className="mt-1 h-4 w-4 shrink-0 cursor-pointer accent-[#ee4065]"
-						/>
-						<label htmlFor={`privacy-${id}`} className="text-sm text-gray-600 cursor-pointer leading-snug italic">
-							{privacyPolicyLinkText && privacyPolicyLinkUrl
-								? privacyPolicyText.split(privacyPolicyLinkText).map((part, i, arr) =>
-									i < arr.length - 1 ? (
-										<span key={i}>
-											{part}
-											<a
-												href={privacyPolicyLinkUrl}
-												target="_blank"
-												rel="noopener noreferrer"
-												className="underline hover:opacity-80"
-											>
-												{privacyPolicyLinkText}
-											</a>
-										</span>
-									) : (
-										<span key={i}>{part}</span>
-									),
-								)
-								: privacyPolicyText}
-						</label>
-					</div>
-				)}
+					))}
+				</div>
 
-				<div className={submitButtonWidth === 'full' ? 'col-span-6' : 'col-span-6 sm:col-span-3 md:col-span-2'}>
-					<div
-						data-directus={setAttr({
-							collection: 'forms',
-							item: id,
-							fields: 'submit_label',
-							mode: 'popover',
-						})}
-					>
-						<Button
-							type="submit"
-							label={submitLabel}
-							icon="arrow"
-							iconPosition="right"
-							id={`submit-${id}`}
-							disabled={!!privacyPolicyText && !privacyAccepted}
-							className={`
-								bg-[#EE4065]
-								hover:bg-[#d73758]
-								text-white
-								rounded-lg
-								${submitButtonWidth === 'full' ? 'w-full justify-center' : ''}
-							`}
-						/>
+				<div className="flex flex-col gap-[8px]">
+					{privacyPolicyText && (
+						<div className="flex items-center gap-[8px] px-[8px] py-[4px]">
+							<input
+								type="checkbox"
+								id={`privacy-${id}`}
+								checked={privacyAccepted}
+								onChange={(e) => setPrivacyAccepted(e.target.checked)}
+								className="size-4 shrink-0 cursor-pointer accent-[#ee4065]"
+							/>
+							<label
+								htmlFor={`privacy-${id}`}
+								className="text-[12px] leading-[22px] text-[#15181a] cursor-pointer font-light italic"
+							>
+								{privacyPolicyLinkText && privacyPolicyLinkUrl
+									? privacyPolicyText.split(privacyPolicyLinkText).map((part, i, arr) =>
+										i < arr.length - 1 ? (
+											<span key={i}>
+												{part}
+												<a
+													href={privacyPolicyLinkUrl}
+													target="_blank"
+													rel="noopener noreferrer"
+													className="underline hover:opacity-80"
+												>
+													{privacyPolicyLinkText}
+												</a>
+											</span>
+										) : (
+											<span key={i}>{part}</span>
+										),
+									)
+									: privacyPolicyText}
+							</label>
+						</div>
+					)}
+
+					<div className="w-full">
+						<div
+							data-directus={setAttr({
+								collection: 'forms',
+								item: id,
+								fields: 'submit_label',
+								mode: 'popover',
+							})}
+						>
+							<Button
+								type="submit"
+								label={submitLabel}
+								icon="arrow"
+								iconPosition="right"
+								id={`submit-${id}`}
+								disabled={!!privacyPolicyText && !privacyAccepted}
+								className="
+									bg-[#EE4065]
+									hover:bg-[#d73758]
+									!text-white
+									rounded-[8px]
+									w-full
+									justify-center
+									h-[48px]
+									text-[16px]
+									font-bold
+								"
+							/>
+						</div>
 					</div>
 				</div>
 			</form>

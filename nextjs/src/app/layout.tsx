@@ -18,6 +18,7 @@ import { FooterCTAProvider } from '@/contexts/FooterCTAContext';
 import { NavigationProvider } from '@/contexts/NavigationContext';
 import { fetchSiteData } from '@/lib/directus/fetchers';
 import { getDirectusAssetURL } from '@/lib/directus/directus-utils';
+import { Toaster } from 'sonner';
 
 export async function generateMetadata(): Promise<Metadata> {
 	const { globals } = await fetchSiteData();
@@ -60,6 +61,7 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
 					</NavigationProvider>
 				</FooterCTAProvider>
 				</NavOverridesProvider>
+				<Toaster position="bottom-right" richColors closeButton />
 			</body>
 		</html>
 	);

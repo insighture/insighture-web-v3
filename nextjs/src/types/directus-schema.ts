@@ -719,6 +719,8 @@ export interface Form {
 	submit_label?: string | null;
 	/** @description Message shown after successful submission. */
 	success_message?: string | null;
+	/** @description Message shown when form submission fails. */
+	error_message?: string | null;
 	/** @description Form name (for internal reference). */
 	title?: string | null;
 	/** @description Destination URL after successful submission. */

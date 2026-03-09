@@ -1,11 +1,14 @@
 'use client';
 
-import { useState } from 'react';
-import { CheckCircle } from 'lucide-react';
 import DynamicForm from './DynamicForm';
 import { submitForm } from '@/lib/directus/forms';
 import { FormField } from '@/types/directus-schema';
 import { cn } from '@/lib/utils';
+import { useRecaptcha } from '@/hooks/useRecaptcha';
+import { toast } from 'sonner';
+
+const DEFAULT_SUCCESS_MESSAGE = 'Thank you for your submission. We will reach out to you soon.';
+const DEFAULT_ERROR_MESSAGE = 'Failed to submit the form. Please try again later.';
 
 interface FormBuilderProps {
 	className?: string;
@@ -17,6 +20,7 @@ interface FormBuilderProps {
 		submit_label?: string;
 		submit_button_width?: 'auto' | 'full' | null;
 		success_message?: string | null;
+		error_message?: string | null;
 		title?: string | null;
 		show_title?: boolean | null;
 		intro_paragraph?: string | null;
@@ -30,13 +34,11 @@ interface FormBuilderProps {
 }
 
 const FormBuilder = ({ form, className }: FormBuilderProps) => {
-	const [isSubmitted, setIsSubmitted] = useState(false);
-	const [error, setError] = useState<string | null>(null);
+	const { getToken } = useRecaptcha();
 
 	if (!form.is_active) return null;
 
-	const handleSubmit = async (data: Record<string, any>) => {
-		setError(null);
+	const handleSubmit = async (data: Record<string, any>, resetForm: () => void) => {
 		try {
 			const fieldsWithNames = form.fields.map((field) => ({
 				id: field.id,
@@ -44,42 +46,56 @@ const FormBuilder = ({ form, className }: FormBuilderProps) => {
 				type: field.type || '',
 			}));
 
+			// Save submission to Directus
 			await submitForm(form.id, fieldsWithNames, data);
+
+			// Get reCAPTCHA v3 token
+			const recaptchaToken = await getToken('contact_form');
+
+			// Send email notification via SendGrid endpoint
+			const directusUrl = process.env.NEXT_PUBLIC_DIRECTUS_URL;
+			const emailFields = form.fields
+				.filter((field) => data[field.name || ''] !== undefined && data[field.name || ''] !== null)
+				.map((field) => ({
+					label: field.label || field.name || '',
+					value: String(data[field.name || ''] ?? ''),
+				}));
+
+			const sendgridRes = await fetch(`${directusUrl}/sendgrid/send`, {
+				method: 'POST',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify({
+					subject: `New Submission: ${form.title || 'Contact Form'}`,
+					fields: emailFields,
+					recaptchaToken,
+				}),
+			});
+
+			if (!sendgridRes.ok) {
+				const errBody = await sendgridRes.json().catch(() => ({}));
+				throw new Error(errBody.error || 'Failed to send email');
+			}
 
 			if (form.on_success === 'redirect' && form.success_redirect_url) {
 				window.location.href = form.success_redirect_url;
 			} else {
-				setIsSubmitted(true);
+				toast.success(form.success_message || DEFAULT_SUCCESS_MESSAGE);
+				resetForm();
 			}
 		} catch (err) {
 			console.error('Error submitting form:', err);
-			setError('Failed to submit the form. Please try again later.');
+			toast.error(form.error_message || DEFAULT_ERROR_MESSAGE);
 		}
 	};
 
-	if (isSubmitted) {
-		return (
-			<div className="flex flex-col items-center justify-center space-y-4 p-6 text-center">
-				<CheckCircle className="size-12 text-green-500" />
-				<p className="text-gray-600">{form.success_message || 'Your form has been submitted successfully.'}</p>
-			</div>
-		);
-	}
-
 	return (
-		<div className={cn('bg-white p-8 rounded-lg', className)}>
+		<div className={cn('bg-white p-4 sm:p-8 rounded-lg', className)}>
 			{form.show_title !== false && form.title && (
-				<h3 className="text-xl font-semibold mb-4">{form.title}</h3>
+				<h3 className="text-lg sm:text-xl font-semibold mb-4">{form.title}</h3>
 			)}
 
 			{form.intro_paragraph && (
-				<p className="text-lg text-gray-600">{form.intro_paragraph}</p>
-			)}
-
-			{error && (
-				<div className="p-4 text-red-500 bg-red-100 rounded-md">
-					<strong>Error:</strong> {error}
-				</div>
+				<p className="text-base sm:text-lg text-gray-600">{form.intro_paragraph}</p>
 			)}
 
 			<DynamicForm
