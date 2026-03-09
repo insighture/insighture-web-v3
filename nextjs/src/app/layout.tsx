@@ -1,5 +1,5 @@
 import '@/styles/globals.css';
-import { Albert_Sans } from 'next/font/google';
+import { Albert_Sans, Open_Sans } from 'next/font/google';
 import { ReactNode } from 'react';
 import { Metadata } from 'next';
 
@@ -8,6 +8,14 @@ const albertSans = Albert_Sans({
 	weight: ['400', '500', '600', '700', '800'],
 	style: ['normal', 'italic'],
 	variable: '--font-albert-sans',
+	display: 'swap',
+});
+
+const openSans = Open_Sans({
+	subsets: ['latin'],
+	weight: ['400', '500', '600', '700'],
+	style: ['normal', 'italic'],
+	variable: '--font-open-sans',
 	display: 'swap',
 });
 
@@ -43,7 +51,7 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
 	const accentColor = globals?.accent_color || '#6644ff';
 
 	return (
-		<html lang="en" className={albertSans.variable} style={{ '--accent-color': accentColor } as React.CSSProperties} suppressHydrationWarning>
+		<html lang="en" className={`${albertSans.variable} ${openSans.variable}`} style={{ '--accent-color': accentColor } as React.CSSProperties} suppressHydrationWarning>
 			<body className="antialiased font-sans flex flex-col min-h-screen">
 				<NavOverridesProvider>
 				<FooterCTAProvider>
