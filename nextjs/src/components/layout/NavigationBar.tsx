@@ -282,11 +282,11 @@ const NavigationBar = forwardRef<HTMLElement, NavigationBarProps>(({ navigation,
 
 	return (
 		<>
-			{(effectiveHoverColor || effectiveDropdownTextHoverColor) && (
+			{(effectiveHoverColor || effectiveDropdownTextHoverColor || jobViewPage) && (
 				<style>
 					{[
-						effectiveHoverColor &&
-							`.nav-links a:hover, .nav-links button:hover { color: ${effectiveHoverColor} !important; }`,
+						(effectiveHoverColor || jobViewPage) &&
+							`.nav-links a:hover, .nav-links button:hover { color: ${effectiveHoverColor ?? '#E5E7EB'} !important; }`,
 						effectiveDropdownTextHoverColor &&
 							`.nav-dropdown a:hover { color: ${effectiveDropdownTextHoverColor} !important; }`,
 					]
