@@ -124,24 +124,15 @@ export default function CultureGallery({ data }: { data: CultureGalleryData }) {
 
 	return (
 		<div className="relative w-full bg-white overflow-hidden py-20 lg:py-[120px]">
-			{/* Decorative dashed arc — sweeps from lower-left up through title area and back down-right */}
-			<div className="pointer-events-none absolute inset-0 hidden lg:block" aria-hidden="true">
-				<svg
-					viewBox="0 0 1440 860"
-					fill="none"
-					xmlns="http://www.w3.org/2000/svg"
-					className="absolute inset-0 size-full"
-					preserveAspectRatio="none"
-				>
-					<path
-						d="M 20 620 C 250 420, 520 220, 720 200 C 920 180, 1180 380, 1420 560"
-						stroke="#c0cdd5"
-						strokeWidth="2"
-						strokeDasharray="8 6"
-						fill="none"
-					/>
-				</svg>
-			</div>
+			{/* Decorative dotlines image — matches Figma positioning */}
+			{/* Figma: left=34.57px, top=163.48px, width=1370.853px out of 1440px section */}
+			<img
+				src="/images/dotlines.png"
+				alt=""
+				aria-hidden="true"
+				className="pointer-events-none absolute hidden lg:block h-auto"
+				style={{ left: '2.4%', top: '163px', width: '95.2%' }}
+			/>
 
 			<div className="relative z-10 flex flex-col items-center gap-16 lg:gap-[68px] px-6 lg:px-10">
 				{/* Header section with side photos */}
