@@ -92,8 +92,9 @@ const Button = ({
 	);
 
 	if (href) {
+		const isExternal = href.startsWith('http://') || href.startsWith('https://');
 		const hashIndex = href.indexOf('#');
-		const hasHash = hashIndex !== -1;
+		const hasHash = !isExternal && hashIndex !== -1;
 		const targetPath = hasHash ? href.substring(0, hashIndex) : null;
 
 		const handleHashClick = hasHash
