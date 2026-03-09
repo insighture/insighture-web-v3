@@ -719,9 +719,11 @@ export const fetchJobBySlug = async (slug: string) => {
 				],
 			}),
 		);
+
 		return (results as any[])[0] ?? null;
 	} catch (error) {
 		console.error('Error fetching job by slug:', error);
+
 		return null;
 	}
 };
