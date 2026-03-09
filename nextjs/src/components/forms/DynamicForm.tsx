@@ -58,11 +58,20 @@ const DynamicForm = ({
 		}, {}),
 	});
 
+	const colSpan = (width: string | null | undefined) => {
+		switch (width) {
+			case '67': return 'col-span-6 sm:col-span-4';
+			case '50': return 'col-span-6 sm:col-span-3';
+			case '33': return 'col-span-6 sm:col-span-2';
+			default:   return 'col-span-6';
+		}
+	};
+
 	return (
 		<Form {...form}>
 			<form
 				onSubmit={form.handleSubmit(onSubmit)}
-				className="flex flex-wrap gap-4"
+				className="grid grid-cols-6 gap-4"
 				data-directus={setAttr({
 					collection: 'forms',
 					item: id,
@@ -71,12 +80,12 @@ const DynamicForm = ({
 				})}
 			>
 				{sortedFields.map((field) => (
-					<div key={field.id} className="w-full">
+					<div key={field.id} className={colSpan(field.width)}>
 						<Field key={field.id} field={field} form={form} />
 					</div>
 				))}
 				{privacyPolicyText && (
-					<div className="w-full flex items-start gap-3">
+					<div className="col-span-6 flex items-start gap-3">
 						<input
 							type="checkbox"
 							id={`privacy-${id}`}
@@ -108,7 +117,7 @@ const DynamicForm = ({
 					</div>
 				)}
 
-				<div className={submitButtonWidth === 'full' ? 'w-full' : 'w-auto'}>
+				<div className={submitButtonWidth === 'full' ? 'col-span-6' : 'col-span-6 sm:col-span-3 md:col-span-2'}>
 					<div
 						data-directus={setAttr({
 							collection: 'forms',
