@@ -52,6 +52,7 @@ const FormBuilder = ({ form, className }: FormBuilderProps) => {
 			// Show success and reset form immediately after Directus save
 			if (form.on_success === 'redirect' && form.success_redirect_url) {
 				window.location.href = form.success_redirect_url;
+				
 				return;
 			}
 
