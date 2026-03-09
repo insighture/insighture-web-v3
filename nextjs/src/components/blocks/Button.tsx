@@ -92,9 +92,32 @@ const Button = ({
 	);
 
 	if (href) {
+		const hashIndex = href.indexOf('#');
+		const hasHash = hashIndex !== -1;
+		const targetPath = hasHash ? href.substring(0, hashIndex) : null;
+
+		const handleHashClick = hasHash
+			? (e: React.MouseEvent) => {
+					const hash = href.substring(hashIndex);
+					const currentPath = window.location.pathname;
+
+					if (!targetPath || targetPath === currentPath) {
+						e.preventDefault();
+						history.pushState(null, '', href);
+						window.dispatchEvent(new HashChangeEvent('hashchange'));
+						const id = hash.substring(1);
+						document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+					}
+				}
+			: undefined;
+
 		return (
 			<ShadcnButton asChild variant={variant as any} size={size} className={buttonClasses} disabled={disabled} style={customStyle} {...hoverHandlers}>
-				{href.startsWith('/') ? (
+				{hasHash ? (
+					<a href={href} onClick={handleHashClick}>
+						{content}
+					</a>
+				) : href.startsWith('/') ? (
 					<Link href={href}>{content}</Link>
 				) : (
 					<a href={href} target="_blank" rel="noopener noreferrer">
