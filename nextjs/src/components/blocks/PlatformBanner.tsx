@@ -25,7 +25,7 @@ export default function PlatformBanner({ data }: PlatformCtaProps) {
 		>
 			<div className="flex items-center py-[64px]">
 				{/* Left: accent line + text content */}
-				<div className="flex items-stretch gap-8 flex-1 pl-8 lg:pl-[120px] pr-8 lg:pr-[80px]">
+				<div className="flex items-stretch gap-8 flex-1 px-8 lg:pl-[120px] lg:pr-[80px]">
 					{/* Blue vertical accent line */}
 					<div
 						className="w-[3px] shrink-0 rounded-full"
@@ -88,7 +88,7 @@ export default function PlatformBanner({ data }: PlatformCtaProps) {
 				{/* Right: image — flush to right edge, left-side rounded corners only */}
 				{image && (
 					<div
-						className="shrink-0 w-[55%] lg:w-[700px] h-[240px] md:h-[306px] rounded-tl-[8px] rounded-bl-[8px] overflow-hidden relative"
+						className="shrink-0 w-[55%] lg:w-[700px] h-[240px] md:h-[306px] rounded-l-[8px] overflow-hidden relative"
 						data-directus={setAttr({
 							collection: 'block_platform_cta',
 							item: id,

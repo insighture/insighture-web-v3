@@ -63,7 +63,7 @@ export default function ValuesBlock({ data }: { data: ValuesBlockData }) {
 								className="object-cover"
 							/>
 						) : (
-							<div className="w-full h-full bg-[#0f3b43]" />
+							<div className="size-full bg-[#0f3b43]" />
 						)}
 					</div>
 
@@ -83,7 +83,7 @@ function ValueCard({ item }: { item: ValuesItem }) {
 	return (
 		<div className="bg-[#0f3b43] flex flex-col gap-6 md:gap-8 lg:gap-[60px] p-5 md:p-6 rounded-2xl shadow-[2px_2px_10px_0px_rgba(7,29,34,0.2)]">
 			{item.icon && (
-				<div className="relative w-12 h-12 md:w-16 md:h-16 shrink-0">
+				<div className="relative size-12 md:size-16 shrink-0">
 					<DirectusImage
 						uuid={item.icon}
 						alt={item.title ?? ''}

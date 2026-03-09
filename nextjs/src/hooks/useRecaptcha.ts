@@ -35,9 +35,11 @@ export function useRecaptcha() {
 			});
 
 			const token = await window.grecaptcha.execute(SITE_KEY, { action });
+
 			return token;
 		} catch (error) {
 			console.error('reCAPTCHA error:', error);
+
 			return null;
 		}
 	}, []);

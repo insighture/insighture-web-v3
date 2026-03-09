@@ -68,7 +68,7 @@ const PolaroidCard = ({
 	return (
 		<div className={`${tiltClass} transition-transform hover:rotate-0 duration-300 relative`}>
 			{/* Push pin centered above card */}
-			<div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-[55%] z-20 drop-shadow">
+			<div className="absolute top-0 left-1/2 -translate-x-1/2 translate-y-[-55%] z-20 drop-shadow">
 				<PinIcon color={pinColor} size={size} />
 			</div>
 			<div className={`relative bg-[#f5f5f5] rounded-2xl ${shadow} p-4 ${padB} ${cardW}`}>

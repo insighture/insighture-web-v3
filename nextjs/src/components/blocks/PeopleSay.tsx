@@ -105,7 +105,7 @@ function SlideCard({ slide }: { slide: PeopleSaySlide }) {
 						className="object-cover"
 					/>
 				) : (
-					<div className="w-full h-full bg-[#ced7db]" />
+					<div className="size-full bg-[#ced7db]" />
 				)}
 			</div>
 
