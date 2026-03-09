@@ -52,6 +52,12 @@ const NavigationBar = forwardRef<HTMLElement, NavigationBarProps>(({ navigation,
 	const router = useRouter();
 	const pathname = usePathname();
 
+	const [jobViewPage, setJobViewPage] = useState(false);
+
+	useEffect(() => {
+		setJobViewPage(/^\/careers\/[^/]+$/.test(pathname));
+	}, [pathname]);
+
 	// Check if a nav item (or any of its children) matches the current path
 	const isNavItemActive = useMemo(() => {
 		return (section: any): boolean => {
@@ -276,11 +282,11 @@ const NavigationBar = forwardRef<HTMLElement, NavigationBarProps>(({ navigation,
 
 	return (
 		<>
-			{(effectiveHoverColor || effectiveDropdownTextHoverColor) && (
+			{(effectiveHoverColor || effectiveDropdownTextHoverColor || jobViewPage) && (
 				<style>
 					{[
-						effectiveHoverColor &&
-							`.nav-links a:hover, .nav-links button:hover { color: ${effectiveHoverColor} !important; }`,
+						(effectiveHoverColor || jobViewPage) &&
+							`.nav-links a:hover, .nav-links button:hover { color: ${effectiveHoverColor ?? '#E5E7EB'} !important; }`,
 						effectiveDropdownTextHoverColor &&
 							`.nav-dropdown a:hover { color: ${effectiveDropdownTextHoverColor} !important; }`,
 					]

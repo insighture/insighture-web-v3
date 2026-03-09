@@ -10,6 +10,7 @@ const config: Config = {
 			fontFamily: {
 				heading: ['var(--font-albert-sans)', 'sans-serif'],
 				sans: ['var(--font-albert-sans)', 'sans-serif'],
+				'open-sans': ['var(--font-open-sans)', 'sans-serif'],
 				code: ['Fira Mono', 'monospace'],
 			},
 			fontSize: {
