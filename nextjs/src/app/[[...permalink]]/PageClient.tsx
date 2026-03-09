@@ -70,7 +70,7 @@ export default function PageClient({ sections, pageId, navOverrides, footerCTA }
 					<Button
 						id="visual-editing-button"
 						variant="secondary"
-						className="visual-editing-button-class text-white"
+						className="visual-editing-button-class"
 						data-directus={setAttr({
 							collection: 'pages',
 							item: pageId,

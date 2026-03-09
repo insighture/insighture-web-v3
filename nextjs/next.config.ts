@@ -15,7 +15,7 @@ const ContentSecurityPolicy = `
     media-src *;
     connect-src *;
     font-src 'self' data:;
-    frame-ancestors 'self' http://localhost:3000 ${process.env.NEXT_PUBLIC_DIRECTUS_URL};
+    frame-ancestors 'self' http://localhost:3000 http://localhost:8055 ${process.env.NEXT_PUBLIC_DIRECTUS_URL} http://ec2-54-160-149-229.compute-1.amazonaws.com;
 `;
 
 const nextConfig: NextConfig = {
