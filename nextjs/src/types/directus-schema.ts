@@ -512,8 +512,16 @@ export interface BlockOpenRolesJob {
 	location?: string | null;
 	/** @description Country flag image (optional). */
 	location_flag?: string | null;
-	/** @description URL to the application form or page. */
-	apply_url?: string | null;
+	/** @description URL slug for the job detail page, e.g. "ms-dynamics-consultant-with-aws". */
+	slug?: string | null;
+	/** @description Job overview / intro paragraph (WYSIWYG HTML). */
+	overview?: string | null;
+	/** @description Key responsibilities (WYSIWYG HTML). */
+	responsibilities?: string | null;
+	/** @description Requirements / qualifications (WYSIWYG HTML). */
+	requirements?: string | null;
+	/** @description Application form linked to this job. */
+	form?: Form | string | null;
 	date_created?: string | null;
 	user_created?: DirectusUser | string | null;
 	date_updated?: string | null;
