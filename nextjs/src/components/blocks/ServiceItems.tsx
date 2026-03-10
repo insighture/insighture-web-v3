@@ -144,7 +144,7 @@ export default function ServiceItems({ data }: ServiceItemsProps) {
 											}}
 											dangerouslySetInnerHTML={{ __html: item.title! }}
 										>
-									
+
 										</button>
 									);
 								})}
@@ -166,7 +166,7 @@ export default function ServiceItems({ data }: ServiceItemsProps) {
 														style={{ color: active.accent_color || '#2ea1b8' }}
 														dangerouslySetInnerHTML={{ __html: active.title! }}
 													>
-													
+
 													</h3>
 												)}
 												{panel?.subtitle && (
@@ -189,21 +189,22 @@ export default function ServiceItems({ data }: ServiceItemsProps) {
 												<p className="font-sans italic font-semibold text-[18px] leading-[24px] text-[#999c9e]">
 													Key Services
 												</p>
-												<div className="flex gap-[24px] font-sans italic text-[14px] leading-[22px] text-[#60696e]">
+
+												<div className="flex flex-col lg:flex-row lg:gap-[24px] font-sans italic text-[14px] leading-[22px] text-[#60696e]">
 													{(() => {
-														const half = Math.ceil(active.key_services!.length / 2);
-														const col1 = active.key_services!.slice(0, half);
-														const col2 = active.key_services!.slice(half);
+														const col1 = active.key_services!.slice(0, 4);
+														const col2 = active.key_services!.slice(4);
 
 														return (
 															<>
-																<div className="flex flex-col gap-[2px] w-1/2 shrink-0">
+																<div className="flex flex-col gap-[2px] w-full lg:w-1/2">
 																	{col1.map((s, i) => (
 																		<span key={i}>• {s}</span>
 																	))}
 																</div>
+
 																{col2.length > 0 && (
-																	<div className="flex flex-col gap-[2px] flex-1">
+																	<div className="flex flex-col gap-[2px] w-full lg:w-1/2">
 																		{col2.map((s, i) => (
 																			<span key={i}>• {s}</span>
 																		))}
