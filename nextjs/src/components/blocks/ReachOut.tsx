@@ -58,7 +58,7 @@ export default function ReachOut({ data }: ReachOutProps) {
 		? [...contact_items].sort((a, b) => (a.sort ?? 0) - (b.sort ?? 0))
 		: [];
 
-	const pdfUrl = brochure_pdf ? `${getDirectusAssetURL(brochure_pdf)}?download` : null;
+	const pdfUrl = brochure_pdf ? `/api/download?id=${brochure_pdf}` : null;
 
 	const sidebar = (
 		<div className="flex flex-col gap-[24px] py-[24px] pr-[24px]">
