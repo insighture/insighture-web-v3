@@ -67,7 +67,7 @@ export default function LogoCarousel({ data }: LogoCarouselProps) {
 	useEffect(() => {
 		measureSetWidth();
 		window.addEventListener('resize', measureSetWidth);
-		
+
 		return () => window.removeEventListener('resize', measureSetWidth);
 	}, [measureSetWidth]);
 
@@ -137,7 +137,7 @@ export default function LogoCarousel({ data }: LogoCarouselProps) {
 	if (variant === 'auto') {
 		return (
 			<div
-				className="w-full flex flex-col gap-6 md:gap-10 pb-8 md:pb-10 pt-4"
+				className="w-full flex flex-col gap-6 md:gap-10 pb-8 md:py-8 pt-4"
 				style={{ background: bgColor }}
 				data-directus={setAttr({ collection: 'block_logo_carousel', item: id, fields: ['tagline', 'logos'], mode: 'popover' })}
 			>
