@@ -1,7 +1,6 @@
 'use client';
 
 import DirectusImage from '@/components/shared/DirectusImage';
-import { getDirectusAssetURL } from '@/lib/directus/directus-utils';
 import { setAttr } from '@directus/visual-editing';
 import FormBuilder from '@/components/forms/FormBuilder';
 import { FormField } from '@/types/directus-schema';
@@ -58,7 +57,12 @@ export default function ReachOut({ data }: ReachOutProps) {
 		? [...contact_items].sort((a, b) => (a.sort ?? 0) - (b.sort ?? 0))
 		: [];
 
-	const pdfUrl = brochure_pdf ? `/api/download?id=${brochure_pdf}` : null;
+	const pdfId = brochure_pdf
+		? typeof brochure_pdf === 'string'
+			? brochure_pdf
+			: (brochure_pdf as { id: string }).id
+		: null;
+	const pdfUrl = pdfId ? `/api/download?id=${pdfId}` : null;
 
 	const sidebar = (
 		<div className="flex flex-col gap-[24px] py-[24px] pr-[24px]">
@@ -100,8 +104,6 @@ export default function ReachOut({ data }: ReachOutProps) {
 							{pdfUrl && (
 								<a
 									href={pdfUrl}
-									target="_blank"
-									rel="noopener noreferrer"
 									download
 									className="inline-flex items-center gap-[16px] text-[14px] font-sans font-normal leading-[24px] text-[#15181a] hover:opacity-75 transition-opacity"
 								>
