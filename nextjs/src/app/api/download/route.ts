@@ -1,4 +1,3 @@
-import { getDirectusAssetURL } from '@/lib/directus/directus-utils';
 import { NextResponse } from 'next/server';
 
 export async function GET(request: Request) {
@@ -9,24 +8,37 @@ export async function GET(request: Request) {
 		return NextResponse.json({ error: 'Invalid file id.' }, { status: 400 });
 	}
 
-	const assetUrl = `${getDirectusAssetURL(id)}?download`;
+	const directusUrl = process.env.DIRECTUS_URL || process.env.NEXT_PUBLIC_DIRECTUS_URL;
 
-	const upstream = await fetch(assetUrl);
-
-	if (!upstream.ok) {
-		return NextResponse.json({ error: 'File not found.' }, { status: upstream.status });
+	if (!directusUrl) {
+		console.error('[download] Missing DIRECTUS_URL env var');
+		return NextResponse.json({ error: 'Server misconfiguration.' }, { status: 500 });
 	}
 
-	const contentType = upstream.headers.get('content-type') ?? 'application/octet-stream';
-	const contentDisposition =
-		upstream.headers.get('content-disposition') ?? `attachment; filename="${id}.pdf"`;
+	const assetUrl = `${directusUrl}/assets/${id}?download`;
 
-	return new NextResponse(upstream.body, {
-		headers: {
-			'Content-Type': contentType,
-			'Content-Disposition': contentDisposition.includes('attachment')
-				? contentDisposition
-				: contentDisposition.replace('inline', 'attachment'),
-		},
-	});
+	try {
+		const upstream = await fetch(assetUrl);
+
+		if (!upstream.ok) {
+			console.error(`[download] Upstream ${upstream.status} for asset ${id}`);
+			return NextResponse.json({ error: 'File not found.' }, { status: upstream.status });
+		}
+
+		const contentType = upstream.headers.get('content-type') ?? 'application/octet-stream';
+		const upstreamDisposition = upstream.headers.get('content-disposition') ?? '';
+		const contentDisposition = upstreamDisposition.includes('attachment')
+			? upstreamDisposition
+			: `attachment; filename="${id}.pdf"`;
+
+		return new NextResponse(upstream.body, {
+			headers: {
+				'Content-Type': contentType,
+				'Content-Disposition': contentDisposition,
+			},
+		});
+	} catch (err) {
+		console.error('[download] Fetch error:', err);
+		return NextResponse.json({ error: 'Failed to fetch file.' }, { status: 502 });
+	}
 }
