@@ -136,7 +136,7 @@ export default function ExpertiseCards({ data, accentColor, contained, externalP
 								{card.link_label && card.url && (
 									<Link
 										href={card.url}
-										className="inline-flex items-center gap-[4px] font-sans font-semibold text-[14px] leading-[26px] self-start"
+										className="inline-flex items-center gap-[4px] font-sans font-semibold text-[14px] leading-[26px] self-start hover:underline transition-all duration-200"
 										style={{ color: accent }}
 									>
 										{card.link_label}

@@ -29,7 +29,7 @@ export default function ServiceFeaturedArticle({ data, accentColor, contained }:
 		cta_label && cta_url ? (
 			<Link
 				href={cta_url}
-				className="inline-flex items-center gap-[11px] bg-[#fcfcfd] px-6 py-2 rounded-full self-start"
+				className="inline-flex items-center gap-[11px] bg-[#fcfcfd] px-6 py-2 rounded-full self-start hover:bg-gray-100 hover:shadow-sm transition-all duration-200"
 			>
 				<span className="font-bold text-[16px] leading-[26px] whitespace-nowrap" style={{ color: bg }}>
 					{cta_label}

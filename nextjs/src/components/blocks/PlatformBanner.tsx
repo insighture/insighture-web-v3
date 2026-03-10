@@ -62,7 +62,7 @@ export default function PlatformBanner({ data }: PlatformCtaProps) {
 						{cta_label && (
 							<Link
 								href={cta_url ?? '#'}
-								className="inline-flex items-center gap-[11px] px-[24px] py-[8px] rounded-[48px] bg-[#0182cb] text-[#fcfcfd] font-heading font-bold text-[16px] leading-[26px] hover:bg-[#016db0] transition-colors whitespace-nowrap"
+								className="inline-flex items-center hover:text-[#fcfcfd] gap-[11px] px-[24px] py-[8px] rounded-[48px] bg-[#0182cb] text-[#fcfcfd] font-heading font-bold text-[16px] leading-[26px] hover:bg-[#016db0] transition-colors whitespace-nowrap"
 								data-directus={setAttr({
 									collection: 'block_platform_cta',
 									item: id,
@@ -74,7 +74,7 @@ export default function PlatformBanner({ data }: PlatformCtaProps) {
 								<svg width="7" height="12" viewBox="0 0 7 12" fill="none" aria-hidden="true">
 									<path
 										d="M1 1L6 6L1 11"
-										stroke="currentColor"
+										stroke="#FFFFFF"
 										strokeWidth="1.5"
 										strokeLinecap="round"
 										strokeLinejoin="round"
