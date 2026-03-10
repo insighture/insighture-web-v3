@@ -17,7 +17,7 @@ interface PlatformCtaProps {
 
 const ctaChevron = (
 	<svg width="7" height="12" viewBox="0 0 7 12" fill="none" aria-hidden="true">
-		<path d="M1 1L6 6L1 11" stroke="#FFFFFF" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+		<path d="M1 1L6 6L1 11" stroke="#FFFFFF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
 	</svg>
 );
 
