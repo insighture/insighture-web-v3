@@ -32,6 +32,15 @@ const MARQUEE_KEYFRAMES = `
 	from { transform: translateX(0); }
 	to   { transform: translateX(-50%); }
 }
+.marquee-item {
+	margin-right: 2rem;
+}
+@media (min-width: 640px) {
+	.marquee-item { margin-right: 3rem; }
+}
+@media (min-width: 768px) {
+	.marquee-item { margin-right: 4rem; }
+}
 `;
 
 export default function LogoCarousel({ data }: LogoCarouselProps) {
@@ -133,7 +142,7 @@ export default function LogoCarousel({ data }: LogoCarouselProps) {
 
 						{/* Marquee track */}
 						<div
-							className="flex items-center gap-8 sm:gap-12 md:gap-16 w-max"
+							className="flex items-center w-max"
 							style={{ animation: `marquee ${duration} linear infinite` }}
 							onMouseEnter={(e) => ((e.currentTarget as HTMLDivElement).style.animationPlayState = 'paused')}
 							onMouseLeave={(e) => ((e.currentTarget as HTMLDivElement).style.animationPlayState = 'running')}
@@ -164,7 +173,7 @@ export default function LogoCarousel({ data }: LogoCarouselProps) {
 											href={item.url}
 											target="_blank"
 											rel="noopener noreferrer"
-											className="flex items-center shrink-0 opacity-80 hover:opacity-100 transition-opacity"
+											className="marquee-item flex items-center shrink-0 opacity-80 hover:opacity-100 transition-opacity"
 											aria-label={item.name ?? 'Partner'}
 										>
 											{inner}
@@ -173,7 +182,7 @@ export default function LogoCarousel({ data }: LogoCarouselProps) {
 								}
 
 								return (
-									<div key={key} className="flex items-center shrink-0 opacity-80">
+									<div key={key} className="marquee-item flex items-center shrink-0 opacity-80">
 										{inner}
 									</div>
 								);
