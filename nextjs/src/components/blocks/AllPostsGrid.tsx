@@ -128,7 +128,7 @@ return true;
 								className="appearance-none bg-white border border-[#d0d5dd] rounded-[8px] px-[16px] py-[10px] pr-[40px] font-sans text-[14px] text-[#1d2939] cursor-pointer hover:border-[#1d2939] transition-colors focus:outline-none focus:border-[#1d2939]"
 							>
 								{serviceOptions.map((o) => (
-									<option key={o.value} value={o.value}>{o.label}</option>
+									<option key={o.value} value={o.value} dangerouslySetInnerHTML={{ __html: o.label }}></option>
 								))}
 							</select>
 							<svg className="pointer-events-none absolute right-[12px] top-1/2 -translate-y-1/2 text-[#667085]" width="12" height="8" viewBox="0 0 12 8" fill="none">
