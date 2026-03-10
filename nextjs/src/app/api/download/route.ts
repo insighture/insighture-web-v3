@@ -8,7 +8,7 @@ export async function GET(request: Request) {
 		return NextResponse.json({ error: 'Invalid file id.' }, { status: 400 });
 	}
 
-	const directusUrl = process.env.DIRECTUS_URL || process.env.NEXT_PUBLIC_DIRECTUS_URL;
+	const directusUrl = process.env.DIRECTUS_URL;
 
 	if (!directusUrl) {
 		console.error('[download] Missing DIRECTUS_URL env var');
