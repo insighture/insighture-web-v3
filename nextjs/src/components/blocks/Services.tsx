@@ -47,7 +47,7 @@ const Services = ({ data }: ServicesProps) => {
 				)}
 				{headline && (
 					<div
-						className="svc-headline font-heading font-normal text-[48px] leading-[56px] text-[#1d2939]"
+						className="svc-headline font-heading font-medium text-[48px] leading-[56px] text-[#1d2939]"
 						dangerouslySetInnerHTML={{ __html: headline }}
 						data-directus={setAttr({ collection: 'block_services', item: id, fields: 'headline', mode: 'popover' })}
 					/>

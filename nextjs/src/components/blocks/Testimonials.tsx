@@ -211,7 +211,7 @@ export default function Testimonials({ data }: TestimonialsProps) {
 			<Container className="relative z-10 sm:px-8 lg:px-[80px] py-10 md:py-16 lg:py-[83px]">
 				{/* Heading */}
 				<h2 className="font-heading font-semibold text-[28px] leading-[36px] sm:text-[36px] sm:leading-[44px] lg:text-[48px] lg:leading-[56px] text-white mb-8 md:mb-12 lg:mb-16">
-					{headline && <span dangerouslySetInnerHTML={{ __html: headline }} />}<br />
+					{headline && <span dangerouslySetInnerHTML={{ __html: headline }} />}
 					{headline_emphasis && (
 						<span className="italic text-[#ee4065]" dangerouslySetInnerHTML={{ __html: headline_emphasis }} />
 					)}

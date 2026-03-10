@@ -461,9 +461,9 @@ export default function Hero({ data }: HeroProps) {
 						>
 							{slide ? (
 								<>
-									<span className="block text-4xl md:text-5xl xl:text-6xl font-bold" dangerouslySetInnerHTML={{ __html: sanitize(slide.headline) }} />
+									<span className="block text-4xl md:text-5xl xl:text-6xl font-semibold" dangerouslySetInnerHTML={{ __html: sanitize(slide.headline) }} />
 									{slide.headline_emphasis && (
-										<em className="block text-4xl md:text-5xl xl:text-6xl font-light italic" dangerouslySetInnerHTML={{ __html: sanitize(slide.headline_emphasis) }} />
+										<span className="block text-4xl md:text-5xl xl:text-6xl font-semibold" dangerouslySetInnerHTML={{ __html: sanitize(slide.headline_emphasis) }} />
 									)}
 								</>
 							) : (
