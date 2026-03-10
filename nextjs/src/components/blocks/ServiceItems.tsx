@@ -97,19 +97,19 @@ export default function ServiceItems({ data }: ServiceItemsProps) {
 				mode: 'popover',
 			})}
 		>
-			<div className="w-auto lg:px-[120px] py-[64px] lg:py-[96px] flex flex-col gap-[56px]">
+			<div className="px-[16px] lg:px-[120px] py-[64px] lg:py-[96px] flex flex-col gap-[56px]">
 
 				{/* ── Section header ───────────────────────────────────────── */}
 				{(heading || description) && (
-					<div className="flex flex-col gap-[24px] lg:max-w-[649px]">
+					<div className="flex flex-col gap-[16px] lg:gap-[24px] lg:max-w-[649px]">
 						{heading && (
 							<h2
-								className="font-sans font-normal text-[40px] lg:text-[48px] leading-[1.15] text-[#2d3236]"
+								className="font-sans font-normal text-[30px] lg:text-[48px] leading-[40px] lg:leading-[1.15] tracking-[-0.6px] lg:tracking-normal text-[#2d3236]"
 								dangerouslySetInnerHTML={{ __html: heading }}
 							/>
 						)}
 						{description && (
-							<p className="font-sans font-normal text-[18px] leading-[28px] text-[#1e1e1e]">
+							<p className="font-sans font-normal text-[16px] lg:text-[18px] leading-[26px] lg:leading-[28px] text-[#2d3236] lg:text-[#1e1e1e]">
 								{description}
 							</p>
 						)}
@@ -119,20 +119,41 @@ export default function ServiceItems({ data }: ServiceItemsProps) {
 				{/* ── Gray container ────────────────────────────────────────── */}
 				{sorted.length > 0 && (
 					<div
-						className="bg-[#eff1f5] rounded-[16px] p-[24px] flex flex-col gap-[40px]"
-						style={{ boxShadow: '1px 2px 8px 0px #ced7db' }}
+						className="lg:bg-[#eff1f5] lg:rounded-[16px] lg:p-[24px] flex flex-col gap-[40px] lg:shadow-[1px_2px_8px_0px_#ced7db]"
 					>
-						{/* Tab navigation */}
+						{/* Tab navigation — mobile: vertical stacked */}
+						<div className="flex flex-col gap-[8px] lg:hidden">
+							{sorted.map((item, index) => {
+								const isActive = activeIndex === index;
+								const accent = item.accent_color || '#2ea1b8';
+								
+return (
+									<button
+										key={item.id}
+										onClick={() => setActiveIndex(index)}
+										className="w-full h-[40px] flex items-center justify-center px-[12px] rounded-[8px] font-sans font-medium text-[12px] leading-[26px] transition-all whitespace-nowrap"
+										style={{
+											backgroundColor: isActive ? accent : 'rgba(46,161,184,0.01)',
+											color: isActive ? '#fcfcfd' : '#94a7ad',
+											border: `1.2px solid ${isActive ? accent : '#94a7ad'}`,
+										}}
+										dangerouslySetInnerHTML={{ __html: item.title! }}
+									/>
+								);
+							})}
+						</div>
+
+						{/* Tab navigation — desktop: horizontal pills */}
 						<div
-							className="bg-[#f9fafb] border border-[#b0bfc4] rounded-[8px] p-[8px]"
+							className="hidden lg:block bg-[#f9fafb] border border-[#b0bfc4] rounded-[8px] p-[8px]"
 							style={{ boxShadow: '1px 1px 5px 0px rgba(52,64,84,0.08)' }}
 						>
 							<div className="flex gap-[4px] flex-wrap items-center min-h-[48px]">
 								{sorted.map((item, index) => {
 									const isActive = activeIndex === index;
 									const accent = item.accent_color || '#2ea1b8';
-
-									return (
+									
+return (
 										<button
 											key={item.id}
 											onClick={() => setActiveIndex(index)}
@@ -143,9 +164,7 @@ export default function ServiceItems({ data }: ServiceItemsProps) {
 												border: isActive ? `1.2px solid ${accent}` : '1.2px solid transparent',
 											}}
 											dangerouslySetInnerHTML={{ __html: item.title! }}
-										>
-
-										</button>
+										/>
 									);
 								})}
 							</div>
