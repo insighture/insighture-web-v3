@@ -129,6 +129,7 @@ const Footer = forwardRef<HTMLElement, FooterProps>(({ navigation, globals }, re
 										height: '20px',
 										display: 'block',
 										transformOrigin: 'center',
+										color: '#f7f7f7',
 									}}
 								/>
 							</span>
