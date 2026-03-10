@@ -4,6 +4,7 @@ import Link from 'next/link';
 import DirectusImage from '@/components/shared/DirectusImage';
 import Container from '@/components/ui/container';
 import { setAttr } from '@directus/visual-editing';
+import { ChevronRight } from 'lucide-react';
 
 interface PostItem {
 	id: string;
@@ -79,11 +80,11 @@ export default function BlogFeaturedPost({ data }: BlogFeaturedPostProps) {
 									{special_post.slug && (
 										<Link
 											href={`/blog/${special_post.slug}`}
-											className="inline-flex items-center gap-[11px] bg-[#ee4065] px-6 py-2 rounded-[48px] text-[14px] md:text-[16px] font-bold leading-[26px] text-[#fcfcfd] hover:bg-[#d93a5a] transition-colors whitespace-nowrap mt-4"
+											className="inline-flex items-center gap-[8px] bg-[#ee4065] px-6 py-2 rounded-[48px] text-[14px] md:text-[16px] font-bold leading-[26px] text-[#fcfcfd] hover:bg-[#d93a5a] whitespace-nowrap mt-4"
 										>
-											Read{' '}
-											{special_post.type === 'story' ? 'story' : special_post.type === 'insight' ? 'insight' : 'more'}
-											<svg width="7" height="12" viewBox="0 0 7 12" fill="none" aria-hidden="true">
+											<span className="font-heading font-bold text-[16px] leading-[26px] text-[#f7f7f7]">Read{' '}
+											{special_post.type === 'story' ? 'story' : special_post.type === 'insight' ? 'insight' : 'more'}</span>
+											{/* <svg width="7" height="12" viewBox="0 0 7 12" fill="none" aria-hidden="true">
 												<path
 													d="M1 1L6 6L1 11"
 													stroke="#fcfcfd"
@@ -91,7 +92,17 @@ export default function BlogFeaturedPost({ data }: BlogFeaturedPostProps) {
 													strokeLinecap="round"
 													strokeLinejoin="round"
 												/>
-											</svg>
+											</svg> */}
+
+											<ChevronRight
+												style={{
+													width: '20px',
+													height: '20px',
+													display: 'block',
+													transformOrigin: 'center',
+													color: '#fcfcfd',
+												}}
+											/>
 										</Link>
 									)}
 								</div>
