@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import DirectusImage from '@/components/shared/DirectusImage';
 import Container from '@/components/ui/container';
 import { setAttr } from '@directus/visual-editing';
@@ -27,11 +27,7 @@ interface LogoCarouselProps {
 	};
 }
 
-const MARQUEE_KEYFRAMES = `
-@keyframes marquee {
-	from { transform: translateX(0); }
-	to   { transform: translateX(-50%); }
-}
+const MARQUEE_STYLES = `
 .marquee-item {
 	margin-right: 2rem;
 }
@@ -53,11 +49,40 @@ export default function LogoCarousel({ data }: LogoCarouselProps) {
 	const [currentIndex, setCurrentIndex] = useState(0);
 	const [responsiveCardsVisible, setResponsiveCardsVisible] = useState(1);
 
-	// Duplicate for seamless loop — translateX(-50%) snaps back to start
-	const loopedLogos = [...sortedLogos, ...sortedLogos];
+	// Measure the width of one set of logos to calculate exact pixel offset
+	const trackRef = useRef<HTMLDivElement>(null);
+	const [setWidth, setSetWidth] = useState(0);
+
+	const measureSetWidth = useCallback(() => {
+		if (!trackRef.current || sortedLogos.length === 0) return;
+		const children = Array.from(trackRef.current.children) as HTMLElement[];
+		// Measure the first N items (one complete set)
+		let width = 0;
+		for (let i = 0; i < sortedLogos.length && i < children.length; i++) {
+			width += children[i].offsetWidth + parseFloat(getComputedStyle(children[i]).marginRight || '0');
+		}
+		setSetWidth(width);
+	}, [sortedLogos.length]);
+
+	useEffect(() => {
+		measureSetWidth();
+		window.addEventListener('resize', measureSetWidth);
+		
+		return () => window.removeEventListener('resize', measureSetWidth);
+	}, [measureSetWidth]);
+
+	// Repeat logos enough times to always fill the viewport + overflow
+	// Need at least 2 sets; more if logos are few and viewport is wide
+	const repeatCount = Math.max(2, Math.ceil(3000 / Math.max(sortedLogos.length * 200, 1)) + 1);
+	const loopedLogos = Array.from({ length: repeatCount }, () => sortedLogos).flat();
 
 	// ~4s per logo, minimum 16s
 	const duration = `${Math.max(sortedLogos.length * 4, 16)}s`;
+
+	// Dynamic keyframes using measured pixel width
+	const marqueeKeyframes = setWidth > 0
+		? `@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-${setWidth}px); } }`
+		: '';
 
 	// Responsive card visibility
 	useEffect(() => {
@@ -116,7 +141,7 @@ export default function LogoCarousel({ data }: LogoCarouselProps) {
 				style={{ background: bgColor }}
 				data-directus={setAttr({ collection: 'block_logo_carousel', item: id, fields: ['tagline', 'logos'], mode: 'popover' })}
 			>
-				<style>{MARQUEE_KEYFRAMES}</style>
+				<style>{MARQUEE_STYLES}{marqueeKeyframes}</style>
 
 				{tagline && (
 					<Container>
@@ -142,8 +167,9 @@ export default function LogoCarousel({ data }: LogoCarouselProps) {
 
 						{/* Marquee track */}
 						<div
+							ref={trackRef}
 							className="flex items-center w-max"
-							style={{ animation: `marquee ${duration} linear infinite` }}
+							style={{ animation: setWidth > 0 ? `marquee ${duration} linear infinite` : 'none' }}
 							onMouseEnter={(e) => ((e.currentTarget as HTMLDivElement).style.animationPlayState = 'paused')}
 							onMouseLeave={(e) => ((e.currentTarget as HTMLDivElement).style.animationPlayState = 'running')}
 						>
