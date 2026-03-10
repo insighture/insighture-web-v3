@@ -36,23 +36,13 @@ export default function PlatformBanner({ data }: PlatformCtaProps) {
 						<div
 							className="font-heading font-medium text-[22px] leading-[28px] text-[#1d2939]"
 							dangerouslySetInnerHTML={{ __html: title }}
-							data-directus={setAttr({
-								collection: 'block_platform_cta',
-								item: id,
-								fields: 'title',
-								mode: 'popover',
-							})}
+							
 						/>
 					)}
 					{description && (
 						<p
 							className="font-sans font-normal text-[16px] leading-[24px] text-[#1d2939]"
-							data-directus={setAttr({
-								collection: 'block_platform_cta',
-								item: id,
-								fields: 'description',
-								mode: 'popover',
-							})}
+							
 						>
 							{description}
 						</p>
@@ -62,12 +52,7 @@ export default function PlatformBanner({ data }: PlatformCtaProps) {
 					{image && (
 						<div
 							className="w-full h-[180px] rounded-[8px] overflow-hidden relative"
-							data-directus={setAttr({
-								collection: 'block_platform_cta',
-								item: id,
-								fields: 'image',
-								mode: 'popover',
-							})}
+							
 						>
 							<DirectusImage uuid={image} alt="" fill sizes="100vw" className="object-cover" />
 							<div
@@ -107,23 +92,13 @@ export default function PlatformBanner({ data }: PlatformCtaProps) {
 							<div
 								className="font-heading font-medium text-[32px] leading-[40px] lg:text-[48px] lg:leading-[56px] text-[#1d2939]"
 								dangerouslySetInnerHTML={{ __html: title }}
-								data-directus={setAttr({
-									collection: 'block_platform_cta',
-									item: id,
-									fields: 'title',
-									mode: 'popover',
-								})}
+								
 							/>
 						)}
 						{description && (
 							<p
 								className="font-sans font-normal text-[16px] leading-[24px] text-[#1d2939]"
-								data-directus={setAttr({
-									collection: 'block_platform_cta',
-									item: id,
-									fields: 'description',
-									mode: 'popover',
-								})}
+								
 							>
 								{description}
 							</p>
@@ -144,12 +119,7 @@ export default function PlatformBanner({ data }: PlatformCtaProps) {
 				{image && (
 					<div
 						className="shrink-0 w-[55%] lg:w-[700px] h-[240px] md:h-[306px] rounded-l-[8px] overflow-hidden relative"
-						data-directus={setAttr({
-							collection: 'block_platform_cta',
-							item: id,
-							fields: 'image',
-							mode: 'popover',
-						})}
+						
 					>
 						<DirectusImage
 							uuid={image}
