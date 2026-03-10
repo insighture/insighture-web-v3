@@ -12,6 +12,7 @@ export async function GET(request: Request) {
 
 	if (!directusUrl) {
 		console.error('[download] Missing DIRECTUS_URL env var');
+
 		return NextResponse.json({ error: 'Server misconfiguration.' }, { status: 500 });
 	}
 
@@ -22,6 +23,7 @@ export async function GET(request: Request) {
 
 		if (!upstream.ok) {
 			console.error(`[download] Upstream ${upstream.status} for asset ${id}`);
+
 			return NextResponse.json({ error: 'File not found.' }, { status: upstream.status });
 		}
 
@@ -39,6 +41,7 @@ export async function GET(request: Request) {
 		});
 	} catch (err) {
 		console.error('[download] Fetch error:', err);
+
 		return NextResponse.json({ error: 'Failed to fetch file.' }, { status: 502 });
 	}
 }
