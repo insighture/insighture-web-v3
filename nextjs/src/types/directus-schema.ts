@@ -158,6 +158,10 @@ export interface BlockHeroSlide {
 	text_placement?: 'center_left' | 'bottom_center' | 'bottom_left' | 'center_center' | null;
 	/** @description Enable a dark gradient overlay on this slide for improved text legibility. */
 	enable_gradient_overlay?: boolean | null;
+	/** @description Overlay image (e.g. gradient texture, pattern) rendered on top of the background. */
+	overlay_image?: DirectusFile | string | null;
+	/** @description Opacity of the overlay image (0 = invisible, 1 = fully opaque). */
+	overlay_opacity?: number | null;
 	/** @description Hover background color for button 1. */
 	button_1_hover_bg_color?: string | null;
 	/** @description Hover text color for button 1. */
@@ -221,6 +225,10 @@ export interface BlockHero {
 	slides?: BlockHeroSlide[] | string[];
 	/** @description Enable a dark gradient overlay on the expanded image for improved text legibility. */
 	enable_gradient_overlay?: boolean | null;
+	/** @description Overlay image (e.g. gradient texture, pattern) rendered on top of the background. */
+	overlay_image?: DirectusFile | string | null;
+	/** @description Opacity of the overlay image (0 = invisible, 1 = fully opaque). */
+	overlay_opacity?: number | null;
 	/** @description Where to position the text block within the image_expanded layout. */
 	expanded_text_placement?: 'center_left' | 'bottom_center' | 'bottom_left' | 'center_center' | null;
 	/** @description Horizontal alignment of text within the content block. */

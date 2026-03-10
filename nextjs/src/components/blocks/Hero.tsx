@@ -88,6 +88,8 @@ interface HeroSlide {
 	nav_scrolled_active_underline_color: string | null;
 	carousel_indicator_color: string | null;
 	enable_gradient_overlay: boolean | null;
+	overlay_image: string | null;
+	overlay_opacity: number | null;
 }
 
 interface HeroButton {
@@ -119,6 +121,8 @@ interface HeroProps {
 		enable_carousel?: boolean | null;
 		autoplay_interval?: number | null;
 		enable_gradient_overlay?: boolean | null;
+		overlay_image?: string | null;
+		overlay_opacity?: number | null;
 		height?: string | null;
 		expanded_text_placement?: TextPlacement | null;
 		expanded_text_alignment?: 'left' | 'center' | 'right' | null;
@@ -239,6 +243,7 @@ export default function Hero({ data }: HeroProps) {
 		id, layout, tagline, tagline_type, tagline_image, tagline_image_alt,
 		headline_lines, description, image, video, background_color, button_group,
 		enable_carousel, autoplay_interval, enable_gradient_overlay,
+		overlay_image, overlay_opacity,
 		expanded_text_placement, expanded_text_alignment,
 		height,
 		slides,
@@ -387,8 +392,30 @@ export default function Hero({ data }: HeroProps) {
 					/>
 				)}
 
+				{/* Overlay image (gradient texture / pattern) with configurable opacity */}
+				{(() => {
+					const overlayImg = slide?.overlay_image ?? overlay_image;
+					const overlayOp = slide?.overlay_opacity ?? overlay_opacity ?? 0.5;
+					if (!overlayImg) return null;
+					
+					return (
+						<div
+							className="absolute inset-0 pointer-events-none z-[2]"
+							style={{ opacity: overlayOp }}
+						>
+							<DirectusImage
+								uuid={overlayImg}
+								alt=""
+								fill
+								sizes="100vw"
+								className="object-cover"
+							/>
+						</div>
+					);
+				})()}
+
 				{/* Content overlay */}
-				<div className={cn('relative z-10 flex flex-col mx-auto px-6 md:px-16 lg:px-[120px] py-16 gap-8', heightClass, pc.outer)} style={heightStyle}>
+				<div className={cn('relative z-[10] flex flex-col mx-auto px-6 md:px-16 lg:px-[120px] py-16 gap-8', heightClass, pc.outer)} style={heightStyle}>
 					{/* Text content block */}
 					<div className={cn('flex flex-col gap-6 text-white max-w-[1200px]', pc.text, !isCarousel && textAlignClass)}>
 						{slide?.tagline_image ? (
