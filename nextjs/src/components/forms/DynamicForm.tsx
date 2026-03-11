@@ -19,6 +19,7 @@ interface DynamicFormProps {
 	privacyPolicyLinkText?: string | null;
 	privacyPolicyLinkUrl?: string | null;
 	id: string;
+	statusMessage?: { type: 'success' | 'error'; text: string } | null;
 }
 
 const DynamicForm = ({
@@ -30,6 +31,7 @@ const DynamicForm = ({
 	privacyPolicyLinkText,
 	privacyPolicyLinkUrl,
 	id,
+	statusMessage,
 }: DynamicFormProps) => {
 	const [privacyAccepted, setPrivacyAccepted] = useState(false);
 	const sortedFields = [...fields].sort((a, b) => (a.sort || 0) - (b.sort || 0));
@@ -155,6 +157,16 @@ const DynamicForm = ({
 							/>
 						</div>
 					</div>
+
+					{statusMessage && (
+						<p
+							className={`text-sm mt-200 p-2 rounded text-center ${
+								statusMessage.type === 'success' ? 'text-green-600 bg-green-100' : 'text-red-500 bg-red-200'
+							}`}
+						>
+							{statusMessage.text}
+						</p>
+					)}
 				</div>
 			</form>
 		</Form>

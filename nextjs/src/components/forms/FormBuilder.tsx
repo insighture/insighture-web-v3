@@ -1,11 +1,11 @@
 'use client';
 
+import { useState } from 'react';
 import DynamicForm from './DynamicForm';
 import { submitForm } from '@/lib/directus/forms';
 import { FormField } from '@/types/directus-schema';
 import { cn } from '@/lib/utils';
 import { useRecaptcha } from '@/hooks/useRecaptcha';
-import { toast } from 'sonner';
 
 const DEFAULT_SUCCESS_MESSAGE = 'Thank you for your submission. We will reach out to you soon.';
 const DEFAULT_ERROR_MESSAGE = 'Failed to submit the form. Please try again later.';
@@ -35,10 +35,13 @@ interface FormBuilderProps {
 
 const FormBuilder = ({ form, className }: FormBuilderProps) => {
 	const { getToken } = useRecaptcha();
+	const [statusMessage, setStatusMessage] = useState<{ type: 'success' | 'error'; text: string } | null>(null);
 
 	if (!form.is_active) return null;
 
 	const handleSubmit = async (data: Record<string, any>, resetForm: () => void) => {
+		setStatusMessage(null);
+
 		try {
 			const fieldsWithNames = form.fields.map((field) => ({
 				id: field.id,
@@ -52,11 +55,11 @@ const FormBuilder = ({ form, className }: FormBuilderProps) => {
 			// Show success and reset form immediately after Directus save
 			if (form.on_success === 'redirect' && form.success_redirect_url) {
 				window.location.href = form.success_redirect_url;
-				
+
 				return;
 			}
 
-			toast.success(form.success_message || DEFAULT_SUCCESS_MESSAGE);
+			setStatusMessage({ type: 'success', text: form.success_message || DEFAULT_SUCCESS_MESSAGE });
 			resetForm();
 
 			// Send email notification via SendGrid (fire-and-forget, don't block user)
@@ -84,7 +87,7 @@ const FormBuilder = ({ form, className }: FormBuilderProps) => {
 			}
 		} catch (err) {
 			console.error('Error submitting form:', err);
-			toast.error(form.error_message || DEFAULT_ERROR_MESSAGE);
+			setStatusMessage({ type: 'error', text: form.error_message || DEFAULT_ERROR_MESSAGE });
 		}
 	};
 
@@ -107,6 +110,7 @@ const FormBuilder = ({ form, className }: FormBuilderProps) => {
 				privacyPolicyLinkText={form.privacy_policy_link_text ?? null}
 				privacyPolicyLinkUrl={form.privacy_policy_link_url ?? null}
 				id={form.id}
+				statusMessage={statusMessage}
 			/>
 		</div>
 	);
