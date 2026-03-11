@@ -151,7 +151,7 @@ export default function LogoCarousel({ data }: LogoCarouselProps) {
 
 				{sortedLogos.length > 0 && (
 					<div
-						className="relative w-full overflow-hidden"
+						className="relative w-full overflow-hidden py-5"
 						data-directus={setAttr({ collection: 'block_logo_carousel', item: id, fields: 'logos', mode: 'modal' })}
 					>
 						{/* Left edge fade */}
