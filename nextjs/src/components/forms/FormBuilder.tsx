@@ -18,7 +18,7 @@ interface FormBuilderProps {
 		on_success?: 'redirect' | 'message' | null;
 		sort?: number | null;
 		submit_label?: string;
-		submit_button_width?: 'auto' | 'full' | null;
+		submit_button_width?: '33' | '50' | '67' | '100' | null;
 		success_message?: string | null;
 		error_message?: string | null;
 		title?: string | null;
@@ -102,7 +102,7 @@ const FormBuilder = ({ form, className }: FormBuilderProps) => {
 				fields={form.fields}
 				onSubmit={handleSubmit}
 				submitLabel={form.submit_label || 'Submit'}
-				submitButtonWidth={form.submit_button_width ?? 'auto'}
+				submitButtonWidth={form.submit_button_width ?? '100'}
 				privacyPolicyText={form.privacy_policy_text ?? null}
 				privacyPolicyLinkText={form.privacy_policy_link_text ?? null}
 				privacyPolicyLinkUrl={form.privacy_policy_link_url ?? null}

@@ -745,8 +745,8 @@ export interface Form {
 	privacy_policy_link_text?: string | null;
 	/** @description URL for the privacy policy link. */
 	privacy_policy_link_url?: string | null;
-	/** @description Controls the width of the submit button: 'auto' or 'full'. */
-	submit_button_width?: 'auto' | 'full' | null;
+	/** @description Controls the width of the submit button: 33, 50, 67, or 100 percent. */
+	submit_button_width?: '33' | '50' | '67' | '100' | null;
 	/** @description Setup email notifications when forms are submitted. */
 	emails?: Array<{ to: string[]; subject: string; message: string }> | null;
 	date_created?: string | null;
