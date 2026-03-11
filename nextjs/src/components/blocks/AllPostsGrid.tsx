@@ -2,8 +2,15 @@
 
 import { useState, useMemo } from 'react';
 import Link from 'next/link';
+import { ChevronDown, Check } from 'lucide-react';
 import DirectusImage from '@/components/shared/DirectusImage';
 import Container from '@/components/ui/container';
+import {
+	DropdownMenu,
+	DropdownMenuContent,
+	DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
+import { cn } from '@/lib/utils';
 import { setAttr } from '@directus/visual-editing';
 
 interface ServiceItem {
@@ -30,8 +37,91 @@ interface AllPostsGridProps {
 	};
 }
 
-const TYPE_OPTIONS = [
-	{ label: 'All Types', value: '' },
+interface FilterOption {
+	label: string;
+	value: string;
+}
+
+interface FilterDropdownProps {
+	label: string;
+	panelTitle: string;
+	options: FilterOption[];
+	selected: string[];
+	onChange: (values: string[]) => void;
+	useHtmlOptionLabels?: boolean;
+}
+
+function FilterDropdown({ label, panelTitle, options, selected, onChange, useHtmlOptionLabels }: FilterDropdownProps) {
+	const isActive = selected.length > 0;
+
+	function toggle(value: string) {
+		if (selected.includes(value)) {
+			onChange(selected.filter((v) => v !== value));
+		} else {
+			onChange([...selected, value]);
+		}
+	}
+
+	return (
+		<DropdownMenu>
+			<DropdownMenuTrigger asChild>
+				<button
+					className={cn(
+						'flex items-center justify-between gap-[8px] h-[40px] px-[12px] rounded-[8px] border border-[#dfdfdf] font-sans text-[14px] min-w-[180px] transition-colors focus:outline-none',
+						isActive ? 'bg-[#db365a] text-[#f9fafb]' : 'bg-[#f9fafb] text-[#333]',
+					)}
+				>
+					<span className="leading-[16px] whitespace-nowrap">
+						{label}
+						{isActive && ` (${selected.length})`}
+					</span>
+					<ChevronDown className="size-[20px] shrink-0" />
+				</button>
+			</DropdownMenuTrigger>
+			<DropdownMenuContent
+				align="start"
+				sideOffset={6}
+				className="p-0 rounded-[12px] border border-[#ced7db] bg-[#f9fafb] shadow-[0px_4px_8px_0px_rgba(0,0,0,0.08)] overflow-hidden min-w-[220px]"
+			>
+				<div className="px-[16px] pt-[16px] pb-[8px]">
+					<p className="text-[12px] text-[#71717a] font-normal leading-[16px]">{panelTitle}</p>
+				</div>
+				<div className="flex flex-col pb-[8px] max-h-[324px] overflow-y-auto">
+					{options.map((option) => {
+						const checked = selected.includes(option.value);
+						
+return (
+							<div
+								key={option.value}
+								className="flex items-center gap-[12px] px-[16px] py-[8px] cursor-pointer hover:bg-[#f0f4f5]"
+								onClick={() => toggle(option.value)}
+							>
+								<div
+									className={cn(
+										'size-[20px] shrink-0 rounded-[6px] border flex items-center justify-center transition-colors',
+										checked ? 'bg-[#db365a] border-[#db365a]' : 'bg-white border-[#a1a1aa]',
+									)}
+								>
+									{checked && <Check className="size-[14px] text-white" strokeWidth={2.5} />}
+								</div>
+								{useHtmlOptionLabels ? (
+									<span
+										className="text-[14px] text-[#333] font-normal leading-[20px]"
+										dangerouslySetInnerHTML={{ __html: option.label }}
+									/>
+								) : (
+									<span className="text-[14px] text-[#333] font-normal leading-[20px]">{option.label}</span>
+								)}
+							</div>
+						);
+					})}
+				</div>
+			</DropdownMenuContent>
+		</DropdownMenu>
+	);
+}
+
+const TYPE_OPTIONS: FilterOption[] = [
 	{ label: 'Insight', value: 'insight' },
 	{ label: 'Story', value: 'story' },
 	{ label: 'Update', value: 'update' },
@@ -42,8 +132,8 @@ const PAGE_SIZE = 9;
 function getReadTime(description?: string | null): number {
 	if (!description) return 4;
 	const words = description.trim().split(/\s+/).length;
-	
-return Math.max(1, Math.ceil(words / 200));
+
+	return Math.max(1, Math.ceil(words / 200));
 }
 
 function buildPageNumbers(current: number, total: number): (number | '...')[] {
@@ -55,40 +145,47 @@ function buildPageNumbers(current: number, total: number): (number | '...')[] {
 	}
 	if (current < total - 2) pages.push('...');
 	pages.push(total);
-	
-return pages;
+
+	return pages;
 }
 
 export default function AllPostsGrid({ data }: AllPostsGridProps) {
 	const { id, headline, posts = [], services = [] } = data;
 
-	const [typeFilter, setTypeFilter] = useState('');
-	const [serviceFilter, setServiceFilter] = useState('');
+	const [typeFilters, setTypeFilters] = useState<string[]>([]);
+	const [serviceFilters, setServiceFilters] = useState<string[]>([]);
 	const [page, setPage] = useState(1);
 
-	const serviceOptions = useMemo(() => [
-		{ label: 'All Services', value: '' },
-		...services.map((s) => ({ label: s.title, value: s.id })),
-	], [services]);
+	const serviceOptions = useMemo<FilterOption[]>(
+		() => services.map((s) => ({ label: s.title, value: s.id })),
+		[services],
+	);
 
 	const filtered = useMemo(() => {
 		return posts.filter((p) => {
-			if (typeFilter && p.type !== typeFilter) return false;
-			if (serviceFilter && p.service?.id !== serviceFilter) return false;
+			if (typeFilters.length > 0 && (!p.type || !typeFilters.includes(p.type))) return false;
+			if (serviceFilters.length > 0 && (!p.service?.id || !serviceFilters.includes(p.service.id))) return false;
 
-return true;
+			return true;
 		});
-	}, [posts, typeFilter, serviceFilter]);
+	}, [posts, typeFilters, serviceFilters]);
 
 	const totalPages = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE));
 	const safePage = Math.min(page, totalPages);
 	const visible = filtered.slice((safePage - 1) * PAGE_SIZE, safePage * PAGE_SIZE);
 	const pageNumbers = buildPageNumbers(safePage, totalPages);
 
-	function changeFilter(setter: (v: string) => void, value: string) {
-		setter(value);
+	function changeTypeFilters(values: string[]) {
+		setTypeFilters(values);
 		setPage(1);
 	}
+
+	function changeServiceFilters(values: string[]) {
+		setServiceFilters(values);
+		setPage(1);
+	}
+
+	const hasActiveFilters = typeFilters.length > 0 || serviceFilters.length > 0;
 
 	return (
 		<section
@@ -105,40 +202,32 @@ return true;
 					)}
 
 					{/* Filter bar */}
-					<div className="flex flex-wrap gap-[12px] md:gap-[16px]">
-						<div className="relative">
-							<select
-								value={typeFilter}
-								onChange={(e) => changeFilter(setTypeFilter, e.target.value)}
-								className="appearance-none bg-white border border-[#d0d5dd] rounded-[8px] px-[16px] py-[10px] pr-[40px] font-sans text-[14px] text-[#1d2939] cursor-pointer hover:border-[#1d2939] transition-colors focus:outline-none focus:border-[#1d2939]"
-							>
-								{TYPE_OPTIONS.map((o) => (
-									<option key={o.value} value={o.value}>{o.label}</option>
-								))}
-							</select>
-							<svg className="pointer-events-none absolute right-[12px] top-1/2 -translate-y-1/2 text-[#667085]" width="12" height="8" viewBox="0 0 12 8" fill="none">
-								<path d="M1 1L6 6L11 1" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-							</svg>
-						</div>
+					<div className="flex flex-wrap gap-[12px] md:gap-[16px] items-center">
+						<FilterDropdown
+							label="Filter by category"
+							panelTitle="Filter category"
+							options={TYPE_OPTIONS}
+							selected={typeFilters}
+							onChange={changeTypeFilters}
+						/>
 
-						<div className="relative">
-							<select
-								value={serviceFilter}
-								onChange={(e) => changeFilter(setServiceFilter, e.target.value)}
-								className="appearance-none bg-white border border-[#d0d5dd] rounded-[8px] px-[16px] py-[10px] pr-[40px] font-sans text-[14px] text-[#1d2939] cursor-pointer hover:border-[#1d2939] transition-colors focus:outline-none focus:border-[#1d2939]"
-							>
-								{serviceOptions.map((o) => (
-									<option key={o.value} value={o.value} dangerouslySetInnerHTML={{ __html: o.label }}></option>
-								))}
-							</select>
-							<svg className="pointer-events-none absolute right-[12px] top-1/2 -translate-y-1/2 text-[#667085]" width="12" height="8" viewBox="0 0 12 8" fill="none">
-								<path d="M1 1L6 6L11 1" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-							</svg>
-						</div>
+						{serviceOptions.length > 0 && (
+							<FilterDropdown
+								label="Filter by service pillars"
+								panelTitle="Filter service pillars"
+								options={serviceOptions}
+								selected={serviceFilters}
+								onChange={changeServiceFilters}
+								useHtmlOptionLabels
+							/>
+						)}
 
-						{(typeFilter || serviceFilter) && (
+						{hasActiveFilters && (
 							<button
-								onClick={() => { changeFilter(setTypeFilter, ''); changeFilter(setServiceFilter, ''); }}
+								onClick={() => {
+									changeTypeFilters([]);
+									changeServiceFilters([]);
+								}}
 								className="px-[16px] py-[10px] font-sans text-[14px] text-[#667085] hover:text-[#1d2939] transition-colors"
 							>
 								Clear filters
@@ -150,7 +239,7 @@ return true;
 				{/* Grid */}
 				{visible.length > 0 ? (
 					<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[33px]">
-		{visible.map((post) => {
+						{visible.map((post) => {
 							const readTime = getReadTime(post.description);
 							const inner = (
 								<div className="bg-[#ebf0f2] flex flex-col size-full rounded-[16px] overflow-hidden">
@@ -225,7 +314,9 @@ return true;
 									</div>
 								</Link>
 							) : (
-								<div key={post.id} className="flex min-h-[420px] md:min-h-[560px]">{inner}</div>
+								<div key={post.id} className="flex min-h-[420px] md:min-h-[560px]">
+									{inner}
+								</div>
 							);
 						})}
 					</div>
@@ -244,7 +335,13 @@ return true;
 							className="flex items-center justify-center w-[10px] h-[17px] disabled:opacity-30 shrink-0"
 						>
 							<svg width="10" height="17" viewBox="0 0 10 17" fill="none">
-								<path d="M8.5 1.5L1.5 8.5L8.5 15.5" stroke="#1d2939" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+								<path
+									d="M8.5 1.5L1.5 8.5L8.5 15.5"
+									stroke="#1d2939"
+									strokeWidth="1.5"
+									strokeLinecap="round"
+									strokeLinejoin="round"
+								/>
 							</svg>
 						</button>
 
@@ -286,7 +383,13 @@ return true;
 							className="flex items-center justify-center w-[10px] h-[17px] disabled:opacity-30 shrink-0"
 						>
 							<svg width="10" height="17" viewBox="0 0 10 17" fill="none">
-								<path d="M1.5 1.5L8.5 8.5L1.5 15.5" stroke="#1d2939" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+								<path
+									d="M1.5 1.5L8.5 8.5L1.5 15.5"
+									stroke="#1d2939"
+									strokeWidth="1.5"
+									strokeLinecap="round"
+									strokeLinejoin="round"
+								/>
 							</svg>
 						</button>
 					</div>
