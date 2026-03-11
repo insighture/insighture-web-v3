@@ -188,7 +188,7 @@ function buildSlideButtons(slide: HeroSlide): HeroButton[] {
 	return buttons;
 }
 
-function HeroVideo({ videoId, posterId, fill, className, loop = true, onEnded, priority = false }: {
+function HeroVideo({ videoId, posterId, fill, className, loop = true, onEnded, priority = false, controls = false }: {
 	videoId: string;
 	posterId?: string | null;
 	fill?: boolean;
@@ -196,6 +196,7 @@ function HeroVideo({ videoId, posterId, fill, className, loop = true, onEnded, p
 	loop?: boolean;
 	onEnded?: () => void;
 	priority?: boolean;
+	controls?: boolean;
 }) {
 	const videoRef = useRef<HTMLVideoElement>(null);
 	const [isLoaded, setIsLoaded] = useState(false);
@@ -220,10 +221,11 @@ function HeroVideo({ videoId, posterId, fill, className, loop = true, onEnded, p
 			<video
 				ref={videoRef}
 				src={videoSrc}
-				autoPlay
-				muted
+				autoPlay={!controls}
+				muted={!controls}
 				loop={loop}
 				playsInline
+				controls={controls}
 				preload="auto"
 				onCanPlay={() => setIsLoaded(true)}
 				onEnded={onEnded}
@@ -701,7 +703,7 @@ export default function Hero({ data }: HeroProps) {
 							})}
 						>
 							{video ? (
-								<HeroVideo videoId={video} posterId={image} fill className="object-cover" />
+								<HeroVideo videoId={video} posterId={image} fill className="object-cover" controls />
 							) : image ? (
 								<DirectusImage
 									uuid={image}
@@ -808,7 +810,7 @@ export default function Hero({ data }: HeroProps) {
 					})}
 				>
 					{video ? (
-						<HeroVideo videoId={video} posterId={image} fill className="object-contain" />
+						<HeroVideo videoId={video} posterId={image} fill className="object-contain" controls />
 					) : image ? (
 						<DirectusImage
 							uuid={image}
