@@ -15,17 +15,11 @@ const PageBuilder = ({ sections }: PageBuilderProps) => {
 	return (
 		<div>
 			{validBlocks.map((block) => {
-				const isFullBleed =
-					block.collection === 'block_hero' &&
-					typeof block.item === 'object' &&
-					block.item !== null &&
-					'layout' in block.item &&
-					(block.item as { layout?: string }).layout === 'image_expanded';
-
 				const sectionBg =
 					(block.collection === 'block_richtext' || block.collection === 'block_services' ||
 					block.collection === 'block_testimonials' || block.collection === 'block_logo_carousel' ||
-					block.collection === 'block_credentials' || block.collection === 'block_card_grid') &&
+					block.collection === 'block_credentials' || block.collection === 'block_card_grid' ||
+					block.collection === 'block_hero') &&
 					typeof block.item === 'object' &&
 					block.item !== null &&
 					'background_color' in block.item
@@ -35,6 +29,7 @@ const PageBuilder = ({ sections }: PageBuilderProps) => {
 							const isBgWhite = block.collection === 'block_reach_out' || block.collection === 'block_people_say' || block.collection === 'block_open_roles';
 
 				const isFullBleedBlock =
+					block.collection === 'block_hero' ||
 					block.collection === 'block_richtext' ||
 					block.collection === 'block_testimonials' ||
 					block.collection === 'block_logo_carousel' ||
@@ -60,9 +55,10 @@ const PageBuilder = ({ sections }: PageBuilderProps) => {
 					block.collection === 'block_service_featured_article' ||
 					block.collection === 'block_service_credentials_cta' ||
 					block.collection === 'block_service_product_catalogue' ||
-				block.collection === 'block_service_platform_banner';
+				block.collection === 'block_service_platform_banner' ||
+				block.collection === 'block_content_tabs';
 
-				if (isFullBleed || sectionBg || isFullBleedBlock) {
+				if (sectionBg || isFullBleedBlock) {
 					return (
 						<div
 							key={block.id}

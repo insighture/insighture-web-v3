@@ -78,6 +78,7 @@ const pageFields = [
 					block_form: ['*', { form: ['*', { fields: ['*'] }] }],
 					block_open_roles: ['*', { jobs: ['*', { form: ['*', { fields: ['*'] }] }] }],
 					block_people_say: ['*', { slides: ['*'] }],
+					block_content_tabs: ['*', { tabs: ['*', { speakers: ['*'] }] }],
 					block_values: ['*', { value_items: ['*'] }],
 					block_posts_carousel: ['id','headline','description',{posts: ['sort',{ posts_id: ['id', 'title', 'slug', 'image', 'description', 'type'] }] }],
 					block_featured_post: [

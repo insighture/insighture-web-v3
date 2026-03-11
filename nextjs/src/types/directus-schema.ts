@@ -235,6 +235,8 @@ export interface BlockHero {
 	expanded_text_alignment?: 'left' | 'center' | 'right' | null;
 	/** @description Height of the hero section in vh units (e.g. 75 for 75vh). Leave empty for full screen. */
 	height?: string | null;
+	/** @description Background color of the hero section (CSS color value). Applied as full-bleed background for all layouts. */
+	background_color?: string | null;
 	date_created?: string | null;
 	user_created?: DirectusUser | string | null;
 	date_updated?: string | null;
@@ -499,6 +501,53 @@ export interface BlockCtaSplit {
 	heading?: string | null;
 	/** @description Right-side description paragraph. */
 	description?: string | null;
+	date_created?: string | null;
+	user_created?: DirectusUser | string | null;
+	date_updated?: string | null;
+	user_updated?: DirectusUser | string | null;
+}
+
+export interface BlockContentTabsSpeaker {
+	/** @primaryKey */
+	id: string;
+	sort?: number | null;
+	/** @description The tab this speaker belongs to. */
+	block_content_tabs_tab?: BlockContentTabsTab | string | null;
+	/** @description Speaker's full name. */
+	name?: string | null;
+	/** @description Speaker's job title and company. */
+	role?: string | null;
+	/** @description Speaker's avatar/headshot image. */
+	image?: DirectusFile | string | null;
+	date_created?: string | null;
+	user_created?: DirectusUser | string | null;
+	date_updated?: string | null;
+	user_updated?: DirectusUser | string | null;
+}
+
+export interface BlockContentTabsTab {
+	/** @primaryKey */
+	id: string;
+	sort?: number | null;
+	/** @description The content tabs block this tab belongs to. */
+	block_content_tabs?: BlockContentTabs | string | null;
+	/** @description Tab label shown in the tab bar. */
+	label?: string | null;
+	/** @description Rich text body content displayed when this tab is active. */
+	content?: string | null;
+	/** @description Speakers shown below the content. */
+	speakers?: BlockContentTabsSpeaker[] | string[];
+	date_created?: string | null;
+	user_created?: DirectusUser | string | null;
+	date_updated?: string | null;
+	user_updated?: DirectusUser | string | null;
+}
+
+export interface BlockContentTabs {
+	/** @primaryKey */
+	id: string;
+	/** @description Ordered list of tabs. */
+	tabs?: BlockContentTabsTab[] | string[];
 	date_created?: string | null;
 	user_created?: DirectusUser | string | null;
 	date_updated?: string | null;
@@ -874,7 +923,7 @@ export interface PageBlock {
 	/** @description The id of the page that this block belongs to. */
 	page?: Page | string | null;
 	/** @description The data for the block. */
-	item?: BlockHero | BlockRichtext | BlockForm | BlockPost | BlockGallery | BlockPricing | BlockReachOut | BlockAcknowledgement | BlockCultureGallery | BlockValues | BlockPeopleSay | BlockIntroMedia | BlockOpenRoles | BlockCtaSplit | string | null;
+	item?: BlockHero | BlockRichtext | BlockForm | BlockPost | BlockGallery | BlockPricing | BlockReachOut | BlockAcknowledgement | BlockCultureGallery | BlockValues | BlockPeopleSay | BlockIntroMedia | BlockOpenRoles | BlockCtaSplit | BlockContentTabs | string | null;
 	/** @description The collection (type of block). */
 	collection?: string | null;
 	/** @description Temporarily hide this block on the website without having to remove it from your page. */
@@ -1775,6 +1824,9 @@ export interface Schema {
 	block_open_roles: BlockOpenRoles[];
 	block_open_roles_job: BlockOpenRolesJob[];
 	block_cta_split: BlockCtaSplit[];
+	block_content_tabs: BlockContentTabs[];
+	block_content_tabs_tab: BlockContentTabsTab[];
+	block_content_tabs_speaker: BlockContentTabsSpeaker[];
 	block_richtext: BlockRichtext[];
 	block_services: BlockServices[];
 	block_services_item: BlockServicesItem[];

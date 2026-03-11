@@ -591,25 +591,144 @@ export default function Hero({ data }: HeroProps) {
 		);
 	}
 
-	// Standard layouts: image_left, image_center, image_right
+	// image_center layout — full-bleed background with vertically centered content column
+	if (layout === 'image_center') {
+		return (
+			<section
+				className={cn('relative w-full overflow-hidden flex flex-col items-center justify-center', heightClass)}
+				style={{
+					...heightStyle,
+					...(background_color ? { backgroundColor: background_color } : {}),
+				}}
+			>
+				{/* Overlay image (gradient texture / pattern) */}
+				{overlay_image && (
+					<div
+						className="absolute inset-0 pointer-events-none z-[1]"
+						style={{ opacity: overlay_opacity ?? 0.5 }}
+					>
+						<DirectusImage
+							uuid={overlay_image}
+							alt=""
+							fill
+							sizes="100vw"
+							className="object-cover"
+						/>
+					</div>
+				)}
+
+				<div className="relative z-[10] flex flex-col items-center gap-10 w-full max-w-[890px] mx-auto">
+					{/* Text content */}
+					<div className="flex flex-col items-center gap-6 text-center w-full">
+						{tagline_type === 'image' && tagline_image ? (
+							<div className="relative h-10 w-40">
+								<DirectusImage
+									uuid={tagline_image}
+									alt={tagline_image_alt ?? ''}
+									fill
+									sizes="160px"
+									className="object-contain"
+								/>
+							</div>
+						) : tagline ? (
+							<Tagline
+								tagline={tagline}
+								data-directus={setAttr({
+									collection: 'block_hero',
+									item: id,
+									fields: 'tagline',
+									mode: 'popover',
+								})}
+							/>
+						) : null}
+						<h2
+							className="leading-tight"
+							data-directus={setAttr({
+								collection: 'block_hero',
+								item: id,
+								fields: 'headline_lines',
+								mode: 'modal',
+							})}
+						>
+							{sortedHeadlineLines.map((line) => (
+								<span
+									key={line.id}
+									className={`block ${fontSizeMap[line.font_size ?? '2xl'] ?? 'text-7xl'}`}
+									style={{
+										fontWeight: line.font_weight ?? '600',
+										fontStyle: line.font_style ?? 'normal',
+										...(line.color ? { color: line.color } : {}),
+									}}
+									dangerouslySetInnerHTML={{ __html: sanitize(line.text) }}
+								/>
+							))}
+						</h2>
+						{description && (
+							<BaseText
+								content={description}
+								data-directus={setAttr({
+									collection: 'block_hero',
+									item: id,
+									fields: 'description',
+									mode: 'popover',
+								})}
+							/>
+						)}
+						{button_group && button_group.buttons.length > 0 && (
+							<div
+								className="flex justify-center mt-2"
+								data-directus={setAttr({
+									collection: 'block_button_group',
+									item: button_group.id,
+									fields: 'buttons',
+									mode: 'modal',
+								})}
+							>
+								<ButtonGroup buttons={button_group.buttons} />
+							</div>
+						)}
+					</div>
+
+					{/* Media — contained at fixed aspect ratio */}
+					{(image || video) && (
+						<div
+							className="relative w-full aspect-[890/520] overflow-hidden"
+							data-directus={setAttr({
+								collection: 'block_hero',
+								item: id,
+								fields: ['image', 'video', 'layout'],
+								mode: 'modal',
+							})}
+						>
+							{video ? (
+								<HeroVideo videoId={video} posterId={image} fill className="object-cover" />
+							) : image ? (
+								<DirectusImage
+									uuid={image}
+									alt={tagline || 'Hero Image'}
+									fill
+									sizes="890px"
+									className="object-cover"
+								/>
+							) : null}
+						</div>
+					)}
+				</div>
+			</section>
+		);
+	}
+
+	// Standard layouts: image_left, image_right
 	return (
 		<section
 			className={cn(
-				'relative w-full mx-auto flex flex-col gap-6 md:gap-12',
-				layout === 'image_center'
-					? 'items-center text-center'
-					: layout === 'image_left'
-						? 'md:flex-row-reverse items-center'
-						: 'md:flex-row items-center',
+				'relative w-full mx-auto flex flex-col gap-6 md:gap-10 py-16 px-6 sm:px-10 md:px-16 lg:px-[120px]',
+				layout === 'image_left'
+					? 'md:flex-row-reverse items-center'
+					: 'md:flex-row items-center',
 			)}
-			style={background_color ? { backgroundColor: background_color } : undefined}
 		>
-			<div
-				className={cn(
-					'flex flex-col gap-4 w-full',
-					layout === 'image_center' ? 'md:w-3/4 xl:w-2/3 items-center' : 'md:w-1/2 items-start',
-				)}
-			>
+			<div className="flex flex-col gap-4 w-full md:w-1/2 items-start">
 				{tagline_type === 'image' && tagline_image ? (
 					<div className="relative h-10 w-40">
 						<DirectusImage
@@ -666,7 +785,7 @@ export default function Hero({ data }: HeroProps) {
 				)}
 				{button_group && button_group.buttons.length > 0 && (
 					<div
-						className={cn(layout === 'image_center' && 'flex justify-center', 'mt-6')}
+						className="mt-6"
 						data-directus={setAttr({
 							collection: 'block_button_group',
 							item: button_group.id,
@@ -680,10 +799,7 @@ export default function Hero({ data }: HeroProps) {
 			</div>
 			{(image || video) && (
 				<div
-					className={cn(
-						'relative w-full',
-						layout === 'image_center' ? 'md:w-3/4 xl:w-2/3 h-[400px]' : 'md:w-1/2 h-[562px]',
-					)}
+					className="relative w-full md:w-1/2 h-[562px]"
 					data-directus={setAttr({
 						collection: 'block_hero',
 						item: id,
@@ -698,7 +814,7 @@ export default function Hero({ data }: HeroProps) {
 							uuid={image}
 							alt={tagline || 'Hero Image'}
 							fill
-							sizes={layout === 'image_center' ? '100vw' : '(max-width: 768px) 100vw, 50vw'}
+							sizes="(max-width: 768px) 100vw, 50vw"
 							className="object-contain"
 						/>
 					) : null}

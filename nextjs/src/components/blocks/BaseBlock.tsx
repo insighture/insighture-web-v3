@@ -34,6 +34,7 @@ const components: Record<string, React.ComponentType<any>> = {
 	block_intro_media: dynamic(() => import('@/components/blocks/IntroMedia')),
 	block_open_roles: dynamic(() => import('@/components/blocks/OpenRoles')),
 	block_cta_split: dynamic(() => import('@/components/blocks/CtaSplit')),
+	block_content_tabs: dynamic(() => import('@/components/blocks/ContentTabs')),
 };
 
 interface BaseBlockProps {
