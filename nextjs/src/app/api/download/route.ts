@@ -13,7 +13,7 @@ export async function GET(request: Request) {
 	if (!directusUrl) {
 		console.error('[download] Missing DIRECTUS_URL env var');
 
-		return NextResponse.json({ error: 'Server misconfiguration. Directus url ' + directusUrl }, { status: 500 });
+		return NextResponse.json({ error: 'Server misconfiguration.' }, { status: 500 });
 	}
 
 	const assetUrl = `${directusUrl}/assets/${id}?download`;

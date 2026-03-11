@@ -53,6 +53,7 @@ const nextConfig: NextConfig = {
 		DIRECTUS_PUBLIC_TOKEN: process.env.DIRECTUS_PUBLIC_TOKEN,
 		DIRECTUS_FORM_TOKEN: process.env.DIRECTUS_FORM_TOKEN,
 		DRAFT_MODE_SECRET: process.env.DRAFT_MODE_SECRET,
+		DIRECTUS_URL: process.env.DIRECTUS_URL,
 	},
 	async headers() {
 		return [
