@@ -39,12 +39,12 @@ interface TestimonialsProps {
 
 const KEYFRAMES = `
 @keyframes cardFlyToFront {
-  from { transform: translate(-12px, 8px) rotate(-5deg) scale(0.95); opacity: 0.6; }
-  to   { transform: translate(0, 0) rotate(0deg) scale(1); opacity: 1; }
+  from { transform: translate(-10px, 0px) rotate(-3deg) scale(0.97); transform-origin: bottom center; opacity: 0.6; }
+  to   { transform: translate(0, 0) rotate(0deg) scale(1); transform-origin: bottom center; opacity: 1; }
 }
 @keyframes cardFlyToFrontReverse {
-  from { transform: translate(12px, 8px) rotate(5deg) scale(0.95); opacity: 0.6; }
-  to   { transform: translate(0, 0) rotate(0deg) scale(1); opacity: 1; }
+  from { transform: translate(10px, 0px) rotate(3deg) scale(0.97); transform-origin: bottom center; opacity: 0.6; }
+  to   { transform: translate(0, 0) rotate(0deg) scale(1); transform-origin: bottom center; opacity: 1; }
 }
 @keyframes ghostFadeIn {
   from { opacity: 0; }
@@ -242,38 +242,36 @@ export default function Testimonials({ data }: TestimonialsProps) {
 					{/* Stacked testimonial cards */}
 					{activeItem && (
 						<div
-							className="relative w-full lg:shrink-0 lg:w-[806px] lg:h-[500px]"
+							className="relative w-full lg:shrink-0 lg:w-[806px] lg:h-[500px] lg:[clip-path:inset(1px_0px_1px_-120px)]"
 							data-directus={setAttr({ collection: 'block_testimonials', item: id, fields: 'testimonials', mode: 'modal' })}
 						>
-							{/* Ghost cards — desktop only (require fixed-height absolute container) */}
+							{/* Ghost cards — colored rectangles fanning left behind active card */}
 							{next2 && (
 								<div
-									key={next2.id}
-									className="hidden lg:flex absolute inset-0 pointer-events-none"
+									key={`ghost2-${next2.id}`}
+									className="hidden lg:block absolute inset-0 rounded-[16px] pointer-events-none"
 									style={{
-										transform: 'translate(-24px, 16px) rotate(-10deg)',
+										background: next2.background_color ?? '#c72d4f',
+										transform: 'translate(0px, 0px) rotate(-12deg) scale(0.95)',
 										transformOrigin: 'bottom center',
 										zIndex: 1,
 										animation: 'ghostFadeIn 0.3s ease-out both',
 									}}
-								>
-									<TestimonialCard item={next2} />
-								</div>
+								/>
 							)}
 
 							{next1 && (
 								<div
-									key={next1.id}
-									className="hidden lg:flex absolute inset-0 pointer-events-none"
+									key={`ghost1-${next1.id}`}
+									className="hidden lg:block absolute inset-0 rounded-[16px] pointer-events-none"
 									style={{
-										transform: 'translate(-12px, 8px) rotate(-5deg)',
+										background: next1.background_color ?? '#c72d4f',
+										transform: 'translate(0px, 0px) rotate(-6deg) scale(0.97)',
 										transformOrigin: 'bottom center',
 										zIndex: 2,
 										animation: 'ghostFadeIn 0.35s ease-out both',
 									}}
-								>
-									<TestimonialCard item={next1} />
-								</div>
+								/>
 							)}
 
 							{/* Active card — relative on mobile, absolute on desktop */}
