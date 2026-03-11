@@ -14,7 +14,7 @@ interface DynamicFormProps {
 	fields: FormFieldType[];
 	onSubmit: (data: Record<string, any>, resetForm: () => void) => void;
 	submitLabel: string;
-	submitButtonWidth?: 'auto' | 'full';
+	submitButtonWidth?: '33' | '50' | '67' | '100';
 	privacyPolicyText?: string | null;
 	privacyPolicyLinkText?: string | null;
 	privacyPolicyLinkUrl?: string | null;
@@ -26,7 +26,7 @@ const DynamicForm = ({
 	fields,
 	onSubmit,
 	submitLabel,
-	submitButtonWidth = 'auto',
+	submitButtonWidth = '100',
 	privacyPolicyText,
 	privacyPolicyLinkText,
 	privacyPolicyLinkUrl,
@@ -59,6 +59,13 @@ const DynamicForm = ({
 			return defaults;
 		}, {}),
 	});
+
+	const submitWidthClass = {
+		100: 'w-full',
+		50: 'w-full sm:w-[calc(50%-8px)]',
+		67: 'w-full sm:w-[calc(67%-8px)]',
+		33: 'w-full sm:w-[calc(33%-8px)]',
+	}[Number(submitButtonWidth)] ?? 'w-full';
 
 	const colSpan = (width: string | null | undefined) => {
 		switch (width) {
@@ -127,7 +134,7 @@ const DynamicForm = ({
 						</div>
 					)}
 
-					<div className="w-full">
+					<div className={`shrink-0 ${submitWidthClass}`}>
 						<div
 							data-directus={setAttr({
 								collection: 'forms',
