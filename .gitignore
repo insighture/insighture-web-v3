@@ -64,3 +64,4 @@ directus/docs/*
 
 .claude
 /.claude
+/nextjs/docs

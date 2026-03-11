@@ -144,9 +144,9 @@ export default function LogoCarousel({ data }: LogoCarouselProps) {
 				<style>{MARQUEE_STYLES}{marqueeKeyframes}</style>
 
 				{tagline && (
-					<Container>
+					<div>
 						<div className="font-sans font-normal text-[14px] md:text-[16px] leading-[26px] text-center" style={{ color: tagline_color ?? '#ffffff' }} dangerouslySetInnerHTML={{ __html: tagline }} />
-					</Container>
+					</div>
 				)}
 
 				{sortedLogos.length > 0 && (

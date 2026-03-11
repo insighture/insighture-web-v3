@@ -20,6 +20,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { forwardRef, useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import Container from '../ui/container';
 
 interface NavigationBarProps {
 	navigation: any;
@@ -306,7 +307,7 @@ const NavigationBar = forwardRef<HTMLElement, NavigationBarProps>(({ navigation,
 				)}
 				style={headerStyle}
 			>
-				<div className="flex items-center justify-between p-4 md:px-8 lg:px-[120px] md:py-6">
+				<Container className="flex items-center justify-between py-4 md:py-6">
 					{/* Logo - Left (keeps space even when hidden, but always shows when scrolled) */}
 					<div className="flex-shrink-0 w-[100px] md:w-[120px] lg:w-[157px]">
 						{(!shouldHideLogo || scrolled) && (
@@ -579,7 +580,7 @@ const NavigationBar = forwardRef<HTMLElement, NavigationBarProps>(({ navigation,
 										<Menu className="size-6" />
 									</Button>
 								</DropdownMenuTrigger>
-								<DropdownMenuContent align="end" className="w-[calc(100vw-2rem)] max-w-sm p-6 shadow-lg mt-3 mr-2">
+								<DropdownMenuContent align="end" className="w-[calc(100vw-2rem)] max-w-sm p-6 shadow-lg mt-3">
 									<div className="flex flex-col gap-3">
 										{navigation?.items?.map((section: any) => {
 											const mobileActive = isNavItemActive(section);
@@ -644,7 +645,7 @@ const NavigationBar = forwardRef<HTMLElement, NavigationBarProps>(({ navigation,
 							</DropdownMenu>
 						</div>
 					</div>
-				</div>
+				</Container>
 			</header>
 		</>
 	);

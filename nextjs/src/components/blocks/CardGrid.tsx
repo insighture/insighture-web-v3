@@ -3,6 +3,7 @@
 import { useId } from 'react';
 import DirectusImage from '@/components/shared/DirectusImage';
 import { setAttr } from '@directus/visual-editing';
+import Container from '../ui/container';
 
 interface CardGridItem {
 	id: string;
@@ -52,7 +53,7 @@ const CardGrid = ({ data }: CardGridProps) => {
 		>
 			{/* Section header */}
 			{(tagline || headline || description) && (
-				<div className="flex flex-col gap-4 md:gap-6 items-start text-left mb-8 md:mb-12 lg:mb-16 max-w-[1190px] mx-auto px-4 md:px-6 lg:px-0">
+				<Container className="flex flex-col gap-4 md:gap-6 items-start text-left mb-8 md:mb-12 lg:mb-16">
 					{tagline && (
 						<div
 							className="text-sm font-semibold uppercase tracking-widest text-primary"
@@ -74,19 +75,19 @@ const CardGrid = ({ data }: CardGridProps) => {
 							data-directus={setAttr({ collection: 'block_card_grid', item: id, fields: 'description', mode: 'popover' })}
 						/>
 					)}
-				</div>
+				</Container>
 			)}
 
 			{/* Card grid */}
 			{sortedItems.length > 0 && (
-				<div
-					className={`grid ${gridClasses} gap-8 md:gap-6 max-w-[1190px] mx-auto px-4 md:px-6 lg:px-0`}
+				<Container
+					className={`grid ${gridClasses} gap-8 md:gap-6`}
 					data-directus={setAttr({ collection: 'block_card_grid', item: id, fields: 'items', mode: 'modal' })}
 				>
 					{sortedItems.map((item) => (
 						<CardItem key={item.id} item={item} />
 					))}
-				</div>
+				</Container>
 			)}
 		</div>
 	);

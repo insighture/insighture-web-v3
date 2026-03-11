@@ -37,7 +37,7 @@ const Services = ({ data }: ServicesProps) => {
 			<style>{`#svc-${scopeId} .svc-headline em { font-style: italic; }`}</style>
 
 			{/* Section header */}
-			<div className="flex flex-col gap-6 items-center text-center mb-10 max-w-[1440px] mx-auto">
+			<div className="flex flex-col gap-6 items-center text-center mb-10 mx-auto">
 				{tagline && (
 					<div
 						className="text-sm font-semibold uppercase tracking-widest text-primary"
@@ -64,7 +64,7 @@ const Services = ({ data }: ServicesProps) => {
 			{/* Card grid */}
 			{sortedItems.length > 0 && (
 				<div
-					className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 max-w-[1440px] mx-auto"
+					className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 mx-auto"
 					data-directus={setAttr({ collection: 'block_services', item: id, fields: 'items', mode: 'modal' })}
 				>
 					{sortedItems.map((item) => (

@@ -32,7 +32,7 @@ export default function FeatureSplit({ data }: FeatureSplitProps) {
 
 	return (
 		<div className="w-full bg-white">
-			<Container className="py-[48px] lg:p-[80px] flex flex-col gap-[32px] lg:gap-[40px]">
+			<Container className="py-[48px] lg:py-[80px] flex flex-col gap-[32px] lg:gap-[40px]">
 
 				{/* Heading block */}
 				<div

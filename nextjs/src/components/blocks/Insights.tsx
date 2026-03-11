@@ -140,7 +140,7 @@ export default function Insights({ data }: InsightsProps) {
 
 			{/* Bottom editorial text — desktop only (hidden on mobile since shown above) */}
 			{(featured?.title || featured?.description) && (
-				<Container className="hidden lg:flex mt-[32px] pb-[80px] flex-col gap-[16px] lg:px-[80px]">
+				<Container className="hidden lg:flex mt-[32px] pb-[80px] flex-col gap-[16px]">
 					{featured.title && (
 						<p className="font-sans font-normal text-[32px] leading-[48px] text-[#1d2939]">
 							{featured.title}
