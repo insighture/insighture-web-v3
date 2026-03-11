@@ -98,8 +98,8 @@ interface HeroButton {
 	variant: string | null;
 	url: string | null;
 	type: 'url' | 'page' | 'post';
-	pagePermalink?: string | null;
-	postSlug?: string | null;
+	page?: { permalink: string | null };
+	post?: { slug: string | null };
 	bgColor?: string | null;
 	textColor?: string | null;
 	hoverBgColor?: string | null;
@@ -162,7 +162,7 @@ function buildSlideButtons(slide: HeroSlide): HeroButton[] {
 			variant: slide.button_1_variant || 'primary',
 			url: slide.button_1_url,
 			type: slide.button_1_page ? 'page' : 'url',
-			pagePermalink: slide.button_1_page?.permalink,
+			page: slide.button_1_page ?? undefined,
 			bgColor: slide.button_1_bg_color,
 			textColor: slide.button_1_text_color,
 			hoverBgColor: slide.button_1_hover_bg_color,
@@ -177,7 +177,7 @@ function buildSlideButtons(slide: HeroSlide): HeroButton[] {
 			variant: slide.button_2_variant || 'secondary',
 			url: slide.button_2_url,
 			type: slide.button_2_page ? 'page' : 'url',
-			pagePermalink: slide.button_2_page?.permalink,
+			page: slide.button_2_page ?? undefined,
 			bgColor: slide.button_2_bg_color,
 			textColor: slide.button_2_text_color,
 			hoverBgColor: slide.button_2_hover_bg_color,
