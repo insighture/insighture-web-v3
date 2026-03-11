@@ -67,7 +67,7 @@ function TestimonialCard({
 
 	return (
 		<div
-			className="flex flex-col gap-4 md:gap-6 rounded-[16px] p-4 md:p-6 w-full"
+			className="flex flex-col gap-4 md:gap-6 rounded-[16px] p-4 md:p-6 size-full"
 			style={{ background: item.background_color ?? '#c72d4f' }}
 		>
 			{/* Top row: quotation mark + image */}
@@ -113,8 +113,8 @@ function TestimonialCard({
 			</div>
 
 			{/* Quote + author */}
-			<div className="flex flex-col gap-4 md:gap-5">
-				<div className="font-sans font-normal text-[15px] md:text-[18px] leading-[22px] md:leading-[24px]" style={{ color: fc }} dangerouslySetInnerHTML={{ __html: item.quote ?? '' }} />
+			<div className="flex flex-col gap-4 md:gap-5 flex-1">
+				<div className="font-sans font-normal text-[15px] md:text-[18px] leading-[22px] md:leading-[24px] flex-1" style={{ color: fc }} dangerouslySetInnerHTML={{ __html: item.quote ?? '' }} />
 
 				<div className="w-full border-t" style={{ borderColor: fc, opacity: 0.3 }} />
 
@@ -249,7 +249,7 @@ export default function Testimonials({ data }: TestimonialsProps) {
 							{next2 && (
 								<div
 									key={next2.id}
-									className="hidden lg:block absolute inset-0 pointer-events-none"
+									className="hidden lg:flex absolute inset-0 pointer-events-none"
 									style={{
 										transform: 'translate(-24px, 16px) rotate(-10deg)',
 										transformOrigin: 'bottom center',
@@ -264,7 +264,7 @@ export default function Testimonials({ data }: TestimonialsProps) {
 							{next1 && (
 								<div
 									key={next1.id}
-									className="hidden lg:block absolute inset-0 pointer-events-none"
+									className="hidden lg:flex absolute inset-0 pointer-events-none"
 									style={{
 										transform: 'translate(-12px, 8px) rotate(-5deg)',
 										transformOrigin: 'bottom center',
@@ -279,7 +279,7 @@ export default function Testimonials({ data }: TestimonialsProps) {
 							{/* Active card — relative on mobile, absolute on desktop */}
 							<div
 								key={activeItem.id}
-								className="relative lg:absolute lg:inset-0"
+								className="relative lg:absolute lg:inset-0 flex"
 								style={{ zIndex: 3, animation: activeEnterAnim }}
 							>
 								<TestimonialCard
