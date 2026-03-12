@@ -7,5 +7,14 @@
 		"path": "dist/index.js",
 		"source": "src/index.js",
 		"host": "^10.0.0 || ^11.0.0"
+	},
+	"scripts": {
+		"test": "vitest run",
+		"test:watch": "vitest"
+	},
+	"devDependencies": {
+		"vitest": "^2.0.0",
+		"express": "^4.21.0",
+		"supertest": "^7.0.0"
 	}
 }
