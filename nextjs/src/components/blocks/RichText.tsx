@@ -8,6 +8,7 @@ import Text from '@/components/ui/Text';
 import Button from '@/components/blocks/Button';
 import DirectusImage from '@/components/shared/DirectusImage';
 import { setAttr } from '@directus/visual-editing';
+import Container from '../ui/container';
 
 const fontSizeMap: Record<string, string> = {
 	sm: 'text-2xl',
@@ -77,7 +78,7 @@ const RichText = ({ data, className }: RichTextProps) => {
 	const router = useRouter();
 
 	// prose overrides: inherit color from parent, remove max-width cap, let scoped CSS win on font-size
-	const proseOverrides = 'prose-headings:text-[inherit] text-[inherit] max-w-none [&_p]:text-[inherit] [&_li]:text-[inherit] [&_a]:text-[inherit]';
+	const proseOverrides = 'prose prose-lg prose-headings:text-[inherit] text-[inherit] max-w-none [&_p]:text-[inherit] [&_li]:text-[inherit] [&_a]:text-[inherit]';
 
 	useEffect(() => {
 		const container = document.querySelector(`#rt-${scopeId} .prose`);
@@ -188,7 +189,7 @@ const RichText = ({ data, className }: RichTextProps) => {
 							{content && (
 								<Text
 									content={content}
-									className={cn(proseOverrides, 'max-w-[900px] w-full', alignClass)}
+									className={cn(proseOverrides, 'max-w-none w-full', alignClass)}
 									data-directus={setAttr({ collection: 'block_richtext', item: id, fields: 'content', mode: 'drawer' })}
 								/>
 							)}
@@ -221,8 +222,7 @@ const RichText = ({ data, className }: RichTextProps) => {
 		<div
 			id={`rt-${scopeId}`}
 			className={cn(
-				'relative w-full',
-				hasBackground ? 'px-16 py-16 md:px-24 md:py-20' : '',
+				'relative w-full py-16 md:py-20',
 				className,
 			)}
 			style={{ color: text_color ?? undefined, backgroundColor: background_color ?? undefined }}
@@ -264,9 +264,9 @@ const RichText = ({ data, className }: RichTextProps) => {
 				</>
 			)}
 
-			<div
+			<Container
 				className={cn(
-					'relative mx-auto max-w-[892px] space-y-6',
+					'relative space-y-6',
 					alignment === 'center' ? 'text-center' : alignment === 'right' ? 'text-right' : 'text-left',
 				)}
 			>
@@ -278,7 +278,7 @@ const RichText = ({ data, className }: RichTextProps) => {
 				)}
 				{headline && (
 					<div
-						className="rt-headline font-heading font-normal text-4xl md:text-5xl lg:text-h1 leading-tight"
+						className="max-w-[892px] text-center mx-auto rt-headline font-heading font-normal text-4xl md:text-5xl lg:text-h1 leading-tight"
 						dangerouslySetInnerHTML={{ __html: headline }}
 						data-directus={setAttr({ collection: 'block_richtext', item: id, fields: 'headline', mode: 'popover' })}
 					/>
@@ -286,11 +286,11 @@ const RichText = ({ data, className }: RichTextProps) => {
 				{content && (
 					<Text
 						content={content}
-						className={proseOverrides}
+						className={cn(proseOverrides, 'max-w-none w-full', alignClass)}
 						data-directus={setAttr({ collection: 'block_richtext', item: id, fields: 'content', mode: 'drawer' })}
 					/>
 				)}
-			</div>
+			</Container>
 		</div>
 	);
 };

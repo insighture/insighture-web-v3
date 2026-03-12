@@ -1,7 +1,5 @@
 'use client';
 
-import { Copy, Share } from 'lucide-react';
-import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import {
 	Dialog,
@@ -14,8 +12,10 @@ import {
 } from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { Copy, Share2 } from 'lucide-react';
+import { useState } from 'react';
 
-const ShareDialog = ({ postUrl, postTitle }: { postUrl: string; postTitle: string }) => {
+const ShareDialog = ({ title="Share", postUrl, postTitle }: { title?: string; postUrl: string; postTitle: string }) => {
 	const [copied, setCopied] = useState(false);
 
 	const handleCopy = () => {
@@ -45,9 +45,9 @@ const ShareDialog = ({ postUrl, postTitle }: { postUrl: string; postTitle: strin
 	return (
 		<Dialog>
 			<DialogTrigger asChild>
-				<Button variant="outline" className="flex items-center space-x-2">
-					<Share className="size-4" />
-					<span>Share Blog</span>
+				<Button variant="outline" className="flex items-center space-x-1 border-[#EE4065]">
+					<span>{title}</span>
+					<Share2 className="size-4" />
 				</Button>
 			</DialogTrigger>
 			<DialogContent className="sm:max-w-md">

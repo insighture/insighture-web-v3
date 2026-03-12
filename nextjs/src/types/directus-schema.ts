@@ -1654,6 +1654,10 @@ export interface DirectusUser {
 	/** @description Blog posts this user has authored. */
 	posts?: Post[] | string[];
 	policies?: DirectusAccess[] | string[];
+	social_facebook?: string | null;
+	social_twitter?: string | null;
+	social_instagram?: string | null;
+	social_youtube?: string | null;
 }
 
 export interface DirectusWebhook {

@@ -58,10 +58,12 @@ Thumbs.db
 directus/docs/*
 /directus/ec2-backup
 /directus/snapshots
-!/directus/scripts
+/directus/scripts
 /directus/.directus-sync
-!/directus/extensions
+/directus/extensions
 
 .claude
 /.claude
 /nextjs/docs
+develop.d13cqpuwmpw5dw.amplifyapp.com-03.11.2026.pdf
+package-lock.json

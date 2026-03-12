@@ -492,7 +492,7 @@ export const fetchPostByIdAndVersion = async (
 							'slug',
 							'seo',
 							{
-								author: ['id', 'first_name', 'last_name', 'avatar'],
+								author: ['id', 'first_name', 'last_name', 'avatar', 'title', 'description', 'social_facebook', 'social_twitter', 'social_instagram', 'social_youtube'],
 							},
 						],
 					}),
@@ -603,16 +603,17 @@ export const fetchPostBySlug = async (
 				'image',
 				'description',
 				'slug',
+				'type',
 				'seo',
 				{
-					author: ['id', 'first_name', 'last_name', 'avatar'],
+					author: ['id', 'first_name', 'last_name', 'avatar', 'title', 'description', 'social_facebook', 'social_twitter', 'social_instagram', 'social_youtube'],
 				},
 			],
 		});
 		const relatedQuery = readItems<Schema, 'posts', any>('posts', {
 			filter: { slug: { _neq: slug }, status: { _eq: 'published' } },
-			limit: 2,
-			fields: ['id', 'title', 'slug', 'image'],
+			limit: 3,
+			fields: ['id', 'title', 'slug', 'image', 'type', 'content'],
 		});
 		const [posts, relatedPosts] = await Promise.all([
 			directus.request<Post[]>(token ? withToken(token, postsQuery) : postsQuery),
