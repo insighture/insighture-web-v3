@@ -169,22 +169,22 @@ export default function BlogPostClient({ post, relatedPosts, author, authorName,
 			{/* Author card */}
 			{author && (authorName || author.description) && (
 				<Container className="pb-16">
-					<div className="bg-[#f3f5f7] border border-[#ced7db] flex items-center p-6 md:p-10 rounded-2xl shadow-[4px_4px_14px_0px_rgba(21,24,26,0.16)]">
-						<div className="flex flex-col gap-6 w-full">
-							<div className="flex items-end justify-between gap-4">
-								<div className="flex items-center gap-2 md:gap-3">
+					<div className="bg-[#f3f5f7] border border-[#ced7db] flex items-center p-5 sm:p-6 md:p-10 rounded-2xl shadow-[4px_4px_14px_0px_rgba(21,24,26,0.16)]">
+						<div className="flex flex-col gap-4 sm:gap-6 w-full">
+							<div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
+								<div className="flex items-center gap-3">
 									{author.avatar && (
 										<DirectusImage
 											uuid={typeof author.avatar === 'string' ? author.avatar : author.avatar.id}
 											alt={authorName || 'Author'}
-											className="rounded-full object-cover size-[80px] md:size-[100px] shrink-0"
+											className="rounded-full object-cover size-[64px] sm:size-[80px] md:size-[100px] shrink-0"
 											width={100}
 											height={100}
 										/>
 									)}
 									<div className="flex flex-col">
 										{authorName && (
-											<span className="font-sans text-[20px] md:text-[24px] leading-[32px] text-[#2d3236]">
+											<span className="font-sans text-[18px] sm:text-[20px] md:text-[24px] leading-[28px] sm:leading-[32px] text-[#2d3236]">
 												{authorName}
 											</span>
 										)}
@@ -221,7 +221,7 @@ export default function BlogPostClient({ post, relatedPosts, author, authorName,
 								)}
 							</div>
 							{author.description && (
-								<p className="font-sans text-[16px] leading-[24px] text-[#15181a]">
+								<p className="font-sans text-[14px] sm:text-[16px] leading-[22px] sm:leading-[24px] text-[#15181a]">
 									{author.description}
 								</p>
 							)}
