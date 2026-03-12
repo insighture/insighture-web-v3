@@ -446,7 +446,7 @@ const NavigationBar = forwardRef<HTMLElement, NavigationBarProps>(({ navigation,
 					</nav>
 
 					{/* Right Side - CTA + Search + Mobile Menu */}
-					<div className="flex items-center gap-3 md:gap-4 lg:gap-8">
+					<div className="flex items-center gap-3 md:gap-4 lg:gap-4">
 						{/* CTA Button - Visible on tablet and desktop */}
 						<Button
 							asChild
@@ -467,7 +467,7 @@ const NavigationBar = forwardRef<HTMLElement, NavigationBarProps>(({ navigation,
 								className={cn(
 									'flex items-center justify-end rounded-full overflow-hidden border transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)]',
 									searchOpen
-										? 'w-[200px] sm:w-[260px] lg:w-[260px] border-white/30 bg-white/10 backdrop-blur-sm'
+										? 'w-[200px] sm:w-[220px] lg:w-[240px] border-white/30 bg-white/10 backdrop-blur-sm'
 										: 'w-[28px] lg:w-[100px] border-transparent bg-transparent',
 								)}
 							>
