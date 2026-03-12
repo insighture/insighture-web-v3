@@ -58,9 +58,9 @@ Thumbs.db
 directus/docs/*
 /directus/ec2-backup
 /directus/snapshots
-/directus/scripts
+!/directus/scripts
 /directus/.directus-sync
-/directus/
+!/directus/extensions
 
 .claude
 /.claude
