@@ -34,7 +34,7 @@ export default function Credentials({ data }: CredentialsProps) {
 
 	return (
 		<div
-			className="w-full flex flex-col lg:flex-row items-center justify-between gap-8 md:gap-10 lg:gap-8 px-5 md:px-12 lg:px-[120px] py-12 md:py-16 lg:py-[80px]"
+			className="w-full max-w-[1400px] mx-auto flex flex-col lg:flex-row items-center justify-between gap-8 md:gap-10 lg:gap-8 px-5 md:px-12 lg:px-[120px] py-12 md:py-16 lg:py-[80px]"
 			style={{ background: bgColor }}
 			data-directus={setAttr({ collection: 'block_credentials', item: id, fields: ['headline', 'headline_emphasis', 'description', 'badges', 'background_color'], mode: 'popover' })}
 		>

@@ -151,7 +151,7 @@ export default function ServiceProductCatalogue({ data, accentColor, contained }
 			data-directus={directusAttr}
 		>
 			{mobileContent}
-			<div className="max-w-[1440px] mx-auto">
+			<div className="max-w-[1400px] mx-auto">
 				{desktopContent}
 			</div>
 		</section>

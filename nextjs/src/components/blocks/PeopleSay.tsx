@@ -39,7 +39,7 @@ export default function PeopleSay({ data }: { data: PeopleSayData }) {
 	};
 
 	return (
-		<div className="w-full py-[96px] px-8 lg:px-[135px] flex flex-col gap-8">
+		<div className="w-full max-w-[1400px] mx-auto py-[96px] px-8 lg:px-[135px] flex flex-col gap-8">
 			{/* Heading */}
 			{heading && (
 				<div

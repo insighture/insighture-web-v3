@@ -77,7 +77,7 @@ export default function PlatformBanner({ data }: PlatformCtaProps) {
 			</div>
 
 			{/* ── Desktop layout (md+) ── */}
-			<div className="hidden md:flex items-center py-[64px]">
+			<div className="hidden md:flex items-center py-[64px] max-w-[1400px] mx-auto">
 				{/* Left: accent line + text content */}
 				<div className="flex items-stretch gap-8 flex-1 px-8 lg:pl-[120px] lg:pr-[80px]">
 					{/* Blue vertical accent line */}
@@ -118,7 +118,7 @@ export default function PlatformBanner({ data }: PlatformCtaProps) {
 				{/* Right: image — flush to right edge, left-side rounded corners only */}
 				{image && (
 					<div
-						className="shrink-0 w-[55%] lg:w-[700px] h-[240px] md:h-[306px] rounded-l-[8px] overflow-hidden relative"
+						className="shrink-0 w-[calc(55%+max(0px,(100vw-1400px)/2))] lg:w-[calc(700px+max(0px,(100vw-1400px)/2))] h-[240px] md:h-[306px] rounded-l-[8px] overflow-hidden relative mr-[calc(-1*max(0px,(100vw-1400px)/2))]"
 						
 					>
 						<DirectusImage

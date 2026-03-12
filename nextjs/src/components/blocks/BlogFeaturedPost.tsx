@@ -42,13 +42,13 @@ export default function BlogFeaturedPost({ data }: BlogFeaturedPostProps) {
 				mode: 'popover',
 			})}
 		>
-			<div className="flex flex-col lg:flex-row items-center pb-10 md:pb-16 gap-[40px] md:gap-[60px] lg:gap-[130px]">
+			<div className="flex flex-col lg:flex-row items-center pb-10 md:pb-16 gap-[40px] md:gap-[60px] lg:gap-[130px] max-w-[1400px] mx-auto">
 				{/* Left column */}
 				<div className="lg:w-1/2">
 					<div className="flex flex-col gap-6 md:gap-10 items-start w-full lg:flex-1 lg:min-w-0">
-						{/* Image */}
+						{/* Image — bleeds left past the 1400px container to viewport edge */}
 						{image && (
-							<div className="relative w-full h-[220px] sm:h-[300px] md:h-[380px] lg:h-[451px] rounded-br-[16px] overflow-hidden">
+							<div className="relative w-[calc(100%+max(0px,(100vw-1400px)/2))] ml-[calc(-1*max(0px,(100vw-1400px)/2))] h-[220px] sm:h-[300px] md:h-[380px] lg:h-[451px] rounded-br-[16px] overflow-hidden">
 								<DirectusImage
 									uuid={image}
 									alt={'Featured Post Image'}
@@ -62,7 +62,7 @@ export default function BlogFeaturedPost({ data }: BlogFeaturedPostProps) {
 
 						{/* Text */}
 						{special_post && (
-							<Container className="flex flex-col gap-[32px] md:gap-[56px] lg:pl-[120px]">
+							<div className="flex flex-col gap-[32px] md:gap-[56px] px-6 sm:px-10 md:px-16 lg:pl-[120px] lg:pr-0">
 								<div className="flex flex-col gap-4 items-start w-full lg:max-w-[556px]">
 									{special_post.type && (
 										<p className="font-sans font-normal text-[14px] md:text-[16px] leading-[22px] text-[#fcfcfd] tracking-[0.96px] uppercase w-full">
@@ -106,7 +106,7 @@ export default function BlogFeaturedPost({ data }: BlogFeaturedPostProps) {
 										</Link>
 									)}
 								</div>
-							</Container>
+							</div>
 						)}
 					</div>
 				</div>

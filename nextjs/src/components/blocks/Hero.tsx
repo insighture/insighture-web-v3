@@ -417,7 +417,7 @@ export default function Hero({ data }: HeroProps) {
 				})()}
 
 				{/* Content overlay */}
-				<div className={cn('relative z-[10] flex flex-col mx-auto px-6 md:px-16 lg:px-[120px] py-16 gap-8', heightClass, pc.outer)} style={heightStyle}>
+				<div className={cn('relative z-[10] flex flex-col max-w-[1400px] mx-auto px-6 md:px-16 lg:px-[120px] py-16 gap-8 w-full', heightClass, pc.outer)} style={heightStyle}>
 					{/* Text content block */}
 					<div className={cn('flex flex-col gap-6 text-white max-w-[1200px]', pc.text, !isCarousel && textAlignClass)}>
 						{slide?.tagline_image ? (
@@ -564,31 +564,30 @@ export default function Hero({ data }: HeroProps) {
 							</div>
 						</div>
 					)}
+					{/* Carousel indicators */}
+					{isCarousel && sortedSlides.length > 1 && (
+						<div className="absolute bottom-12 left-6 md:left-16 lg:left-[120px] flex items-center gap-2 z-20">
+							{sortedSlides.map((_, i) => {
+								const isActive = i === currentSlide;
+								const activeSlideColor = sortedSlides[currentSlide]?.carousel_indicator_color;
+
+								return (
+									<button
+										key={i}
+										aria-label={`Go to slide ${i + 1}`}
+										onClick={() => setCurrentSlide(i)}
+										className={cn(
+											'h-2 rounded-full transition-all duration-300',
+											isActive ? 'w-[68px]' : 'w-2 bg-white/40 hover:bg-white/60',
+											isActive && !activeSlideColor && 'bg-white',
+										)}
+										style={isActive && activeSlideColor ? { backgroundColor: activeSlideColor } : undefined}
+									/>
+								);
+							})}
+						</div>
+					)}
 				</div>
-
-				{/* Carousel indicators */}
-				{isCarousel && sortedSlides.length > 1 && (
-					<div className="absolute bottom-12 left-6 md:left-16 lg:left-[120px] flex items-center gap-2 z-20">
-						{sortedSlides.map((_, i) => {
-							const isActive = i === currentSlide;
-							const activeSlideColor = sortedSlides[currentSlide]?.carousel_indicator_color;
-
-							return (
-								<button
-									key={i}
-									aria-label={`Go to slide ${i + 1}`}
-									onClick={() => setCurrentSlide(i)}
-									className={cn(
-										'h-2 rounded-full transition-all duration-300',
-										isActive ? 'w-[68px]' : 'w-2 bg-white/40 hover:bg-white/60',
-										isActive && !activeSlideColor && 'bg-white',
-									)}
-									style={isActive && activeSlideColor ? { backgroundColor: activeSlideColor } : undefined}
-								/>
-							);
-						})}
-					</div>
-				)}
 			</section>
 		);
 	}
@@ -724,7 +723,7 @@ export default function Hero({ data }: HeroProps) {
 	return (
 		<section
 			className={cn(
-				'relative w-full mx-auto flex flex-col gap-6 md:gap-10 py-16 px-6 sm:px-10 md:px-16 lg:px-[120px]',
+				'relative w-full max-w-[1400px] mx-auto flex flex-col gap-6 md:gap-10 py-16 px-6 sm:px-10 md:px-16 lg:px-[120px]',
 				layout === 'image_left'
 					? 'md:flex-row-reverse items-center'
 					: 'md:flex-row items-center',

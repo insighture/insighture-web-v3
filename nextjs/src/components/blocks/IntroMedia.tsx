@@ -16,9 +16,10 @@ export default function IntroMedia({ data }: { data: IntroMediaData }) {
 	const { id, heading, description, image, video_url } = data;
 
 	return (
-		<div className="bg-[#0b2d34] w-full flex flex-col lg:flex-row items-center overflow-hidden pt-10 md:pt-12 lg:py-[64px]">
+		<div className="bg-[#0b2d34] w-full overflow-hidden">
+		<div className="flex flex-col lg:flex-row items-center pt-10 md:pt-12 lg:py-[64px] max-w-[1400px] mx-auto">
 			{/* Left: text content */}
-			<Container className="flex items-stretch gap-6 md:gap-8 flex-1 py-4 lg:pr-[80px]">
+			<div className="flex items-stretch gap-6 md:gap-8 flex-1 py-4 px-6 sm:px-10 md:px-16 lg:pl-[120px] lg:pr-[80px]">
 				{/* Pink vertical accent line */}
 				<div className="w-[3px] shrink-0 bg-[#ee4065] rounded-full" />
 
@@ -39,11 +40,11 @@ export default function IntroMedia({ data }: { data: IntroMediaData }) {
 						</p>
 					)}
 				</div>
-			</Container>
+			</div>
 
 			{/* Right: image / video */}
 			<div
-				className="w-full lg:shrink-0 lg:w-[700px] h-[240px] sm:h-[300px] md:h-[380px] lg:h-[480px] lg:rounded-l-[8px] overflow-hidden relative mt-6 lg:mt-0"
+				className="w-full lg:shrink-0 lg:w-[calc(700px+max(0px,(100vw-1400px)/2))] h-[240px] sm:h-[300px] md:h-[380px] lg:h-[480px] lg:rounded-l-[8px] overflow-hidden relative mt-6 lg:mt-0 lg:mr-[calc(-1*max(0px,(100vw-1400px)/2))]"
 				data-directus={setAttr({ collection: 'block_intro_media', item: id, fields: video_url ? 'video_url' : 'image', mode: 'popover' })}
 			>
 				{video_url ? (
@@ -60,6 +61,7 @@ export default function IntroMedia({ data }: { data: IntroMediaData }) {
 					<div className="size-full bg-[#0f3b43]" />
 				)}
 			</div>
+		</div>
 		</div>
 	);
 }

@@ -125,7 +125,7 @@ export default function CultureGallery({ data }: { data: CultureGalleryData }) {
 	return (
 		<div className="relative w-full bg-white overflow-hidden py-20 lg:py-[120px]">
 			{/* Decorative dotlines image — matches Figma positioning */}
-			{/* Figma: left=34.57px, top=163.48px, width=1370.853px out of 1440px section */}
+			{/* Figma: left=34.57px, top=163.48px, width=1370.853px out of 1400px section */}
 			<img
 				src="/images/dotlines.png"
 				alt=""
@@ -134,7 +134,7 @@ export default function CultureGallery({ data }: { data: CultureGalleryData }) {
 				style={{ left: '2.4%', top: '163px', width: '95.2%' }}
 			/>
 
-			<div className="relative z-10 flex flex-col items-center gap-16 lg:gap-[68px] px-6 lg:px-10">
+			<div className="relative z-10 flex flex-col items-center gap-16 lg:gap-[68px] px-6 lg:px-10 max-w-[1400px] mx-auto w-full">
 				{/* Header section with side photos */}
 				<div className="relative w-full flex items-center justify-center min-h-[200px]">
 					{/* Side photos - absolutely positioned at top-left and top-right */}

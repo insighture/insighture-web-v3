@@ -57,7 +57,7 @@ export default function OpenRoles({ data }: { data: OpenRolesData }) {
 	}
 
 	return (
-		<div id="open-roles" className="w-full py-[96px] px-8 lg:px-[160px] flex flex-col gap-16">
+		<div id="open-roles" className="w-full max-w-[1400px] mx-auto py-[96px] px-8 lg:px-[160px] flex flex-col gap-16">
 			<span id="internships" className="sr-only" />
 			{/* Header */}
 			<div className="flex flex-col gap-10 items-center text-center">

@@ -97,7 +97,7 @@ export default function ServiceItems({ data }: ServiceItemsProps) {
 				mode: 'popover',
 			})}
 		>
-			<div className="px-[16px] lg:px-[120px] py-[64px] lg:py-[96px] flex flex-col gap-[56px]">
+			<div className="max-w-[1400px] mx-auto px-[16px] lg:px-[120px] py-[64px] lg:py-[96px] flex flex-col gap-[56px]">
 
 				{/* ── Section header ───────────────────────────────────────── */}
 				{(heading || description) && (

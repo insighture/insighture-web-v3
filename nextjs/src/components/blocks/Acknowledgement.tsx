@@ -11,7 +11,7 @@ const Acknowledgement = ({ data }: { data: AcknowledgementData }) => {
 	if (!data.text) return null;
 
 	return (
-		<div className="w-full bg-[#ebf0f2] px-8 py-10 md:px-16 md:py-10 lg:px-[120px]">
+		<div className="w-full bg-[#ebf0f2] max-w-[1400px] mx-auto px-8 py-10 md:px-16 md:py-10 lg:px-[120px]">
 			<p
 				className="font-sans font-light text-sm leading-5 text-[#1d2939]"
 				data-directus={setAttr({

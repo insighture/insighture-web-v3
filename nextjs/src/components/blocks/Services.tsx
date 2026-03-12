@@ -32,7 +32,7 @@ const Services = ({ data }: ServicesProps) => {
 	const sortedItems = items ? [...items].sort((a, b) => (a.sort ?? 0) - (b.sort ?? 0)) : [];
 
 	return (
-		<div id={`svc-${scopeId}`} className="w-full px-6 md:px-16 lg:px-[120px] py-20">
+		<div id={`svc-${scopeId}`} className="w-full max-w-[1400px] mx-auto px-6 md:px-16 lg:px-[120px] py-20">
 			{/* Scoped style for emphasis color in headline */}
 			<style>{`#svc-${scopeId} .svc-headline em { font-style: italic; }`}</style>
 

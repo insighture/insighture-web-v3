@@ -4,7 +4,7 @@
 
 :root {
 	--background-color: #ffffff; /* Light background */
-	--foreground-color: #ffffff; /* Light text */
+	--foreground-color: #2D3236; /* Light text */
 	--background-color-muted: color-mix(in srgb, var(--background-color), var(--foreground-color) 10%);
 	--accent-color: #6644ff; /* Accent color */
 	--background-variant-color: #172940;
@@ -17,8 +17,8 @@
 .dark {
 	--background-color: #ffffff ; /* Default dark background */
 	--background-color-muted: color-mix(in srgb, var(--background-color), var(--foreground-color) 10%);
-	--background-variant-color: #172940;
-	--foreground-color: #ffffff; /* Default dark text */
+	--background-variant-color: #ffffff;
+	--foreground-color: #2D3236; /* Default dark text */
 }
 
 @layer base {

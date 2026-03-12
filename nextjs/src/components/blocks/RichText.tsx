@@ -114,8 +114,8 @@ const RichText = ({ data, className }: RichTextProps) => {
 			<div
 				id={`rt-${scopeId}`}
 				className={cn(
-					'relative w-full',
-					hasBackground ? 'px-16 py-16 md:px-28 md:py-20' : 'px-4 sm:px-6 lg:px-16 py-16',
+					'relative w-full max-w-[1400px] mx-auto',
+					hasBackground ? 'px-6 py-16 md:px-28 md:py-20' : 'px-4 sm:px-6 lg:px-16 py-16',
 					className,
 				)}
 				style={{ color: text_color ?? undefined, backgroundColor: background_color ?? undefined }}
